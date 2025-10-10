@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.celesteabode.com/sitemap.xml
+
+# Allow all search engines to crawl the site
+Allow: /philosophy
+Allow: /services
+Allow: /properties
+Allow: /contact
+Allow: /reviews
+Allow: /terms
+Allow: /privacy-policy
+
+# Allow property pages
+Allow: /properties/1
+Allow: /properties/2
+Allow: /properties/3
+Allow: /properties/4
+
+# Allow static assets
+Allow: /_next/static/
+Allow: /favicon.ico
+Allow: /favicon.png
+Allow: /logoceleste.png
+Allow: /hero.avif
+
+# Disallow admin or private areas (if any exist in future)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Crawl delay (optional - be respectful to servers)
+Crawl-delay: 1
+
+
+
+
+
+

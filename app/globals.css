@@ -1,0 +1,515 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* Import Satoshi Font from Fontshare */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap&text=CelesteAbodeRealEstateLuxuryPropertiesPhilosophyServicesContactBookConsultationMasterpiecesLivingExplorePropertiesWhatOurClientsSayGetInTouchOurPhilosophyServicesAtCelesteAbodeExplorePremiumProperties') layer(fonts);
+
+/* Sophisticated luxury color palette with warm neutrals and gold accents */
+:root {
+  /* Core Palette */
+  --porcelain: #FAFAF8; /* Page background */
+  --bone: #F7F6F4; /* Alt surface stripes, very light panels */
+  --paper: #FFFFFF; /* Cards */
+  --ink: #23262A; /* Primary text / strong UI */
+  --graphite: #5B6168; /* Body text */
+  --slate: #3A4046; /* Subheads, supportive text */
+  --line: #E9E3DC; /* Hairline borders/dividers */
+  --coffee: #2B3035; /* Authoritative neutral for buttons/links */
+  --sand: #CBB27A; /* Logo gold accent */
+  --sand-tint-light: #E7DCC5; /* Chips/hover/focus */
+  --sand-tint-dark: #DED0B1; /* Chips/hover/focus */
+  --cool-gray: #6A7077; /* Meta/labels/footnotes */
+
+  /* Legacy variables for compatibility */
+  --background: var(--porcelain);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--graphite);
+  --popover: var(--paper);
+  --popover-foreground: var(--graphite);
+
+  /* Primary / Accent */
+  --primary: var(--coffee);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--bone);
+  --secondary-foreground: var(--ink);
+  --accent: var(--sand);
+  --accent-foreground: #FFFFFF;
+
+  /* Muted / Neutral */
+  --muted: var(--bone);
+  --muted-foreground: var(--graphite);
+  --neutral-blue: var(--bone);
+  --neutral-blue-foreground: var(--ink);
+
+  /* Utility colors */
+  --destructive: #C94B4B; /* Error / warning red */
+  --destructive-foreground: #FFFFFF; /* Text on red alerts */
+  --border: #EDE3D7; /* Soft Beige borders */
+  --input: #FFFFFF; /* Input backgrounds */
+  --ring: rgba(212,177,106,0.25); /* Semi-transparent gold focus ring */
+
+  /* Chart colors */
+  --chart-1: #D4B16A; /* Gold Highlight */
+  --chart-2: #EDE3D7; /* Soft Beige Accent */
+  --chart-3: #5E5E5E; /* Warm Gray Text */
+  --chart-4: #2E2E2E; /* Dark Charcoal */
+  --chart-5: #F8F5EF; /* Ivory / Cream */
+
+  --radius: 0.5rem;
+
+  /* Sidebar */
+  --sidebar: #FFFFFF; /* White sidebar background */
+  --sidebar-foreground: #2E2E2E; /* Dark Charcoal sidebar text */
+  --sidebar-primary: #F8F5EF; /* Ivory / Cream primary sidebar background */
+  --sidebar-primary-foreground: #D4B16A; /* Gold highlight */
+  --sidebar-accent: #D4B16A; /* Accent items */
+  --sidebar-accent-foreground: #FFFFFF; /* Text on accent */
+  --sidebar-border: #EDE3D7; /* Soft Beige border */
+  --sidebar-ring: rgba(212,177,106,0.18); /* Focus ring */
+
+  /* Link color */
+  --link-text: #2E2E2E; /* Dark Charcoal links */
+}
+
+
+/* Dark mode with warm dark variants of the new palette */
+.dark {
+  /* Dark variants using warm dark tones */
+  --background: #1A1A1A; /* Warm dark background */
+  --foreground: #F8F5EF; /* Ivory text on dark */
+  --card: #2A2A2A; /* Warm dark card */
+  --card-foreground: #F8F5EF;
+  --popover: #2A2A2A;
+  --popover-foreground: #F8F5EF;
+
+  --primary: #D4B16A; /* Same gold highlight */
+  --primary-foreground: #1A1A1A; /* Dark text on gold */
+  --secondary: #3A3A3A; /* Darker warm gray */
+  --secondary-foreground: #F8F5EF;
+  --muted: #2A2A2A; /* Warm dark muted */
+  --muted-foreground: rgba(248,245,239,0.72);
+  --accent: #D4B16A; /* Same gold accent */
+  --accent-foreground: #1A1A1A;
+  --neutral-blue: #1A1A1A;
+  --neutral-blue-foreground: #F8F5EF;
+
+  --destructive: #a33f3f;
+  --destructive-foreground: #FFFFFF;
+  --border: #3A3A3A; /* Warm dark border */
+  --input: #2A2A2A;
+  --ring: rgba(212,177,106,0.32);
+
+  --chart-1: #D4B16A; /* Gold */
+  --chart-2: #EDE3D7; /* Soft Beige */
+  --chart-3: #5E5E5E; /* Warm Gray */
+  --chart-4: #2E2E2E; /* Dark Charcoal */
+  --chart-5: #F8F5EF; /* Ivory */
+
+  --sidebar: #1A1A1A;
+  --sidebar-foreground: #F8F5EF;
+  --sidebar-primary: #2A2A2A;
+  --sidebar-primary-foreground: #D4B16A;
+  --sidebar-accent: #D4B16A;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #3A3A3A;
+  --sidebar-ring: rgba(212,177,106,0.28);
+}
+
+@theme inline {
+  --font-sans: "Satoshi", system-ui, sans-serif;
+  --font-serif: "Satoshi", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-neutral-blue: var(--neutral-blue);
+  --color-neutral-blue-foreground: var(--neutral-blue-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  /* Typography System */
+  html {
+    font-feature-settings: "liga" 1, "kern" 1;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  /* Heading Typography */
+  h1, .h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  /* Specific headings that should be Bold 700 without italic */
+  .heading-bold {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    text-transform: none;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  
+  h2, .h2 {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 3vw, 36px);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  h3, .h3, h4, .h4 {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(20px, 2.5vw, 24px);
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    color: var(--ink);
+  }
+  
+  /* Body Text */
+  p, .body-text {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, 1.1vw, 18px);
+    line-height: 1.6;
+    max-width: 68ch;
+    text-wrap: pretty;
+    color: var(--graphite);
+  }
+  
+  /* Lead Text */
+  .lead {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--slate);
+  }
+
+  /* Navigation & Kickers */
+  .nav-text, .kicker {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+  
+  /* Quotes & Pull Quotes */
+  blockquote, .quote, .pull-quote {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  /* Numbers & Statistics */
+  .tabular-nums {
+    font-feature-settings: "tnum" 1, "lnum" 1;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  /* Lead Text */
+  .lead {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.3vw, 20px);
+    line-height: 1.6;
+    max-width: 72ch;
+  }
+  
+  /* UI Elements */
+  .ui-text {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 500;
+  }
+  
+  /* Button Text */
+  .button-text {
+    font-family: "Satoshi", system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Vertical Rhythm */
+  .vertical-rhythm > * + * {
+    margin-top: 1.5rem; /* 24px */
+  }
+  
+  .vertical-rhythm-lg > * + * {
+    margin-top: 2rem; /* 32px */
+  }
+  
+  /* Text Balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Enhanced custom styles with sophisticated blue aesthetics */
+
+.glassmorphism-header {
+  @apply backdrop-blur-xl bg-white/90 border-b border-white/20 shadow-lg;
+}
+
+.pill-button {
+  @apply rounded-full px-8 py-4 font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg;
+}
+
+.gradient-overlay {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(30, 58, 138, 0.7) 100%);
+}
+
+/* Added scroll animations and premium effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(22, 78, 99, 0.15);
+}
+
+.premium-card {
+  @apply bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300;
+}
+
+.premium-button {
+  @apply bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg;
+}
+
+.accent-button {
+  @apply bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg;
+}
+
+/* Aesthetic helpers: subtle overlays and refined shadows to add an elegant vibe */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.06) 100%); /* EDIT: gentle vignette for depth */
+  opacity: 0.9;
+  mix-blend-mode: multiply;
+}
+
+/* Soft grain layer placeholder (commented out by default). Enable if you want subtle texture. */
+/*
+.grain-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.03"/></svg>');
+  opacity: 0.06;
+  pointer-events: none;
+}
+*/
+
+/* Aesthetic card style for elevated surfaces */
+.aesthetic-card {
+  box-shadow: 0 12px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02); /* EDIT: deeper shadow for premium feel */
+  border: 1px solid rgba(255,255,255,0.03); /* EDIT: subtle highlight border */
+  background-clip: padding-box;
+}
+
+/* Slightly refined premium button sheen */
+.premium-button {
+  box-shadow: 0 8px 20px rgba(14,10,8,0.28); /* EDIT: add soft shadow to premium buttons */
+  border: 1px solid rgba(255,255,255,0.03); /* EDIT: soft border to lift button */
+}
+
+/* Glass Metallic Effect */
+.glass-metallic {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation Links */
+.nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--sand);
+}
+
+/* Navigation Links for Homepage (transparent header) */
+.header-transparent .nav-link {
+  color: var(--ink);
+}
+
+.header-transparent .nav-link:hover {
+  color: var(--sand);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--sand);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile Navigation */
+.mobile-nav-link {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--sand);
+  background: var(--sand-tint-light);
+}
+
+/* Mobile Navigation for Homepage (transparent header) */
+.header-transparent .mobile-nav-link {
+  color: var(--ink);
+}
+
+.header-transparent .mobile-nav-link:hover {
+  color: var(--sand);
+  background: var(--sand-tint-light);
+}
+
+/* Header States */
+.header-transparent {
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+}
+
+.header-scrolled {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
