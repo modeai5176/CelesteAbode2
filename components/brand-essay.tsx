@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { Section } from "@/components/ui/section"
-import { ImageFigure } from "@/components/ui/image-figure"
-import { PillButton } from "@/components/ui/pill-button"
-import { Kicker } from "@/components/ui/kicker"
-import { Lead } from "@/components/ui/lead"
-import Link from "next/link"
+import { Section } from "@/components/ui/section";
+import { ImageFigure } from "@/components/ui/image-figure";
+import { PillButton } from "@/components/ui/pill-button";
+import { Kicker } from "@/components/ui/kicker";
+import { Lead } from "@/components/ui/lead";
+import Link from "next/link";
 
 export function BrandEssay() {
   return (
@@ -20,24 +20,33 @@ export function BrandEssay() {
               <span className="text-[#CBB27A]">Celeste Abode</span>
             </h1>
             <Lead>
-              Welcome to Celeste Abode, a new era of real estate consulting in India where technology meets trust and every home feels destined. We transform property journeys into masterpieces of living by merging data-backed advisory, emotional understanding, and end-to-end diligence.
+              Welcome to Celeste Abode, a new era of real estate consulting in
+              India where technology meets trust and every home feels destined.
+              We transform property journeys into masterpieces of living by
+              merging data-backed advisory, emotional understanding, and
+              end-to-end diligence.
             </Lead>
           </div>
-          
+
           {/* Copy Structure */}
           <div className="max-w-prose vertical-rhythm">
             {/* Why We Exist */}
             <div>
               <h4 className="h4 text-foreground mb-3">Why We Exist</h4>
               <p className="body-text text-muted-foreground">
-                Real estate was never meant to be a race through listings. Our mission is to bring clarity and confidence to every decision. Celeste Abode replaces generic brokering with true consulting — curating lifestyle-aligned homes that fit your identity and investment vision.
+                Real estate was never meant to be a race through listings. Our
+                mission is to bring clarity and confidence to every decision.
+                Celeste Abode replaces generic brokering with true consulting —
+                curating lifestyle-aligned homes that fit your identity and
+                investment vision.
               </p>
             </div>
 
             {/* Our Approach */}
             <div>
               <p className="body-text text-muted-foreground">
-                We help you see beyond square feet to ROI, beyond projects to possibility, and beyond transactions to transformation.
+                We help you see beyond square feet to ROI, beyond projects to
+                possibility, and beyond transactions to transformation.
               </p>
             </div>
           </div>
@@ -53,32 +62,28 @@ export function BrandEssay() {
 
           {/* CTA Row */}
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <PillButton 
+            <PillButton
               variant="primary"
               size="md"
               asChild
+              className="hover:text-[#CBB27A] transition-all duration-300"
             >
-              <Link href="/philosophy" aria-label="Explore our philosophy and values">
+              <Link
+                href="/philosophy"
+                aria-label="Explore our philosophy and values"
+              >
                 Explore Our Philosophy
               </Link>
             </PillButton>
-            
-            <PillButton 
-              variant="outline"
-              size="md"
-              asChild
-            >
-              <Link href="/services" aria-label="View our comprehensive services">
-                View Services
-              </Link>
-            </PillButton>
           </div>
-          
         </div>
 
         {/* Right Column - Media (Sticky on Desktop) */}
         <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-32 flex justify-center" style={{ height: 'fit-content' }}>
+          <div
+            className="lg:sticky lg:top-32 flex justify-center"
+            style={{ height: "fit-content" }}
+          >
             <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl">
               <ImageFigure
                 src="/modern-luxury-apartment-building-architectural-pho.png"
@@ -93,5 +98,5 @@ export function BrandEssay() {
         </div>
       </div>
     </Section>
-  )
+  );
 }

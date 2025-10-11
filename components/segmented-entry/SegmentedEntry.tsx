@@ -1,79 +1,82 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Home, TrendingUp, Crown } from "lucide-react"
-import { IntentTile } from "./IntentTile"
-import { MultiStepForm } from "./MultiStepForm"
-import { IntentPayload, UserIntent, analytics } from "@/lib/analytics"
-import { cn } from "@/lib/utils"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Home, TrendingUp, Crown } from "lucide-react";
+import { IntentTile } from "./IntentTile";
+import { MultiStepForm } from "./MultiStepForm";
+import { IntentPayload, UserIntent, analytics } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
 
 interface SegmentedEntryProps {
-  onSubmit: (payload: IntentPayload) => void
-  onWhatsApp?: (payload: IntentPayload) => void
-  defaultMicroMarkets?: string[]
-  className?: string
+  onSubmit: (payload: IntentPayload) => void;
+  onWhatsApp?: (payload: IntentPayload) => void;
+  defaultMicroMarkets?: string[];
+  className?: string;
 }
 
 const tileData = {
   live: {
     title: "Buying to Live",
     subtitle: "Your Journey to a Dream Home",
-    description: "Discover properties that perfectly align with your lifestyle, commute, and community aspirations. We curate options that truly feel like home.",
+    description:
+      "Discover properties that perfectly align with your lifestyle, commute, and community aspirations. We curate options that truly feel like home.",
     cta: "Discover Your Dream Home",
-    icon: <Home className="w-8 h-8" />
+    icon: <Home className="w-8 h-8" />,
   },
   invest: {
-    title: "Investing for Returns", 
+    title: "Investing for Returns",
     subtitle: "Strategic Growth, Secure Future",
-    description: "Access exclusive pre-launch opportunities, meticulously vetted under-construction projects, and expert insights for liquidity and maximized returns. Your investment, our expertise.",
+    description:
+      "Access exclusive pre-launch opportunities, meticulously vetted under-construction projects, and expert insights for liquidity and maximized returns. Your investment, our expertise.",
     cta: "Explore Investment Opportunities",
-    icon: <TrendingUp className="w-8 h-8" />
+    icon: <TrendingUp className="w-8 h-8" />,
   },
   signature: {
     title: "Luxury & Signature Residences",
     subtitle: "Unparalleled Elegance & Exclusivity",
-    description: "Indulge in properties that define prestige. Explore exclusive listings, experience unparalleled brand equity, and secure residences with guaranteed possession timelines.",
+    description:
+      "Indulge in properties that define prestige. Explore exclusive listings, experience unparalleled brand equity, and secure residences with guaranteed possession timelines.",
     cta: "Unlock Elite Residences",
-    icon: <Crown className="w-8 h-8" />
-  }
-}
+    icon: <Crown className="w-8 h-8" />,
+  },
+};
 
 export function SegmentedEntry({
   onSubmit,
   onWhatsApp,
   defaultMicroMarkets = [],
-  className
+  className,
 }: SegmentedEntryProps) {
-  const [selectedIntent, setSelectedIntent] = useState<UserIntent | null>(null)
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [selectedIntent, setSelectedIntent] = useState<UserIntent | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleTileClick = (intent: UserIntent) => {
-    analytics.se_intent_tile_clicked(intent)
-    setSelectedIntent(intent)
-    setIsDrawerOpen(true)
-  }
+    analytics.se_intent_tile_clicked(intent);
+    setSelectedIntent(intent);
+    setIsDrawerOpen(true);
+  };
 
   const handleDrawerClose = () => {
-    setIsDrawerOpen(false)
-    setSelectedIntent(null)
-  }
+    setIsDrawerOpen(false);
+    setSelectedIntent(null);
+  };
 
   const handleSubmit = (payload: IntentPayload) => {
-    onSubmit(payload)
-  }
+    onSubmit(payload);
+  };
 
   const handleWhatsApp = (payload: IntentPayload) => {
     if (onWhatsApp) {
-      onWhatsApp(payload)
+      onWhatsApp(payload);
     }
-  }
+  };
 
   return (
     <section className={cn("py-16 md:py-20 bg-porcelain", className)}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +115,6 @@ export function SegmentedEntry({
           ))}
         </div>
 
-
         {/* Multi-Step Form */}
         {selectedIntent && (
           <MultiStepForm
@@ -123,5 +125,5 @@ export function SegmentedEntry({
         )}
       </div>
     </section>
-  )
+  );
 }
