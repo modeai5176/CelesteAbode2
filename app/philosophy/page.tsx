@@ -32,10 +32,13 @@ export default function PhilosophyPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Our Guiding Philosophy: <span className="text-primary">Trust. Transparency. Transformation.</span>
+                Our Guiding Philosophy:{" "}
+                <span className="text-primary">
+                  Trust. Transparency. Transformation.
+                </span>
               </h2>
             </div>
-            
+
             <div className="lg:grid lg:grid-cols-12 gap-8 md:gap-16">
               {/* Left Column - Content (60%) */}
               <div className="lg:col-span-7">
@@ -48,9 +51,13 @@ export default function PhilosophyPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-foreground mb-4">Trust</h3>
+                      <h3 className="text-3xl font-bold text-foreground mb-4">
+                        Trust
+                      </h3>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Built on <strong>authentic guidance</strong> and RERA-aligned diligence, ensuring every move is certified and secure.
+                        Built on <strong>authentic guidance</strong> and
+                        RERA-aligned diligence, ensuring every move is certified
+                        and secure.
                       </p>
                     </div>
                   </div>
@@ -63,9 +70,14 @@ export default function PhilosophyPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-foreground mb-4">Transparency</h3>
+                      <h3 className="text-3xl font-bold text-foreground mb-4">
+                        Transparency
+                      </h3>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        We replace guesswork with facts. Achieve transparency through clear <strong>ROI, absorption, and risk reports</strong>—the full data behind the dream.
+                        We replace guesswork with facts. Achieve transparency
+                        through clear{" "}
+                        <strong>ROI, absorption, and risk reports</strong>—the
+                        full data behind the dream.
                       </p>
                     </div>
                   </div>
@@ -78,9 +90,15 @@ export default function PhilosophyPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-foreground mb-4">Transformation</h3>
+                      <h3 className="text-3xl font-bold text-foreground mb-4">
+                        Transformation
+                      </h3>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        Experience the effortless <strong>transformation</strong> of your goals into reality, integrating AI curation with <strong>human insight</strong> for data-backed decision-making.
+                        Experience the effortless{" "}
+                        <strong>transformation</strong> of your goals into
+                        reality, integrating AI curation with{" "}
+                        <strong>human insight</strong> for data-backed
+                        decision-making.
                       </p>
                     </div>
                   </div>
@@ -101,7 +119,8 @@ export default function PhilosophyPage() {
                         Where Vision Meets Reality
                       </p>
                       <p className="text-white/90 text-sm mt-2">
-                        Every recommendation backed by data, every decision guided by expertise
+                        Every recommendation backed by data, every decision
+                        guided by expertise
                       </p>
                     </div>
                   </div>
@@ -116,18 +135,23 @@ export default function PhilosophyPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                The Brokerage Model We <span className="text-primary">Refuse</span>
+                The Brokerage Model We{" "}
+                <span className="text-primary">Refuse</span>
               </h2>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 md:gap-16">
               {/* Left Block - The Noise */}
               <div className="relative">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/20 rounded-full"></div>
                 <div className="pl-8">
-                  <h3 className="text-2xl font-semibold text-muted-foreground mb-4">The Noise</h3>
+                  <h3 className="text-2xl font-semibold text-muted-foreground mb-4">
+                    The Noise
+                  </h3>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Unlike listing-driven portals, the typical brokerage model starts with <em>what's for sale</em>—creating noise and applying sales pressure.
+                    Unlike listing-driven portals, the typical brokerage model
+                    starts with <em>what's for sale</em>—creating noise and
+                    applying sales pressure.
                   </p>
                 </div>
               </div>
@@ -136,12 +160,18 @@ export default function PhilosophyPage() {
               <div className="relative">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-full"></div>
                 <div className="pl-8">
-                  <h3 className="text-2xl font-semibold text-foreground mb-4">The Purpose</h3>
+                  <h3 className="text-2xl font-semibold text-foreground mb-4">
+                    The Purpose
+                  </h3>
                   <p className="text-lg text-foreground leading-relaxed">
-                    <strong>Celeste Abode starts with why you buy.</strong> Our <strong>curated consulting model</strong> eliminates noise and replaces pressure with purpose.
+                    <strong>Celeste Abode starts with why you buy.</strong> Our{" "}
+                    <strong>curated consulting model</strong> eliminates noise
+                    and replaces pressure with purpose.
                   </p>
                   <p className="text-lg text-foreground leading-relaxed mt-4">
-                    Our experts act as <strong>strategic partners</strong> who curate the <strong>Top 3 Definitive Projects</strong> fit for you—each rigorously backed by data.
+                    Our experts act as <strong>strategic partners</strong> who
+                    curate the <strong>Top 3 Definitive Projects</strong> fit
+                    for you—each rigorously backed by data.
                   </p>
                 </div>
               </div>
@@ -154,15 +184,20 @@ export default function PhilosophyPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                The Precision of Data. The Insight of <span className="text-primary">Desire</span>
+                The Precision of Data. The Insight of{" "}
+                <span className="text-primary">Desire</span>
               </h2>
             </div>
-            
+
             <div className="space-y-16">
               {/* Top Text Block */}
               <div className="text-center max-w-4xl mx-auto">
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Every recommendation comes with supporting data: <strong>absorption rates, yield bands, and exit liquidity forecasts.</strong> We ensure the foundation is financially flawless.
+                  Every recommendation comes with supporting data:{" "}
+                  <strong>
+                    absorption rates, yield bands, and exit liquidity forecasts.
+                  </strong>{" "}
+                  We ensure the foundation is financially flawless.
                 </p>
               </div>
 
@@ -178,7 +213,9 @@ export default function PhilosophyPage() {
               {/* Bottom Text Block */}
               <div className="text-center max-w-4xl mx-auto">
                 <p className="text-xl text-foreground leading-relaxed">
-                  Yet, we never forget the human side—the morning light, the view, the <strong>peace you seek</strong>. That is the true value we deliver.
+                  Yet, we never forget the human side—the morning light, the
+                  view, the <strong>peace you seek</strong>. That is the true
+                  value we deliver.
                 </p>
               </div>
             </div>
@@ -190,10 +227,11 @@ export default function PhilosophyPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                The Celeste Abode Standard. Our <span className="text-primary">Non-Negotiables</span>
+                The Celeste Abode Standard. Our{" "}
+                <span className="text-primary">Non-Negotiables</span>
               </h2>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               {/* Standard 1 */}
               <Card className="border-2 border-foreground/10 shadow-lg">
@@ -202,7 +240,9 @@ export default function PhilosophyPage() {
                     <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
                       01
                     </div>
-                    <h3 className="text-xl font-bold text-foreground">Diligence Over Deals</h3>
+                    <h3 className="text-xl font-bold text-foreground">
+                      Diligence Over Deals
+                    </h3>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">
                     We lead with evidence.
@@ -217,7 +257,9 @@ export default function PhilosophyPage() {
                     <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
                       02
                     </div>
-                    <h3 className="text-xl font-bold text-foreground">Client Emotion First</h3>
+                    <h3 className="text-xl font-bold text-foreground">
+                      Client Emotion First
+                    </h3>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">
                     Every interaction reflects respect for your journey.
@@ -232,7 +274,9 @@ export default function PhilosophyPage() {
                     <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
                       03
                     </div>
-                    <h3 className="text-xl font-bold text-foreground">Technology with Purpose</h3>
+                    <h3 className="text-xl font-bold text-foreground">
+                      Technology with Purpose
+                    </h3>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">
                     AI curation meets human judgment.
@@ -244,7 +288,10 @@ export default function PhilosophyPage() {
             {/* Mission Statement */}
             <div className="text-center mt-16 max-w-4xl mx-auto">
               <p className="text-xl text-foreground italic leading-relaxed">
-                <strong>Celeste Abode exists to create peace of mind in a complex market—so you feel absolutely confident about every move.</strong>
+                <strong>
+                  Celeste Abode exists to create peace of mind in a complex
+                  market—so you feel absolutely confident about every move.
+                </strong>
               </p>
             </div>
           </div>
@@ -262,16 +309,23 @@ export default function PhilosophyPage() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center text-white max-w-4xl mx-auto px-8">
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  Ready to Chart Your <span className="text-primary">Definitive Asset</span>?
+                  Ready to Chart Your{" "}
+                  <span className="text-primary">Definitive Asset</span>?
                 </h2>
                 <p className="text-xl mb-8 leading-relaxed">
-                  Whether you're an NRI buying remotely or a family upgrading within NCR, we offer the same level of <strong>compliance, clarity, and care</strong>. Virtual tours and digital diligence make the process seamless.
+                  Whether you're an NRI buying remotely or a family upgrading
+                  within NCR, we offer the same level of{" "}
+                  <strong>compliance, clarity, and care</strong>. Virtual tours
+                  and digital diligence make the process seamless.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <PillButton className="bg-primary hover:bg-primary/90 text-white px-8 py-4 text-lg">
                     Request Advisory Session
                   </PillButton>
-                  <PillButton variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg">
+                  <PillButton
+                    variant="outline"
+                    className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg"
+                  >
                     Talk to Our Expert Now
                   </PillButton>
                 </div>
