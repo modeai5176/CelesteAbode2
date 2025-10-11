@@ -127,7 +127,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
           <h3 className="text-lg font-semibold text-ink mb-2">
             Step 1: Basic Requirements
           </h3>
-          <p className="text-sm text-muted">Help us understand your needs</p>
+          <p className="text-sm text-muted text-center">Help us understand your needs</p>
         </div>
 
         {/* Budget */}
@@ -266,7 +266,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
           <h3 className="text-lg font-semibold text-ink mb-2">
             Step 2: Specific Preferences
           </h3>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-muted text-center">
             Tell us more about your requirements
           </p>
         </div>
@@ -358,7 +358,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
           <h3 className="text-lg font-semibold text-ink mb-2">
             Step 3: Contact Information
           </h3>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-muted text-center">
             We'll get back to you within 24 hours
           </p>
         </div>

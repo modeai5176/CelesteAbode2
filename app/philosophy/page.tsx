@@ -27,370 +27,255 @@ export default function PhilosophyPage() {
           </div>
         </section>
 
-        {/* Core Philosophy */}
+        {/* Our Ethos - Sticky Trust Manifesto */}
         <Section className="py-16 md:py-20">
-          <div className="lg:grid lg:grid-cols-12 gap-8 md:gap-16">
-            {/* Left Column - Media */}
-            <div className="lg:col-span-5">
-              <div
-                className="lg:sticky lg:top-32 flex justify-center"
-                style={{ height: "fit-content" }}
-              >
-                <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl w-[28rem] h-[450px] bg-muted">
-                  <img
-                    src="/luxury-modern-apartment.png"
-                    alt="Luxury modern apartment representing our philosophy of thoughtful design and attention to detail"
-                    className="w-full h-full object-fill"
-                  />
-                </div>
-              </div>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                Our Guiding Philosophy: <span className="text-primary">Trust. Transparency. Transformation.</span>
+              </h2>
             </div>
+            
+            <div className="lg:grid lg:grid-cols-12 gap-8 md:gap-16">
+              {/* Left Column - Content (60%) */}
+              <div className="lg:col-span-7">
+                <div className="space-y-24">
+                  {/* Pillar 1: Trust */}
+                  <div className="flex items-start gap-8">
+                    <div className="flex-shrink-0">
+                      <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                        01
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-bold text-foreground mb-4">Trust</h3>
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        Built on <strong>authentic guidance</strong> and RERA-aligned diligence, ensuring every move is certified and secure.
+                      </p>
+                    </div>
+                  </div>
 
-            {/* Right Column - Content */}
-            <div className="lg:col-span-7">
-              <div className="mb-8 vertical-rhythm">
-                <h1 className="heading-bold text-primary mb-6">
-                  Beyond Transactions, Into Transformations
-                </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  We believe that real estate is not just about buying and
-                  selling properties—it's about crafting the foundation for your
-                  life's most meaningful moments.
-                </p>
+                  {/* Pillar 2: Transparency */}
+                  <div className="flex items-start gap-8">
+                    <div className="flex-shrink-0">
+                      <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                        02
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-bold text-foreground mb-4">Transparency</h3>
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        We replace guesswork with facts. Achieve transparency through clear <strong>ROI, absorption, and risk reports</strong>—the full data behind the dream.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Pillar 3: Transformation */}
+                  <div className="flex items-start gap-8">
+                    <div className="flex-shrink-0">
+                      <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                        03
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-bold text-foreground mb-4">Transformation</h3>
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        Experience the effortless <strong>transformation</strong> of your goals into reality, integrating AI curation with <strong>human insight</strong> for data-backed decision-making.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="max-w-prose vertical-rhythm">
-                <div>
-                  <h4 className="h4 text-foreground mb-3">
-                    The Art of Curation
-                  </h4>
-                  <p className="body-text text-muted-foreground">
-                    Like a master curator in a world-class museum, we don't
-                    simply present options—we carefully select and arrange
-                    experiences that resonate with your deepest aspirations.
-                    Every property in our portfolio is chosen not just for its
-                    market value, but for its potential to enhance your life
-                    story.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="h4 text-foreground mb-3">
-                    Technology as a Bridge
-                  </h4>
-                  <p className="body-text text-muted-foreground">
-                    We see technology not as a replacement for human connection,
-                    but as a powerful bridge that brings us closer to
-                    understanding your unique needs. Our algorithms don't make
-                    decisions—they illuminate possibilities that our human
-                    expertise can then interpret and personalize.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="h4 text-foreground mb-3">The Long View</h4>
-                  <p className="body-text text-muted-foreground">
-                    While others focus on closing deals, we focus on opening
-                    doors—to new neighborhoods, new communities, and new
-                    chapters in your life. Our relationship with you begins with
-                    a handshake and continues through every milestone,
-                    celebration, and new beginning.
-                  </p>
+              {/* Right Column - Sticky Image (40%) */}
+              <div className="lg:col-span-5">
+                <div className="lg:sticky lg:top-32">
+                  <div className="relative overflow-hidden rounded-xl shadow-2xl w-full h-[600px] bg-muted">
+                    <img
+                      src="/luxury-modern-apartment.png"
+                      alt="Where Vision Meets Reality - Every recommendation backed by data, every decision guided by expertise"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                      <p className="text-white text-lg font-medium">
+                        Where Vision Meets Reality
+                      </p>
+                      <p className="text-white/90 text-sm mt-2">
+                        Every recommendation backed by data, every decision guided by expertise
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </Section>
 
-        {/* Values in Action */}
-        <Section className="bg-muted/30">
+        {/* Strategic Differentiation - Anti-Brokerage Stance */}
+        <Section className="py-16 md:py-20 bg-muted/30">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="heading-bold text-primary mb-6">
-                Values in Action
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                These aren't just words on a wall—they're the principles that
-                guide every interaction, every recommendation, and every
-                decision we make on your behalf.
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                The Brokerage Model We <span className="text-primary">Refuse</span>
+              </h2>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+              {/* Left Block - The Noise */}
+              <div className="relative">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/20 rounded-full"></div>
+                <div className="pl-8">
+                  <h3 className="text-2xl font-semibold text-muted-foreground mb-4">The Noise</h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Unlike listing-driven portals, the typical brokerage model starts with <em>what's for sale</em>—creating noise and applying sales pressure.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Block - The Purpose */}
+              <div className="relative">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-full"></div>
+                <div className="pl-8">
+                  <h3 className="text-2xl font-semibold text-foreground mb-4">The Purpose</h3>
+                  <p className="text-lg text-foreground leading-relaxed">
+                    <strong>Celeste Abode starts with why you buy.</strong> Our <strong>curated consulting model</strong> eliminates noise and replaces pressure with purpose.
+                  </p>
+                  <p className="text-lg text-foreground leading-relaxed mt-4">
+                    Our experts act as <strong>strategic partners</strong> who curate the <strong>Top 3 Definitive Projects</strong> fit for you—each rigorously backed by data.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        {/* Evidence Before Emotion */}
+        <Section className="py-16 md:py-20">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                The Precision of Data. The Insight of <span className="text-primary">Desire</span>
+              </h2>
+            </div>
+            
+            <div className="space-y-16">
+              {/* Top Text Block */}
+              <div className="text-center max-w-4xl mx-auto">
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Every recommendation comes with supporting data: <strong>absorption rates, yield bands, and exit liquidity forecasts.</strong> We ensure the foundation is financially flawless.
+                </p>
+              </div>
+
+              {/* Image */}
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
+                <img
+                  src="/luxury-villa-exterior-modern-architecture.png"
+                  alt="Beautiful home representing the emotional reward of the perfect property"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Bottom Text Block */}
+              <div className="text-center max-w-4xl mx-auto">
+                <p className="text-xl text-foreground leading-relaxed">
+                  Yet, we never forget the human side—the morning light, the view, the <strong>peace you seek</strong>. That is the true value we deliver.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        {/* Celeste Abode Standards */}
+        <Section className="py-16 md:py-20 bg-muted/30">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                The Celeste Abode Standard. Our <span className="text-primary">Non-Negotiables</span>
+              </h2>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Standard 1 */}
+              <Card className="border-2 border-foreground/10 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
+                      01
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">Diligence Over Deals</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    We lead with evidence.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Standard 2 */}
+              <Card className="border-2 border-foreground/10 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
+                      02
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">Client Emotion First</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Every interaction reflects respect for your journey.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Standard 3 */}
+              <Card className="border-2 border-foreground/10 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
+                      03
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">Technology with Purpose</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    AI curation meets human judgment.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Mission Statement */}
+            <div className="text-center mt-16 max-w-4xl mx-auto">
+              <p className="text-xl text-foreground italic leading-relaxed">
+                <strong>Celeste Abode exists to create peace of mind in a complex market—so you feel absolutely confident about every move.</strong>
               </p>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Integrity First */}
-              <motion.div
-                className="bg-card border border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Scale className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="h4 text-foreground mb-4">Integrity First</h3>
-                <p className="body-text text-muted-foreground">
-                  We believe that trust is earned through consistent actions,
-                  not just promises. Every piece of information we share is
-                  verified, every recommendation is transparent, and every
-                  commitment is honored.
-                </p>
-              </motion.div>
-
-              {/* Empathy-Driven */}
-              <motion.div
-                className="bg-card border border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Heart className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="h4 text-foreground mb-4">Empathy-Driven</h3>
-                <p className="body-text text-muted-foreground">
-                  We understand that behind every property search is a person
-                  with dreams, concerns, and aspirations. Our approach is built
-                  on listening first, understanding deeply, and responding with
-                  genuine care.
-                </p>
-              </motion.div>
-
-              {/* Excellence Obsessed */}
-              <motion.div
-                className="bg-card border border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Star className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="h4 text-foreground mb-4">Excellence Obsessed</h3>
-                <p className="body-text text-muted-foreground">
-                  Good enough is never good enough. We continuously refine our
-                  processes, expand our knowledge, and elevate our service to
-                  ensure that every client experience exceeds expectations.
-                </p>
-              </motion.div>
-
-              {/* Innovation Minded */}
-              <motion.div
-                className="bg-card border border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Rocket className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="h4 text-foreground mb-4">Innovation Minded</h3>
-                <p className="body-text text-muted-foreground">
-                  We embrace new technologies and methodologies not for their
-                  novelty, but for their ability to serve you better. Innovation
-                  is our tool, not our goal.
-                </p>
-              </motion.div>
-
-              {/* Community Focused */}
-              <motion.div
-                className="bg-card border border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Building2 className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="h4 text-foreground mb-4">Community Focused</h3>
-                <p className="body-text text-muted-foreground">
-                  We understand that a home is more than walls and windows—it's
-                  your connection to a community. We help you find not just a
-                  property, but your place in a neighborhood.
-                </p>
-              </motion.div>
-
-              {/* Future Forward */}
-              <motion.div
-                className="bg-card border border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <Eye className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="h4 text-foreground mb-4">Future Forward</h3>
-                <p className="body-text text-muted-foreground">
-                  We don't just consider your needs today—we anticipate how your
-                  life might evolve and ensure your investment grows with you,
-                  not against you.
-                </p>
-              </motion.div>
-            </div>
           </div>
         </Section>
 
-        {/* The Celeste Way */}
+        {/* Final Conversion - Global & Local Reach */}
         <Section className="py-16 md:py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="heading-bold text-primary mb-8">
-              The Celeste Way
-            </h1>
-            <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-              Our philosophy comes to life through a distinctive approach that
-              combines the best of human intuition with the power of modern
-              technology.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <motion.div
-                  className="flex items-start space-x-6"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-bold">1</span>
-                  </div>
-                  <div>
-                    <h4 className="h4 text-foreground mb-2">Listen Deeply</h4>
-                    <p className="body-text text-muted-foreground">
-                      We begin every relationship by understanding not just what
-                      you want, but why you want it. Your motivations, concerns,
-                      and aspirations become the foundation of our approach.
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-start space-x-6"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-secondary font-bold">2</span>
-                  </div>
-                  <div>
-                    <h4 className="h4 text-foreground mb-2">
-                      Analyze Thoroughly
-                    </h4>
-                    <p className="body-text text-muted-foreground">
-                      Our technology scans thousands of data points while our
-                      expertise interprets market trends, developer credibility,
-                      and future potential to present you with informed options.
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-start space-x-6"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-bold">3</span>
-                  </div>
-                  <div>
-                    <h4 className="h4 text-foreground mb-2">
-                      Present Thoughtfully
-                    </h4>
-                    <p className="body-text text-muted-foreground">
-                      We don't overwhelm you with options. Instead, we present a
-                      carefully curated selection with clear rationale, helping
-                      you make confident decisions.
-                    </p>
-                  </div>
-                </motion.div>
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[600px] bg-muted">
+            <img
+              src="/luxury-cityscape-blurred-background-for-real-estat.png"
+              alt="Global reach with local expertise - Ready to chart your definitive asset"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center text-white max-w-4xl mx-auto px-8">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  Ready to Chart Your <span className="text-primary">Definitive Asset</span>?
+                </h2>
+                <p className="text-xl mb-8 leading-relaxed">
+                  Whether you're an NRI buying remotely or a family upgrading within NCR, we offer the same level of <strong>compliance, clarity, and care</strong>. Virtual tours and digital diligence make the process seamless.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <PillButton className="bg-primary hover:bg-primary/90 text-white px-8 py-4 text-lg">
+                    Request Advisory Session
+                  </PillButton>
+                  <PillButton variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg">
+                    Talk to Our Expert Now
+                  </PillButton>
+                </div>
               </div>
-
-              <div className="space-y-8">
-                <motion.div
-                  className="flex items-start space-x-6"
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-secondary font-bold">4</span>
-                  </div>
-                  <div>
-                    <h4 className="h4 text-foreground mb-2">
-                      Support Continuously
-                    </h4>
-                    <p className="body-text text-muted-foreground">
-                      Our relationship doesn't end at closing. We're here for
-                      the long term, supporting you through possession, setup,
-                      and any future real estate needs.
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-start space-x-6"
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-bold">5</span>
-                  </div>
-                  <div>
-                    <h4 className="h4 text-foreground mb-2">
-                      Evolve Constantly
-                    </h4>
-                    <p className="body-text text-muted-foreground">
-                      We continuously refine our approach based on market
-                      changes, client feedback, and emerging technologies to
-                      ensure we always deliver the best possible service.
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </Section>
-
-        {/* CTA */}
-        <Section className="bg-card/80 text-foreground">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
-              Experience Philosophy in Action
-            </h2>
-            <p className="text-lg opacity-90 mb-8">
-              Ready to see how our philosophy translates into exceptional
-              results for your real estate journey?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <PillButton
-                variant="outline"
-                size="md"
-                className="bg-primary text-primary-foreground border-primary hover:bg-primary/90"
-                asChild
-              >
-                <a href="/contact">Start Your Journey</a>
-              </PillButton>
-              <PillButton
-                variant="outline"
-                size="md"
-                className="bg-primary text-primary-foreground border-primary hover:bg-primary/90"
-                asChild
-              >
-                <a href="/services">Explore Services</a>
-              </PillButton>
             </div>
           </div>
         </Section>
