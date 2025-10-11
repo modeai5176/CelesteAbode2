@@ -99,7 +99,7 @@ export function FourPillars() {
             variant="outline"
             size="md"
             asChild
-            className="border-[#CBB27A] text-black hover:text-[#CBB27A] hover:border-[#CBB27A] transition-all duration-300 shadow-sm hover:shadow-md"
+            className="border-black text-black hover:text-white hover:border-black hover:bg-black transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <Link href="/services" aria-label="View our comprehensive services">
               Explore Our Expertise

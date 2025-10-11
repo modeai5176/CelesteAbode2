@@ -66,7 +66,7 @@ export function BrandEssay() {
               variant="primary"
               size="md"
               asChild
-              className="hover:text-[#CBB27A] transition-all duration-300"
+              className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             >
               <Link
                 href="/philosophy"

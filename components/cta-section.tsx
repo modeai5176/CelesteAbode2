@@ -59,7 +59,7 @@ export function CTASection() {
 
           <div className="mb-8">
             <motion.button
-              className="inline-flex items-center px-8 py-4 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-6 py-3 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl text-base"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

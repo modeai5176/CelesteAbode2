@@ -245,7 +245,7 @@ export function PropertiesSection() {
           <div className="flex flex-wrap justify-center gap-4">
             <Button
               size="md"
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-4 text-lg rounded-full"
+              className="bg-primary hover:bg-primary/90 text-white px-6 py-3 text-base rounded-full"
               onClick={() => handleNavigation("/properties")}
             >
               Explore All Projects
@@ -253,7 +253,7 @@ export function PropertiesSection() {
             <Button
               variant="outline"
               size="md"
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 text-lg rounded-full"
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 text-base rounded-full"
               onClick={() => handleContact(properties[0])}
             >
               Get Expert Consultation
