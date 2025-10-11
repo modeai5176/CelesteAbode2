@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Heart, Shield, Eye, Zap } from "lucide-react";
+import { PillButton } from "@/components/ui/pill-button";
+import Link from "next/link";
 
 export function FourPillars() {
   const pillars = [
@@ -47,8 +49,7 @@ export function FourPillars() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="heading-bold text-primary mb-6">
-            The Trusted Partner From{" "}
-            <span className="text-[#CBB27A]">Options to Certainty.</span>
+            From <span className="text-[#CBB27A]">Options to Certainty.</span>
           </h2>
           <p className="text-xl text-muted max-w-4xl mx-auto leading-relaxed">
             Celeste Abode acts as your decision partner, ensuring every property
@@ -90,6 +91,20 @@ export function FourPillars() {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#CBB27A]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
             </motion.div>
           ))}
+        </div>
+
+        {/* CTA Button - Centered */}
+        <div className="mt-12 flex justify-center">
+          <PillButton
+            variant="outline"
+            size="md"
+            asChild
+            className="border-[#CBB27A] text-black hover:text-[#CBB27A] hover:border-[#CBB27A] transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            <Link href="/services" aria-label="View our comprehensive services">
+              Explore Our Expertise
+            </Link>
+          </PillButton>
         </div>
       </div>
     </section>
