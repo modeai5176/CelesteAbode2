@@ -134,14 +134,14 @@ export function PropertiesSection() {
                       handleNavigation(`/properties/${property.id}`)
                     }
                   >
-                    <div className="relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                    <div className="relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border-2 border-black">
                       {/* Image */}
                       <Image
                         src={property.image}
                         alt={property.name}
                         width={450}
                         height={450}
-                        className="w-full aspect-square object-cover rounded-2xl"
+                        className="w-full aspect-[4/5] md:aspect-square object-cover rounded-2xl"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                         quality={90}
                         loading="lazy"
@@ -169,7 +169,7 @@ export function PropertiesSection() {
                       {/* Text Overlay - Bottom Left */}
                       <div className="absolute bottom-4 left-4 right-4">
                         <h3
-                          className="text-2xl font-semibold mb-2 drop-shadow-lg"
+                          className="text-xl md:text-2xl font-semibold mb-2 drop-shadow-lg"
                           style={{
                             background:
                               "linear-gradient(135deg, #FFF8E7 0%, #F4E4BC 50%, #E6D3A3 100%)",
@@ -181,7 +181,7 @@ export function PropertiesSection() {
                           {property.name}
                         </h3>
                         <p
-                          className="text-base opacity-95 mb-2 drop-shadow-lg"
+                          className="text-sm md:text-base opacity-95 mb-2 drop-shadow-lg"
                           style={{
                             background:
                               "linear-gradient(135deg, #FFF8E7 0%, #F4E4BC 50%, #E6D3A3 100%)",
@@ -192,7 +192,7 @@ export function PropertiesSection() {
                         >
                           {property.builder}
                         </p>
-                        <div className="flex items-center gap-2 text-sm opacity-90">
+                        <div className="flex items-center gap-2 text-xs md:text-sm opacity-90">
                           <MapPin
                             className="w-4 h-4"
                             style={{ color: "#F4E4BC" }}
@@ -218,11 +218,11 @@ export function PropertiesSection() {
             </CarouselContent>
 
             {/* Navigation Arrows - Left and Right Sides */}
-            <div className="absolute -left-16 top-1/2 transform -translate-y-1/2">
-              <CarouselPrevious className="relative translate-y-0 left-0 right-0 bg-white hover:bg-gray-50 border-2 border-primary text-primary hover:text-primary shadow-lg w-12 h-12" />
+            <div className="absolute -left-4 md:-left-16 top-1/2 transform -translate-y-1/2">
+              <CarouselPrevious className="relative translate-y-0 left-0 right-0 bg-white hover:bg-gray-50 border-2 border-primary text-primary hover:text-primary shadow-lg w-8 h-8 md:w-12 md:h-12" />
             </div>
-            <div className="absolute -right-16 top-1/2 transform -translate-y-1/2">
-              <CarouselNext className="relative translate-y-0 left-0 right-0 bg-white hover:bg-gray/50 border-2 border-primary text-primary hover:text-primary shadow-lg w-12 h-12" />
+            <div className="absolute -right-4 md:-right-16 top-1/2 transform -translate-y-1/2">
+              <CarouselNext className="relative translate-y-0 left-0 right-0 bg-white hover:bg-gray/50 border-2 border-primary text-primary hover:text-primary shadow-lg w-8 h-8 md:w-12 md:h-12" />
             </div>
           </Carousel>
 
@@ -242,10 +242,10 @@ export function PropertiesSection() {
 
         {/* CTA Buttons */}
         <div className="text-center">
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 px-8 md:px-0">
             <Button
               size="md"
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-3 text-base rounded-full"
+              className="bg-primary hover:bg-primary/90 text-white px-6 py-3 text-base rounded-full w-full sm:w-auto"
               onClick={() => handleNavigation("/properties")}
             >
               Explore All Projects
@@ -253,7 +253,7 @@ export function PropertiesSection() {
             <Button
               variant="outline"
               size="md"
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 text-base rounded-full"
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 text-base rounded-full w-full sm:w-auto"
               onClick={() => handleContact(properties[0])}
             >
               Get Expert Consultation

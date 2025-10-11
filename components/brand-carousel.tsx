@@ -42,6 +42,7 @@ export function BrandCarousel() {
               duration: 20,
               repeat: Infinity,
               ease: "linear",
+              repeatType: "loop",
             }}
           >
             {/* First set of logos */}
@@ -55,7 +56,7 @@ export function BrandCarousel() {
                     src={developer.image}
                     alt={developer.name}
                     fill
-                    className="object-contain"
+                    className="object-contain border border-black rounded-lg"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
@@ -73,7 +74,7 @@ export function BrandCarousel() {
                     src={developer.image}
                     alt={developer.name}
                     fill
-                    className="object-contain"
+                    className="object-contain border border-black rounded-lg"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>

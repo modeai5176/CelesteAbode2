@@ -11,6 +11,20 @@ export function BrandEssay() {
   return (
     <Section className="py-16 md:py-20">
       <div className="lg:grid lg:grid-cols-12 gap-8 md:gap-16">
+        {/* Mobile Image - Top */}
+        <div className="lg:hidden mb-8">
+          <div className="relative overflow-hidden rounded-xl shadow-xl">
+            <ImageFigure
+              src="/modern-luxury-apartment-building-architectural-pho.png"
+              alt="Modern luxury apartment building architectural photography"
+              width={700}
+              height={600}
+              className="aspect-[7/6] object-contain"
+              imageClassName="object-center object-contain"
+            />
+          </div>
+        </div>
+
         {/* Left Column - Content */}
         <div className="lg:col-span-7">
           {/* Section Header */}
@@ -79,7 +93,7 @@ export function BrandEssay() {
         </div>
 
         {/* Right Column - Media (Sticky on Desktop) */}
-        <div className="lg:col-span-5">
+        <div className="hidden lg:block lg:col-span-5">
           <div
             className="lg:sticky lg:top-32 flex justify-center"
             style={{ height: "fit-content" }}

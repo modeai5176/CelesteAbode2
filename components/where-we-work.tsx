@@ -13,6 +13,7 @@ import {
   Star,
   Zap,
   Crown,
+  ChevronDown,
 } from "lucide-react";
 import { MultiStepForm } from "./segmented-entry/MultiStepForm";
 import { UserIntent, IntentPayload, analytics } from "@/lib/analytics";
@@ -21,6 +22,9 @@ export function WhereWeWork() {
   const [activeCorridor, setActiveCorridor] = useState("noida");
   const [selectedIntent, setSelectedIntent] = useState<UserIntent | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [expandedMobileCorridor, setExpandedMobileCorridor] = useState<
+    string | null
+  >(null);
 
   const corridors = [
     {
@@ -41,7 +45,7 @@ export function WhereWeWork() {
       color: "from-blue-50 to-blue-100",
       accent: "text-blue-600",
       bgAccent: "bg-blue-50",
-      mapPosition: { x: 45, y: 35 },
+      mapPosition: { x: 55, y: 45 },
     },
     {
       id: "yamuna",
@@ -137,6 +141,15 @@ export function WhereWeWork() {
     setSelectedIntent(null);
   };
 
+  const handleMobileCorridorToggle = (corridorId: string) => {
+    if (expandedMobileCorridor === corridorId) {
+      setExpandedMobileCorridor(null);
+    } else {
+      setExpandedMobileCorridor(corridorId);
+      setActiveCorridor(corridorId);
+    }
+  };
+
   return (
     <section className="py-24 bg-gradient-to-br from-porcelain via-white to-porcelain/50 relative overflow-hidden">
       {/* Background Pattern */}
@@ -169,180 +182,344 @@ export function WhereWeWork() {
           </p>
         </motion.div>
 
-        {/* Location Navigation - Centered */}
-        <motion.div
-          className="flex flex-wrap gap-3 justify-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        {/* Mobile Accordion Layout */}
+        <div className="lg:hidden space-y-4">
           {corridors.map((corridor) => (
-            <button
-              key={corridor.id}
-              onClick={() => setActiveCorridor(corridor.id)}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCorridor === corridor.id
-                  ? "bg-[#CBB27A] text-white shadow-lg"
-                  : "bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700"
-              }`}
-            >
-              {corridor.subtitle}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Content Layout */}
-        <div
-          className={`${
-            activeCorridor === "luxury"
-              ? "flex justify-center"
-              : "grid lg:grid-cols-2 gap-12 items-start"
-          }`}
-        >
-          {/* Map Container - Hidden for Luxury */}
-          {activeCorridor !== "luxury" && (
             <motion.div
-              className="relative h-[387px] bg-gradient-to-br from-white to-porcelain/80 rounded-3xl overflow-hidden border border-metal/20 shadow-lg"
-              key={`map-${activeCorridor}`}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              key={corridor.id}
+              className="bg-white/80 backdrop-blur-sm rounded-2xl border border-metal/20 shadow-lg overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: corridors.indexOf(corridor) * 0.1,
+              }}
             >
-              {activeCorridor === "ghaziabad" ? (
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179625.26986506698!2d77.38808362351043!3d28.69528372332065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6f06fd26a7798ba!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760197051602!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-3xl"
-                />
-              ) : activeCorridor === "noida" ? (
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158512.35529116966!2d77.38112687190133!3d28.514976803822055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198016984!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-3xl"
-                />
-              ) : activeCorridor === "yamuna" ? (
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224693.92988635143!2d77.41092315830856!3d28.36360629023615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198147624!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-3xl"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-metal/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                      <MapPin className="w-8 h-8 text-metal" />
-                    </div>
-                    <p className="text-muted text-sm">
-                      Select a location to view the map
+              {/* Accordion Header */}
+              <button
+                onClick={() => handleMobileCorridorToggle(corridor.id)}
+                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-porcelain/50 transition-colors duration-200"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-[#CBB27A]/20 rounded-xl">
+                    {corridor.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-ink text-lg">
+                      {corridor.subtitle}
+                    </h3>
+                    <p className="text-[#CBB27A] text-sm font-medium">
+                      {corridor.tagline}
                     </p>
                   </div>
                 </div>
-              )}
-            </motion.div>
-          )}
+                <motion.div
+                  animate={{
+                    rotate: expandedMobileCorridor === corridor.id ? 180 : 0,
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="w-5 h-5 text-muted" />
+                </motion.div>
+              </button>
 
-          {/* Dynamic Content Panel */}
-          <motion.div
-            className={`space-y-6 h-[387px] flex flex-col justify-end ${
-              activeCorridor === "luxury" ? "max-w-2xl" : ""
-            }`}
-            key={`content-${activeCorridor}`}
-            initial={
-              activeCorridor === "luxury"
-                ? { opacity: 1, x: 0 }
-                : { opacity: 0, x: 100 }
-            }
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: activeCorridor === "luxury" ? 0 : 0.5 }}
-          >
-            {/* Active Corridor Details */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCorridor}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-metal/20 shadow-lg"
-              >
-                {activeCorridorData && (
-                  <>
-                    {/* Header */}
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="p-3 bg-[#CBB27A]/20 rounded-2xl">
-                        {activeCorridorData.icon}
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-ink mb-1">
-                          {activeCorridorData.title}
-                        </h3>
-                        <p className="text-[#CBB27A] font-medium">
-                          {activeCorridorData.tagline}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-muted leading-relaxed mb-6">
-                      {activeCorridorData.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="grid grid-cols-2 gap-3 mb-8">
-                      {activeCorridorData.features.map((feature, index) => (
+              {/* Accordion Content */}
+              <AnimatePresence>
+                {expandedMobileCorridor === corridor.id && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 space-y-6">
+                      {/* Map for non-luxury corridors */}
+                      {corridor.id !== "luxury" && (
                         <motion.div
-                          key={index}
-                          className="flex items-center gap-2 text-muted text-sm"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: index * 0.1 }}
+                          className="relative h-[250px] bg-gradient-to-br from-white to-porcelain/80 rounded-2xl overflow-hidden border border-metal/20"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.1 }}
                         >
-                          <div className="w-1.5 h-1.5 bg-[#CBB27A] rounded-full" />
-                          {feature}
+                          {corridor.id === "ghaziabad" ? (
+                            <iframe
+                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179625.26986506698!2d77.38808362351043!3d28.69528372332065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6f06fd26a7798ba!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760197051602!5m2!1sen!2sin"
+                              width="100%"
+                              height="100%"
+                              style={{ border: 0 }}
+                              allowFullScreen
+                              loading="lazy"
+                              referrerPolicy="no-referrer-when-downgrade"
+                              className="rounded-2xl"
+                            />
+                          ) : corridor.id === "noida" ? (
+                            <iframe
+                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158512.35529116966!2d77.38112687190133!3d28.514976803822055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198016984!5m2!1sen!2sin"
+                              width="100%"
+                              height="100%"
+                              style={{ border: 0 }}
+                              allowFullScreen
+                              loading="lazy"
+                              referrerPolicy="no-referrer-when-downgrade"
+                              className="rounded-2xl"
+                            />
+                          ) : corridor.id === "yamuna" ? (
+                            <iframe
+                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224693.92988635143!2d77.41092315830856!3d28.36360629023615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198147624!5m2!1sen!2sin"
+                              width="100%"
+                              height="100%"
+                              style={{ border: 0 }}
+                              allowFullScreen
+                              loading="lazy"
+                              referrerPolicy="no-referrer-when-downgrade"
+                              className="rounded-2xl"
+                            />
+                          ) : null}
                         </motion.div>
-                      ))}
-                    </div>
+                      )}
 
-                    {/* CTA */}
-                    <motion.button
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={
-                        activeCorridorData.id === "yamuna"
-                          ? handleOpenInvestForm
-                          : activeCorridorData.id === "noida" ||
-                            activeCorridorData.id === "ghaziabad"
-                          ? handleOpenLiveForm
-                          : activeCorridorData.id === "luxury"
-                          ? handleOpenSignatureForm
-                          : undefined
-                      }
-                    >
-                      {activeCorridorData.cta}
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.button>
-                  </>
+                      {/* Content Details */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.2 }}
+                        className="space-y-4"
+                      >
+                        <div>
+                          <h4 className="text-xl font-bold text-ink mb-2">
+                            {corridor.title}
+                          </h4>
+                          <p className="text-muted leading-relaxed">
+                            {corridor.description}
+                          </p>
+                        </div>
+
+                        {/* Features */}
+                        <div className="grid grid-cols-2 gap-3">
+                          {corridor.features.map((feature, index) => (
+                            <motion.div
+                              key={index}
+                              className="flex items-center gap-2 text-muted text-sm"
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{
+                                duration: 0.3,
+                                delay: 0.3 + index * 0.1,
+                              }}
+                            >
+                              <div className="w-1.5 h-1.5 bg-[#CBB27A] rounded-full" />
+                              {feature}
+                            </motion.div>
+                          ))}
+                        </div>
+
+                        {/* CTA Button */}
+                        <motion.button
+                          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={
+                            corridor.id === "yamuna"
+                              ? handleOpenInvestForm
+                              : corridor.id === "noida" ||
+                                corridor.id === "ghaziabad"
+                              ? handleOpenLiveForm
+                              : corridor.id === "luxury"
+                              ? handleOpenSignatureForm
+                              : undefined
+                          }
+                        >
+                          {corridor.cta}
+                          <ArrowRight className="w-4 h-4" />
+                        </motion.button>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop Layout - Hidden on Mobile */}
+        <div className="hidden lg:block">
+          {/* Location Navigation - Centered */}
+          <motion.div
+            className="flex flex-wrap gap-3 justify-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {corridors.map((corridor) => (
+              <button
+                key={corridor.id}
+                onClick={() => setActiveCorridor(corridor.id)}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCorridor === corridor.id
+                    ? "bg-[#CBB27A] text-white shadow-lg"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700"
+                }`}
+              >
+                {corridor.subtitle}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Content Layout */}
+          <div
+            className={`${
+              activeCorridor === "luxury"
+                ? "flex justify-center space-y-16 lg:space-y-0"
+                : "grid lg:grid-cols-2 gap-12 items-start space-y-16 lg:space-y-0"
+            }`}
+          >
+            {/* Map Container - Hidden for Luxury */}
+            {activeCorridor !== "luxury" && (
+              <motion.div
+                className="relative h-[387px] bg-gradient-to-br from-white to-porcelain/80 rounded-3xl overflow-hidden border border-metal/20 shadow-lg"
+                key={`map-${activeCorridor}`}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {activeCorridor === "ghaziabad" ? (
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179625.26986506698!2d77.38808362351043!3d28.69528372332065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6f06fd26a7798ba!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760197051602!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-3xl"
+                  />
+                ) : activeCorridor === "noida" ? (
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158512.35529116966!2d77.38112687190133!3d28.514976803822055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198016984!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-3xl"
+                  />
+                ) : activeCorridor === "yamuna" ? (
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224693.92988635143!2d77.41092315830856!3d28.36360629023615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198147624!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-3xl"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-metal/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <MapPin className="w-8 h-8 text-metal" />
+                      </div>
+                      <p className="text-muted text-sm">
+                        Select a location to view the map
+                      </p>
+                    </div>
+                  </div>
                 )}
               </motion.div>
-            </AnimatePresence>
-          </motion.div>
+            )}
+
+            {/* Dynamic Content Panel */}
+            <motion.div
+              className={`space-y-6 h-[387px] flex flex-col justify-end mt-16 lg:mt-0 ${
+                activeCorridor === "luxury" ? "max-w-2xl mt-0" : ""
+              }`}
+              key={`content-${activeCorridor}`}
+              initial={
+                activeCorridor === "luxury"
+                  ? { opacity: 1, x: 0 }
+                  : { opacity: 0, x: 100 }
+              }
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: activeCorridor === "luxury" ? 0 : 0.5 }}
+            >
+              {/* Active Corridor Details */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCorridor}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-metal/20 shadow-lg"
+                >
+                  {activeCorridorData && (
+                    <>
+                      {/* Header */}
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="p-3 bg-[#CBB27A]/20 rounded-2xl">
+                          {activeCorridorData.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-ink mb-1">
+                            {activeCorridorData.title}
+                          </h3>
+                          <p className="text-[#CBB27A] font-medium">
+                            {activeCorridorData.tagline}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-muted leading-relaxed mb-6">
+                        {activeCorridorData.description}
+                      </p>
+
+                      {/* Features */}
+                      <div className="grid grid-cols-2 gap-3 mb-8">
+                        {activeCorridorData.features.map((feature, index) => (
+                          <motion.div
+                            key={index}
+                            className="flex items-center gap-2 text-muted text-sm"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                          >
+                            <div className="w-1.5 h-1.5 bg-[#CBB27A] rounded-full" />
+                            {feature}
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* CTA */}
+                      <motion.button
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={
+                          activeCorridorData.id === "yamuna"
+                            ? handleOpenInvestForm
+                            : activeCorridorData.id === "noida" ||
+                              activeCorridorData.id === "ghaziabad"
+                            ? handleOpenLiveForm
+                            : activeCorridorData.id === "luxury"
+                            ? handleOpenSignatureForm
+                            : undefined
+                        }
+                      >
+                        {activeCorridorData.cta}
+                        <ArrowRight className="w-4 h-4" />
+                      </motion.button>
+                    </>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          </div>
         </div>
 
         {/* Multi-Step Form */}
