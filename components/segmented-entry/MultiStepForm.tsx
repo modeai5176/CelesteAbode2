@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Dialog,
@@ -48,6 +48,19 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
     step2: {},
     step3: { contactInfo: { name: "", email: "", phone: "" } },
   });
+
+  // Ref for handling mobile keyboard scrolling
+  const activeInputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
+  // Handle mobile keyboard scrolling
+  const handleInputFocus = () => {
+    if (activeInputRef.current) {
+      activeInputRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center', // Centers the input, giving space above the keyboard
+      });
+    }
+  };
 
   const handleNext = () => {
     if (currentStep < 3) {
@@ -123,9 +136,11 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             Budget Range
           </Label>
           <Input
+            ref={activeInputRef}
             id="budget"
             placeholder="e.g., ₹1.2-1.5 Cr"
             value={formData.step1.budget || ""}
+            onFocus={handleInputFocus}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,
@@ -388,10 +403,12 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
               Email Address *
             </Label>
             <Input
+              ref={activeInputRef}
               id="email"
               type="email"
               placeholder="Enter your email address"
               value={formData.step3.contactInfo.email}
+              onFocus={handleInputFocus}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -418,9 +435,11 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
               Phone Number *
             </Label>
             <Input
+              ref={activeInputRef}
               id="phone"
               placeholder="Enter your phone number"
               value={formData.step3.contactInfo.phone}
+              onFocus={handleInputFocus}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -462,7 +481,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full max-w-sm md:max-w-2xl max-h-[90vh] overflow-y-auto p-6 mx-6 md:mx-0">
+      <DialogContent className="w-full max-w-[355px] sm:max-w-md md:max-w-2xl max-h-[90vh] overflow-y-auto p-3 sm:p-6 mx-auto overflow-x-hidden">
         <DialogHeader className="pb-4">
           <DialogTitle className="text-lg font-bold text-ink">
             {stepLabels[intent].title}
@@ -494,6 +513,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
+            className="overflow-x-hidden"
           >
             {currentStep === 1 && renderStep1()}
             {currentStep === 2 && renderStep2()}
@@ -502,24 +522,24 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
         </AnimatePresence>
 
         {/* Navigation */}
-        <div className="mt-8 pt-4 border-t border-metal/20 flex justify-between">
+        <div className="mt-8 pt-4 border-t border-metal/20 flex justify-between gap-2 overflow-x-hidden">
           <Button
             variant="outline"
             onClick={handlePrevious}
             disabled={currentStep === 1}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1 text-xs px-2 py-1.5 min-w-0 flex-shrink"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-3 h-3" />
             Previous
           </Button>
 
           {currentStep < 3 ? (
             <Button
               onClick={handleNext}
-              className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+              className="flex items-center gap-1 bg-primary hover:bg-primary/90 text-xs px-2 py-1.5 min-w-0 flex-shrink"
             >
               Next
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3 h-3" />
             </Button>
           ) : (
             <Button
@@ -530,7 +550,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
                 !formData.step3.contactInfo.email ||
                 !formData.step3.contactInfo.phone
               }
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary hover:bg-primary/90 text-xs px-2 py-1.5 min-w-0 flex-shrink"
             >
               {isSubmitting ? "Submitting..." : "Submit & Get Recommendations"}
             </Button>

@@ -52,7 +52,11 @@ export function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className="p-2 text-white hover:text-white/80 transition-colors"
+              className={`p-2 transition-colors ${
+                isScrolled 
+                  ? "text-white hover:text-white/80" 
+                  : "text-black hover:text-black/80"
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
