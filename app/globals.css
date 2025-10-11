@@ -75,6 +75,12 @@
 
   /* Link color */
   --link-text: #2E2E2E; /* Dark Charcoal links */
+
+  /* Segmented Entry Theme Tokens */
+  --ink: #0B1020;
+  --porcelain: #FAF7F2;
+  --metal: #D4AF37; /* use at 20% for hairlines, focus rings */
+  --muted: #8A8F9A;
 }
 
 
@@ -429,8 +435,7 @@ body::after {
 
 /* Glass Metallic Effect */
 .glass-metallic {
-  backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(26, 26, 26, 0.8);
+  background: #0f1112; /* Footer black */
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -449,7 +454,7 @@ body::after {
   color: var(--sand);
 }
 
-/* Navigation Links for Homepage (transparent header) */
+/* Navigation Links for Homepage (transparent header) - Black initially */
 .header-transparent .nav-link {
   color: var(--ink);
 }
@@ -490,7 +495,7 @@ body::after {
   background: var(--sand-tint-light);
 }
 
-/* Mobile Navigation for Homepage (transparent header) */
+/* Mobile Navigation for Homepage (transparent header) - Black initially */
 .header-transparent .mobile-nav-link {
   color: var(--ink);
 }
@@ -508,8 +513,7 @@ body::after {
 }
 
 .header-scrolled {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(20px) saturate(180%);
+  background: #0f1112; /* Footer black */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }

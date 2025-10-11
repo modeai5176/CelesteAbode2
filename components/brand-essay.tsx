@@ -11,23 +11,7 @@ export function BrandEssay() {
   return (
     <Section className="py-16 md:py-20">
       <div className="lg:grid lg:grid-cols-12 gap-8 md:gap-16">
-        {/* Left Column - Media (Sticky on Desktop) */}
-        <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-32 flex justify-center" style={{ height: 'fit-content' }}>
-            <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl">
-              <ImageFigure
-                src="/modern-luxury-apartment-building-architectural-pho.png"
-                alt="Modern luxury apartment building architectural photography"
-                width={700}
-                height={600}
-                className="aspect-[7/6] object-contain"
-                imageClassName="object-center object-contain"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column - Content */}
+        {/* Left Column - Content */}
         <div className="lg:col-span-7">
           {/* Section Header */}
           <div className="mb-8 vertical-rhythm">
@@ -36,37 +20,24 @@ export function BrandEssay() {
               <span className="text-[#CBB27A]">Celeste Abode</span>
             </h1>
             <Lead>
-              We are a premium real estate consulting firm that specializes in curating and presenting the finest luxury real estate projects that redefine modern living.
+              Welcome to Celeste Abode, a new era of real estate consulting in India where technology meets trust and every home feels destined. We transform property journeys into masterpieces of living by merging data-backed advisory, emotional understanding, and end-to-end diligence.
             </Lead>
           </div>
           
           {/* Copy Structure */}
           <div className="max-w-prose vertical-rhythm">
-            {/* Curated Portfolio */}
+            {/* Why We Exist */}
             <div>
-              <h4 className="h4 text-foreground mb-3">Curated Portfolio</h4>
+              <h4 className="h4 text-foreground mb-3">Why We Exist</h4>
               <p className="body-text text-muted-foreground">
-                Our portfolio features handpicked developments from renowned developers, each offering unique value propositions and exceptional investment opportunities. We believe in complete transparency in all our dealings, with every project thoroughly vetted and all legal compliances clearly communicated.
+                Real estate was never meant to be a race through listings. Our mission is to bring clarity and confidence to every decision. Celeste Abode replaces generic brokering with true consulting — curating lifestyle-aligned homes that fit your identity and investment vision.
               </p>
             </div>
 
-            {/* Transparent Process */}
-            <div>
-              <h4 className="h4 text-foreground mb-3">Transparent Process</h4>
-              <p className="body-text text-muted-foreground">
-                We provide exclusive access to premium projects before public launch, comprehensive project analysis and investment guidance, and end-to-end support from selection to possession. Our trusted partnerships with leading developers ensure you get the best opportunities in the market.
-              </p>
-            </div>
-
-            {/* Exclusive Access */}
-            <div>
-              <h4 className="h4 text-foreground mb-3">Exclusive Access</h4>
-            </div>
-
-            {/* Closing Statement */}
+            {/* Our Approach */}
             <div>
               <p className="body-text text-muted-foreground">
-                At Celeste Abode, we don't just sell properties; we curate lifestyles. Our personalized approach ensures that every client finds not just a home, but a perfect match for their aspirations, values, and future vision.
+                We help you see beyond square feet to ROI, beyond projects to possibility, and beyond transactions to transformation.
               </p>
             </div>
           </div>
@@ -103,6 +74,22 @@ export function BrandEssay() {
             </PillButton>
           </div>
           
+        </div>
+
+        {/* Right Column - Media (Sticky on Desktop) */}
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-32 flex justify-center" style={{ height: 'fit-content' }}>
+            <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl">
+              <ImageFigure
+                src="/modern-luxury-apartment-building-architectural-pho.png"
+                alt="Modern luxury apartment building architectural photography"
+                width={700}
+                height={600}
+                className="aspect-[7/6] object-contain"
+                imageClassName="object-center object-contain"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </Section>

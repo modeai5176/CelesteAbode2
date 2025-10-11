@@ -67,7 +67,7 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-background to-secondary/5">
+    <section className="pt-6 pb-0 bg-gradient-to-br from-background to-secondary/5">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
@@ -165,31 +165,6 @@ export function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="text-center">
-          <div className="inline-block p-6 md:p-8 bg-gradient-to-r from-primary to-secondary rounded-xl md:rounded-2xl text-white">
-            <h3 className="h3 mb-4">Trusted by Thousands of Families</h3>
-            <p className="lead opacity-90 mb-6 max-w-2xl mx-auto">
-              Our commitment to excellence and client satisfaction has made us
-              the preferred choice for premium real estate investments. Join our
-              growing family of satisfied clients.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5" />
-                <span>RERA Compliant Projects</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5" />
-                <span>Legal Verification</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5" />
-                <span>Expert Guidance</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

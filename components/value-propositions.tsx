@@ -14,7 +14,7 @@ export function ValuePropositions() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          Our <span className="text-[#CBB27A]">Achievements & Impact</span>
+          The Mark of Expertise: Our <span className="text-[#CBB27A]">Impact & Results</span>
         </motion.h1>
         
         {/* Statistics Grid - 2-1-2 Layout */}

@@ -1,11 +1,85 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendFormSubmissionEmail } from '@/lib/email-service';
 
+async function handleSegmentedEntryForm(body: any) {
+  try {
+    const { intent, firstName, lastName, email, phone, formData, emailContent } = body;
+    
+    // Validate required fields
+    if (!firstName || !lastName || !email || !phone || !intent) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
+    // Validate phone format
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+    if (!phoneRegex.test(phone)) {
+      return NextResponse.json(
+        { error: 'Invalid phone format' },
+        { status: 400 }
+      );
+    }
+
+    // Send email with segmented entry data
+    const emailResult = await sendFormSubmissionEmail({
+      formType: 'segmented-entry',
+      intent: intent,
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone.trim(),
+      message: `New ${intent} inquiry from ${firstName} ${lastName}`,
+      formData: formData,
+      emailContent: emailContent
+    });
+
+    if (!emailResult.success) {
+      console.error('Failed to send segmented entry email:', emailResult.error);
+      return NextResponse.json(
+        { error: 'Failed to send email. Please try again.' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json(
+      { 
+        success: true, 
+        message: 'Segmented entry form submitted successfully',
+        messageId: emailResult.messageId 
+      },
+      { status: 200 }
+    );
+
+  } catch (error) {
+    console.error('Segmented entry form submission error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    // Validate required fields
+    // Handle different form types
+    if (body.formType === 'segmented-entry') {
+      return handleSegmentedEntryForm(body);
+    }
+    
+    // Original contact form validation
     const { firstName, lastName, email, phone, message } = body;
     
     if (!firstName || !lastName || !email || !phone || !message) {
