@@ -176,7 +176,7 @@ export function WhereWeWork() {
           <h2 className="heading-bold text-primary mb-6">
             Where We <span className="text-[#CBB27A]">Work</span>
           </h2>
-          <p className="text-xl text-muted max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             India's Growth Corridors - Strategic locations where we unlock
             premium real estate opportunities
           </p>
@@ -291,7 +291,7 @@ export function WhereWeWork() {
                           <h4 className="text-xl font-bold text-ink mb-2">
                             {corridor.title}
                           </h4>
-                          <p className="text-muted leading-relaxed">
+                          <p className="text-muted-foreground leading-relaxed">
                             {corridor.description}
                           </p>
                         </div>
@@ -301,7 +301,7 @@ export function WhereWeWork() {
                           {corridor.features.map((feature, index) => (
                             <motion.div
                               key={index}
-                              className="flex items-center gap-2 text-muted text-sm"
+                              className="flex items-center gap-2 text-muted-foreground text-sm"
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{
@@ -317,7 +317,7 @@ export function WhereWeWork() {
 
                         {/* CTA Button */}
                         <motion.button
-                          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl"
+                          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#2b3035] text-white rounded-full font-medium hover:bg-black transition-all duration-200 shadow-lg hover:shadow-xl"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={
@@ -359,7 +359,7 @@ export function WhereWeWork() {
                 onClick={() => setActiveCorridor(corridor.id)}
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCorridor === corridor.id
-                    ? "bg-[#CBB27A] text-white shadow-lg"
+                    ? "bg-[#2b3035] text-white shadow-lg"
                     : "bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700"
                 }`}
               >
@@ -424,7 +424,7 @@ export function WhereWeWork() {
                       <div className="w-16 h-16 bg-metal/20 rounded-full flex items-center justify-center mb-4 mx-auto">
                         <MapPin className="w-8 h-8 text-metal" />
                       </div>
-                      <p className="text-muted text-sm">
+                      <p className="text-muted-foreground text-sm">
                         Select a location to view the map
                       </p>
                     </div>
@@ -475,7 +475,7 @@ export function WhereWeWork() {
                       </div>
 
                       {/* Description */}
-                      <p className="text-muted leading-relaxed mb-6">
+                      <p className="text-muted-foreground leading-relaxed mb-6">
                         {activeCorridorData.description}
                       </p>
 
@@ -484,7 +484,7 @@ export function WhereWeWork() {
                         {activeCorridorData.features.map((feature, index) => (
                           <motion.div
                             key={index}
-                            className="flex items-center gap-2 text-muted text-sm"
+                            className="flex items-center gap-2 text-muted-foreground text-sm"
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -497,7 +497,7 @@ export function WhereWeWork() {
 
                       {/* CTA */}
                       <motion.button
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#2b3035] text-white rounded-full font-medium hover:bg-black transition-all duration-200 shadow-lg hover:shadow-xl"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={

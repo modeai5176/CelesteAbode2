@@ -8,7 +8,7 @@ export function CTASection() {
     <section className="pt-0 pb-20 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         {/* Trust Card */}
-        <motion.div 
+        <motion.div
           className="bg-white rounded-2xl p-8 shadow-lg mb-12 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -17,14 +17,17 @@ export function CTASection() {
         >
           {/* Top Accent Line */}
           <div className="w-16 h-0.5 bg-[#CBB27A] mx-auto mb-6"></div>
-          
+
           {/* Trust Content */}
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-ink mb-4">
-              Trusted by Thousands of <span className="text-[#CBB27A]">Families</span>
+              Trusted by Thousands of{" "}
+              <span className="text-[#CBB27A]">Families</span>
             </h2>
             <p className="text-muted max-w-xl mx-auto">
-              Our unwavering commitment to excellence and client satisfaction has made us the preferred choice for discerning real estate investments.
+              Our unwavering commitment to excellence and client satisfaction
+              has made us the preferred choice for discerning real estate
+              investments.
             </p>
           </div>
 
@@ -32,21 +35,27 @@ export function CTASection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center gap-3">
               <Shield className="w-5 h-5 text-[#CBB27A] flex-shrink-0" />
-              <span className="text-sm font-medium text-ink">RERA Compliant</span>
+              <span className="text-sm font-medium text-ink">
+                RERA Compliant
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <CheckCircle className="w-5 h-5 text-[#CBB27A] flex-shrink-0" />
-              <span className="text-sm font-medium text-ink">Legal Verification</span>
+              <span className="text-sm font-medium text-ink">
+                Legal Verification
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <Users className="w-5 h-5 text-[#CBB27A] flex-shrink-0" />
-              <span className="text-sm font-medium text-ink">Expert Guidance</span>
+              <span className="text-sm font-medium text-ink">
+                Expert Guidance
+              </span>
             </div>
           </div>
         </motion.div>
 
         {/* CTA Section */}
-        <motion.div 
+        <motion.div
           className="text-center max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,12 +63,13 @@ export function CTASection() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className="heading-bold text-primary mb-8">
-            Ready to find your <span className="text-[#CBB27A]">masterpiece?</span>
+            Ready to find your{" "}
+            <span className="text-[#CBB27A]">masterpiece?</span>
           </h1>
 
           <div className="mb-8">
             <motion.button
-              className="inline-flex items-center px-6 py-3 bg-[#CBB27A] text-white rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 shadow-lg hover:shadow-xl text-base"
+              className="inline-flex items-center px-6 py-3 bg-[#2b3035] text-white rounded-full font-medium hover:bg-[#3f4247] transition-all duration-200 shadow-lg hover:shadow-xl text-base"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
