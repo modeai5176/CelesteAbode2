@@ -207,39 +207,39 @@ export default function PropertiesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-
-      <main className="pt-24">
+      <main className="pt-0">
         {/* Hero Section */}
-        <section className="pt-0 pb-16 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
-          <div className="max-w-6xl mx-auto text-center pt-32">
-            <h1 className="text-5xl md:text-6xl text-foreground mb-4">
-              Explore <span className="text-primary">Premium Properties</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Discover exceptional real estate projects that redefine luxury
-              living and investment opportunities.
-            </p>
-
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
-              {filters.map((filter) => (
-                <Button
-                  key={filter}
-                  variant={activeFilter === filter ? "default" : "outline"}
-                  className={
-                    activeFilter === filter
-                      ? "pill-button bg-primary hover:bg-primary/90 text-white"
-                      : "pill-button bg-secondary hover:bg-secondary/80 text-foreground border-secondary"
-                  }
-                  onClick={() => handleFilterChange(filter)}
-                >
-                  {filter}
-                </Button>
-              ))}
+        <section className="pt-0 pb-8 px-4 bg-gradient-to-br from-primary/5 to-secondary/5 min-h-[60vh] flex flex-col philosophy-hero">
+          <Header />
+          <div className="flex-1 flex items-center justify-center pt-24">
+            <div className="max-w-4xl mx-auto text-center w-full">
+              <h1 className="text-4xl md:text-5xl font-black text-primary mb-6" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800 }}>
+                Explore <span className="text-black">Premium Properties</span>
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Discover exceptional real estate projects that redefine luxury living and investment opportunities.
+              </p>
             </div>
           </div>
         </section>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {filters.map((filter) => (
+            <Button
+              key={filter}
+              variant={activeFilter === filter ? "default" : "outline"}
+              className={
+                activeFilter === filter
+                  ? "pill-button bg-primary hover:bg-primary/90 text-white"
+                  : "pill-button bg-secondary hover:bg-secondary/80 text-foreground border-secondary"
+              }
+              onClick={() => handleFilterChange(filter)}
+            >
+              {filter}
+            </Button>
+          ))}
+        </div>
 
         {/* Properties Grid */}
         <section className="pb-16 px-4">

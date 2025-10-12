@@ -50,7 +50,7 @@ export function BrandEssay() {
               <p className="body-text text-muted-foreground">
                 Real estate was never meant to be a race through listings. Our
                 mission is to bring clarity and confidence to every decision.
-                Celeste Abode replaces generic brokering with true consulting —
+                Celeste Abode replaces generic brokering with true consulting -
                 curating lifestyle-aligned homes that fit your identity and
                 investment vision.
               </p>

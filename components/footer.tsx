@@ -15,6 +15,16 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
           {/* Contact Column */}
           <div>
+            <div className="mb-6">
+              <Image
+                src="/logoceleste.png"
+                alt="Celeste Abode Logo"
+                width={110}
+                height={110}
+                className=""
+                priority
+              />
+            </div>
             <h3 className="h4 mb-6 text-[#CBB27A]">
               Contact
             </h3>
@@ -34,7 +44,7 @@ export function Footer() {
                 <span className="text-white group-hover:text-[#CBB27A] transition-colors">
                   {" "}
                   {/* EDIT: contact text default white, hover to primary */}
-                  celsteabode@gmail.com
+                  celesteabode@gmail.com
                 </span>
               </div>
               <div className="flex items-center gap-3 group cursor-pointer">

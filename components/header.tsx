@@ -45,7 +45,7 @@ export function Header() {
                 alt="Celeste Abode Logo"
                 width={110}
                 height={110}
-                className="group-hover:scale-110 transition-transform duration-300"
+                className=""
                 priority
               />
             </Link>
@@ -89,7 +89,7 @@ export function Header() {
                 alt="Celeste Abode Logo"
                 width={110}
                 height={110}
-                className="group-hover:scale-110 transition-transform duration-300"
+                className=""
                 priority
               />
             </Link>

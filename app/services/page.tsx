@@ -111,171 +111,277 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24">
+      <main className="pt-0">
         {/* Hero Section */}
-        <section className="pt-0 pb-16 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
-          <div className="max-w-6xl mx-auto text-center pt-32">
-            <h1 className="text-5xl md:text-6xl text-foreground mb-4">
-              Services at <span className="text-primary">Celeste Abode</span>
+        <section className="pt-0 pb-8 px-4 bg-gradient-to-br from-primary/5 to-secondary/5 min-h-[60vh] flex flex-col philosophy-hero">
+          <Header />
+          <div className="flex-1 flex items-center justify-center pt-40">
+            <div className="max-w-4xl mx-auto text-center w-full">
+              <h1 className="text-4xl md:text-5xl font-black text-primary mb-6" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800 }}>
+                Intelligent Property Advisory for Every <span className="text-black">Goal</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Comprehensive real estate solutions designed to meet your every
-              need and exceed your expectations
-            </p>
+              <div className="text-xl text-muted-foreground max-w-3xl mx-auto leading-tight font-normal force-normal">
+                At Celeste Abode, services are designed as modular consulting solutions that guide you from discovery to possession. Each engagement is evidence-driven and tailored to your budget, timeline, and dream.
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Services */}
-        <Section>
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-12">
-              {/* Main Content */}
-              <div className="lg:col-span-8 space-y-16">
-                {services.map((service, index) => (
-                  <Card
-                    key={index}
-                    className="border-0 shadow-lg hover:shadow-xl transition-shadow"
-                  >
-                    <CardContent className="p-8">
-                      {/* Service Header */}
-                      <div className="mb-8">
-                        <h2 className="h2 text-primary mb-3">
-                          {service.title}
-                        </h2>
-                        <p className="lead text-muted-foreground">
-                          {service.subtitle}
-                        </p>
+        {/* Modular Service Grid */}
+        <Section className="py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 lg:px-8">
+            {/* Row 1: Equalized Cards */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-16">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">01</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">Personalized ROI-Driven Strategy</h2>
+                    <p className="text-muted-foreground mb-12 leading-relaxed h-20">
+                      Custom investment frameworks that align with your financial goals, risk appetite, and timeline. We analyze market trends, absorption rates, and yield potential to create a data-backed strategy.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Investment timeline & budget optimization</li>
+                        <li>• Market analysis & yield projections</li>
+                        <li>• Risk assessment & mitigation strategies</li>
+                        <li>• Portfolio diversification recommendations</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">02</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">End-to-End Transaction Consulting</h2>
+                    <p className="text-muted-foreground mb-12 leading-relaxed h-20">
+                      Complete transaction support from initial due diligence to possession, ensuring every legal and financial aspect is handled with precision.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Legal documentation review</li>
+                        <li>• Financial structuring & negotiations</li>
+                        <li>• Possession & handover coordination</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
                       </div>
 
-                      {/* Client Challenge */}
-                      <div className="mb-8">
-                        <h3 className="h4 text-foreground mb-3">
-                          Client Challenge
-                        </h3>
-                        <p className="body-text text-muted-foreground">
-                          {service.challenge}
-                        </p>
+            {/* Row 2: Equalized Cards */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-16">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">03</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">NRI Real Estate Services</h2>
+                    <p className="text-muted-foreground mb-6 leading-relaxed h-20">
+                      Specialized support for Non-Resident Indians, handling complex regulatory requirements, currency considerations, and remote property management with seamless digital processes.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• FEMA compliance & documentation</li>
+                        <li>• Currency hedging strategies</li>
+                        <li>• Remote property management</li>
+                        <li>• Digital diligence & virtual tours</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">04</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">Investment Advisory</h2>
+                    <p className="text-muted-foreground mb-6 leading-relaxed h-20">
+                      Strategic investment guidance with market intelligence, exit strategies, and portfolio optimization for maximum returns.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Market timing analysis</li>
+                        <li>• Exit strategy planning</li>
+                        <li>• Portfolio optimization</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
                       </div>
 
-                      {/* Our Approach */}
-                      <div className="mb-8">
-                        <h3 className="h4 text-foreground mb-3">
-                          Our Approach
+            {/* Integrated Visual Banner */}
+            <div className="my-16">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
+                <img
+                  src="/luxury-villa-with-garden-and-modern-design.png"
+                  alt="Every Decision Backed by Evidence. Every Outcome Designed for You."
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-12 text-center">
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    Every Decision Backed by Evidence. Every Outcome Designed for You.
                         </h3>
-                        <p className="body-text text-muted-foreground">
-                          {service.approach}
-                        </p>
+                </div>
+              </div>
                       </div>
 
-                      {/* What You Receive */}
-                      <div className="mb-8">
-                        <h3 className="h4 text-foreground mb-4">
-                          What You Receive
-                        </h3>
-                        <ul className="space-y-3">
-                          {service.deliverables.map((deliverable, idx) => (
-                            <li key={idx} className="flex items-start gap-3">
-                              <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></div>
-                              <p className="body-text text-muted-foreground">
-                                {deliverable}
-                              </p>
-                            </li>
-                          ))}
+            {/* Row 3: Equalized Cards */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-16">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">05</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">Luxury & Signature Residences</h2>
+                    <p className="text-muted-foreground mb-6 leading-relaxed h-20">
+                      Curated selection of premium properties that match your lifestyle aspirations, architectural preferences, and legacy goals with exclusive access to off-market opportunities.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Exclusive property access</li>
+                        <li>• Lifestyle & design consultation</li>
+                        <li>• Legacy planning & succession</li>
+                        <li>• Private preview experiences</li>
                         </ul>
                       </div>
-
-                      {/* Value Delivered */}
-                      <div className="pt-6 border-t border-border">
-                        <h3 className="h4 text-foreground mb-3">
-                          Value Delivered
-                        </h3>
-                        <p className="body-text text-primary font-medium">
-                          {service.value}
-                        </p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">06</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">Virtual Tours & Digital Consultations</h2>
+                    <p className="text-muted-foreground mb-6 leading-relaxed h-20">
+                      Advanced digital experiences that bring properties to life, enabling informed decisions from anywhere in the world.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• 360° virtual property tours</li>
+                        <li>• Digital documentation review</li>
+                        <li>• Remote consultation sessions</li>
+                      </ul>
+                    </div>
                       </div>
                     </CardContent>
                   </Card>
-                ))}
               </div>
 
-              {/* Sticky Sidebar */}
-              <div className="lg:col-span-4">
-                <div className="sticky top-32 space-y-6">
-                  <Card className="border-0 shadow-lg">
-                    <CardContent className="p-6">
-                      <h3 className="h4 text-primary mb-4">
-                        Get Started Today
-                      </h3>
-                      <div className="space-y-4">
-                        <PillButton
-                          variant="primary"
-                          size="md"
-                          className="w-full"
-                          asChild
-                        >
-                          <a
-                            href="tel:+91XXXXXXXXXX"
-                            className="flex items-center justify-center gap-2"
-                          >
-                            <Phone className="w-4 h-4" />
-                            Schedule a Call
-                          </a>
-                        </PillButton>
-
-                        <PillButton
-                          variant="outline"
-                          size="md"
-                          className="w-full"
-                          asChild
-                        >
-                          <a
-                            href="https://wa.me/91XXXXXXXXXX"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2"
-                          >
-                            <MessageCircle className="w-4 h-4" />
-                            Message on WhatsApp
-                          </a>
-                        </PillButton>
+            {/* Row 4: Equalized Cards */}
+            <div className="grid lg:grid-cols-2 gap-8">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">07</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">Location Intelligence & Market Reports</h2>
+                    <p className="text-muted-foreground mb-12 leading-relaxed h-20">
+                      Comprehensive location analysis with infrastructure development timelines, connectivity assessments, and future growth projections to ensure your investment aligns with long-term value creation.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Infrastructure development analysis</li>
+                        <li>• Connectivity & accessibility reports</li>
+                        <li>• Future growth projections</li>
+                        <li>• Comparative location analysis</li>
+                      </ul>
+                    </div>
                       </div>
                     </CardContent>
                   </Card>
-
-                  <Card className="border-0 shadow-lg">
-                    <CardContent className="p-6">
-                      <h3 className="h4 text-primary mb-4">
-                        Why Choose Our Services?
-                      </h3>
-                      <ul className="space-y-3">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="body-text text-muted-foreground">
-                            Exclusive access to premium projects
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="body-text text-muted-foreground">
-                            Data-driven market intelligence
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="body-text text-muted-foreground">
-                            Personalized lifestyle matching
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="body-text text-muted-foreground">
-                            End-to-end support
-                          </span>
-                        </li>
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+                <CardContent className="p-8 relative flex flex-col h-full">
+                  <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">08</div>
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4 h-16 flex items-center">Post-Purchase & Portfolio Support</h2>
+                    <p className="text-muted-foreground mb-12 leading-relaxed h-20">
+                      Ongoing support for property management, portfolio optimization, and strategic decisions to maximize your investment value.
+                    </p>
+                    <div className="bg-[#CBB27A]/10 p-4 rounded-lg">
+                      <h4 className="font-semibold text-foreground mb-2">Key Deliverables:</h4>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Property management coordination</li>
+                        <li>• Portfolio performance tracking</li>
+                        <li>• Strategic decision support</li>
                       </ul>
+                    </div>
+                  </div>
                     </CardContent>
                   </Card>
+                </div>
+          </div>
+        </Section>
+
+        {/* Sticky Right-Side CTA Banner */}
+        <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
+          <div className="bg-[#CBB27A] text-white p-4 rounded-lg shadow-2xl max-w-[110px]">
+            <div className="flex flex-col items-center space-y-4">
+              <a href="tel:+91XXXXXXXXXX" className="flex flex-col items-center text-black hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10">
+                <svg className="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+                <span className="text-xs font-semibold text-center">Schedule a Consultation</span>
+              </a>
+              <div className="w-16 h-px bg-gray-700 rounded-full"></div>
+              <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center text-black hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10">
+                <svg className="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                </svg>
+                <span className="text-xs font-semibold text-center">Chat on WhatsApp</span>
+              </a>
+              <div className="w-16 h-px bg-gray-700 rounded-full"></div>
+              <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center text-black hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10">
+                <svg className="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <span className="text-xs font-semibold text-center">Request a Quotation</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer CTA Section */}
+        <Section className="py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 lg:px-8">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
+              <img
+                src="/IvoryCounty/FlatsInsideAesthetic.png"
+                alt="Ready to Transform Your Property Journey - Real Estate Investment"
+                className="w-full h-full object-cover object-[center_60%] scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-12 text-center">
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                  Ready to Transform Your <span className="text-[#CBB27A]">Property Journey</span>?
+                </h2>
+                <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  Let our expert team guide you through every step of your real estate investment, from discovery to possession.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href="tel:+91XXXXXXXXXX"
+                    className="bg-[#CBB27A] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#CBB27A]/90 transition-colors text-base"
+                  >
+                    Schedule Consultation
+                  </a>
+                  <a
+                    href="https://wa.me/91XXXXXXXXXX"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition-colors text-base"
+                  >
+                    Chat on WhatsApp
+                  </a>
                 </div>
               </div>
             </div>

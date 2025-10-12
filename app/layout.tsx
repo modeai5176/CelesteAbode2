@@ -1,12 +1,19 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
+})
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-poppins",
 })
 
 export const metadata: Metadata = {
@@ -74,7 +81,7 @@ export default function RootLayout({
         <meta name="msapplication-TileImage" content="/favicon.png" />
         <meta name="msapplication-TileColor" content="#000000" />
       </head>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${poppins.variable} antialiased`}>
         {children}
       </body>
     </html>
