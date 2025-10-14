@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PillButton } from "@/components/ui/pill-button";
+import { ServicesHeroSection } from "@/components/services-hero-section";
 import {
   Building2,
   Target,
@@ -112,27 +113,8 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
       <main className="pt-0">
-        {/* Hero Section */}
-        <section className="pt-0 pb-8 px-4 bg-gradient-to-br from-primary/5 to-secondary/5 min-h-[60vh] flex flex-col philosophy-hero">
-          <Header />
-          <div className="flex-1 flex items-center justify-center pt-40">
-            <div className="max-w-4xl mx-auto text-center w-full">
-              <h1
-                className="text-4xl md:text-5xl font-black text-primary mb-6"
-                style={{ fontFamily: "Poppins, sans-serif", fontWeight: 800 }}
-              >
-                Intelligent Property Advisory for Every{" "}
-                <span className="text-black">Goal</span>
-              </h1>
-              <div className="text-xl text-muted-foreground max-w-3xl mx-auto leading-tight font-normal force-normal">
-                At Celeste Abode, services are designed as modular consulting
-                solutions that guide you from discovery to possession. Each
-                engagement is evidence-driven and tailored to your budget,
-                timeline, and dream.
-              </div>
-            </div>
-          </div>
-        </section>
+        <Header />
+        <ServicesHeroSection />
 
         {/* Modular Service Grid */}
         <Section className="py-16 md:py-20">
@@ -161,7 +143,6 @@ export default function ServicesPage() {
                         <li>• Investment timeline & budget optimization</li>
                         <li>• Market analysis & yield projections</li>
                         <li>• Risk assessment & mitigation strategies</li>
-                        <li>• Portfolio diversification recommendations</li>
                       </ul>
                     </div>
                   </div>
@@ -218,7 +199,6 @@ export default function ServicesPage() {
                       </h4>
                       <ul className="space-y-1 text-sm text-muted-foreground">
                         <li>• FEMA compliance & documentation</li>
-                        <li>• Currency hedging strategies</li>
                         <li>• Remote property management</li>
                         <li>• Digital diligence & virtual tours</li>
                       </ul>
@@ -265,9 +245,21 @@ export default function ServicesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-12 text-center">
-                  <h3 className="text-3xl font-bold text-white mb-4">
-                    Every Decision Backed by Evidence. Every Outcome Designed
-                    for You.
+                  <h3
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+                    style={{
+                      textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+                      letterSpacing: "-0.02em",
+                    }}
+                  >
+                    <div className="block">
+                      Every Decision{" "}
+                      <span className="text-[#CBB27A]">Backed by Evidence</span>
+                    </div>
+                    <div className="block mt-2">
+                      Every Outcome{" "}
+                      <span className="text-[#CBB27A]">Designed For You</span>
+                    </div>
                   </h3>
                 </div>
               </div>
@@ -296,7 +288,6 @@ export default function ServicesPage() {
                       <ul className="space-y-1 text-sm text-muted-foreground">
                         <li>• Exclusive property access</li>
                         <li>• Lifestyle & design consultation</li>
-                        <li>• Legacy planning & succession</li>
                         <li>• Private preview experiences</li>
                       </ul>
                     </div>
@@ -354,7 +345,6 @@ export default function ServicesPage() {
                       </h4>
                       <ul className="space-y-1 text-sm text-muted-foreground">
                         <li>• Infrastructure development analysis</li>
-                        <li>• Connectivity & accessibility reports</li>
                         <li>• Future growth projections</li>
                         <li>• Comparative location analysis</li>
                       </ul>

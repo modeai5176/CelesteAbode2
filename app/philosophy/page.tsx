@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { PillButton } from "@/components/ui/pill-button";
 import { Button } from "@/components/ui/button";
 import { ImageFigure } from "@/components/ui/image-figure";
+import { PhilosophyHeroSection } from "@/components/philosophy-hero-section";
 import { motion } from "framer-motion";
 import { Scale, Heart, Star, Rocket, Building2, Eye } from "lucide-react";
 
@@ -14,24 +15,8 @@ export default function PhilosophyPage() {
   return (
     <div className="min-h-screen bg-background">
       <main className="pt-0">
-        {/* Hero Section - Refined */}
-        <section className="pt-0 pb-8 px-4 bg-gradient-to-br from-primary/5 to-secondary/5 min-h-[60vh] flex flex-col philosophy-hero">
-          <Header />
-          <div className="flex-1 flex items-center justify-center pt-24">
-            <div className="max-w-4xl mx-auto text-center w-full">
-              <h1
-                className="text-4xl md:text-5xl font-black text-primary mb-6"
-                style={{ fontFamily: "Poppins, sans-serif", fontWeight: 800 }}
-              >
-                More Than Property - It's{" "}
-                <span className="text-black">Personal</span>
-              </h1>
-              <div className="text-xl text-muted-foreground max-w-3xl mx-auto leading-tight font-normal force-normal">
-                Guiding Your Aspiration, Defining Your Investment.
-              </div>
-            </div>
-          </div>
-        </section>
+        <Header />
+        <PhilosophyHeroSection />
 
         {/* Our Ethos - Sticky Trust Manifesto */}
         <Section className="py-8 md:py-12">
@@ -152,8 +137,8 @@ export default function PhilosophyPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="heading-bold text-primary mb-6">
-                The Brokerage Model We{" "}
-                <span className="text-[#CBB27A]">Refuse</span>
+                Beyond Transactions — Toward{" "}
+                <span className="text-[#CBB27A]">Trust</span>
               </h2>
             </div>
 
@@ -161,7 +146,7 @@ export default function PhilosophyPage() {
               {/* Left Card - The Noise */}
               <div className="bg-white/50 rounded-xl border border-muted-foreground/20 p-8">
                 <h3 className="text-2xl font-bold text-muted-foreground mb-4 italic">
-                  The Noise
+                  Push Sales
                 </h3>
                 <p className="text-lg text-muted-foreground/70 leading-relaxed italic">
                   Unlike listing-driven portals, the typical brokerage model
@@ -175,7 +160,7 @@ export default function PhilosophyPage() {
               <div className="bg-white rounded-xl border-2 border-[#CBB27A]/20 shadow-lg p-8">
                 <div className="w-16 h-1 bg-[#CBB27A] rounded-full mb-4 mx-auto"></div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">
-                  The Purpose
+                  Our Promise
                 </h3>
                 <p className="text-lg text-foreground leading-relaxed mb-6">
                   <strong>Celeste Abode starts with why you buy.</strong> Our{" "}
@@ -195,7 +180,7 @@ export default function PhilosophyPage() {
             {/* Closing Statement */}
             <div className="text-center max-w-4xl mx-auto mt-16">
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Every recommendation comes with supporting data:{" "}
+                Each recommendation is backed by data:{" "}
                 <strong>
                   absorption rates, yield bands, and exit liquidity forecasts.
                 </strong>{" "}
@@ -279,14 +264,15 @@ export default function PhilosophyPage() {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-foreground mb-2 transition-colors duration-300 group-hover:text-[#CBB27A]">
-                          Client Emotion First
+                          Connect To Customer
                         </h3>
                         <div className="w-12 h-0.5 bg-[#CBB27A] mb-4 transition-all duration-300 group-hover:w-16 group-hover:bg-[#CBB27A]/80"></div>
                       </div>
                     </div>
                     <p className="text-muted-foreground leading-relaxed flex-grow transition-colors duration-300 group-hover:text-foreground/90">
                       <strong>
-                        Every interaction reflects respect for your journey.
+                        Every interaction reflects respect and emotion to your
+                        journey.
                       </strong>{" "}
                       We prioritize the profound human aspiration behind every
                       investment and decision.
@@ -334,8 +320,11 @@ export default function PhilosophyPage() {
             </div>
 
             {/* Mission Statement */}
-            <div className="mt-16 w-full">
-              <div className="bg-[#CBB27A]/10 border-2 border-[#CBB27A]/30 rounded-xl p-8 text-center">
+            <div className="mt-16 w-full flex justify-center">
+              <div
+                className="bg-[#CBB27A]/10 border-2 border-[#CBB27A]/30 rounded-xl p-6 text-center max-w-2xl"
+                style={{ maxWidth: "calc(42rem + 10px)" }}
+              >
                 <p className="text-2xl text-foreground leading-relaxed">
                   <strong>
                     Celeste Abode exists to create peace of mind in a complex
@@ -400,14 +389,14 @@ export default function PhilosophyPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
-                  size="md"
+                  size="lg"
                   className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 text-base rounded-full w-full sm:w-auto"
                 >
                   Request Advisory Session
                 </Button>
                 <Button
                   variant="outline"
-                  size="md"
+                  size="lg"
                   className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-2.5 text-base rounded-full w-full sm:w-auto"
                 >
                   Talk to Our Expert Now

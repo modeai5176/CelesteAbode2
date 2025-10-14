@@ -33,8 +33,8 @@ const tileData = {
     icon: <TrendingUp className="w-8 h-8" />,
   },
   signature: {
-    title: "Luxury & Signature Residences",
-    subtitle: "Unparalleled Elegance & Exclusivity",
+    title: "Signature Residences",
+    subtitle: "Turning Luxury Aspirations, Into Real Addresses",
     description:
       "Indulge in properties that define prestige. Explore exclusive listings, experience unparalleled brand equity, and secure residences with guaranteed possession timelines.",
     cta: "Unlock Elite Residences",
@@ -84,10 +84,10 @@ export function SegmentedEntry({
           transition={{ duration: 0.8 }}
         >
           <h2 className="heading-bold text-primary mb-4">
-            Live, invest, or aspire. We make it real.
+            Live, Invest, or Aspire. We make it real
           </h2>
           <p className="text-lg text-muted max-w-2xl mx-auto">
-            Start where you are. We'll work inside your budget first.
+            Start where you are. We'll work inside your budget first
           </p>
         </motion.div>
 
