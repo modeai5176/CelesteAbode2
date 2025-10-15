@@ -34,11 +34,11 @@ export function BrandEssay() {
               <span className="text-[#CBB27A]">Celeste Abode</span>
             </h1>
             <Lead>
-              Welcome to Celeste Abode, a new era of real estate consulting in
-              India where technology meets trust and every home feels destined.
-              We transform property journeys into masterpieces of living by
-              merging data-backed advisory, emotional understanding, and
-              end-to-end diligence.
+              Welcome to Celeste Abode, a new era of real estate consulting
+              where technology meets trust and every home feels destined. We
+              transform property journeys into masterpieces of living by merging
+              data-backed advisory, emotional understanding, and end-to-end
+              diligence.
             </Lead>
           </div>
 
@@ -50,9 +50,9 @@ export function BrandEssay() {
               <p className="body-text text-muted-foreground">
                 Real estate was never meant to be a race through listings. Our
                 mission is to bring clarity and confidence to every decision.
-                Celeste Abode replaces generic brokering with true consulting -
-                curating lifestyle-aligned homes that fit your identity and
-                investment vision.
+                Celeste Abode replaces traditional pattern of buying property
+                with true consulting - curating lifestyle-aligned homes that fit
+                your identity and investment vision.
               </p>
             </div>
 
@@ -76,19 +76,13 @@ export function BrandEssay() {
 
           {/* CTA Row */}
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <PillButton
-              variant="primary"
-              size="md"
-              asChild
-              className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            <Link
+              href="/philosophy"
+              aria-label="Explore our philosophy and values"
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-full border-2 border-black bg-transparent text-black hover:bg-black hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             >
-              <Link
-                href="/philosophy"
-                aria-label="Explore our philosophy and values"
-              >
-                Explore Our Philosophy
-              </Link>
-            </PillButton>
+              Explore Our Philosophy
+            </Link>
           </div>
         </div>
 
