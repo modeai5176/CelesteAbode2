@@ -55,7 +55,7 @@ export function Header() {
               className={`p-2 transition-colors ${
                 isScrolled 
                   ? "text-white hover:text-white/80" 
-                  : "text-black hover:text-black/80"
+                  : "text-[#000000] hover:text-[#000000]/80"
               }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >

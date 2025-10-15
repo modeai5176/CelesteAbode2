@@ -214,7 +214,7 @@ export default function PropertiesPage() {
           <div className="flex-1 flex items-center justify-center pt-24">
             <div className="max-w-4xl mx-auto text-center w-full">
               <h1 className="text-4xl md:text-5xl font-black text-primary mb-6" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800 }}>
-                Explore <span className="text-black">Premium Properties</span>
+                Explore <span className="text-[#000000]">Premium Properties</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Discover exceptional real estate projects that redefine luxury living and investment opportunities.

@@ -215,7 +215,7 @@ export default function CRCMaestaPage() {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-2 border-white text-ink bg-white hover:bg-white/90 hover:text-black px-8 py-4 text-lg"
+                  className="border-2 border-white text-ink bg-white hover:bg-white/90 hover:text-[#000000] px-8 py-4 text-lg"
                 >
                   Download Brochure
                 </Button>

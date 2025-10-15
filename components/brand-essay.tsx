@@ -79,7 +79,7 @@ export function BrandEssay() {
             <Link
               href="/philosophy"
               aria-label="Explore our philosophy and values"
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-full border-2 border-black bg-transparent text-black hover:bg-black hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-full border-2 border-black bg-transparent text-[#000000] hover:bg-black hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             >
               Explore Our Philosophy
             </Link>

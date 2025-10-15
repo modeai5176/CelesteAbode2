@@ -1,9 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, Shield, CheckCircle, Users } from "lucide-react";
+import { ConsultationPopup } from "@/components/consultation-popup";
 
 export function CTASection() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   return (
     <section className="pt-0 pb-20 bg-background">
       <div className="max-w-7xl mx-auto px-6">
@@ -69,6 +73,7 @@ export function CTASection() {
 
           <div className="mb-8">
             <motion.button
+              onClick={() => setIsPopupOpen(true)}
               className="inline-flex items-center px-6 py-3 bg-[#2b3035] text-white rounded-full font-medium hover:bg-[#3f4247] transition-all duration-200 shadow-lg hover:shadow-xl text-base"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -101,6 +106,12 @@ export function CTASection() {
           </div>
         </motion.div>
       </div>
+      
+      {/* Consultation Popup */}
+      <ConsultationPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </section>
   );
 }

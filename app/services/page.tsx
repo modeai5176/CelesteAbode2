@@ -399,7 +399,7 @@ export default function ServicesPage() {
             <div className="flex flex-col items-center space-y-4">
               <a
                 href="tel:+919818735258"
-                className="flex flex-col items-center text-black hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10"
+                className="flex flex-col items-center text-[#000000] hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10"
               >
                 <svg
                   className="w-6 h-6 mb-1"
@@ -414,10 +414,10 @@ export default function ServicesPage() {
               </a>
               <div className="w-16 h-px bg-gray-700 rounded-full"></div>
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                href="https://wa.me/919818735258"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center text-black hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10"
+                className="flex flex-col items-center text-[#000000] hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10"
               >
                 <svg
                   className="w-6 h-6 mb-1"
@@ -432,10 +432,10 @@ export default function ServicesPage() {
               </a>
               <div className="w-16 h-px bg-gray-700 rounded-full"></div>
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                href="https://wa.me/919818735258"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center text-black hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10"
+                className="flex flex-col items-center text-[#000000] hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10"
               >
                 <svg
                   className="w-6 h-6 mb-1"
@@ -480,10 +480,10 @@ export default function ServicesPage() {
                     Schedule Consultation
                   </a>
                   <a
-                    href="https://wa.me/91XXXXXXXXXX"
+                    href="https://wa.me/919818735258"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border-2 border-white text-white px-5 py-2.5 rounded-full font-medium hover:bg-white hover:text-black transition-all duration-200 text-sm w-full sm:w-auto text-center shadow-lg hover:shadow-xl"
+                    className="border-2 border-white text-white px-5 py-2.5 rounded-full font-medium hover:bg-white hover:text-[#000000] transition-all duration-200 text-sm w-full sm:w-auto text-center shadow-lg hover:shadow-xl"
                   >
                     Chat on WhatsApp
                   </a>

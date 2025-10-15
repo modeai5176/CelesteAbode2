@@ -117,7 +117,7 @@ export function Footer() {
                   {/* EDIT: social icon default white, hover primary */}
                 </Link>
                 <Link
-                  href="https://wa.me/919910906306"
+                  href="https://wa.me/919818735258"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200"
