@@ -309,7 +309,7 @@ export default function ContactPage() {
                               Office Locations
                             </h3>
                             <p className="text-foreground font-semibold mb-1 text-sm">
-                              Noida, IN
+                              Celeste Abode, 716, Tower A, Ithum, Sec62, Noida.
                             </p>
                             <p className="text-xs text-muted-foreground">
                               Serving the entire NCR region

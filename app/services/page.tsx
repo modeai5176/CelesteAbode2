@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PillButton } from "@/components/ui/pill-button";
 import { ServicesHeroSection } from "@/components/services-hero-section";
+import Image from "next/image";
 import {
   Building2,
   Target,
@@ -248,10 +249,16 @@ export default function ServicesPage() {
             {/* Integrated Visual Banner */}
             <div className="my-16">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
-                <img
+                <Image
                   src="/luxury-villa-with-garden-and-modern-design.png"
                   alt="Every Decision Backed by Evidence. Every Outcome Designed for You."
-                  className="w-full h-full object-cover"
+                  fill
+                  loading="lazy"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                  quality={85}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-12 text-center">
@@ -456,10 +463,16 @@ export default function ServicesPage() {
         <Section className="py-16 md:py-20">
           <div className="max-w-7xl mx-auto px-4 lg:px-8">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
-              <img
+              <Image
                 src="/IvoryCounty/FlatsInsideAesthetic.png"
                 alt="Ready to Transform Your Property Journey - Real Estate Investment"
-                className="w-full h-full object-cover object-[center_60%] scale-110"
+                fill
+                loading="lazy"
+                className="object-cover object-[center_60%] scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                quality={85}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>

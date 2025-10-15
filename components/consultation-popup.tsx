@@ -70,7 +70,7 @@ export function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -85,55 +85,56 @@ export function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+            className="relative bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto mx-2 sm:mx-0"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 rounded-t-2xl">
+            <div className="sticky top-0 bg-white border-b border-gray-100 px-4 sm:px-6 py-3 sm:py-4 rounded-t-xl sm:rounded-t-2xl z-10">
               <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-[#000000]">Book a Consultation</h2>
-                  <p className="text-sm text-gray-600 mt-1">Schedule your personalized property consultation</p>
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-lg sm:text-2xl font-bold text-[#000000] truncate">Book a Consultation</h2>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1 hidden sm:block">Schedule your personalized property consultation</p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0 ml-2"
                 >
-                  <X className="w-5 h-5 text-gray-500" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500" />
                 </button>
               </div>
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-center py-12"
                 >
-                  <div className="w-16 h-16 bg-[#CBB27A] rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Calendar className="w-8 h-8 text-white" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#CBB27A] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#000000] mb-4">Consultation Requested!</h3>
-                  <p className="text-gray-600 mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#000000] mb-3 sm:mb-4">Consultation Requested!</h3>
+                  <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-2">
                     Thank you for your interest. Our team will contact you within 24 hours to schedule your personalized consultation.
                   </p>
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
                     <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
+                      <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>+91 9818735258</span>
                     </div>
-                    <div className="w-px h-4 bg-gray-300"></div>
+                    <div className="hidden sm:block w-px h-4 bg-gray-300"></div>
                     <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      <span>celesteabode@gmail.com</span>
+                      <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="hidden sm:inline">celesteabode@gmail.com</span>
+                      <span className="sm:hidden">celesteabode@gmail.com</span>
                     </div>
                   </div>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   {/* Personal Information */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-sm font-medium text-[#000000]">
                         Full Name *
@@ -170,7 +171,7 @@ export function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="text-sm font-medium text-[#000000]">
                         Phone Number *
@@ -207,7 +208,7 @@ export function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="budget" className="text-sm font-medium text-[#000000]">
                         Budget Range *
@@ -258,11 +259,11 @@ export function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
                   </div>
 
                   {/* Submit Button */}
-                  <div className="pt-4">
+                  <div className="pt-2 sm:pt-4">
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#CBB27A] hover:bg-[#CBB27A]/90 text-white py-3 text-base rounded-full font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-[#CBB27A] hover:bg-[#CBB27A]/90 text-white py-3 text-sm sm:text-base rounded-full font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
