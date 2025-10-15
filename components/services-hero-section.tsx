@@ -21,7 +21,7 @@ export function ServicesHeroSection() {
               alt="Intelligent Property Advisory for Every Goal - Services"
               fill
               priority
-              className="object-cover object-center md:object-cover md:object-bottom"
+              className="object-cover object-center md:object-cover md:object-[center_70%]"
               sizes="100vw"
               quality={85}
             />
@@ -30,29 +30,23 @@ export function ServicesHeroSection() {
             <div className="absolute inset-0 bg-black/30" />
 
             {/* Right Aligned Text Overlay */}
-            <div className="absolute inset-0 flex items-center justify-end">
-              <div className="text-right text-white max-w-4xl px-4 mr-6 md:px-6 md:mr-8">
+            <div className="absolute inset-0 flex items-end justify-end pb-16">
+              <div className="text-right text-[#FAFAF8] max-w-4xl px-4 mr-6 md:px-6 md:mr-8">
                 <h1
-                  className="text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight text-white"
+                  className="text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight text-[#FAFAF8]"
                   style={{
                     textShadow: "0 1px 2px rgba(0,0,0,0.35)",
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  <div className="block text-white">
+                  <div className="block text-[#FAFAF8]">
                     Intelligent Property Advisory for
                   </div>
-                  <div className="block text-white mt-2">
+                  <div className="block text-[#FAFAF8] mt-2">
                     <span className="text-[#CBB27A]">Every Goal</span>
                   </div>
                 </h1>
 
-                <p className="text-base md:text-lg text-[#CBB27A] mb-6 max-w-2xl">
-                  At Celeste Abode, services are designed as modular consulting
-                  solutions that guide you from discovery to possession. Each
-                  engagement is evidence-driven and tailored to your budget,
-                  timeline, and dream.
-                </p>
               </div>
             </div>
           </div>

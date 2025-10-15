@@ -34,10 +34,11 @@ export default function PhilosophyPage() {
                 <div className="lg:hidden mb-12">
                   <div className="relative overflow-hidden rounded-xl shadow-2xl w-full h-[300px] bg-muted">
                     <img
-                      src="/ETHOS.png"
+                      src="/TRUSTTRANIMAGE.png"
                       alt="Our Ethos - Trust, Transparency, Transformation"
                       className="w-full h-full object-cover scale-110"
                     />
+                    <div className="absolute inset-0 bg-black/20" />
                   </div>
                 </div>
 
@@ -121,10 +122,11 @@ export default function PhilosophyPage() {
                 <div className="lg:sticky lg:top-32">
                   <div className="relative overflow-hidden rounded-xl shadow-2xl w-full h-[400px] bg-muted">
                     <img
-                      src="/ETHOS.png"
+                      src="/TRUSTTRANIMAGE.png"
                       alt="Our Ethos - Trust, Transparency, Transformation"
                       className="w-full h-full object-cover scale-110"
                     />
+                    <div className="absolute inset-0 bg-black/20" />
                   </div>
                 </div>
               </div>
@@ -132,12 +134,21 @@ export default function PhilosophyPage() {
           </div>
         </Section>
 
+        {/* Beautiful tagline */}
+        <div className="py-8 flex justify-center">
+          <div className="max-w-4xl text-center">
+            <p className="text-sm md:text-base text-muted-foreground/80 leading-relaxed font-light italic">
+              We seamlessly blend cutting-edge property technology and expert sales knowledge to secure your perfect, high-value home and investment future.
+            </p>
+          </div>
+        </div>
+
         {/* Strategic Differentiation - Anti-Brokerage Stance */}
         <Section className="pt-16 md:pt-20 pb-11 md:pb-14">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="heading-bold text-primary mb-6">
-                Beyond Transactions — Toward{" "}
+                Beyond Transactions - Toward{" "}
                 <span className="text-[#CBB27A]">Trust</span>
               </h2>
             </div>
@@ -178,14 +189,16 @@ export default function PhilosophyPage() {
             </div>
 
             {/* Closing Statement */}
-            <div className="text-center max-w-4xl mx-auto mt-16">
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Each recommendation is backed by data:{" "}
-                <strong>
-                  absorption rates, yield bands, and exit liquidity forecasts.
-                </strong>{" "}
-                We ensure the foundation is financially flawless.
-              </p>
+            <div className="flex justify-center mt-16">
+              <div className="max-w-4xl text-center">
+                <p className="text-sm md:text-base text-muted-foreground/80 leading-relaxed font-light italic">
+                  Each recommendation is backed by data:{" "}
+                  <strong>
+                    absorption rates, yield bands, and exit liquidity forecasts.
+                  </strong>{" "}
+                  We ensure the foundation is financially flawless.
+                </p>
+              </div>
             </div>
           </div>
         </Section>
@@ -322,13 +335,12 @@ export default function PhilosophyPage() {
             {/* Mission Statement */}
             <div className="mt-16 w-full flex justify-center">
               <div
-                className="bg-[#CBB27A]/10 border-2 border-[#CBB27A]/30 rounded-xl p-6 text-center max-w-2xl"
-                style={{ maxWidth: "calc(42rem + 10px)" }}
+                className="bg-[#CBB27A]/10 border-2 border-[#CBB27A]/30 rounded-xl p-8 text-center max-w-4xl"
               >
                 <p className="text-2xl text-foreground leading-relaxed">
                   <strong>
-                    Celeste Abode exists to create peace of mind in a complex
-                    market - so you feel absolutely confident about every move.
+                    Celeste Abode exists to create peace of mind in a complex market<br />
+                    - so you feel absolutely confident about every move.
                   </strong>
                 </p>
               </div>
@@ -391,6 +403,7 @@ export default function PhilosophyPage() {
                 <Button
                   size="lg"
                   className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 text-base rounded-full w-full sm:w-auto"
+                  onClick={() => window.location.href = '/advisory-session'}
                 >
                   Request Advisory Session
                 </Button>
@@ -398,6 +411,7 @@ export default function PhilosophyPage() {
                   variant="outline"
                   size="lg"
                   className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-2.5 text-base rounded-full w-full sm:w-auto"
+                  onClick={() => window.location.href = 'tel:+919818735258'}
                 >
                   Talk to Our Expert Now
                 </Button>

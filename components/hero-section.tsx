@@ -31,18 +31,18 @@ export function HeroSection() {
 
             {/* Left Aligned Text Overlay */}
             <div className="absolute inset-0 flex items-center">
-              <div className="text-left text-white max-w-4xl px-4 ml-6 md:px-6 md:ml-8">
+              <div className="text-left text-[#FAFAF8] max-w-4xl px-4 ml-6 md:px-6 md:ml-8">
                 <h1
-                  className="text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight text-white"
+                  className="text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight text-[#FAFAF8]"
                   style={{
                     textShadow: "0 1px 2px rgba(0,0,0,0.35)",
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  <div className="block text-white">
+                  <div className="block text-[#FAFAF8]">
                     From Masterpieces of Time To
                   </div>
-                  <div className="block text-white mt-2">
+                  <div className="block text-[#FAFAF8] mt-2">
                     Masterpieces of Living
                   </div>
                 </h1>

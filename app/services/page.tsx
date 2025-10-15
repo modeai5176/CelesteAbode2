@@ -116,12 +116,22 @@ export default function ServicesPage() {
         <Header />
         <ServicesHeroSection />
 
+        {/* Beautiful tagline */}
+        <div className="py-8 flex justify-center">
+          <div className="max-w-6xl text-center">
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground/80 leading-relaxed font-light italic px-4 md:px-0">
+              At Celeste Abode, services are designed as modular consulting solutions that guide you from discovery to possession.<br />
+              Each engagement is evidence-driven and tailored to your budget, timeline, and dream.
+            </p>
+          </div>
+        </div>
+
         {/* Modular Service Grid */}
         <Section className="py-16 md:py-20">
           <div className="max-w-7xl mx-auto px-4 lg:px-8">
             {/* Row 1: Equalized Cards */}
             <div className="grid lg:grid-cols-2 gap-8 mb-16">
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-2 max-sm:bottom-50 max-sm:right-4 text-8xl font-black text-[#CBB27A]/20">
                     01
@@ -148,7 +158,7 @@ export default function ServicesPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">
                     02
@@ -179,7 +189,7 @@ export default function ServicesPage() {
 
             {/* Row 2: Equalized Cards */}
             <div className="grid lg:grid-cols-2 gap-8 mb-16">
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-4 max-sm:bottom-36 max-sm:right-4 text-8xl font-black text-[#CBB27A]/20">
                     03
@@ -206,7 +216,7 @@ export default function ServicesPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">
                     04
@@ -267,7 +277,7 @@ export default function ServicesPage() {
 
             {/* Row 3: Equalized Cards */}
             <div className="grid lg:grid-cols-2 gap-8 mb-16">
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-4 max-sm:bottom-37 max-sm:right-4 text-8xl font-black text-[#CBB27A]/20">
                     05
@@ -294,7 +304,7 @@ export default function ServicesPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">
                     06
@@ -325,7 +335,7 @@ export default function ServicesPage() {
 
             {/* Row 4: Equalized Cards */}
             <div className="grid lg:grid-cols-2 gap-8">
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-4 max-sm:bottom-37 max-sm:right-4 text-8xl font-black text-[#CBB27A]/20">
                     07
@@ -352,7 +362,7 @@ export default function ServicesPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full">
+              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-[#CBB27A]/20 h-full">
                 <CardContent className="p-8 relative flex flex-col h-full">
                   <div className="absolute bottom-32 right-4 text-8xl font-black text-[#CBB27A]/20">
                     08
@@ -388,7 +398,7 @@ export default function ServicesPage() {
           <div className="bg-[#CBB27A] text-white p-4 rounded-lg shadow-2xl max-w-[110px]">
             <div className="flex flex-col items-center space-y-4">
               <a
-                href="tel:+91XXXXXXXXXX"
+                href="tel:+919818735258"
                 className="flex flex-col items-center text-black hover:text-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer p-2 rounded-lg hover:bg-white/10"
               >
                 <svg
@@ -464,7 +474,7 @@ export default function ServicesPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-2 justify-center">
                   <a
-                    href="tel:+91XXXXXXXXXX"
+                    href="tel:+919818735258"
                     className="bg-[#CBB27A] text-white px-5 py-2.5 rounded-full font-medium hover:bg-[#CBB27A]/90 transition-all duration-200 text-sm w-full sm:w-auto text-center shadow-lg hover:shadow-xl"
                   >
                     Schedule Consultation
