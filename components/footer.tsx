@@ -154,6 +154,8 @@ export function Footer() {
         {/* EDIT: adjusted top border to use border-border/40 to better suit the new footer background */}
          {/* Copyright and Powered by */}
          <div className="pt-4 mt-6">
+           {/* Separator line */}
+           <div className="border-t border-gray-600/40 mb-4"></div>
            <div className="flex flex-col items-center gap-1">
              <p className="text-sm text-gray-400">
                © 2024 Celeste Abode Private Limited. All rights reserved.
