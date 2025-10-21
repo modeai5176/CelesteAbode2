@@ -126,8 +126,8 @@ export function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
                     <div className="hidden sm:block w-px h-4 bg-gray-300"></div>
                     <div className="flex items-center gap-2">
                       <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span className="hidden sm:inline">celesteabode@gmail.com</span>
-                      <span className="sm:hidden">celesteabode@gmail.com</span>
+                      <span className="hidden sm:inline">support@celesteabode.com</span>
+                      <span className="sm:hidden">support@celesteabode.com</span>
                     </div>
                   </div>
                 </motion.div>

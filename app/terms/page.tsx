@@ -249,9 +249,9 @@ export default function TermsPage() {
                   If you have any questions about these Terms of Service, please contact us:
                 </p>
                 <div className="bg-muted/30 p-6 rounded-lg">
-                  <p><strong>Email:</strong> celesteabode@gmail.com</p>
+                  <p><strong>Email:</strong> support@celesteabode.com</p>
                   <p><strong>Phone:</strong> +91 9818735258</p>
-                  <p><strong>Address:</strong> Noida, IN</p>
+                  <p><strong>Address:</strong> Celeste Abode, 716, Tower A, Ithum, Sector 62, Noida.</p>
                 </div>
               </div>
             </section>

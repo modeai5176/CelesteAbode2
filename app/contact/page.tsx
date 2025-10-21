@@ -290,7 +290,7 @@ export default function ContactPage() {
                             </h3>
                             <p className="text-foreground font-semibold mb-1 text-sm">
                               {process.env.NEXT_PUBLIC_APP_EMAIL ||
-                                "celesteabode@gmail.com"}
+                                "support@celesteabode.com"}
                             </p>
                             <p className="text-xs text-muted-foreground">
                               We respond within 2 hours
@@ -309,7 +309,7 @@ export default function ContactPage() {
                               Office Locations
                             </h3>
                             <p className="text-foreground font-semibold mb-1 text-sm">
-                              Celeste Abode, 716, Tower A, Ithum, Sec62, Noida.
+                              Celeste Abode, 716, Tower A, Ithum, Sector 62, Noida.
                             </p>
                             <p className="text-xs text-muted-foreground">
                               Serving the entire NCR region

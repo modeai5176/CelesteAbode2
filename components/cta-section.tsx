@@ -94,13 +94,13 @@ export function CTASection() {
             <div className="hidden sm:block w-px h-4 bg-muted"></div>
             <a
               href={`mailto:${
-                process.env.NEXT_PUBLIC_APP_EMAIL || "celesteabode@gmail.com"
+                process.env.NEXT_PUBLIC_APP_EMAIL || "support@celesteabode.com"
               }`}
               className="flex items-center gap-2 text-ink hover:text-[#CBB27A] transition-colors"
             >
               <Mail className="w-4 h-4" />
               <span>
-                {process.env.NEXT_PUBLIC_APP_EMAIL || "celesteabode@gmail.com"}
+                {process.env.NEXT_PUBLIC_APP_EMAIL || "support@celesteabode.com"}
               </span>
             </a>
           </div>

@@ -39,20 +39,20 @@ export function Footer() {
             <div className="space-y-4">
               <div className="flex items-center gap-3 group cursor-pointer">
                 <Phone className="w-5 h-5 text-white group-hover:text-[#CBB27A] transition-colors" />
-                <span className="text-white group-hover:text-[#CBB27A] transition-colors">
+                <span className="text-sm text-white group-hover:text-[#CBB27A] transition-colors">
                   +91 9818735258
                 </span>
               </div>
               <div className="flex items-center gap-3 group cursor-pointer">
                 <Mail className="w-5 h-5 text-white group-hover:text-[#CBB27A] transition-colors" />
-                <span className="text-white group-hover:text-[#CBB27A] transition-colors">
-                  celesteabode@gmail.com
+                <span className="text-sm text-white group-hover:text-[#CBB27A] transition-colors">
+                  support@celesteabode.com
                 </span>
               </div>
               <div className="flex items-center gap-3 group cursor-pointer">
-                <MapPin className="w-5 h-5 text-white group-hover:text-[#CBB27A] transition-colors" />
-                <span className="text-white group-hover:text-[#CBB27A] transition-colors">
-                  Celeste Abode, 716, Tower A, Ithum, Sec62, Noida.
+                <MapPin className="w-6 h-6 text-white group-hover:text-[#CBB27A] transition-colors" />
+                <span className="text-sm text-white group-hover:text-[#CBB27A] transition-colors">
+                  Celeste Abode, 716, Tower A, Ithum, Sector 62, Noida.
                 </span>
               </div>
             </div>
@@ -66,31 +66,31 @@ export function Footer() {
             <div className="space-y-3">
               <Link
                 href="/"
-                className="block text-white hover:text-[#CBB27A] transition-colors"
+                className="block text-sm text-white hover:text-[#CBB27A] transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/philosophy"
-                className="block text-white hover:text-[#CBB27A] transition-colors"
+                className="block text-sm text-white hover:text-[#CBB27A] transition-colors"
               >
                 Philosophy
               </Link>
               <Link
                 href="/services"
-                className="block text-white hover:text-[#CBB27A] transition-colors"
+                className="block text-sm text-white hover:text-[#CBB27A] transition-colors"
               >
                 Services
               </Link>
               <Link
                 href="/properties"
-                className="block text-white hover:text-[#CBB27A] transition-colors"
+                className="block text-sm text-white hover:text-[#CBB27A] transition-colors"
               >
                 Properties
               </Link>
               <Link
                 href="/contact"
-                className="block text-white hover:text-[#CBB27A] transition-colors"
+                className="block text-sm text-white hover:text-[#CBB27A] transition-colors"
               >
                 Contact
               </Link>

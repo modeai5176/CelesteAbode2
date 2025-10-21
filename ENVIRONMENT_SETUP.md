@@ -6,9 +6,9 @@ Create a file named `.env.local` in the root directory with the following conten
 
 ```env
 # Email Configuration
-EMAIL_USER=celesteabode@gmail.com
+EMAIL_USER=support@celesteabode.com
 EMAIL_PASS=uzez qtjp gwbo yodb
-ADMIN_EMAIL=admin@celesteabode.com
+ADMIN_EMAIL=support@celesteabode.com
 
 # Phone Number
 PHONE_NUMBER=+919818735258
