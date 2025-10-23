@@ -1,496 +1,496 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { ContactPopup } from "@/components/contact-popup"
-import { MapPin, Play, Star, CheckCircle, Building2, Trees, Shield, Award, Clock, Users, Video, Image as ImageIcon } from "lucide-react"
+import Image from "next/image";
+import { useState } from "react";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ContactPopup } from "@/components/contact-popup";
+import { PropertyLeadForm } from "@/components/property-lead-form";
+import {
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  Eye,
+  Play,
+  Star,
+  Building2,
+  Home,
+  TrendingUp,
+  Crown,
+  ArrowRight,
+  CheckCircle,
+  Clock,
+  Users,
+  Shield,
+  Phone,
+  Mail,
+  Calendar,
+  Award,
+  Car,
+  Plane,
+  Train,
+  School,
+  Hospital,
+  ShoppingBag,
+  Wifi,
+  Shield as Security,
+  Zap,
+  Droplets,
+  Wind,
+  TreePine,
+  Dumbbell,
+  Coffee,
+  Music,
+  Camera,
+  Gamepad2,
+  Heart,
+  Sparkles,
+} from "lucide-react";
 
-export default function ForestWalkPage() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const [selectedProperty, setSelectedProperty] = useState<{ title: string; location: string } | null>(null)
-  const [activeTab, setActiveTab] = useState("overview")
+export default function PropertyPage() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  const property = {
+    // Basic Project Information
+    projectName: "IVORY COUNTY",
+    developer: "County Group",
+    location: "Sector 115, Noida",
+    reraId: "UP-RERA-123456",
+    segment: "Buying to Live",
+    status: "Ready to Move",
+    possessionDate: "December 2024",
+    
+    // Location Advantage
+    connectivity: [
+      "Noida–Greater Noida Expressway (2 mins)",
+      "Noida Film City Metro Station (5 mins)",
+      "Botanical Garden Metro (8 mins)",
+      "IGI Airport (45 mins)",
+      "Noida International Airport (35 mins)"
+    ],
+    landmarks: [
+      "Noida Film City (3 mins)",
+      "Botanical Garden (5 mins)",
+      "Noida Stadium (4 mins)",
+      "Fortis Hospital (6 mins)",
+      "DLF Mall of India (8 mins)",
+      "Amity University (10 mins)"
+    ],
+    
+    // Residences / Property Details
+    unitTypes: ["3 BHK", "4 BHK", "5 BHK"],
+    sizes: "2034-3195 sq.ft.",
+    architecturalHighlights: [
+      "Modern Contemporary Design",
+      "Floor-to-Ceiling Windows",
+      "Premium Finishes",
+      "Vastu Compliant Layout",
+      "Cross Ventilation"
+    ],
+    structureQuality: "Earthquake-resistant RCC structure with premium quality materials",
+    
+    // Amenities & Lifestyle
+    amenities: {
+      sports: [
+        "Cricket Nets",
+        "Tennis Court",
+        "Swimming Pool",
+        "Gymnasium",
+        "Badminton Court"
+      ],
+      wellness: [
+        "Spa & Wellness Center",
+        "Yoga Garden",
+        "Meditation Zone",
+        "Salon & Beauty Parlor"
+      ],
+      recreation: [
+        "Amphitheatre",
+        "Café & Food Court",
+        "Banquet Hall",
+        "Music Plaza",
+        "Reading Lounge"
+      ],
+      kids: [
+        "Children's Play Area",
+        "Adventure Activities",
+        "Day Care Center",
+        "Educational Zone"
+      ],
+      unique: [
+        "Skywalk",
+        "Culinary Island Dining",
+        "Sculpture Garden",
+        "Rooftop Garden"
+      ]
+    },
+    
+    // Specifications
+    specifications: {
+      flooring: "Premium Vitrified Tiles",
+      kitchen: "Modular Kitchen with Granite Countertops",
+      bathrooms: "Designer Tiles with Premium Fittings",
+      electricals: "Smart Home Features with Split ACs",
+      balconies: "Glass Railings with Stainless Steel",
+      safety: "Fire-resistant materials with sprinkler system"
+    },
+    
+    // Developer Credentials
+    developerInfo: {
+      experience: "15+ Years",
+      delivered: "50+ Lakh sq.ft.",
+      projects: ["County Park", "County Heights", "County Residency"],
+      families: "5000+ Families",
+      awards: ["Best Developer Award 2023", "RERA Excellence Award"]
+    },
+    
+    // Pricing & Payment
+    pricing: {
+      priceRange: "₹85 Lakhs - ₹1.2 Cr",
+      startingPrice: "₹85 Lakhs",
+      paymentPlans: ["Construction Linked Plan (CLP)", "Flexi Payment Plan"],
+      offers: "Early Bird Discount: 5% off on booking"
+    },
+    
+    // Gallery
+    images: [
+      "/IvoryCounty/SocietyTowersView.png",
+      "/IvoryCounty/SportsANDbarArea.png",
+      "/IvoryCounty/GardenArea.png",
+      "/IvoryCounty/FluidRestro.png",
+      "/IvoryCounty/FlatsInsideAesthetic.png"
+    ]
+  };
 
   const handleContact = () => {
-    setSelectedProperty({
-      title: "FOREST WALK VILLAS",
-      location: "GDA Approved Location"
-    })
-    setIsPopupOpen(true)
-  }
-
-  const features = [
-    "52 acres of lush greenery with forest-inspired design",
-    "Fully approved by GDA, NHAI, and Environmental authorities",
-    "Phase 1: 97 villas already booked",
-    "RERA-registered project",
-    "Seamless blend of forest serenity with modern comforts",
-    "Landscaped walkways and tranquil forest trails"
-  ]
-
-  const approvals = [
-    "GDA (Greater Noida Development Authority)",
-    "NHAI (National Highways Authority of India)",
-    "Environmental Clearance",
-    "RERA Registration"
-  ]
-
-  const pricing = [
-    {
-      type: "Pre-Launch Price",
-      amount: "₹1,75,000",
-      unit: "per Sq. Yd.",
-      note: "Limited time offer"
-    },
-    {
-      type: "Launch Price",
-      amount: "₹2,00,000",
-      unit: "per Sq. Yd.",
-      note: "After pre-launch period"
-    }
-  ]
+    setIsPopupOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="pt-24">
+      <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative h-[70vh] min-h-[600px] overflow-hidden">
+        <section className="relative h-[70vh] overflow-hidden">
           <Image
-            src="/ForestWalk/LandingpageVILLA.jpeg"
-            alt="Forest Walk Villas - Luxury Forest Living"
+            src={property.images[0]}
+            alt={property.projectName}
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-          
-          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <div className="max-w-6xl mx-auto">
-              <Badge className="bg-secondary text-white mb-4">Pre-Launch Offer</Badge>
-              <h1 className="text-4xl md:text-6xl font-semibold mb-4">FOREST WALK VILLAS</h1>
-              <p className="text-xl md:text-2xl mb-6">Phase 2 - Luxury Forest Living</p>
-              <div className="flex flex-wrap gap-4">
-                <Button 
-                  size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 text-lg"
-                  onClick={handleContact}
-                >
-                  Schedule Viewing
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="border-2 border-white text-ink bg-white hover:bg-white/90 hover:text-[#000000] px-8 py-4 text-lg"
-                >
-                  Download Brochure
-                </Button>
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center text-white max-w-4xl mx-auto px-4">
+              <Badge className="mb-4 bg-primary text-white text-lg px-4 py-2">
+                {property.status}
+              </Badge>
+              <h1 className="text-5xl md:text-6xl font-bold mb-4">
+                {property.projectName}
+              </h1>
+              <p className="text-xl md:text-2xl mb-6 text-gray-200">
+                {property.location}
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-lg">
+                <span className="flex items-center gap-2">
+                  <Building2 className="w-5 h-5" />
+                  {property.sizes}
+                </span>
+                <span className="flex items-center gap-2">
+                  <Home className="w-5 h-5" />
+                  {property.unitTypes.join(", ")}
+                </span>
+                <span className="flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5" />
+                  {property.pricing.startingPrice}
+                </span>
               </div>
             </div>
           </div>
         </section>
 
         {/* Quick Info Bar */}
-        <section className="bg-primary text-white py-8">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-4 gap-6 text-center">
-              <div className="flex flex-col items-center">
-                <Building2 className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Project Type</span>
-                <span className="font-semibold">Luxury Villas</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Trees className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Land Area</span>
-                <span className="font-semibold">52 Acres</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Shield className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Status</span>
-                <span className="font-semibold">Pre-Launch</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Award className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Developer</span>
-                <span className="font-semibold">Renowned Group</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Navigation Tabs */}
-        <section className="border-b">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="flex flex-wrap gap-6">
-              {[
-                { id: "overview", label: "Overview" },
-                { id: "gallery", label: "Gallery" },
-                { id: "videos", label: "Videos" },
-                { id: "specifications", label: "Specifications" },
-                { id: "location", label: "Location" }
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-4 px-2 border-b-2 font-medium transition-colors ${
-                    activeTab === tab.id
-                      ? "border-secondary text-secondary"
-                      : "border-transparent text-graphite hover:text-ink"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Content Sections */}
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          {/* Overview Tab */}
-          {activeTab === "overview" && (
-            <div className="space-y-12">
+        <section className="py-8 bg-white border-b">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-semibold text-ink mb-6">
-                  Why Choose Forest Walk?
-                </h2>
-                <p className="text-xl text-graphite max-w-3xl mx-auto">
-                  We're thrilled to announce the launch of Phase 2 of our premium villas at Forest Walk, 
-                  a RERA-registered project that seamlessly blends forest serenity with modern comforts.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-semibold text-ink mb-4">Project Highlights</h3>
-                    <ul className="space-y-3">
-                      {features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="text-graphite">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-semibold text-ink mb-4">Approvals & Certifications</h3>
-                    <ul className="space-y-3">
-                      {approvals.map((approval, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <Shield className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="text-graphite">{approval}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-semibold text-ink mb-6 text-center">Pricing Information</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {pricing.map((price, index) => (
-                      <div key={index} className="text-center p-6 border rounded-lg">
-                        <p className="text-sm text-graphite mb-2">{price.type}</p>
-                        <div className="text-3xl font-semibold text-secondary mb-1">{price.amount}</div>
-                        <p className="text-sm text-graphite mb-2">{price.unit}</p>
-                        <p className="text-xs text-secondary font-medium">{price.note}</p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-semibold text-ink mb-4">Don't Miss Out!</h3>
-                <p className="text-lg text-graphite mb-6">
-                  Inventory is limited, and with Phase 1 fully booked, this is a golden opportunity 
-                  to secure your dream villa before prices rise.
-                </p>
-                <Button 
-                  size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 text-lg"
-                  onClick={handleContact}
-                >
-                  Invest in a Lifestyle Upgrade
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Gallery Tab */}
-          {activeTab === "gallery" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Project Gallery
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div className="relative group cursor-pointer">
-                    <Image
-                      src="/ForestWalk/LandingpageVILLA.jpeg"
-                      alt="Forest Walk Villas Landing Page"
-                      width={600}
-                      height={400}
-                      className="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <ImageIcon className="w-12 h-12 text-white" />
-                    </div>
-                  </div>
-                  
-                  <div className="relative group cursor-pointer">
-                    <Image
-                      src="/ForestWalk/VillabuiltMockup.jpeg"
-                      alt="Villa Built Mockup"
-                      width={600}
-                      height={400}
-                      className="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <ImageIcon className="w-12 h-12 text-white" />
-                    </div>
-                  </div>
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Building2 className="w-6 h-6 text-primary" />
                 </div>
+                <p className="text-sm text-muted-foreground">Area</p>
+                <p className="font-semibold">{property.sizes}</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Home className="w-6 h-6 text-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground">Units</p>
+                <p className="font-semibold">{property.unitTypes.length} Types</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Calendar className="w-6 h-6 text-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground">Possession</p>
+                <p className="font-semibold">{property.possessionDate}</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Award className="w-6 h-6 text-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground">Developer</p>
+                <p className="font-semibold">{property.developer}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-16">
+              
+              {/* Gallery */}
+              <section>
+                <h2 className="text-3xl font-bold mb-8">Project Gallery</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {property.images.map((image, index) => (
+                    <div
+                      key={index}
+                      className="relative aspect-square cursor-pointer group"
+                      onClick={() => setSelectedImage(index)}
+                    >
+                    <Image
+                        src={image}
+                        alt={`${property.projectName} - Image ${index + 1}`}
+                        fill
+                        className="object-cover rounded-lg group-hover:scale-105 transition-transform"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-lg flex items-center justify-center">
+                        <Eye className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
                 
-                <div className="space-y-6">
+              {/* Location Advantage */}
+              <section>
+                <h2 className="text-3xl font-bold mb-8">Location Advantage</h2>
+                <div className="grid md:grid-cols-2 gap-8">
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-ink mb-4">Gallery Features</h3>
-                      <ul className="space-y-2 text-graphite">
-                        <li>• High-resolution project images</li>
-                        <li>• Architectural mockups and renders</li>
-                        <li>• Lifestyle and amenity showcases</li>
-                        <li>• Interactive image viewing</li>
+                      <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                        <Car className="w-5 h-5 text-primary" />
+                        Connectivity
+                      </h3>
+                      <ul className="space-y-2">
+                        {property.connectivity.map((item, index) => (
+                          <li key={index} className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-500" />
+                            <span className="text-sm">{item}</span>
+                          </li>
+                        ))}
                       </ul>
                     </CardContent>
                   </Card>
                   
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-ink mb-4">Visual Experience</h3>
-                      <p className="text-graphite">
-                        Explore the stunning visuals of Forest Walk Villas through our comprehensive gallery. 
-                        Each image showcases the premium quality and forest-inspired design that makes this project unique.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Videos Tab */}
-          {activeTab === "videos" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Project Videos
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div className="relative">
-                    <video
-                      className="w-full h-80 object-cover rounded-lg shadow-lg"
-                      poster="/ForestWalk/LandingpageVILLA.jpeg"
-                      controls
-                      preload="metadata"
-                    >
-                      <source src="/ForestWalk/PropertyLocationVideo.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  
-                  <div className="relative">
-                    <video
-                      className="w-full h-80 object-cover rounded-lg shadow-lg"
-                      poster="/ForestWalk/LandingpageVILLA.jpeg"
-                      controls
-                      preload="metadata"
-                    >
-                      <source src="/ForestWalk/Property_futurelifestule_videos.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                </div>
-                
-                <div className="space-y-6">
-                  <Card>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-ink mb-4">Video Content</h3>
-                      <ul className="space-y-2 text-graphite">
-                        <li>• Property location overview</li>
-                        <li>• Future lifestyle preview</li>
-                        <li>• High-quality production</li>
-                        <li>• Interactive video controls</li>
+                      <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-primary" />
+                        Nearby Landmarks
+                      </h3>
+                      <ul className="space-y-2">
+                        {property.landmarks.map((item, index) => (
+                          <li key={index} className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-500" />
+                            <span className="text-sm">{item}</span>
+                          </li>
+                        ))}
                       </ul>
                     </CardContent>
                   </Card>
-                  
-                  <Card>
+                </div>
+              </section>
+
+              {/* Amenities */}
+              <section>
+                <h2 className="text-3xl font-bold mb-8">Amenities & Lifestyle</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {Object.entries(property.amenities).map(([category, items]) => (
+                    <Card key={category}>
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-ink mb-4">Immersive Experience</h3>
-                      <p className="text-graphite">
-                        Watch our professionally produced videos to get a comprehensive understanding of 
-                        Forest Walk Villas. Experience the location, design philosophy, and future lifestyle 
-                        that awaits you.
-                      </p>
+                        <h3 className="text-lg font-semibold mb-4 capitalize">
+                          {category.replace(/([A-Z])/g, ' $1').trim()}
+                        </h3>
+                        <ul className="space-y-2">
+                          {items.map((item, index) => (
+                            <li key={index} className="flex items-center gap-2">
+                              <CheckCircle className="w-4 h-4 text-primary" />
+                              <span className="text-sm">{item}</span>
+                            </li>
+                          ))}
+                      </ul>
                     </CardContent>
                   </Card>
+                  ))}
                 </div>
-              </div>
-            </div>
-          )}
+              </section>
 
-          {/* Specifications Tab */}
-          {activeTab === "specifications" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Project Specifications
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
+              {/* Specifications */}
+              <section>
+                <h2 className="text-3xl font-bold mb-8">Specifications</h2>
                 <Card>
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4">Project Details</h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-graphite">Project Type:</span>
-                        <span className="font-medium">Luxury Villas</span>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {Object.entries(property.specifications).map(([key, value]) => (
+                        <div key={key} className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <Shield className="w-4 h-4 text-primary" />
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-graphite">Land Area:</span>
-                        <span className="font-medium">52 Acres</span>
+                          <div>
+                            <h4 className="font-semibold capitalize mb-1">
+                              {key.replace(/([A-Z])/g, ' $1').trim()}
+                            </h4>
+                            <p className="text-sm text-muted-foreground">{value}</p>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-graphite">Phase:</span>
-                        <span className="font-medium">Phase 2</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-graphite">Phase 1 Status:</span>
-                        <span className="font-medium text-green-600">97 Villas Booked</span>
-                      </div>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
+              </section>
                 
+              {/* Developer Credentials */}
+              <section>
+                <h2 className="text-3xl font-bold mb-8">Developer Credentials</h2>
                 <Card>
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4">Legal & Approvals</h3>
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-4">Company Overview</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-graphite">RERA Status:</span>
-                        <span className="font-medium text-green-600">Registered</span>
+                            <span className="text-muted-foreground">Experience:</span>
+                            <span className="font-semibold">{property.developerInfo.experience}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-graphite">GDA Approval:</span>
-                        <span className="font-medium text-green-600">Approved</span>
+                            <span className="text-muted-foreground">Delivered:</span>
+                            <span className="font-semibold">{property.developerInfo.delivered}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-graphite">NHAI Approval:</span>
-                        <span className="font-medium text-green-600">Approved</span>
+                            <span className="text-muted-foreground">Families Served:</span>
+                            <span className="font-semibold">{property.developerInfo.families}</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-graphite">Environmental:</span>
-                        <span className="font-medium text-green-600">Cleared</span>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-4">Notable Projects</h3>
+                        <ul className="space-y-2">
+                          {property.developerInfo.projects.map((project, index) => (
+                            <li key={index} className="flex items-center gap-2">
+                              <CheckCircle className="w-4 h-4 text-primary" />
+                              <span className="text-sm">{project}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-              </div>
-              
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-ink mb-4">Design Philosophy</h3>
-                  <p className="text-graphite text-lg leading-relaxed">
-                    Forest Walk Villas is designed to seamlessly blend forest serenity with modern comforts. 
-                    The project features forest-inspired design elements, landscaped walkways, and tranquil 
-                    forest trails, creating a unique living experience that connects residents with nature 
-                    while providing all the amenities of modern luxury living.
-                  </p>
-                </CardContent>
-              </Card>
+              </section>
             </div>
-          )}
 
-          {/* Location Tab */}
-          {activeTab === "location" && (
+            {/* Sidebar */}
             <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Location & Connectivity
-              </h2>
               
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card>
+              {/* Pricing Card */}
+              <Card className="sticky top-8">
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4">Location Advantages</h3>
-                    <ul className="space-y-3 text-graphite">
-                      <li>• GDA approved prime location</li>
-                      <li>• Strategic connectivity</li>
-                      <li>• Proximity to major highways</li>
-                      <li>• Access to essential amenities</li>
-                      <li>• Future development potential</li>
+                  <h3 className="text-xl font-bold mb-4">Pricing & Payment</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Starting Price</p>
+                      <p className="text-2xl font-bold text-primary">{property.pricing.startingPrice}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Price Range</p>
+                      <p className="text-lg font-semibold">{property.pricing.priceRange}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-2">Payment Plans</p>
+                      <ul className="space-y-1">
+                        {property.pricing.paymentPlans.map((plan, index) => (
+                          <li key={index} className="text-sm flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-500" />
+                            {plan}
+                          </li>
+                        ))}
                     </ul>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4">Development Authority</h3>
-                    <p className="text-graphite mb-4">
-                      The project is fully approved by the Greater Noida Development Authority (GDA), 
-                      ensuring compliance with all development regulations and infrastructure planning.
-                    </p>
-                    <div className="bg-green-50 p-4 rounded-lg">
-                      <p className="text-green-800 text-sm">
-                        <strong>GDA Approval:</strong> All necessary clearances and approvals have been 
-                        obtained for this premium development project.
-                      </p>
+                    </div>
+                    {property.pricing.offers && (
+                      <div className="bg-green-50 p-3 rounded-lg">
+                        <p className="text-sm font-semibold text-green-800">{property.pricing.offers}</p>
+                      </div>
+                    )}
                     </div>
                   </CardContent>
                 </Card>
-              </div>
-              
+
+              {/* Lead Form */}
+              <PropertyLeadForm
+                propertyName={property.projectName}
+                propertyLocation={property.location}
+                segment={property.segment as any}
+                variant="sidebar"
+              />
+
+              {/* Quick Facts */}
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-ink mb-4">Investment Potential</h3>
-                  <p className="text-graphite text-lg leading-relaxed">
-                    With Phase 1 already fully booked and Phase 2 in pre-launch, Forest Walk Villas 
-                    represents a unique investment opportunity. The project's strategic location, 
-                    comprehensive approvals, and proven track record make it an attractive option for 
-                    both end-users and investors looking for premium real estate assets.
-                  </p>
+                  <h3 className="text-xl font-bold mb-4">Quick Facts</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">RERA ID:</span>
+                      <span className="text-sm font-semibold">{property.reraId}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Status:</span>
+                      <span className="text-sm font-semibold">{property.status}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Segment:</span>
+                      <span className="text-sm font-semibold">{property.segment}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Possession:</span>
+                      <span className="text-sm font-semibold">{property.possessionDate}</span>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
-          )}
+          </div>
         </div>
-
       </main>
 
       {/* Contact Popup */}
       <ContactPopup
         isOpen={isPopupOpen}
-        onClose={() => {
-          setIsPopupOpen(false)
-          setSelectedProperty(null)
-        }}
-        propertyTitle={selectedProperty?.title}
-        propertyLocation={selectedProperty?.location}
+        onClose={() => setIsPopupOpen(false)}
+        propertyTitle={property.projectName}
+        propertyLocation={property.location}
       />
 
       <Footer />
     </div>
-  )
+  );
 }

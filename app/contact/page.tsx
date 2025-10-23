@@ -71,7 +71,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background">
       <main className="pt-0">
         {/* Hero Section */}
-        <section className="pt-0 pb-8 px-4 bg-gradient-to-br from-primary/5 to-secondary/5 min-h-[60vh] flex flex-col philosophy-hero">
+        <section className="pt-0 px-4 bg-gradient-to-br from-primary/5 to-secondary/5 min-h-[60vh] flex flex-col philosophy-hero">
           <Header />
           <div className="flex-1 flex items-center justify-center pt-24">
             <div className="max-w-4xl mx-auto text-center w-full">
@@ -84,6 +84,11 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
+
+        {/* Aesthetic Line Separator */}
+        <div className="w-full flex justify-center py-8">
+          <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+        </div>
 
         {/* Contact Form & Info */}
         <Section>

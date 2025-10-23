@@ -96,8 +96,8 @@ export function Header() {
 
             {/* Right Menu Group */}
             <nav className="flex items-center space-x-8 ml-16">
-              <Link href="/reviews" className="nav-link">
-                REVIEWS
+              <Link href="/vault" className="nav-link">
+                VAULT
               </Link>
               <Link href="/properties" className="nav-link">
                 PROPERTIES
@@ -135,11 +135,11 @@ export function Header() {
                 SERVICES
               </Link>
               <Link
-                href="/reviews"
+                href="/vault"
                 className="block px-6 py-4 text-white hover:text-[#CBB27A] transition-colors duration-300 border-b border-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                REVIEWS
+                VAULT
               </Link>
               <Link
                 href="/properties"

@@ -9,7 +9,7 @@ Allow: /philosophy
 Allow: /services
 Allow: /properties
 Allow: /contact
-Allow: /reviews
+Allow: /vault
 Allow: /terms
 Allow: /privacy-policy
 

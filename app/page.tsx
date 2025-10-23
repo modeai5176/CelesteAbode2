@@ -35,6 +35,12 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
+
+        {/* Aesthetic Line Separator */}
+        <div className="w-full flex justify-center py-8">
+          <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+        </div>
+
         <BrandEssay />
         <FourPillars />
         <ValuePropositions />

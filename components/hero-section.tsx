@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background py-24 pt-32">
+    <section className="relative min-h-screen flex items-center justify-center bg-background pt-32">
       <div className="max-w-7xl mx-auto px-6 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

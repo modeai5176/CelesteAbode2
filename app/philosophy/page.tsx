@@ -18,6 +18,11 @@ export default function PhilosophyPage() {
         <Header />
         <PhilosophyHeroSection />
 
+        {/* Aesthetic Line Separator */}
+        <div className="w-full flex justify-center py-8">
+          <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+        </div>
+
         {/* Our Ethos - Sticky Trust Manifesto */}
         <Section className="py-8 md:py-12">
           <div className="max-w-7xl mx-auto">

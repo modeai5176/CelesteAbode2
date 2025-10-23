@@ -117,6 +117,11 @@ export default function ServicesPage() {
         <Header />
         <ServicesHeroSection />
 
+        {/* Aesthetic Line Separator */}
+        <div className="w-full flex justify-center py-8">
+          <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+        </div>
+
         {/* Beautiful tagline */}
         <div className="py-8 flex justify-center">
           <div className="max-w-6xl text-center">
