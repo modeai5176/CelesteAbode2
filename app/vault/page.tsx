@@ -36,7 +36,7 @@ import {
 export default function VaultPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("legal");
 
   const faqData = {
     buying: {
