@@ -41,7 +41,8 @@ export default function PropertiesPage() {
       id: "buying-to-live",
       title: "Buying to Live",
       subtitle: "Your Dream Home Awaits",
-      description: "Discover homes designed for modern living with premium amenities and strategic locations.",
+      description:
+        "Discover homes designed for modern living with premium amenities and strategic locations.",
       icon: Home,
       color: "from-blue-500 to-blue-600",
       bgColor: "bg-blue-50",
@@ -50,7 +51,8 @@ export default function PropertiesPage() {
       id: "investment",
       title: "Investment Opportunities",
       subtitle: "Smart Investment Choices",
-      description: "High-return properties with excellent growth potential and rental yields.",
+      description:
+        "High-return properties with excellent growth potential and rental yields.",
       icon: TrendingUp,
       color: "from-green-500 to-green-600",
       bgColor: "bg-green-50",
@@ -59,7 +61,8 @@ export default function PropertiesPage() {
       id: "luxury",
       title: "Luxury Residences",
       subtitle: "Ultimate Luxury Living",
-      description: "Exclusive properties with world-class amenities and unparalleled luxury.",
+      description:
+        "Exclusive properties with world-class amenities and unparalleled luxury.",
       icon: Crown,
       color: "from-purple-500 to-purple-600",
       bgColor: "bg-purple-50",
@@ -71,22 +74,22 @@ export default function PropertiesPage() {
     "buying-to-live": [
       {
         id: 1,
-      title: "IVORY COUNTY",
-      subtitle: "Premium Living in Sector 115",
-      location: "Sector 115, Noida",
+        title: "IVORY COUNTY",
+        subtitle: "Premium Living in Sector 115",
+        location: "Sector 115, Noida",
         price: "₹85 Lakhs onwards",
         priceUnit: "Starting Price",
-      image: "/IvoryCounty/SocietyTowersView.png",
-      beds: "3, 4 & 5 BHK",
-      baths: "2-3 Baths",
-      area: "2034-3195 sq.ft.",
+        image: "/IvoryCounty/SocietyTowersView.png",
+        beds: "3, 4 & 5 BHK",
+        baths: "2-3 Baths",
+        area: "2034-3195 sq.ft.",
         status: "Ready to Move",
-      developer: "County Group",
+        developer: "County Group",
         possession: "Dec 2024",
-      highlights: [
-        "Prime Location",
-        "Premium Amenities",
-        "Ready to Move",
+        highlights: [
+          "Prime Location",
+          "Premium Amenities",
+          "Ready to Move",
           "County Group Legacy",
         ],
         segment: "Buying to Live",
@@ -97,24 +100,24 @@ export default function PropertiesPage() {
       },
       {
         id: 2,
-      title: "ETERNIA",
-      subtitle: "Premium Residences in Greater Noida",
-      location: "Tech Zone IV, Greater Noida (W)",
+        title: "ETERNIA",
+        subtitle: "Premium Residences in Greater Noida",
+        location: "Tech Zone IV, Greater Noida (W)",
         price: "₹65 Lakhs onwards",
         priceUnit: "Starting Price",
-      image: "/Eternia/1.png",
-      beds: "3, 3+1 & 4+1 BHK",
-      baths: "2-3 Baths",
-      area: "1086-1599 sq.ft.",
-      status: "Under Construction",
-      developer: "Premium Developer",
+        image: "/Eternia/1.png",
+        beds: "3, 3+1 & 4+1 BHK",
+        baths: "2-3 Baths",
+        area: "1086-1599 sq.ft.",
+        status: "Under Construction",
+        developer: "Premium Developer",
         possession: "Mar 2025",
-      highlights: [
-        "Skyline Views",
-        "Green Belt Facing",
-        "EV Charging",
-        "25K sq.ft. Clubhouse",
-      ],
+        highlights: [
+          "Skyline Views",
+          "Green Belt Facing",
+          "EV Charging",
+          "25K sq.ft. Clubhouse",
+        ],
         segment: "Buying to Live",
         reraId: "UP-RERA-789012",
         unitTypes: ["3 BHK", "3+1 BHK", "4+1 BHK"],
@@ -122,7 +125,7 @@ export default function PropertiesPage() {
         paymentPlans: ["CLP", "Construction Linked"],
       },
     ],
-    "investment": [
+    investment: [
       {
         id: 3,
         title: "CRC MAESTA",
@@ -153,24 +156,24 @@ export default function PropertiesPage() {
       },
       {
         id: 4,
-      title: "THE BROOK & THE RIVULET",
-      subtitle: "Premium High-Rise Residences",
-      location: "Greater Noida (Prime 3-Side Open Corner Plot)",
+        title: "THE BROOK & THE RIVULET",
+        subtitle: "Premium High-Rise Residences",
+        location: "Greater Noida (Prime 3-Side Open Corner Plot)",
         price: "₹55 Lakhs onwards",
         priceUnit: "Starting Price",
-      image: "/Brook and Rivulet/1.png",
-      beds: "Premium BHK",
-      baths: "Premium Baths",
-      area: "Premium Sizes",
-      status: "Under Construction",
-      developer: "Renowned Developer",
+        image: "/Brook and Rivulet/1.png",
+        beds: "Premium BHK",
+        baths: "Premium Baths",
+        area: "Premium Sizes",
+        status: "Under Construction",
+        developer: "Renowned Developer",
         possession: "Dec 2025",
-      highlights: [
-        "3-Side Open Plot",
-        "Earthquake Resistant",
+        highlights: [
+          "3-Side Open Plot",
+          "Earthquake Resistant",
           "High Appreciation",
-        "30,750 sq.ft. Clubhouses",
-      ],
+          "30,750 sq.ft. Clubhouses",
+        ],
         segment: "Investment Opportunity",
         reraId: "UP-RERA-901234",
         unitTypes: ["2 BHK", "3 BHK", "4 BHK", "5 BHK"],
@@ -180,7 +183,7 @@ export default function PropertiesPage() {
         rentalYield: "9-12%",
       },
     ],
-    "luxury": [
+    luxury: [
       {
         id: 5,
         title: "ESTATE 360",
@@ -206,7 +209,11 @@ export default function PropertiesPage() {
         unitTypes: ["4 BHK", "5 BHK", "Penthouses"],
         startingPrice: "₹2.5 Cr",
         paymentPlans: ["CLP", "Flexi Payment"],
-        luxuryFeatures: ["Concierge Service", "Private Elevators", "Sky Gardens"],
+        luxuryFeatures: [
+          "Concierge Service",
+          "Private Elevators",
+          "Sky Gardens",
+        ],
       },
       {
         id: 6,
@@ -238,7 +245,8 @@ export default function PropertiesPage() {
     ],
   };
 
-  const currentProperties = propertiesData[activeSegment as keyof typeof propertiesData];
+  const currentProperties =
+    propertiesData[activeSegment as keyof typeof propertiesData];
 
   const handleSegmentChange = (segmentId: string) => {
     setActiveSegment(segmentId);
@@ -281,7 +289,7 @@ export default function PropertiesPage() {
 
                 {/* Dark overlay for better text readability */}
                 <div className="absolute inset-0 bg-black/50" />
-                
+
                 {/* Left side vignette */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
 
@@ -299,13 +307,17 @@ export default function PropertiesPage() {
                         Your Definitive
                       </div>
                       <div className="block text-[#FAFAF8] mt-2">
-                        <span className="text-[#CBB27A]">Property Portfolio</span>
+                        <span className="text-[#CBB27A]">
+                          Property Portfolio
+                        </span>
                       </div>
-              </h1>
+                    </h1>
 
                     <p className="text-base md:text-lg text-[#CBB27A] mb-6 max-w-2xl">
-                      Every asset—whether for living or investing—is vetted by our evidence-driven philosophy, ensuring unparalleled value and peace of mind.
-              </p>
+                      Every asset—whether for living or investing—is vetted by
+                      our evidence-driven philosophy, ensuring unparalleled
+                      value and peace of mind.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -323,10 +335,12 @@ export default function PropertiesPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Choose Your <span className="text-primary">Property Category</span>
+                Choose Your{" "}
+                <span className="text-primary">Property Category</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Each category is carefully curated to match your specific requirements and investment goals.
+                Each category is carefully curated to match your specific
+                requirements and investment goals.
               </p>
             </div>
 
@@ -334,32 +348,36 @@ export default function PropertiesPage() {
               {segments.map((segment) => {
                 const Icon = segment.icon;
                 const isActive = activeSegment === segment.id;
-                
+
                 return (
                   <Card
                     key={segment.id}
-                    className={`cursor-pointer transition-all duration-300 hover:shadow-xl ${
-                      isActive 
-                        ? `border-2 border-primary shadow-lg ${segment.bgColor}` 
-                        : 'border border-gray-200 hover:border-primary/50'
+                    className={`cursor-pointer transition-all duration-300 hover:shadow-xl group ${
+                      isActive
+                        ? `border-2 border-primary shadow-lg ${segment.bgColor}`
+                        : "border border-gray-200 hover:border-primary/50"
                     }`}
                     onClick={() => handleSegmentChange(segment.id)}
                   >
                     <CardContent className="p-8 text-center">
-                      <div className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
-                        isActive ? `bg-gradient-to-r ${segment.color} text-white` : 'bg-gray-100 text-gray-600'
-                      }`}>
+                      <div
+                        className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          isActive
+                            ? `bg-gradient-to-r ${segment.color} text-white`
+                            : `bg-gray-100 text-gray-600 group-hover:bg-gradient-to-r group-hover:${segment.color} group-hover:text-white`
+                        }`}
+                      >
                         <Icon className="w-8 h-8" />
-        </div>
+                      </div>
 
                       <h3 className="text-xl font-bold text-foreground mb-3">
                         {segment.title}
                       </h3>
-                      
+
                       <p className="text-sm text-muted-foreground mb-4">
                         {segment.subtitle}
                       </p>
-                      
+
                       <p className="text-sm text-muted-foreground mb-6">
                         {segment.description}
                       </p>
@@ -381,10 +399,10 @@ export default function PropertiesPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                {segments.find(s => s.id === activeSegment)?.title} Properties
+                {segments.find((s) => s.id === activeSegment)?.title} Properties
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {segments.find(s => s.id === activeSegment)?.description}
+                {segments.find((s) => s.id === activeSegment)?.description}
               </p>
             </div>
 
@@ -418,7 +436,9 @@ export default function PropertiesPage() {
                     <div className="absolute bottom-3 left-3 right-3">
                       <div className="flex items-center gap-2 text-white mb-1">
                         <MapPin className="w-3 h-3" />
-                        <span className="text-xs font-medium">{property.location}</span>
+                        <span className="text-xs font-medium">
+                          {property.location}
+                        </span>
                       </div>
                       <h3 className="text-lg font-bold text-white leading-tight">
                         {property.title}
@@ -427,37 +447,42 @@ export default function PropertiesPage() {
                   </div>
                 </Card>
               ))}
-                    </div>
-
+            </div>
 
             {/* CTA Section */}
             <div className="text-center mt-16">
               <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8">
                 <h3 className="text-2xl font-bold text-foreground mb-4">
                   Need Help Choosing the Right Property?
-                    </h3>
+                </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Our expert advisors are here to help you find the perfect property that matches your needs and budget.
+                  Our expert advisors are here to help you find the perfect
+                  property that matches your needs and budget.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                      <Button
+                  <Button
                     size="lg"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
-                    onClick={() => handlePropertyClick({ title: "General Inquiry", location: "All Properties" })}
+                    onClick={() =>
+                      handlePropertyClick({
+                        title: "General Inquiry",
+                        location: "All Properties",
+                      })
+                    }
                   >
                     <Users className="w-5 h-5 mr-2" />
                     Get Expert Consultation
-                      </Button>
-                      <Button
-                        variant="outline"
+                  </Button>
+                  <Button
+                    variant="outline"
                     size="lg"
                     className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3"
-                    onClick={() => window.location.href = "/contact"}
+                    onClick={() => (window.location.href = "/contact")}
                   >
                     <Shield className="w-5 h-5 mr-2" />
                     Contact Us
-                      </Button>
-                    </div>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
