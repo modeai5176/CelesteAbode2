@@ -42,109 +42,108 @@ export default function PropertyPage() {
 
   const property = {
     // Basic Project Information
-    projectName: "IRISH PLATINUM",
-    developer: "Irish Infrastructure Pvt. Ltd.",
-    location: "Sector 1, Greater Noida West",
-    reraId: "UPRERAPRJ742692",
-    status: "Near Possession",
-    possessionDate: "Dec 2025",
-    segment: "Premium Residential",
+    projectName: "THE BROOK & RIVULET",
+    developer: "Fusion Limited",
+    location: "Sector 12, Greater Noida West",
+    reraId: "UPRERAPRJ535539",
+    status: "Under Construction",
+    possessionDate: "Under Construction",
+    segment: "Investment Opportunity",
     
     // Images
     images: [
+      "/Brook and Rivulet/1.png",
+      "/Brook and Rivulet/2.png",
+      "/Brook and Rivulet/3.png",
+      "/Brook and Rivulet/4.png",
       "/luxury-modern-apartment.png",
-      "/premium-apartment-interior-living-room.png",
-      "/modern-apartment-building-with-green-spaces.png",
-      "/luxury-villa-exterior-modern-architecture.png",
-      "/luxury-royal-style-villa-with-grand-entrance.png",
-      "/luxury-villa-with-garden-and-modern-design.png"
+      "/premium-apartment-interior-living-room.png"
     ],
 
     // Location Advantage
     connectivity: [
-      "5 mins to FNG Expressway",
-      "10 mins to Noida Sector 62 & 63",
-      "30 mins to Jewar Airport",
-      "45 mins to Upcoming Film City"
+      "Metro Connectivity: Just 600m from proposed Sector 12 Metro Station (Aqua Line)",
+      "Road Network: Noida–Greater Noida Link Road, NH-9, Yamuna Expressway",
+      "Healthcare Nearby: Yatharth, Kailash, Fortis, Numed Hospitals",
+      "Education Hub: GD Goenka, Jaipuria, Ramagya, IGNOB Centre"
     ],
     landmarks: [
-      "Yatharth Hospital",
-      "DLF Mall of India",
-      "Railway Station",
-      "Top Schools",
-      "Shopping Hubs",
-      "Employment Zones"
+      "Entertainment & Retail: Gaur City Mall, U:Fairia, Upcoming Film City (Sector 21, YEIDA)",
+      "Airports: IGI Airport (Delhi), Upcoming Noida International Airport (Jewar)",
+      "3 Side Open Corner Plot",
+      "Grand Double-Height Entrance Lobby"
     ],
 
     // Amenities & Lifestyle
     amenities: {
       sports: [
-        "All-weather Swimming Pools (Adult & Kids)",
-        "Indoor Gym",
-        "Billiards",
-        "Squash & Badminton Courts"
+        "Tennis Court",
+        "Basketball Court",
+        "Badminton Court",
+        "Jogging / Cycling Tracks",
+        "Half-Olympic Swimming Pool"
       ],
       wellness: [
-        "Club Platinum",
-        "Outdoor Gym",
-        "Skating Rink",
-        "Basketball Court"
+        "Luxury Clubhouses: Paper Boat (The Brook) & Pebble Castle (The Rivulet) – 30,750 sq.ft",
+        "Co-working spaces, guest rooms, indoor gym, swimming pool with jacuzzi, steam & sauna",
+        "Indoor games: billiards, cards, table tennis",
+        "Banquet hall, terrace seating, buffet counters"
       ],
       recreation: [
-        "Cricket Net with Bowling Machine",
-        "Interactive Fountains",
-        "Meditation Lawns",
-        "Party Lawns",
-        "Open-air Theatre"
+        "Terrace Garden (30,000 sq.ft): Mini golf, cricket bowling machine, outdoor gym, jogging track",
+        "Yoga lawn, meditation centre, sunset deck, pergolas, bonfire pit",
+        "Glass pavilions, vertical garden, advanced telescope"
       ],
       kids: [
-        "Kids' Play Zones",
-        "Garden Umbrella Sit-outs",
+        "Kids Zone",
+        "Play Area",
         "Adventure Activities"
       ],
       unique: [
-        "Jogging Tracks",
-        "Ceiling Height: 11 feet across all units",
-        "Earthquake-resistant RCC frame with Mivan construction",
-        "App-based Video Door Lock"
+        "3 Side Open Corner Plot",
+        "Grand Double-Height Entrance Lobby",
+        "3100 mm Floor-to-Floor Height",
+        "2400 mm Door Height",
+        "Mechanical Car Parking & EV Charging Stations",
+        "Smog Guns for Air Purification"
       ]
     },
 
     // Specifications
     specifications: {
-      flooring: "PGVT/GVT tiles in all rooms (Kajaria/Orient/Sunheart), Anti-skid tiles in toilets and balconies",
-      kitchen: "Granite kitchen counters with ceramic dado, Wall-mounted WC, premium CP fittings",
-      bathrooms: "Grohe/Kohler/American Standard fittings, White sanitary ware",
-      electricals: "8-ft laminated flush doors, Split AC provision in all rooms, Intercom, DTH conduit",
-      balconies: "Modular switches, copper wiring, Smart home features",
+      flooring: "Vitrified PGVT tiles (600x1200 mm), OBD-finished walls, Wooden textured tiles in master bedroom",
+      kitchen: "Granite/vitrified countertop, designer ceramic tiles, stainless steel sink",
+      bathrooms: "Anti-skid ceramic tiles, white sanitary ware, CP fittings",
+      electricals: "UPVC/aluminum powder-coated external doors, laminated internal doors",
+      balconies: "RCC with aluminum formwork, earthquake-resistant",
       safety: "CCTV, biometric access, intercom, fire safety systems"
     },
 
     // Developer Credentials
     developerInfo: {
-      experience: "Irish Group - Laying Foundation for Tomorrow",
-      projectsDelivered: "Legacy of excellence with landmark delivery of Irish Pearls",
+      experience: "Fusion Limited – Building Values",
+      projectsDelivered: "50+ lakh sq.ft. delivered, 40+ lakh sq.ft. under construction, 3000+ families already call Fusion home",
       notableProjects: [
-        "Irish Pearls - Landmark Delivery",
-        "Irish Platinum - Current Flagship"
+        "Fusion Homes",
+        "French Apartments", 
+        "U:Fairia"
       ],
       awards: [
-        "Quality Construction Awards",
-        "Customer Satisfaction Recognition"
+        "Known for timely delivery, transparency, and customer delight"
       ]
     },
 
     // Pricing & Payment
     pricing: {
-      priceRange: "₹56.93 Lakhs (₹1.28 Cr lower than comparable projects)",
-      startingPrice: "First 50 units offered at special rates",
-      paymentPlan: "10% on booking, 10% within 45 days, 10% within 90 days, 10% on excavation, 10% on 1st floor, 10% on 7th floor, 10% on 15th floor, 10% on 19th floor, 20% on possession",
-      offers: "Power Backup: ₹25,000 per KVA, EEC/FFC: ₹100/sq.ft, Club Membership: ₹1,00,000"
+      priceRange: "Unit Pricing (Approximate, in ₹ Lakhs): 3C: ₹140.40 – ₹145.10, 3E: ₹161.10 – ₹167.10, 4B: ₹209.00 – ₹216.00, 4C: ₹213.00 – ₹220.00",
+      startingPrice: "₹1.40 Cr onwards",
+      paymentPlan: "Special Payment Plan (SPP 40:40:20) - 40% on booking, 40% on super structure, 20% on possession",
+      offers: "Construction Linked Plan (CLP) – 10:10:10… till possession"
     },
 
     // Unit Types
-    unitTypes: ["3 BHK", "4 BHK"],
-    sizes: "1390 sq.ft - 2550 sq.ft"
+    unitTypes: ["3C", "3E", "4B", "4C"],
+    sizes: "1350-2050 sq.ft"
   };
 
   const handleContact = () => {
@@ -154,18 +153,18 @@ export default function PropertyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-
+      
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
-          <Image
+        <Image
           src={property.images[0]}
           alt={property.projectName}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-          
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        
         {/* Property Name & Location */}
         <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
           <div className="max-w-5xl">
@@ -217,17 +216,17 @@ export default function PropertyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
                     <Building2 className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                  </div>
                   <div>
                     <p className="text-xs text-white/70">RERA ID</p>
                     <p className="text-sm font-semibold text-white">{property.reraId}</p>
-              </div>
-              </div>
-              </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Main Content Layout */}
       <main>
@@ -274,8 +273,8 @@ export default function PropertyPage() {
                       </div>
                     </div>
                   ))}
-          </div>
-        </section>
+                </div>
+              </section>
 
               {/* Location Advantage */}
               <section>
@@ -286,12 +285,12 @@ export default function PropertyPage() {
                     </div>
                     <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Location Advantage
-                </h2>
+                    </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-              </div>
+                </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8">
                   {/* Connectivity Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                     <div className="flex items-center gap-4 mb-6">
@@ -312,7 +311,7 @@ export default function PropertyPage() {
                         </div>
                       ))}
                     </div>
-              </div>
+                  </div>
 
                   {/* Landmarks Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
@@ -515,21 +514,21 @@ export default function PropertyPage() {
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.priceRange}
                       </p>
-              </div>
+                    </div>
                     
                     <div className="bg-gray-50 rounded-xl p-4">
                       <p className="text-sm text-gray-600 mb-1">Starting Price</p>
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.startingPrice}
                       </p>
-            </div>
+                    </div>
                     
                     {property.pricing.offers && (
                       <div className="bg-black p-3 rounded-xl text-white">
                         <div className="flex items-center gap-2 mb-1">
                           <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
                             <Star className="w-2 h-2 text-green-500" />
-                        </div>
+                          </div>
                           <p className="text-xs font-semibold text-green-500">Special Offers</p>
                         </div>
                         <p className="text-xs font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -537,20 +536,20 @@ export default function PropertyPage() {
                         </p>
                       </div>
                     )}
-              </div>
-            </div>
+                  </div>
+                </div>
 
                 {/* Property Inquiry Form */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <MessageSquare className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                    </div>
                     <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Property Inquiry
-                      </h3>
-              </div>
-
+                    </h3>
+                  </div>
+                  
                   <form className="space-y-4">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -585,8 +584,8 @@ export default function PropertyPage() {
                       </div>
                     </Button>
                   </form>
-                    </div>
-                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

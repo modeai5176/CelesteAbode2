@@ -1,510 +1,626 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { ContactPopup } from "@/components/contact-popup"
-import { MapPin, Play, Star, CheckCircle, Building2, Trees, Shield, Award, Clock, Users, Video, Image as ImageIcon, Zap, Car, Heart, Dumbbell, Gamepad2, Home, Wifi, Leaf, Waves, Utensils, Calendar } from "lucide-react"
+import Image from "next/image";
+import { useState } from "react";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ContactPopup } from "@/components/contact-popup";
+import {
+  MapPin,
+  Building2,
+  Calendar,
+  Award,
+  Car,
+  Eye,
+  X,
+  CheckCircle,
+  Square,
+  Coffee,
+  Droplets,
+  Zap,
+  Wind,
+  Shield,
+  Dumbbell,
+  Heart,
+  Music,
+  Gamepad2,
+  Crown,
+  Star,
+  MessageSquare,
+  ArrowRight,
+  Camera,
+  TrendingUp,
+} from "lucide-react";
 
-export default function BrookRivuletPage() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const [selectedProperty, setSelectedProperty] = useState<{ title: string; location: string } | null>(null)
-  const [activeTab, setActiveTab] = useState("overview")
+export default function PropertyPage() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [modalImageIndex, setModalImageIndex] = useState<number>(0);
+
+  const property = {
+    // Basic Project Information
+    projectName: "ELDECO WOW",
+    developer: "Eldeco Group",
+    location: "Sector 22D, Yamuna Expressway",
+    reraId: "UPRERAPRJ752382/09/2025",
+    status: "New Launch",
+    possessionDate: "Dec 2028",
+    segment: "Luxury Residence",
+    
+    // Images
+    images: [
+      "/luxury-modern-apartment.png",
+      "/premium-apartment-interior-living-room.png",
+      "/modern-apartment-building-with-green-spaces.png",
+      "/luxury-villa-exterior-modern-architecture.png",
+      "/luxury-royal-style-villa-with-grand-entrance.png",
+      "/luxury-villa-with-garden-and-modern-design.png"
+    ],
+
+    // Location Advantage
+    connectivity: [
+      "Along Yamuna Expressway, connecting Greater Noida to Agra",
+      "Close proximity to Noida International Airport (Jewar) – approx. 20 mins",
+      "Proposed metro corridor connecting Jewar Airport to Delhi",
+      "Delhi/Noida: 45–60 minutes"
+    ],
+    landmarks: [
+      "Buddh International Circuit – 5 mins",
+      "GYC Galleria Mall – 5 mins",
+      "Munshi Lal School",
+      "Baba Shivdyal Ashram (~15 mins)",
+      "Jewar Airport: 20–25 minutes"
+    ],
+
+    // Amenities & Lifestyle
+    amenities: {
+      sports: [
+        "Tennis",
+        "Basketball",
+        "Badminton",
+        "Squash Courts",
+        "Jogging/Cycling Tracks",
+        "Half-Olympic Pool"
+      ],
+      wellness: [
+        "Spa",
+        "Yoga Garden",
+        "Meditation Zone",
+        "3-acre Landscaped Greens"
+      ],
+      recreation: [
+        "Clubhouse",
+        "Banquet Hall",
+        "Amphitheatre",
+        "Kids Zone",
+        "Play Area",
+        "Senior Citizen Deck"
+      ],
+      kids: [
+        "Kids Zone",
+        "Play Area",
+        "Adventure Activities",
+        "Day-care"
+      ],
+      unique: [
+        "Podium-based Vehicle-free Zone",
+        "3-acre Central Green",
+        "Skywalk",
+        "Culinary Island Dining",
+        "Sculpture Garden"
+      ]
+    },
+
+    // Specifications
+    specifications: {
+      flooring: "Vitrified tiles (living & bedrooms), ceramic tiles (bathrooms & balconies)",
+      kitchen: "Modular with granite counter & branded fittings",
+      bathrooms: "Designer tiles & fittings with geyser points",
+      electricals: "Smart home features, split AC provisions",
+      balconies: "3-side open balconies with running design",
+      safety: "CCTV, biometric access, intercom, fire safety systems"
+    },
+
+    // Developer Credentials
+    developerInfo: {
+      experience: "Over 30 years (since 1985)",
+      projectsDelivered: "150+ projects across NCR, Lucknow, Kanpur, Agra etc.",
+      notableProjects: [
+        "Eldeco Accolade",
+        "Eldeco Live by the Greens",
+        "Eldeco Utopia"
+      ],
+      awards: [
+        "Multiple Regional Developer Awards",
+        "Quality and Delivery Recognition"
+      ]
+    },
+
+    // Pricing & Payment
+    pricing: {
+      priceRange: "₹9,000 per sq.ft (approx.)",
+      startingPrice: "₹1.30 Crore Onwards (for 3 BHK)",
+      paymentPlan: "EOI system – ₹5 Lakh (3 BHK + 2 T), ₹7 Lakh (3 BHK + 3 T), ₹10 Lakh (Penthouse)",
+      offers: "No public discounts listed"
+    },
+
+    // Unit Types
+    unitTypes: ["3 BHK + 2 T", "3 BHK + 3 T", "Duplex Penthouses (3 BHK + Study)"],
+    sizes: "1,550 sq.ft – 2,800 sq.ft"
+  };
 
   const handleContact = () => {
-    setSelectedProperty({
-      title: "THE BROOK & THE RIVULET",
-      location: "Greater Noida (Prime 3-Side Open Corner Plot)"
-    })
-    setIsPopupOpen(true)
-  }
-
-  const features = [
-    "Premium high-rise residences with modern architecture",
-    "3-side open plot for maximum light & ventilation",
-    "Earthquake-resistant RCC construction with MIVAN Formwork",
-    "EV charging stations for sustainable living",
-    "Mechanical car parking provision (2 cars per bay)",
-    "Smog guns at each tower to combat pollution"
-  ]
-
-  const unitSpecifications = [
-    {
-      category: "Living & Dining",
-      items: ["Vitrified tile flooring (600×1200 mm)", "Finished walls/ceiling with OBD", "DTH/Optical Fibre provision"]
-    },
-    {
-      category: "Bedrooms", 
-      items: ["Wooden textured tiles in master", "Vitrified tiles in others", "Finished walls & ceiling"]
-    },
-    {
-      category: "Kitchen",
-      items: ["Granite/vitrified countertop", "Designer ceramic tiles", "SS sink with premium fittings"]
-    },
-    {
-      category: "Toilets",
-      items: ["Anti-skid ceramic tiles", "Wall tiles up to door height", "White sanitary ware with premium CP fittings"]
-    }
-  ]
-
-  const amenities = [
-    { category: "Lifestyle", items: ["Co-working Spaces", "Luxury Guest Rooms", "Kid's Creche/Play Area"] },
-    { category: "Wellness", items: ["Fully-equipped Gym", "Swimming Pool with Jacuzzi", "Steam & Sauna"] },
-    { category: "Recreation", items: ["Billiards Lounge", "Table Tennis", "Cards Room", "Multipurpose Hall"] },
-    { category: "Events", items: ["Grand Banquet Hall", "Terrace Ledge/Gazebo", "Kitchen & Buffet Counters"] }
-  ]
-
-  const locationAdvantages = [
-    { category: "Healthcare", items: ["Numed Hospital (3.5 km)", "Yatharth (4 km)", "Fortis (11 km)"] },
-    { category: "Schools", items: ["Shri Ram Universal (2 km)", "Ryan International (2.8 km)", "Lotus Valley (3.5 km)"] },
-    { category: "Business Hubs", items: ["R Systems (3.5 km)", "Kyndryl (3.5 km)", "Artha Infratech (3.5 km)", "Yotta Data Center (7 km)"] },
-    { category: "Leisure & Retail", items: ["D-Mart (3 km)", "Gaur City Mall (4 km)", "Blue Sapphire Mall (4.5 km)"] }
-  ]
-
-  const images = [
-    "/Brook and Rivulet/1.png",
-    "/Brook and Rivulet/2.png", 
-    "/Brook and Rivulet/3.png",
-    "/Brook and Rivulet/4.png",
-    "/Brook and Rivulet/5.png",
-    "/Brook and Rivulet/6.png"
-  ]
+    setIsPopupOpen(true);
+  };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
-      <ContactPopup 
-        isOpen={isPopupOpen} 
-        onClose={() => setIsPopupOpen(false)}
-        propertyTitle={selectedProperty?.title || "THE BROOK & THE RIVULET"}
-        propertyLocation={selectedProperty?.location || "Greater Noida (Prime 3-Side Open Corner Plot)"}
-      />
-
-      <main className="pt-24">
-        {/* Hero Section */}
-        <section className="relative h-[70vh] min-h-[600px] overflow-hidden">
+      
+      {/* Cinematic Hero Banner */}
+      <section className="relative h-screen overflow-hidden">
           <Image
-            src="/Brook and Rivulet/1.png"
-            alt="The Brook & The Rivulet - Premium High-Rise Residences"
+          src={property.images[0]}
+          alt={property.projectName}
             fill
             className="object-cover"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
           
-          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <div className="max-w-6xl mx-auto">
-              <Badge className="bg-secondary text-white mb-4">Premium Living</Badge>
-              <h1 className="text-4xl md:text-6xl font-semibold mb-4">THE BROOK & THE RIVULET</h1>
-              <p className="text-xl md:text-2xl mb-6">Greater Noida - Premium High-Rise Residences</p>
-              <div className="flex flex-wrap gap-4">
-                <Button 
-                  size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 text-lg"
-                  onClick={handleContact}
-                >
-                  Schedule Viewing
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="border-2 border-white text-ink bg-white hover:bg-white/90 hover:text-[#000000] px-8 py-4 text-lg"
-                >
-                  Download Brochure
-                </Button>
+        {/* Property Name & Location */}
+        <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
+          <div className="max-w-5xl">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-white" />
               </div>
+              <Badge className="bg-black text-white px-4 py-2 text-sm font-semibold">
+                {property.status}
+              </Badge>
+            </div>
+            <h1 className="text-7xl md:text-8xl font-black leading-tight text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              {property.projectName}
+            </h1>
+            <div className="flex items-center gap-3 mb-8">
+              <MapPin className="w-6 h-6 text-[#CBB27A]" />
+              <p className="text-2xl md:text-3xl font-bold text-[#CBB27A]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                {property.location}
+              </p>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Quick Info Bar */}
-        <section className="bg-primary text-white py-8">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-4 gap-6 text-center">
-              <div className="flex flex-col items-center">
-                <Building2 className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Project Type</span>
-                <span className="font-semibold">Premium High-Rise</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Trees className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Plot Type</span>
-                <span className="font-semibold">3-Side Open</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Shield className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Status</span>
-                <span className="font-semibold">Under Construction</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Award className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Developer</span>
-                <span className="font-semibold">Renowned Developer</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Navigation Tabs */}
-        <section className="border-b">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="flex flex-wrap gap-6">
-              {[
-                { id: "overview", label: "Overview" },
-                { id: "gallery", label: "Gallery" },
-                { id: "specifications", label: "Specifications" },
-                { id: "amenities", label: "Amenities" },
-                { id: "location", label: "Location" }
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-4 px-2 border-b-2 font-medium transition-colors ${
-                    activeTab === tab.id
-                      ? "border-secondary text-secondary"
-                      : "border-transparent text-graphite hover:text-ink"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Content Sections */}
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          {/* Overview Tab */}
-          {activeTab === "overview" && (
-            <div className="space-y-12">
-              <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-semibold text-ink mb-6">
-                  Why Choose The Brook & The Rivulet?
-                </h2>
-                <p className="text-xl text-graphite max-w-3xl mx-auto">
-                  Experience luxury living in Greater Noida's most prestigious location with premium amenities, 
-                  world-class construction, and sustainable features that redefine modern living.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-semibold text-ink mb-4">Project Highlights</h3>
-                    <ul className="space-y-3">
-                      {features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="text-graphite">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-semibold text-ink mb-4">Construction Excellence</h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3">
-                        <Shield className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">Earthquake-resistant RCC with MIVAN Formwork</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <Zap className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">EV charging stations for sustainable living</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <Car className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">Mechanical car parking (2 cars per bay)</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <Leaf className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">Smog guns to combat pollution</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-semibold text-ink mb-6 text-center">Clubhouse & Lifestyle</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="text-center p-6 border rounded-lg">
-                      <h4 className="text-lg font-semibold text-secondary mb-2">Paper Boat (Brook)</h4>
-                      <p className="text-sm text-graphite">15,375 sq.ft. themed luxury clubhouse</p>
-                    </div>
-                    <div className="text-center p-6 border rounded-lg">
-                      <h4 className="text-lg font-semibold text-secondary mb-2">Pebble Castle (Rivulet)</h4>
-                      <p className="text-sm text-graphite">15,375 sq.ft. themed luxury clubhouse</p>
-                    </div>
+        {/* Data Strip */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-12 py-4">
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-8 text-white">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
+                    <Calendar className="w-4 h-4 text-[#CBB27A]" />
                   </div>
-                  <p className="text-center text-sm text-graphite mt-4">
-                    Total: 30,750 sq.ft. of premium lifestyle amenities
-                  </p>
-                </CardContent>
-              </Card>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-semibold text-ink mb-4">Ready to Experience Luxury?</h3>
-                <p className="text-lg text-graphite mb-6">
-                  The Brook & The Rivulet combines upscale living with peace of mind — blending luxury, 
-                  wellness, and sustainability in Greater Noida.
-                </p>
-                <Button 
-                  size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 text-lg"
-                  onClick={handleContact}
-                >
-                  Schedule Your Visit
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Gallery Tab */}
-          {activeTab === "gallery" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Project Gallery
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div className="relative group cursor-pointer">
-                    <Image
-                      src="/Brook and Rivulet/1.png"
-                      alt="The Brook & The Rivulet - Main View"
-                      width={600}
-                      height={400}
-                      className="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <ImageIcon className="w-12 h-12 text-white" />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="relative group cursor-pointer">
-                      <Image
-                        src="/Brook and Rivulet/2.png"
-                        alt="The Brook & The Rivulet - View 2"
-                        width={300}
-                        height={200}
-                        className="w-full h-40 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                        <ImageIcon className="w-8 h-8 text-white" />
-                      </div>
-                    </div>
-                    <div className="relative group cursor-pointer">
-                      <Image
-                        src="/Brook and Rivulet/3.png"
-                        alt="The Brook & The Rivulet - View 3"
-                        width={300}
-                        height={200}
-                        className="w-full h-40 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                        <ImageIcon className="w-8 h-8 text-white" />
-                      </div>
-                    </div>
+                  <div>
+                    <p className="text-xs text-white/70">Possession</p>
+                    <p className="text-sm font-semibold text-white">{property.possessionDate}</p>
                   </div>
                 </div>
                 
-                <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="relative group cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
+                    <Award className="w-4 h-4 text-[#CBB27A]" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/70">Developer</p>
+                    <p className="text-sm font-semibold text-white">{property.developer}</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
+                    <Building2 className="w-4 h-4 text-[#CBB27A]" />
+              </div>
+                  <div>
+                    <p className="text-xs text-white/70">RERA ID</p>
+                    <p className="text-sm font-semibold text-white">{property.reraId}</p>
+              </div>
+              </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      {/* Main Content Layout */}
+      <main>
+        <div className="max-w-7xl mx-auto px-12 py-16">
+          <div className="grid lg:grid-cols-3 gap-16">
+            {/* Main Content Column (70%) */}
+            <div className="lg:col-span-2 space-y-20">
+              
+              {/* Project Gallery */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Camera className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Project Gallery
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                  {property.images.map((image, index) => (
+                    <div
+                      key={index}
+                      className="relative aspect-square cursor-pointer group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                      onClick={() => {
+                        setModalImageIndex(index);
+                        setIsImageModalOpen(true);
+                      }}
+                    >
                       <Image
-                        src="/Brook and Rivulet/4.png"
-                        alt="The Brook & The Rivulet - View 4"
-                        width={300}
-                        height={200}
-                        className="w-full h-40 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                        src={image}
+                        alt={`${property.projectName} - Image ${index + 1}`}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                        <ImageIcon className="w-8 h-8 text-white" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                          <Eye className="w-8 h-8 text-white" />
+                        </div>
                       </div>
                     </div>
-                    <div className="relative group cursor-pointer">
-                      <Image
-                        src="/Brook and Rivulet/5.png"
-                        alt="The Brook & The Rivulet - View 5"
-                        width={300}
-                        height={200}
-                        className="w-full h-40 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                        <ImageIcon className="w-8 h-8 text-white" />
+                  ))}
+          </div>
+        </section>
+
+              {/* Location Advantage */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Location Advantage
+                </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                  {/* Connectivity Card */}
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Car className="w-6 h-6 text-black" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Connectivity
+                      </h3>
+                    </div>
+                    <div className="space-y-4">
+                      {property.connectivity.map((item, index) => (
+                        <div key={index} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200">
+                          <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Car className="w-4 h-4 text-[#CBB27A]" />
+                          </div>
+                          <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+              </div>
+
+                  {/* Landmarks Card */}
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                        <MapPin className="w-6 h-6 text-black" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Nearby Landmarks
+                      </h3>
+                    </div>
+                    <div className="space-y-4">
+                      {property.landmarks.map((item, index) => (
+                        <div key={index} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <MapPin className="w-4 h-4 text-blue-500" />
+                          </div>
+                          <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+              </div>
+              </section>
+
+              {/* Amenities & Lifestyle */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Star className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Amenities & Lifestyle
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {Object.entries(property.amenities).map(([category, items]) => {
+                    const iconMap: { [key: string]: any } = {
+                      sports: Dumbbell,
+                      wellness: Heart,
+                      recreation: Music,
+                      kids: Gamepad2,
+                      unique: Crown
+                    };
+                    const IconComponent = iconMap[category] || Star;
+                    
+                    return (
+                      <div key={category} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                            <IconComponent className="w-5 h-5 text-black" />
+                          </div>
+                          <h3 className="text-xl font-bold text-gray-900 capitalize" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            {category.replace(/([A-Z])/g, " $1").trim()}
+                          </h3>
+                        </div>
+                        <div className="space-y-3">
+                          {items.map((item, index) => (
+                            <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200">
+                              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                              <span className="text-sm text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+
+              {/* Specifications */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Specifications
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  {Object.entries(property.specifications).map(([key, value]) => {
+                    const iconMap: { [key: string]: any } = {
+                      flooring: Square,
+                      kitchen: Coffee,
+                      bathrooms: Droplets,
+                      electricals: Zap,
+                      balconies: Wind,
+                      safety: Shield
+                    };
+                    const IconComponent = iconMap[key] || Star;
+                    
+                    return (
+                      <div key={key} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                            <IconComponent className="w-5 h-5 text-black" />
+                          </div>
+                          <h4 className="text-xl font-bold text-gray-900 capitalize" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            {key.replace(/([A-Z])/g, " $1").trim()}
+                          </h4>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          {value}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+
+              {/* Developer Credentials */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Award className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Developer Credentials
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Building2 className="w-5 h-5 text-black" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Company Overview
+                      </h3>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          {property.developerInfo.experience}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          Projects Delivered: {property.developerInfo.projectsDelivered}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <div className="relative group cursor-pointer">
-                    <Image
-                      src="/Brook and Rivulet/6.png"
-                      alt="The Brook & The Rivulet - View 6"
-                      width={600}
-                      height={400}
-                      className="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <ImageIcon className="w-12 h-12 text-white" />
+
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Star className="w-5 h-5 text-black" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Notable Projects
+                      </h3>
+                    </div>
+                    <div className="space-y-3">
+                      {property.developerInfo.notableProjects.map((project, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                          <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{project}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
-          )}
 
-          {/* Specifications Tab */}
-          {activeTab === "specifications" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Unit Specifications
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                {unitSpecifications.map((spec, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-ink mb-4">{spec.category}</h3>
-                      <ul className="space-y-2">
-                        {spec.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start gap-2">
-                            <CheckCircle className="w-4 h-4 text-secondary mt-1 flex-shrink-0" />
-                            <span className="text-graphite">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-ink mb-4 text-center">Additional Features</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold text-secondary mb-2">Doors & Windows</h4>
-                      <ul className="space-y-1 text-sm text-graphite">
-                        <li>• Aluminium/UPVC 3-track doors with mesh shutter</li>
-                        <li>• WPC/Hardwood laminated doors for interiors</li>
-                      </ul>
+            {/* Sticky CTA Column (30%) */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-8 space-y-6">
+                
+                {/* Pricing & Payment */}
+                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <TrendingUp className="w-4 h-4 text-[#CBB27A]" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-secondary mb-2">Structure</h4>
-                      <ul className="space-y-1 text-sm text-graphite">
-                        <li>• RCC with MIVAN Formwork</li>
-                        <li>• Earthquake-resistant construction</li>
-                        <li>• 3100 mm floor-to-ceiling height</li>
-                        <li>• 2400 mm door height (internal & external)</li>
-                      </ul>
-                    </div>
+                    <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Pricing & Payment
+                    </h3>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
-          {/* Amenities Tab */}
-          {activeTab === "amenities" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                World-Class Amenities
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                {amenities.map((category, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-ink mb-4">{category.category}</h3>
-                      <ul className="space-y-2">
-                        {category.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start gap-2">
-                            <CheckCircle className="w-4 h-4 text-secondary mt-1 flex-shrink-0" />
-                            <span className="text-graphite">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              <Card className="bg-gradient-to-r from-primary/5 to-secondary/5">
-                <CardContent className="p-6 text-center">
-                  <h3 className="text-2xl font-semibold text-ink mb-4">Clubhouse Details</h3>
-                  <p className="text-lg text-graphite mb-4">
-                    Paper Boat (Brook) & Pebble Castle (Rivulet) – 30,750 sq.ft. of luxury leisure
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-4 text-sm">
-                    <div className="flex items-center justify-center gap-2">
-                      <Users className="w-4 h-4 text-secondary" />
-                      <span>2 Luxury Guest Rooms</span>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 rounded-xl p-4">
+                      <p className="text-sm text-gray-600 mb-1">Price Range</p>
+                      <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        {property.pricing.priceRange}
+                      </p>
                     </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <Dumbbell className="w-4 h-4 text-secondary" />
-                      <span>Fully-equipped Gym</span>
+                    
+                    <div className="bg-gray-50 rounded-xl p-4">
+                      <p className="text-sm text-gray-600 mb-1">Starting Price</p>
+                      <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        {property.pricing.startingPrice}
+                      </p>
                     </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <Waves className="w-4 h-4 text-secondary" />
-                      <span>Swimming Pool + Jacuzzi</span>
-                    </div>
+                    
+                    {property.pricing.offers && (
+                      <div className="bg-black p-3 rounded-xl text-white">
+                        <div className="flex items-center gap-2 mb-1">
+                          <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
+                            <Star className="w-2 h-2 text-green-500" />
+                          </div>
+                          <p className="text-xs font-semibold text-green-500">Special Offers</p>
+                        </div>
+                        <p className="text-xs font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          {property.pricing.offers}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+                </div>
 
-          {/* Location Tab */}
-          {activeTab === "location" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Location Advantage
-              </h2>
-              
-              <div className="text-center mb-8">
-                <p className="text-lg text-graphite max-w-3xl mx-auto">
-                  Nestled away from city chaos, offering tranquility & upscale lifestyle with seamless urban convenience nearby
-                </p>
+                {/* Property Inquiry Form */}
+                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <MessageSquare className="w-4 h-4 text-[#CBB27A]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Property Inquiry
+                    </h3>
+                  </div>
+                  
+                  <form className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#CBB27A] focus:border-transparent transition-all duration-200"
+                        placeholder="Enter your full name"
+                      />
+            </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#CBB27A] focus:border-transparent transition-all duration-200"
+                        placeholder="Enter your phone number"
+                      />
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {locationAdvantages.map((category, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold text-ink mb-4">{category.category}</h3>
-                      <ul className="space-y-2">
-                        {category.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="text-sm text-graphite">
-                            • {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
+                    <Button 
+                      className="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                      style={{ fontFamily: 'Poppins, sans-serif' }}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <MessageSquare className="w-4 h-4" />
+                        Send Inquiry
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </Button>
+                  </form>
+                </div>
               </div>
-
-              <Card className="bg-gradient-to-r from-primary/5 to-secondary/5">
-                <CardContent className="p-6 text-center">
-                  <h3 className="text-xl font-semibold text-ink mb-4">Connectivity</h3>
-                  <p className="text-graphite">
-                    IGI Airport (40 km) | Noida International Airport (60 km) | Proposed Metro at Ek Murti Chowk
-                  </p>
-                </CardContent>
-              </Card>
             </div>
-          )}
+          </div>
         </div>
       </main>
 
       <Footer />
+
+      {/* Image Modal */}
+      {isImageModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+          <div className="relative max-w-2xl max-h-[70vh] w-full mx-4">
+            <button
+              onClick={() => setIsImageModalOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-sm rounded-full p-3 hover:bg-white/30 transition-colors"
+            >
+              <X className="w-6 h-6 text-black" />
+            </button>
+            <Image
+              src={property.images[modalImageIndex]}
+              alt={`${property.projectName} - Image ${modalImageIndex + 1}`}
+              width={1200}
+              height={800}
+              className="w-full h-full object-contain rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+
+      <ContactPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
-  )
+  );
 }

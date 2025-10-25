@@ -11,6 +11,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === "/";
+  const isPropertyPage = pathname.startsWith("/properties/") && pathname !== "/properties";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,8 +24,8 @@ export function Header() {
     };
   }, []);
 
-  // All pages: transparent when at top, glassmorphism when scrolled
-  const shouldShowGlassmorphism = isScrolled;
+  // Property pages: permanent black header, other pages: transparent when at top, glassmorphism when scrolled
+  const shouldShowGlassmorphism = isPropertyPage ? true : isScrolled;
 
   return (
     <header
@@ -53,7 +54,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               className={`p-2 transition-colors ${
-                isScrolled 
+                (isScrolled || isPropertyPage)
                   ? "text-white hover:text-white/80" 
                   : "text-[#000000] hover:text-[#000000]/80"
               }`}

@@ -42,13 +42,13 @@ export default function PropertyPage() {
 
   const property = {
     // Basic Project Information
-    projectName: "IRISH PLATINUM",
-    developer: "Irish Infrastructure Pvt. Ltd.",
-    location: "Sector 1, Greater Noida West",
-    reraId: "UPRERAPRJ742692",
-    status: "Near Possession",
-    possessionDate: "Dec 2025",
-    segment: "Premium Residential",
+    projectName: "PANCHSHEEL GREENS-II",
+    developer: "Panchsheel Group",
+    location: "Sector 16, Greater Noida West",
+    reraId: "UPRERAPRJ8595",
+    status: "Ready to Move",
+    possessionDate: "Ready to Move",
+    segment: "Luxury Residence",
     
     // Images
     images: [
@@ -62,89 +62,82 @@ export default function PropertyPage() {
 
     // Location Advantage
     connectivity: [
-      "5 mins to FNG Expressway",
-      "10 mins to Noida Sector 62 & 63",
-      "30 mins to Jewar Airport",
-      "45 mins to Upcoming Film City"
+      "Proximity to proposed metro station",
+      "Easy access to NH-24, Noida, Ghaziabad, and Delhi",
+      "Well-connected to schools, colleges, shopping centers, government offices, and entertainment hubs",
+      "Surrounded by planned infrastructure and green spaces"
     ],
     landmarks: [
-      "Yatharth Hospital",
-      "DLF Mall of India",
-      "Railway Station",
-      "Top Schools",
-      "Shopping Hubs",
-      "Employment Zones"
+      "26 Acres Project",
+      "Over 65% Open Area",
+      "OC Received for majority towers",
+      "35+ Years Legacy"
     ],
 
     // Amenities & Lifestyle
     amenities: {
       sports: [
-        "All-weather Swimming Pools (Adult & Kids)",
-        "Indoor Gym",
-        "Billiards",
-        "Squash & Badminton Courts"
+        "Two 3-storey AC clubhouses (~23,000 sq.ft. each)",
+        "Six banquet halls with lawns",
+        "Swimming pools for adults and kids",
+        "Gymnasium, steam bath, yoga/aerobics room"
       ],
       wellness: [
-        "Club Platinum",
-        "Outdoor Gym",
-        "Skating Rink",
-        "Basketball Court"
+        "Indoor & outdoor play areas",
+        "Panchsheel Greenmart – 4-level shopping convenience with daily essentials, pharmacy, bakery, and more",
+        "Central park with fountains, meditation deck, jogging track, amphitheatre, gazebos, and yoga space"
       ],
       recreation: [
-        "Cricket Net with Bowling Machine",
-        "Interactive Fountains",
-        "Meditation Lawns",
-        "Party Lawns",
-        "Open-air Theatre"
+        "Multiple layout options with 2 & 3 BHK configurations",
+        "Spacious balconies, well-ventilated rooms, and functional kitchens",
+        "Towers with double-height lobbies and waiting lounges"
       ],
       kids: [
-        "Kids' Play Zones",
-        "Garden Umbrella Sit-outs",
+        "Kids' Play Area",
         "Adventure Activities"
       ],
       unique: [
-        "Jogging Tracks",
-        "Ceiling Height: 11 feet across all units",
-        "Earthquake-resistant RCC frame with Mivan construction",
-        "App-based Video Door Lock"
+        "Earthquake-resistant RCC frame certified by IIT Roorkee",
+        "Vitrified tiles in living, dining, kitchen, and bedrooms",
+        "Anti-skid tiles in balconies and toilets",
+        "Granite platform, stainless steel sink, ceramic tiles above counter"
       ]
     },
 
     // Specifications
     specifications: {
-      flooring: "PGVT/GVT tiles in all rooms (Kajaria/Orient/Sunheart), Anti-skid tiles in toilets and balconies",
-      kitchen: "Granite kitchen counters with ceramic dado, Wall-mounted WC, premium CP fittings",
-      bathrooms: "Grohe/Kohler/American Standard fittings, White sanitary ware",
-      electricals: "8-ft laminated flush doors, Split AC provision in all rooms, Intercom, DTH conduit",
-      balconies: "Modular switches, copper wiring, Smart home features",
-      safety: "CCTV, biometric access, intercom, fire safety systems"
+      flooring: "Vitrified tiles in living, dining, kitchen, and bedrooms, Anti-skid tiles in balconies and toilets",
+      kitchen: "Granite platform, stainless steel sink, ceramic tiles above counter",
+      bathrooms: "Ceramic tiles up to door level, ISI-marked chrome fittings, provision for hot & cold water",
+      electricals: "ISI copper wiring, modular switches, intercom & DTH provision",
+      balconies: "Decorative flush doors, powder-coated aluminum windows",
+      safety: "Earthquake-resistant RCC frame certified by IIT Roorkee"
     },
 
     // Developer Credentials
     developerInfo: {
-      experience: "Irish Group - Laying Foundation for Tomorrow",
-      projectsDelivered: "Legacy of excellence with landmark delivery of Irish Pearls",
+      experience: "Panchsheel Group – Building Future",
+      projectsDelivered: "Over 35 years of real estate excellence",
       notableProjects: [
-        "Irish Pearls - Landmark Delivery",
-        "Irish Platinum - Current Flagship"
+        "Delivered 15,000+ possessions",
+        "Landmark residential and commercial projects across Noida, Greater Noida, Ghaziabad, and Vaishali"
       ],
       awards: [
-        "Quality Construction Awards",
-        "Customer Satisfaction Recognition"
+        "Known for quality construction, timely delivery, and customer satisfaction"
       ]
     },
 
     // Pricing & Payment
     pricing: {
-      priceRange: "₹56.93 Lakhs (₹1.28 Cr lower than comparable projects)",
-      startingPrice: "First 50 units offered at special rates",
-      paymentPlan: "10% on booking, 10% within 45 days, 10% within 90 days, 10% on excavation, 10% on 1st floor, 10% on 7th floor, 10% on 15th floor, 10% on 19th floor, 20% on possession",
-      offers: "Power Backup: ₹25,000 per KVA, EEC/FFC: ₹100/sq.ft, Club Membership: ₹1,00,000"
+      priceRange: "Unit Sizes (Marketable Area): 2 BHK: 915 / 1060 / 1150 sq.ft., 3 BHK: 1525 sq.ft.",
+      startingPrice: "₹91.5 Lakhs onwards",
+      paymentPlan: "Available on request",
+      offers: "Possession: OC received for majority towers, Daily Convenience: On-site retail, pharmacy, and essential services"
     },
 
     // Unit Types
-    unitTypes: ["3 BHK", "4 BHK"],
-    sizes: "1390 sq.ft - 2550 sq.ft"
+    unitTypes: ["2 BHK", "3 BHK"],
+    sizes: "915-1525 sq.ft"
   };
 
   const handleContact = () => {
@@ -154,18 +147,18 @@ export default function PropertyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-
+      
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
-          <Image
+        <Image
           src={property.images[0]}
           alt={property.projectName}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-          
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        
         {/* Property Name & Location */}
         <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
           <div className="max-w-5xl">
@@ -217,17 +210,17 @@ export default function PropertyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
                     <Building2 className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                  </div>
                   <div>
                     <p className="text-xs text-white/70">RERA ID</p>
                     <p className="text-sm font-semibold text-white">{property.reraId}</p>
-              </div>
-              </div>
-              </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Main Content Layout */}
       <main>
@@ -274,8 +267,8 @@ export default function PropertyPage() {
                       </div>
                     </div>
                   ))}
-          </div>
-        </section>
+                </div>
+              </section>
 
               {/* Location Advantage */}
               <section>
@@ -286,12 +279,12 @@ export default function PropertyPage() {
                     </div>
                     <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Location Advantage
-                </h2>
+                    </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-              </div>
+                </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8">
                   {/* Connectivity Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                     <div className="flex items-center gap-4 mb-6">
@@ -312,7 +305,7 @@ export default function PropertyPage() {
                         </div>
                       ))}
                     </div>
-              </div>
+                  </div>
 
                   {/* Landmarks Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
@@ -515,21 +508,21 @@ export default function PropertyPage() {
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.priceRange}
                       </p>
-              </div>
+                    </div>
                     
                     <div className="bg-gray-50 rounded-xl p-4">
                       <p className="text-sm text-gray-600 mb-1">Starting Price</p>
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.startingPrice}
                       </p>
-            </div>
+                    </div>
                     
                     {property.pricing.offers && (
                       <div className="bg-black p-3 rounded-xl text-white">
                         <div className="flex items-center gap-2 mb-1">
                           <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
                             <Star className="w-2 h-2 text-green-500" />
-                        </div>
+                          </div>
                           <p className="text-xs font-semibold text-green-500">Special Offers</p>
                         </div>
                         <p className="text-xs font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -537,20 +530,20 @@ export default function PropertyPage() {
                         </p>
                       </div>
                     )}
-              </div>
-            </div>
+                  </div>
+                </div>
 
                 {/* Property Inquiry Form */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <MessageSquare className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                    </div>
                     <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Property Inquiry
-                      </h3>
-              </div>
-
+                    </h3>
+                  </div>
+                  
                   <form className="space-y-4">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -585,8 +578,8 @@ export default function PropertyPage() {
                       </div>
                     </Button>
                   </form>
-                    </div>
-                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

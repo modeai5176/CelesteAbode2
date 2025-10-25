@@ -42,13 +42,13 @@ export default function PropertyPage() {
 
   const property = {
     // Basic Project Information
-    projectName: "IRISH PLATINUM",
-    developer: "Irish Infrastructure Pvt. Ltd.",
-    location: "Sector 1, Greater Noida West",
-    reraId: "UPRERAPRJ742692",
-    status: "Near Possession",
-    possessionDate: "Dec 2025",
-    segment: "Premium Residential",
+    projectName: "GAUR CENTURION PARK",
+    developer: "Gaur Group",
+    location: "Sector 1, TechZone 4, Greater Noida West",
+    reraId: "UPRERAPRJ11256",
+    status: "Under Construction",
+    possessionDate: "Dec 2027",
+    segment: "Luxury Residence",
     
     // Images
     images: [
@@ -62,89 +62,88 @@ export default function PropertyPage() {
 
     // Location Advantage
     connectivity: [
-      "5 mins to FNG Expressway",
-      "10 mins to Noida Sector 62 & 63",
-      "30 mins to Jewar Airport",
-      "45 mins to Upcoming Film City"
+      "2 mins from Gaur Chowk",
+      "NH-24 ~ 7 mins away",
+      "Noida ~ 5 mins",
+      "Gaur City Mall ~ 2 min"
     ],
     landmarks: [
-      "Yatharth Hospital",
-      "DLF Mall of India",
-      "Railway Station",
-      "Top Schools",
-      "Shopping Hubs",
-      "Employment Zones"
+      "Gaur Chowk (Main Landmark)",
+      "NH-24 Access",
+      "Noida Border",
+      "Gaur City Mall"
     ],
 
     // Amenities & Lifestyle
     amenities: {
       sports: [
-        "All-weather Swimming Pools (Adult & Kids)",
-        "Indoor Gym",
-        "Billiards",
-        "Squash & Badminton Courts"
+        "Badminton Court",
+        "Basketball Court",
+        "Lawn Tennis",
+        "Table Tennis"
       ],
       wellness: [
-        "Club Platinum",
-        "Outdoor Gym",
-        "Skating Rink",
-        "Basketball Court"
+        "Grand Clubhouse",
+        "Indoor Games Room",
+        "Birds & Butterfly Garden",
+        "Theme Gardens",
+        "Reflexology Garden",
+        "Pet Park"
       ],
       recreation: [
-        "Cricket Net with Bowling Machine",
-        "Interactive Fountains",
-        "Meditation Lawns",
-        "Party Lawns",
-        "Open-air Theatre"
+        "Aqua Zone: Swimming Pool",
+        "Kids Pool Deck / Fountain",
+        "Undercroft Zone",
+        "Wellness / Green Zones"
       ],
       kids: [
-        "Kids' Play Zones",
-        "Garden Umbrella Sit-outs",
+        "Kids Zone",
+        "Play Area",
         "Adventure Activities"
       ],
       unique: [
-        "Jogging Tracks",
-        "Ceiling Height: 11 feet across all units",
-        "Earthquake-resistant RCC frame with Mivan construction",
-        "App-based Video Door Lock"
+        "12 Acres Plot",
+        "Designed by Chapman Taylor",
+        "9 Towers of 32 Stories + Iconic Tower of 45 Floors",
+        "Low-density Design"
       ]
     },
 
     // Specifications
     specifications: {
-      flooring: "PGVT/GVT tiles in all rooms (Kajaria/Orient/Sunheart), Anti-skid tiles in toilets and balconies",
-      kitchen: "Granite kitchen counters with ceramic dado, Wall-mounted WC, premium CP fittings",
-      bathrooms: "Grohe/Kohler/American Standard fittings, White sanitary ware",
-      electricals: "8-ft laminated flush doors, Split AC provision in all rooms, Intercom, DTH conduit",
-      balconies: "Modular switches, copper wiring, Smart home features",
-      safety: "CCTV, biometric access, intercom, fire safety systems"
+      flooring: "Premium finishes (Italian marble, quartz countertops, UPVC windows, glass railings)",
+      kitchen: "Premium finishes and smart layouts",
+      bathrooms: "Premium finishes and smart layouts",
+      electricals: "Premium finishes and smart layouts",
+      balconies: "Large, clearly positioned towards luxury/residence usage",
+      safety: "RCC structures, low-density design (4 units per floor in typical towers, 3 units per floor in iconic tower)"
     },
 
     // Developer Credentials
     developerInfo: {
-      experience: "Irish Group - Laying Foundation for Tomorrow",
-      projectsDelivered: "Legacy of excellence with landmark delivery of Irish Pearls",
+      experience: "Gaur Group has ~30+ years in real estate since around 1995",
+      projectsDelivered: "60-65+ projects across NCR",
       notableProjects: [
-        "Irish Pearls - Landmark Delivery",
-        "Irish Platinum - Current Flagship"
+        "Gaur City (Greater Noida West)",
+        "Gaur Yamuna City (Yamuna Expressway)"
       ],
       awards: [
-        "Quality Construction Awards",
-        "Customer Satisfaction Recognition"
+        "Quality Construction Recognition",
+        "Customer Trust Awards"
       ]
     },
 
     // Pricing & Payment
     pricing: {
-      priceRange: "₹56.93 Lakhs (₹1.28 Cr lower than comparable projects)",
-      startingPrice: "First 50 units offered at special rates",
-      paymentPlan: "10% on booking, 10% within 45 days, 10% within 90 days, 10% on excavation, 10% on 1st floor, 10% on 7th floor, 10% on 15th floor, 10% on 19th floor, 20% on possession",
-      offers: "Power Backup: ₹25,000 per KVA, EEC/FFC: ₹100/sq.ft, Club Membership: ₹1,00,000"
+      priceRange: "~ ₹13,000 per sq ft for typical tower; ~ ₹14,000 per sq ft for Iconic Tower",
+      startingPrice: "~ ₹2.50 crore onwards for 3 BHK",
+      paymentPlan: "On booking 20%; on completion of ground floor 20%; on 15th floor roof 20%; on completion superstructure 20%; on offer for possession 20%",
+      offers: "None listed publicly"
     },
 
     // Unit Types
-    unitTypes: ["3 BHK", "4 BHK"],
-    sizes: "1390 sq.ft - 2550 sq.ft"
+    unitTypes: ["3 BHK + Study", "4 BHK + Study (Typical Tower)", "4 BHK + Study (Iconic Tower)"],
+    sizes: "2,746 sq ft - 3,862 sq ft"
   };
 
   const handleContact = () => {
@@ -154,18 +153,18 @@ export default function PropertyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-
+      
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
-          <Image
+        <Image
           src={property.images[0]}
           alt={property.projectName}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-          
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        
         {/* Property Name & Location */}
         <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
           <div className="max-w-5xl">
@@ -217,17 +216,17 @@ export default function PropertyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
                     <Building2 className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                  </div>
                   <div>
                     <p className="text-xs text-white/70">RERA ID</p>
                     <p className="text-sm font-semibold text-white">{property.reraId}</p>
-              </div>
-              </div>
-              </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Main Content Layout */}
       <main>
@@ -274,8 +273,8 @@ export default function PropertyPage() {
                       </div>
                     </div>
                   ))}
-          </div>
-        </section>
+                </div>
+              </section>
 
               {/* Location Advantage */}
               <section>
@@ -286,12 +285,12 @@ export default function PropertyPage() {
                     </div>
                     <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Location Advantage
-                </h2>
+                    </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-              </div>
+                </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8">
                   {/* Connectivity Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                     <div className="flex items-center gap-4 mb-6">
@@ -312,7 +311,7 @@ export default function PropertyPage() {
                         </div>
                       ))}
                     </div>
-              </div>
+                  </div>
 
                   {/* Landmarks Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
@@ -515,21 +514,21 @@ export default function PropertyPage() {
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.priceRange}
                       </p>
-              </div>
+                    </div>
                     
                     <div className="bg-gray-50 rounded-xl p-4">
                       <p className="text-sm text-gray-600 mb-1">Starting Price</p>
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.startingPrice}
                       </p>
-            </div>
+                    </div>
                     
                     {property.pricing.offers && (
                       <div className="bg-black p-3 rounded-xl text-white">
                         <div className="flex items-center gap-2 mb-1">
                           <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
                             <Star className="w-2 h-2 text-green-500" />
-                        </div>
+                          </div>
                           <p className="text-xs font-semibold text-green-500">Special Offers</p>
                         </div>
                         <p className="text-xs font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -537,20 +536,20 @@ export default function PropertyPage() {
                         </p>
                       </div>
                     )}
-              </div>
-            </div>
+                  </div>
+                </div>
 
                 {/* Property Inquiry Form */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <MessageSquare className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                    </div>
                     <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Property Inquiry
-                      </h3>
-              </div>
-
+                    </h3>
+                  </div>
+                  
                   <form className="space-y-4">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -585,8 +584,8 @@ export default function PropertyPage() {
                       </div>
                     </Button>
                   </form>
-                    </div>
-                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

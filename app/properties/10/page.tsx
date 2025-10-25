@@ -42,109 +42,103 @@ export default function PropertyPage() {
 
   const property = {
     // Basic Project Information
-    projectName: "IRISH PLATINUM",
-    developer: "Irish Infrastructure Pvt. Ltd.",
-    location: "Sector 1, Greater Noida West",
-    reraId: "UPRERAPRJ742692",
-    status: "Near Possession",
-    possessionDate: "Dec 2025",
-    segment: "Premium Residential",
+    projectName: "CIVITECH STRINGS",
+    developer: "S.A.G. Realtech Pvt. Ltd. (Civitech Group)",
+    location: "Sector 12, Greater Noida West",
+    reraId: "UPRERAPRJ646272",
+    status: "Under Construction",
+    possessionDate: "Under Construction",
+    segment: "Investment Opportunity",
     
     // Images
     images: [
+      "/modern-luxury-apartment-building-architectural-pho.png",
       "/luxury-modern-apartment.png",
       "/premium-apartment-interior-living-room.png",
       "/modern-apartment-building-with-green-spaces.png",
       "/luxury-villa-exterior-modern-architecture.png",
-      "/luxury-royal-style-villa-with-grand-entrance.png",
-      "/luxury-villa-with-garden-and-modern-design.png"
+      "/luxury-royal-style-villa-with-grand-entrance.png"
     ],
 
     // Location Advantage
     connectivity: [
-      "5 mins to FNG Expressway",
-      "10 mins to Noida Sector 62 & 63",
-      "30 mins to Jewar Airport",
-      "45 mins to Upcoming Film City"
+      "On Noida–Greater Noida Link Road",
+      "5 mins from Char Murti Chowk",
+      "15 mins to NH-24",
+      "20 mins to Noida City Centre"
     ],
     landmarks: [
-      "Yatharth Hospital",
-      "DLF Mall of India",
-      "Railway Station",
-      "Top Schools",
-      "Shopping Hubs",
-      "Employment Zones"
+      "Adjacent to upcoming Metro Station",
+      "Close to top schools, hospitals, banks, and recreational hubs",
+      "Tower Daytona enjoys a strategic location with seamless connectivity"
     ],
 
     // Amenities & Lifestyle
     amenities: {
       sports: [
-        "All-weather Swimming Pools (Adult & Kids)",
-        "Indoor Gym",
-        "Billiards",
-        "Squash & Badminton Courts"
+        "6000 sq.m. Central Park",
+        "Indoor & outdoor sports zones",
+        "High-speed premium lifts",
+        "Home automation features"
       ],
       wellness: [
-        "Club Platinum",
-        "Outdoor Gym",
-        "Skating Rink",
-        "Basketball Court"
+        "Geyser, light, fan, motion sensor, PNG leak detector, scene control",
+        "Clubhouse, jogging track, kids' play area",
+        "Premium teakwood door frames with biometric lock"
       ],
       recreation: [
-        "Cricket Net with Bowling Machine",
-        "Interactive Fountains",
-        "Meditation Lawns",
-        "Party Lawns",
-        "Open-air Theatre"
+        "Antique finish hardware (Godrej or equivalent)",
+        "Wall-mounted WCs, countertop washbasins (Jaquar/Kohler/Grohe)",
+        "Large vitrified tiles (Kajaria/Orient/Somany)"
       ],
       kids: [
-        "Kids' Play Zones",
-        "Garden Umbrella Sit-outs",
+        "Kids' Play Area",
         "Adventure Activities"
       ],
       unique: [
-        "Jogging Tracks",
-        "Ceiling Height: 11 feet across all units",
-        "Earthquake-resistant RCC frame with Mivan construction",
-        "App-based Video Door Lock"
+        "Premium UPVC doors with SS mesh",
+        "Modular switches (Philips/Schneider)",
+        "Plastic paints in all rooms",
+        "Shower cubicles in master bedroom"
       ]
     },
 
     // Specifications
     specifications: {
-      flooring: "PGVT/GVT tiles in all rooms (Kajaria/Orient/Sunheart), Anti-skid tiles in toilets and balconies",
-      kitchen: "Granite kitchen counters with ceramic dado, Wall-mounted WC, premium CP fittings",
-      bathrooms: "Grohe/Kohler/American Standard fittings, White sanitary ware",
-      electricals: "8-ft laminated flush doors, Split AC provision in all rooms, Intercom, DTH conduit",
-      balconies: "Modular switches, copper wiring, Smart home features",
-      safety: "CCTV, biometric access, intercom, fire safety systems"
+      flooring: "Large vitrified tiles (Kajaria/Orient/Somany)",
+      kitchen: "Premium teakwood door frames with biometric lock",
+      bathrooms: "Wall-mounted WCs, countertop washbasins (Jaquar/Kohler/Grohe)",
+      electricals: "Copper wiring with MCB circuits, Intercom facility, Split AC provision in all rooms",
+      balconies: "Premium UPVC doors with SS mesh",
+      safety: "Modular switches (Philips/Schneider), Plastic paints in all rooms"
     },
 
     // Developer Credentials
     developerInfo: {
-      experience: "Irish Group - Laying Foundation for Tomorrow",
-      projectsDelivered: "Legacy of excellence with landmark delivery of Irish Pearls",
+      experience: "Civitech Group – Spaces for Happiness",
+      projectsDelivered: "Over 30 years of legacy in Delhi-NCR",
       notableProjects: [
-        "Irish Pearls - Landmark Delivery",
-        "Irish Platinum - Current Flagship"
+        "Founded by Mr. Subodh Goel",
+        "Civitech Stadia (Sec-79)",
+        "Civitech Sampriti (Sec-77)",
+        "Florencia (Vaishali)"
       ],
       awards: [
-        "Quality Construction Awards",
-        "Customer Satisfaction Recognition"
+        "Known for quality, integrity, and visionary design"
       ]
     },
 
     // Pricing & Payment
     pricing: {
-      priceRange: "₹56.93 Lakhs (₹1.28 Cr lower than comparable projects)",
-      startingPrice: "First 50 units offered at special rates",
-      paymentPlan: "10% on booking, 10% within 45 days, 10% within 90 days, 10% on excavation, 10% on 1st floor, 10% on 7th floor, 10% on 15th floor, 10% on 19th floor, 20% on possession",
-      offers: "Power Backup: ₹25,000 per KVA, EEC/FFC: ₹100/sq.ft, Club Membership: ₹1,00,000"
+      priceRange: "Base Sale Price (BSP): ₹12,000/sq.ft (Flat rate across all floors)",
+      startingPrice: "₹2.37 Cr onwards",
+      paymentPlan: "10% on booking, 30% within 30 days, 30% on casting of top floor, 30% on offer of possession",
+      offers: "Corner PLC: ₹50/sq.ft, Basement Car Parking: ₹3,50,000, Power Backup (5 KVA): ₹25,000 per KVA"
     },
 
     // Unit Types
-    unitTypes: ["3 BHK", "4 BHK"],
-    sizes: "1390 sq.ft - 2550 sq.ft"
+    unitTypes: ["3 BHK + 3T"],
+    sizes: "1975-2075 sq.ft"
   };
 
   const handleContact = () => {
@@ -154,18 +148,18 @@ export default function PropertyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-
+      
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
-          <Image
+        <Image
           src={property.images[0]}
           alt={property.projectName}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-          
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        
         {/* Property Name & Location */}
         <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
           <div className="max-w-5xl">
@@ -217,17 +211,17 @@ export default function PropertyPage() {
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
                     <Building2 className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                  </div>
                   <div>
                     <p className="text-xs text-white/70">RERA ID</p>
                     <p className="text-sm font-semibold text-white">{property.reraId}</p>
-              </div>
-              </div>
-              </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Main Content Layout */}
       <main>
@@ -274,8 +268,8 @@ export default function PropertyPage() {
                       </div>
                     </div>
                   ))}
-          </div>
-        </section>
+                </div>
+              </section>
 
               {/* Location Advantage */}
               <section>
@@ -286,12 +280,12 @@ export default function PropertyPage() {
                     </div>
                     <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Location Advantage
-                </h2>
+                    </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-              </div>
+                </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8">
                   {/* Connectivity Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                     <div className="flex items-center gap-4 mb-6">
@@ -312,7 +306,7 @@ export default function PropertyPage() {
                         </div>
                       ))}
                     </div>
-              </div>
+                  </div>
 
                   {/* Landmarks Card */}
                   <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
@@ -515,21 +509,21 @@ export default function PropertyPage() {
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.priceRange}
                       </p>
-              </div>
+                    </div>
                     
                     <div className="bg-gray-50 rounded-xl p-4">
                       <p className="text-sm text-gray-600 mb-1">Starting Price</p>
                       <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         {property.pricing.startingPrice}
                       </p>
-            </div>
+                    </div>
                     
                     {property.pricing.offers && (
                       <div className="bg-black p-3 rounded-xl text-white">
                         <div className="flex items-center gap-2 mb-1">
                           <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
                             <Star className="w-2 h-2 text-green-500" />
-                        </div>
+                          </div>
                           <p className="text-xs font-semibold text-green-500">Special Offers</p>
                         </div>
                         <p className="text-xs font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -537,20 +531,20 @@ export default function PropertyPage() {
                         </p>
                       </div>
                     )}
-              </div>
-            </div>
+                  </div>
+                </div>
 
                 {/* Property Inquiry Form */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <MessageSquare className="w-4 h-4 text-[#CBB27A]" />
-              </div>
+                    </div>
                     <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Property Inquiry
-                      </h3>
-              </div>
-
+                    </h3>
+                  </div>
+                  
                   <form className="space-y-4">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -585,8 +579,8 @@ export default function PropertyPage() {
                       </div>
                     </Button>
                   </form>
-                    </div>
-                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

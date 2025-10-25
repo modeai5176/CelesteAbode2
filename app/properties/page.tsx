@@ -22,6 +22,7 @@ import {
   TrendingUp,
   Crown,
   ArrowRight,
+  ArrowLeft,
   CheckCircle,
   Clock,
   Users,
@@ -35,6 +36,7 @@ export default function PropertiesPage() {
     title: string;
     location: string;
   } | null>(null);
+  const [carouselPosition, setCarouselPosition] = useState(0);
 
   const segments = [
     {
@@ -69,178 +71,391 @@ export default function PropertiesPage() {
     },
   ];
 
-  // Mock data for properties in each segment
+  // Comprehensive property data organized by segments
   const propertiesData = {
     "buying-to-live": [
-      {
-        id: 1,
-        title: "IVORY COUNTY",
-        subtitle: "Premium Living in Sector 115",
-        location: "Sector 115, Noida",
-        price: "₹85 Lakhs onwards",
+    {
+      id: 1,
+        title: "ARIHANT ABODE",
+        subtitle: "Semi Luxury Residences",
+        location: "Sector 10, Greater Noida West",
+        price: "₹1.02 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/IvoryCounty/SocietyTowersView.png",
-        beds: "3, 4 & 5 BHK",
+        image: "/luxury-modern-apartment.png",
+        beds: "2 & 3 BHK",
         baths: "2-3 Baths",
-        area: "2034-3195 sq.ft.",
+        area: "1020-1270 sq.ft.",
         status: "Ready to Move",
-        developer: "County Group",
-        possession: "Dec 2024",
-        highlights: [
-          "Prime Location",
-          "Premium Amenities",
+        developer: "Arihant Group",
+        possession: "Mar 2026",
+      highlights: [
           "Ready to Move",
-          "County Group Legacy",
+          "Prime Location",
+          "30+ Years Legacy",
+          "RERA Registered",
         ],
         segment: "Buying to Live",
-        reraId: "UP-RERA-123456",
-        unitTypes: ["3 BHK", "4 BHK", "5 BHK"],
-        startingPrice: "₹85 Lakhs",
-        paymentPlans: ["CLP", "Flexi Payment"],
-      },
-      {
-        id: 2,
-        title: "ETERNIA",
-        subtitle: "Premium Residences in Greater Noida",
-        location: "Tech Zone IV, Greater Noida (W)",
-        price: "₹65 Lakhs onwards",
+        reraId: "UPRERAPRJ15792",
+        unitTypes: ["2 BHK", "3 BHK + 2T"],
+        startingPrice: "₹1.02 Cr",
+        paymentPlans: ["80:20"],
+        pricePerSqft: "₹10,200",
+    },
+    {
+      id: 2,
+        title: "SPRING ELMAS",
+        subtitle: "Luxury Residences",
+        location: "Sector 12, Greater Noida West",
+        price: "₹1.52 Cr onwards",
+        priceUnit: "Starting Price",
+        image: "/modern-apartment-building-with-green-spaces.png",
+        beds: "3 & 4 BHK",
+      baths: "2-3 Baths",
+        area: "1385-1895 sq.ft.",
+      status: "Under Construction",
+        developer: "Spring Group",
+        possession: "Dec 2029",
+      highlights: [
+          "Metro Connectivity",
+          "SBI Approved",
+          "Smart Home Features",
+          "2.3 Acre Central Green",
+        ],
+        segment: "Buying to Live",
+        reraId: "UPRERAPRJ274689",
+        unitTypes: ["3 BHK + 2T", "3 BHK + 3T", "4 BHK + Servant Room"],
+        startingPrice: "₹1.52 Cr",
+        paymentPlans: ["Construction Linked"],
+        pricePerSqft: "₹12,000-12,320",
+    },
+    {
+      id: 3,
+        title: "ETERNIA RESIDENCES",
+        subtitle: "Ultra Premium Residential",
+        location: "TechZone 4, Greater Noida West",
+        price: "₹1.97 Cr onwards",
         priceUnit: "Starting Price",
         image: "/Eternia/1.png",
-        beds: "3, 3+1 & 4+1 BHK",
+        beds: "3 & 4 BHK",
         baths: "2-3 Baths",
-        area: "1086-1599 sq.ft.",
-        status: "Under Construction",
-        developer: "Premium Developer",
-        possession: "Mar 2025",
-        highlights: [
-          "Skyline Views",
+        area: "1932-2625 sq.ft.",
+      status: "Under Construction",
+        developer: "Yatharth Group + NBCC",
+        possession: "Under Construction",
+      highlights: [
           "Green Belt Facing",
-          "EV Charging",
-          "25K sq.ft. Clubhouse",
+          "Low Density Planning",
+          "6 Towers G+30",
+          "Premium Finishes",
         ],
         segment: "Buying to Live",
-        reraId: "UP-RERA-789012",
-        unitTypes: ["3 BHK", "3+1 BHK", "4+1 BHK"],
-        startingPrice: "₹65 Lakhs",
-        paymentPlans: ["CLP", "Construction Linked"],
+        reraId: "UPRERAAGT10206",
+        unitTypes: ["3 BHK", "3 BHK + Study", "4 BHK + Study"],
+        startingPrice: "₹1.97 Cr",
+        paymentPlans: ["Construction Linked"],
+        pricePerSqft: "₹10,200",
+    },
+    {
+      id: 4,
+        title: "RG PLEIADDES",
+        subtitle: "Premium Residential Development",
+        location: "Sector 1, Greater Noida West",
+        price: "₹8,584 per sq.ft",
+        priceUnit: "Launch Price",
+        image: "/luxury-cityscape-blurred-background-for-real-estat.png",
+        beds: "3 & 4 BHK",
+        baths: "2-3 Baths",
+        area: "Premium Sizes",
+        status: "New Launch",
+        developer: "RG Group",
+        possession: "New Launch",
+        highlights: [
+          "6 Iconic Towers",
+          "70% Open Green Spaces",
+          "8 Acres Project",
+          "EOI ₹15 Lakhs",
+        ],
+        segment: "Buying to Live",
+        reraId: "UPRERAPRJ415309",
+        unitTypes: ["3 BHK", "4 BHK"],
+        startingPrice: "Launch Price",
+        paymentPlans: ["Flexible Payment Plans"],
+        pricePerSqft: "₹8,584",
+      },
+      {
+        id: 5,
+        title: "IRISH PLATINUM",
+        subtitle: "Premium Residential Development",
+      location: "Sector 1, Greater Noida West",
+        price: "Near Possession",
+        priceUnit: "Status",
+        image: "/irish.png",
+        beds: "3 & 4 BHK",
+        baths: "2-3 Baths",
+        area: "1390-2550 sq.ft.",
+        status: "Near Possession",
+        developer: "Irish Infrastructure",
+        possession: "Near Possession",
+        highlights: [
+          "11 Feet Ceiling",
+          "4 Balconies per Unit",
+          "Earthquake Resistant",
+          "Premium Finishes",
+        ],
+        segment: "Buying to Live",
+        reraId: "UPRERAPRJ742692",
+        unitTypes: ["3 BHK", "4 BHK"],
+        startingPrice: "Special Rates",
+        paymentPlans: ["10% on booking"],
+        pricePerSqft: "Special Pricing",
       },
     ],
     investment: [
       {
-        id: 3,
-        title: "CRC MAESTA",
-        subtitle: "Your Picture Perfect Moments",
-        location: "Sector 1, Greater Noida West",
-        price: "₹45 Lakhs onwards",
+        id: 6,
+        title: "ELDECO WOW",
+        subtitle: "Sector 22D, Yamuna Expressway",
+        location: "Sector 22D, Yamuna Expressway, Greater Noida",
+        price: "₹1.30 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/CRCMaesta/TOWERVIEW.png",
-        beds: "Premium BHK",
-        baths: "Premium Baths",
-        area: "1093-1895 sq.ft.",
-        status: "Under Construction",
-        developer: "CRC Group",
-        possession: "Jun 2025",
+        image: "/luxury-villa-exterior-modern-architecture.png",
+        beds: "3 BHK + 2T, 3 BHK + 3T, Duplex Penthouses",
+        baths: "2-3 Baths",
+        area: "1550-2800 sq.ft.",
+        status: "New Launch",
+        developer: "Eldeco Group",
+        possession: "New Launch",
         highlights: [
-          "High ROI Potential",
-          "Prime Location",
-          "CRC Legacy",
-          "Rental Ready",
+          "30+ Years Experience",
+          "150+ Projects Delivered",
+          "Jewar Airport 20 mins",
+          "Buddh Circuit 5 mins",
         ],
         segment: "Investment Opportunity",
-        reraId: "UP-RERA-345678",
-        unitTypes: ["2 BHK", "3 BHK", "4 BHK"],
-        startingPrice: "₹45 Lakhs",
-        paymentPlans: ["CLP", "Flexi Payment"],
-        roi: "12-15%",
-        rentalYield: "8-10%",
+        reraId: "UPRERAPRJ752382",
+        unitTypes: ["3 BHK + 2T", "3 BHK + 3T", "Duplex Penthouses"],
+        startingPrice: "₹1.30 Cr",
+        paymentPlans: ["EOI System"],
+        pricePerSqft: "₹9,000",
+        roi: "High Appreciation Potential",
+        rentalYield: "Excellent Rental Yield",
       },
       {
-        id: 4,
-        title: "THE BROOK & THE RIVULET",
-        subtitle: "Premium High-Rise Residences",
-        location: "Greater Noida (Prime 3-Side Open Corner Plot)",
-        price: "₹55 Lakhs onwards",
+        id: 7,
+        title: "GAUR CENTURION PARK",
+        subtitle: "Luxury Residences",
+        location: "Sector 1, TechZone 4, Greater Noida West",
+        price: "₹2.50 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/Brook and Rivulet/1.png",
-        beds: "Premium BHK",
-        baths: "Premium Baths",
-        area: "Premium Sizes",
+        image: "/country-group.avif",
+        beds: "3 & 4 BHK + Study",
+        baths: "2-3 Baths",
+        area: "2746-3862 sq.ft.",
         status: "Under Construction",
-        developer: "Renowned Developer",
-        possession: "Dec 2025",
+        developer: "Gaur Group + NBCC",
+        possession: "Under Construction",
         highlights: [
-          "3-Side Open Plot",
-          "Earthquake Resistant",
-          "High Appreciation",
-          "30,750 sq.ft. Clubhouses",
+          "30+ Years Experience",
+          "NBCC Execution",
+          "Large Apartment Sizes",
+          "Low Density Luxury",
         ],
         segment: "Investment Opportunity",
-        reraId: "UP-RERA-901234",
-        unitTypes: ["2 BHK", "3 BHK", "4 BHK", "5 BHK"],
-        startingPrice: "₹55 Lakhs",
-        paymentPlans: ["CLP", "Construction Linked"],
-        roi: "15-18%",
-        rentalYield: "9-12%",
+        reraId: "UPRERAPRJ11256",
+        unitTypes: ["3 BHK + Study", "4 BHK + Study"],
+        startingPrice: "₹2.50 Cr",
+        paymentPlans: ["Construction Linked"],
+        pricePerSqft: "₹13,000-14,000",
+        roi: "High Appreciation",
+        rentalYield: "Premium Rental Yield",
+      },
+      {
+        id: 8,
+        title: "THE BROOK & RIVULET",
+        subtitle: "Premium High-Rise Residences",
+        location: "Sector 12, Greater Noida West",
+        price: "₹1.40 Cr onwards",
+        priceUnit: "Starting Price",
+        image: "/Brook and Rivulet/1.png",
+        beds: "3 & 4 BHK",
+        baths: "2-3 Baths",
+        area: "1350-2050 sq.ft.",
+        status: "Under Construction",
+        developer: "Fusion Limited",
+        possession: "Under Construction",
+        highlights: [
+          "3 Side Open Corner Plot",
+          "Earthquake Resistant RCC",
+          "MIVAN Formwork",
+          "Hafeez Contractor Design",
+        ],
+        segment: "Investment Opportunity",
+        reraId: "UPRERAPRJ535539",
+        unitTypes: ["3C", "3E", "4B", "4C"],
+        startingPrice: "₹1.40 Cr",
+        paymentPlans: ["SPP 40:40:20", "CLP"],
+        pricePerSqft: "₹10,400-10,700",
+        roi: "High Appreciation",
+        rentalYield: "Excellent Rental Yield",
+      },
+      {
+        id: 9,
+        title: "RENOX THRIVE",
+        subtitle: "Premium Residences",
+        location: "Sector 10, Greater Noida West",
+        price: "₹1.42 Cr onwards",
+        priceUnit: "Starting Price",
+        image: "/premium-residential-plot-with-landscaping.png",
+        beds: "3 & 4 BHK",
+        baths: "2-3 Baths",
+        area: "1582-2644 sq.ft.",
+        status: "Under Construction",
+        developer: "Nivas Promoters (Renox Group)",
+        possession: "Under Construction",
+        highlights: [
+          "Transparency & Trust",
+          "Timely Delivery",
+          "Ethical Practices",
+          "Escalation Free Pricing",
+        ],
+        segment: "Investment Opportunity",
+        reraId: "UPRERAPRJ742692",
+        unitTypes: ["3 BHK", "4 BHK"],
+        startingPrice: "₹1.42 Cr",
+        paymentPlans: ["Down Payment", "Construction Linked"],
+        pricePerSqft: "₹9,000",
+        roi: "Good Appreciation",
+        rentalYield: "Stable Rental Yield",
+      },
+      {
+        id: 10,
+        title: "CIVITECH STRINGS",
+        subtitle: "Tower Daytona - Premium Residential",
+        location: "Sector 12, Greater Noida West",
+        price: "₹2.37 Cr onwards",
+        priceUnit: "Starting Price",
+        image: "/modern-luxury-apartment-building-architectural-pho.png",
+        beds: "3 BHK + 3T",
+        baths: "3 Baths",
+        area: "1975-2075 sq.ft.",
+        status: "Under Construction",
+        developer: "S.A.G. Realtech (Civitech Group)",
+        possession: "Under Construction",
+        highlights: [
+          "30+ Years Legacy",
+          "IGBC Gold Rated",
+          "Aluminium Formwork",
+          "Home Automation",
+        ],
+        segment: "Investment Opportunity",
+        reraId: "UPRERAPRJ646272",
+        unitTypes: ["3 BHK + 3T"],
+        startingPrice: "₹2.37 Cr",
+        paymentPlans: ["10:30:30:30"],
+        pricePerSqft: "₹12,000",
+        roi: "Premium Appreciation",
+        rentalYield: "High Rental Yield",
       },
     ],
     luxury: [
       {
-        id: 5,
-        title: "ESTATE 360",
-        subtitle: "Inter-Generational Luxury Living",
-        location: "36A, Dwarka Expressway, Gurgaon",
-        price: "₹2.5 Cr onwards",
-        priceUnit: "Starting Price",
-        image: "/ESTATE360/DroneViewTowers.png",
-        beds: "Premium BHK",
-        baths: "Premium Baths",
-        area: "11.8 Acres",
-        status: "Under Construction",
-        developer: "MAX ESTATES GROUP",
-        possession: "Dec 2025",
-        highlights: [
-          "Antara Partnership",
-          "Exclusive Design",
-          "Prime Location",
-          "Luxury Amenities",
-        ],
-        segment: "Luxury Residence",
-        reraId: "HR-RERA-567890",
-        unitTypes: ["4 BHK", "5 BHK", "Penthouses"],
-        startingPrice: "₹2.5 Cr",
-        paymentPlans: ["CLP", "Flexi Payment"],
-        luxuryFeatures: [
-          "Concierge Service",
-          "Private Elevators",
-          "Sky Gardens",
-        ],
-      },
-      {
-        id: 6,
-        title: "FOREST WALK VILLAS",
-        subtitle: "Phase 2 - Luxury Forest Living",
-        location: "GDA Approved Location",
-        price: "₹1.8 Cr onwards",
+        id: 11,
+        title: "FOREST WALK VILLA",
+        subtitle: "Luxury Forest Living",
+        location: "NH-24, Dasna, Ghaziabad",
+        price: "₹2.85 Cr onwards",
         priceUnit: "Starting Price",
         image: "/ForestWalk/LandingpageVILLA.jpeg",
-        beds: "Customizable",
-        baths: "Customizable",
-        area: "52 Acres",
-        status: "Pre-Launch Offer",
-        developer: "Renowned Group",
-        possession: "Mar 2026",
-        highlights: [
-          "Pre-Launch Price",
-          "Limited Units",
-          "GDA Approved",
-          "Forest Living",
+        beds: "4 BHK + 5T Villas",
+        baths: "5 Baths",
+        area: "3070-4200 sq.ft.",
+      status: "Under Construction",
+        developer: "Madhusudan Group / Yatharth Group",
+        possession: "Jun 2027",
+      highlights: [
+          "52 Acres Forest Theme",
+          "80% Green Landscape",
+          "Fully Furnished",
+          "Vastu Compliant",
         ],
         segment: "Luxury Residence",
-        reraId: "UP-RERA-234567",
-        unitTypes: ["Villas", "Penthouses", "Custom Homes"],
-        startingPrice: "₹1.8 Cr",
-        paymentPlans: ["CLP", "Flexi Payment"],
-        luxuryFeatures: ["Private Gardens", "Forest Views", "Custom Design"],
+        reraId: "UPRERAPRJ658961",
+        unitTypes: ["4 BHK + 5T Villas"],
+        startingPrice: "₹2.85 Cr",
+        paymentPlans: ["Construction Linked"],
+        pricePerSqft: "₹1,75,000 per sq.yd",
+        luxuryFeatures: [
+          "Italian Marble Flooring",
+          "Modular Kitchen",
+          "Lift Provision",
+          "Private Gardens",
+      ],
+    },
+    {
+        id: 12,
+        title: "ASHTECH LUXURY",
+        subtitle: "Luxury Residential Development",
+        location: "Sector 12, Greater Noida West",
+        price: "₹2.40 Cr onwards",
+        priceUnit: "Starting Price",
+        image: "/luxury-royal-style-villa-with-grand-entrance.png",
+        beds: "3 & 4 BHK",
+      baths: "2-3 Baths",
+        area: "2000-3600 sq.ft.",
+        status: "Pre-Launch",
+        developer: "Ashtech Group",
+        possession: "Pre-Launch",
+      highlights: [
+          "30+ Years Nation Building",
+          "Studio Symbiosis Design",
+          "70,000 sq.ft. Clubhouse",
+          "Fully Furnished",
+        ],
+        segment: "Luxury Residence",
+        reraId: "Pre-Launch",
+        unitTypes: ["3 BHK", "4 BHK"],
+        startingPrice: "₹2.40 Cr",
+        paymentPlans: ["Construction Linked"],
+        pricePerSqft: "₹12,000-13,500",
+        luxuryFeatures: [
+          "Italian Marble Flooring",
+          "VRV Air Conditioning",
+          "12 ft Ceiling Height",
+          "Modular Kitchen & Wardrobes",
+      ],
+    },
+    {
+        id: 13,
+        title: "PANCHSHEEL GREENS-II",
+        subtitle: "Premium Residential Township",
+        location: "Sector 16, Greater Noida West",
+        price: "₹91.5 Lakhs onwards",
+        priceUnit: "Starting Price",
+        image: "/residential-plot-with-landscaping.png",
+        beds: "2 & 3 BHK",
+        baths: "2-3 Baths",
+        area: "915-1525 sq.ft.",
+        status: "Ready to Move",
+        developer: "Panchsheel Group",
+        possession: "Ready to Move",
+      highlights: [
+          "26 Acres Project",
+          "65% Open Area",
+          "OC Received",
+          "35+ Years Legacy",
+        ],
+        segment: "Luxury Residence",
+        reraId: "UPRERAPRJ8595",
+        unitTypes: ["2 BHK", "3 BHK"],
+        startingPrice: "₹91.5 Lakhs",
+        paymentPlans: ["Available on Request"],
+        pricePerSqft: "Ready to Move",
+        luxuryFeatures: [
+          "Two 3-Storey AC Clubhouses",
+          "Six Banquet Halls",
+          "Swimming Pools",
+          "Panchsheel Greenmart",
+        ],
       },
     ],
   };
@@ -263,6 +478,18 @@ export default function PropertiesPage() {
   const handleViewDetails = (propertyId: number) => {
     window.location.href = `/properties/${propertyId}`;
   };
+
+  const handleCarouselPrev = () => {
+    setCarouselPosition((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleCarouselNext = () => {
+    setCarouselPosition((prev) => Math.min(prev + 1, Math.max(0, currentProperties.length - 3)));
+  };
+
+  const shouldShowCarousel = currentProperties.length > 3;
+  const canGoPrev = carouselPosition > 0;
+  const canGoNext = carouselPosition < currentProperties.length - 3;
 
   return (
     <div className="min-h-screen bg-background">
@@ -311,7 +538,7 @@ export default function PropertiesPage() {
                           Property Portfolio
                         </span>
                       </div>
-                    </h1>
+              </h1>
 
                     <p className="text-base md:text-lg text-[#CBB27A] mb-6 max-w-2xl">
                       Every asset—whether for living or investing—is vetted by
@@ -350,7 +577,7 @@ export default function PropertiesPage() {
                 const isActive = activeSegment === segment.id;
 
                 return (
-                  <Card
+                <Card
                     key={segment.id}
                     className={`cursor-pointer transition-all duration-300 hover:shadow-xl group ${
                       isActive
@@ -396,7 +623,7 @@ export default function PropertiesPage() {
 
         {/* Active Segment Properties */}
         <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 {segments.find((s) => s.id === activeSegment)?.title} Properties
@@ -406,48 +633,133 @@ export default function PropertiesPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {currentProperties.map((property) => (
-                <Card
-                  key={property.id}
-                  className="border-0 bg-card overflow-hidden hover:shadow-2xl transition-all duration-300 group cursor-pointer p-0"
-                  onClick={() => handleViewDetails(property.id)}
+            {/* Properties Display */}
+            {shouldShowCarousel ? (
+              /* Carousel with Navigation Arrows */
+              <div className="flex items-center gap-4">
+                {/* Left Navigation Arrow */}
+                <button
+                  onClick={handleCarouselPrev}
+                  disabled={!canGoPrev}
+                  className={`flex-shrink-0 p-3 rounded-full shadow-lg transition-all duration-300 ${
+                    canGoPrev 
+                      ? 'bg-white/90 hover:bg-white text-primary hover:scale-110 cursor-pointer' 
+                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  }`}
+                  aria-label="Previous properties"
                 >
-                  <div className="relative w-full h-80 rounded-xl overflow-hidden">
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+
+                {/* Carousel Container */}
+                <div className="flex-1 relative overflow-hidden">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${carouselPosition * (100 / 3)}%)` }}
+                  >
+                    {currentProperties.map((property, index) => (
+                      <div key={property.id} className="flex-shrink-0 w-1/3 px-4">
+                        <Card
+                          className="border-0 bg-card overflow-hidden hover:shadow-2xl transition-all duration-300 group cursor-pointer p-0"
+                          onClick={() => handleViewDetails(property.id)}
+                        >
+                          <div className="relative w-full h-80 rounded-xl overflow-hidden">
                     <Image
                       src={property.image}
                       alt={property.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                       quality={90}
                       loading="lazy"
                     />
 
                     {/* Status Badge */}
-                    <Badge className="absolute top-3 left-3 bg-primary text-white text-sm px-3 py-1">
+                            <Badge className="absolute top-3 left-3 bg-primary text-white text-sm px-3 py-1">
                       {property.status}
                     </Badge>
 
-                    {/* Overlay for text */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            {/* Overlay for text */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
 
-                    {/* Location and Name at bottom */}
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <div className="flex items-center gap-2 text-white mb-1">
-                        <MapPin className="w-3 h-3" />
-                        <span className="text-xs font-medium">
-                          {property.location}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-white leading-tight">
-                        {property.title}
-                      </h3>
+                            {/* Location and Name at bottom */}
+                            <div className="absolute bottom-3 left-3 right-3">
+                              <div className="flex items-center gap-2 text-white mb-1">
+                                <MapPin className="w-3 h-3" />
+                                <span className="text-xs font-medium">
+                                  {property.location}
+                      </span>
                     </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
+                              <h3 className="text-lg font-bold text-white leading-tight">
+                      {property.title}
+                    </h3>
+                            </div>
+                      </div>
+                        </Card>
+                      </div>
+                    ))}
+                      </div>
+                    </div>
+
+                {/* Right Navigation Arrow */}
+                <button
+                  onClick={handleCarouselNext}
+                  disabled={!canGoNext}
+                  className={`flex-shrink-0 p-3 rounded-full shadow-lg transition-all duration-300 ${
+                    canGoNext 
+                      ? 'bg-white/90 hover:bg-white text-primary hover:scale-110 cursor-pointer' 
+                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  }`}
+                  aria-label="Next properties"
+                >
+                  <ArrowRight className="w-6 h-6" />
+                </button>
+              </div>
+            ) : (
+              /* Grid Layout for 3 or fewer properties */
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {currentProperties.map((property) => (
+                  <Card
+                    key={property.id}
+                    className="border-0 bg-card overflow-hidden hover:shadow-2xl transition-all duration-300 group cursor-pointer p-0"
+                    onClick={() => handleViewDetails(property.id)}
+                  >
+                    <div className="relative w-full h-80 rounded-xl overflow-hidden">
+                      <Image
+                        src={property.image}
+                        alt={property.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                        quality={90}
+                        loading="lazy"
+                      />
+
+                      {/* Status Badge */}
+                      <Badge className="absolute top-3 left-3 bg-primary text-white text-sm px-3 py-1">
+                        {property.status}
+                      </Badge>
+
+                      {/* Overlay for text */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+                      {/* Location and Name at bottom */}
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <div className="flex items-center gap-2 text-white mb-1">
+                          <MapPin className="w-3 h-3" />
+                          <span className="text-xs font-medium">
+                            {property.location}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-white leading-tight">
+                          {property.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            )}
 
             {/* CTA Section */}
             <div className="text-center mt-16">
@@ -460,7 +772,7 @@ export default function PropertiesPage() {
                   property that matches your needs and budget.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button
+                      <Button
                     size="lg"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
                     onClick={() =>
@@ -472,17 +784,17 @@ export default function PropertiesPage() {
                   >
                     <Users className="w-5 h-5 mr-2" />
                     Get Expert Consultation
-                  </Button>
-                  <Button
-                    variant="outline"
+                      </Button>
+                      <Button
+                        variant="outline"
                     size="lg"
                     className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3"
                     onClick={() => (window.location.href = "/contact")}
                   >
                     <Shield className="w-5 h-5 mr-2" />
                     Contact Us
-                  </Button>
-                </div>
+                      </Button>
+                    </div>
               </div>
             </div>
           </div>

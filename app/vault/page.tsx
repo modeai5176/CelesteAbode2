@@ -466,7 +466,7 @@ export default function VaultPage() {
                     backgroundImage: "url('/vaulthero.png')",
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
                 </div>
 
                 {/* Left Aligned Text Overlay */}
@@ -480,17 +480,15 @@ export default function VaultPage() {
                       }}
                     >
                       <div className="block text-[#FAFAF8]">
-                        THE <span className="text-[#CBB27A]">VAULT</span>
+                        Inside the <span className="text-[#CBB27A]">Vault</span>
                       </div>
                       <div className="block text-[#FAFAF8] mt-2">
-                        Access <span className="text-[#CBB27A]">Granted</span>
+                        Exclusive Real Estate <span className="text-[#CBB27A]">Intelligence</span>
                       </div>
                     </h1>
 
                     <p className="text-base md:text-lg text-[#CBB27A] mb-6 max-w-2xl">
-                      Your secure, proprietary archive of market clarity, legal
-                      precision, and strategic definitions. Knowledge that
-                      precedes every confident decision.
+                      Your personal archive of refined definitions, expert answers, and insights reserved for those who seek precision in every property decision.
                     </p>
                   </div>
                 </div>

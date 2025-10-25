@@ -16,6 +16,12 @@
   font-family: system-ui, -apple-system, sans-serif !important;
 }
 
+/* Carousel Styles */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+}
+
 /* Override h1 italic for philosophy hero */
 .philosophy-hero h1 {
   font-style: normal !important;

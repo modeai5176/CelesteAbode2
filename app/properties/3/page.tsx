@@ -1,618 +1,622 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { ContactPopup } from "@/components/contact-popup";
-import { motion } from "framer-motion";
 import {
   MapPin,
-  Play,
-  Star,
-  CheckCircle,
   Building2,
-  Clock,
-  Users,
+  Calendar,
   Award,
   Car,
-  Trees,
-  Shield,
+  Eye,
+  X,
+  CheckCircle,
+  Square,
+  Coffee,
+  Droplets,
   Zap,
+  Wind,
+  Shield,
+  Dumbbell,
   Heart,
-  Trophy,
+  Music,
+  Gamepad2,
+  Crown,
+  Star,
+  MessageSquare,
+  ArrowRight,
+  Camera,
+  TrendingUp,
 } from "lucide-react";
 
-export default function Estate360Page() {
+export default function PropertyPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState<{
-    title: string;
-    location: string;
-  } | null>(null);
-  const [activeTab, setActiveTab] = useState("overview");
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [modalImageIndex, setModalImageIndex] = useState<number>(0);
+
+  const property = {
+    // Basic Project Information
+    projectName: "ETERNIA RESIDENCES",
+    developer: "Yatharth Group",
+    location: "Techzone 4, Greater Noida West",
+    reraId: "UPRERAAGT10206",
+    status: "Under Construction",
+    possessionDate: "Dec 2027",
+    segment: "Ultra Premium Residential",
+    
+    // Images
+    images: [
+      "/luxury-modern-apartment.png",
+      "/premium-apartment-interior-living-room.png",
+      "/modern-apartment-building-with-green-spaces.png",
+      "/luxury-villa-exterior-modern-architecture.png",
+      "/luxury-royal-style-villa-with-grand-entrance.png",
+      "/luxury-villa-with-garden-and-modern-design.png"
+    ],
+
+    // Location Advantage
+    connectivity: [
+      "Noida–Greater Noida Expressway - Direct Access",
+      "Proposed Metro Station - Nearby",
+      "Delhi, NH-24, Yamuna Expressway - Smooth Connectivity",
+      "130-metre-wide Main Road Frontage"
+    ],
+    landmarks: [
+      "Yatharth Super Speciality Hospital (Very Close)",
+      "Prominent Schools within 3–5 km radius",
+      "Gaur City Mall",
+      "Galaxy Plaza",
+      "Other Retail Hubs"
+    ],
+
+    // Amenities & Lifestyle
+    amenities: {
+      sports: [
+        "Swimming Pool",
+        "Gym",
+        "Indoor Games",
+        "Multipurpose Court"
+      ],
+      wellness: [
+        "Clubhouse",
+        "Lounge Area",
+        "Party Hall",
+        "Yoga & Meditation Zones"
+      ],
+      recreation: [
+        "Kids' Play Zone",
+        "Senior Citizen Garden",
+        "Topiary & Landscaped Gardens",
+        "EV Charging Stations",
+        "Water Features",
+        "Ample Car Parking"
+      ],
+      kids: [
+        "Kids' Play Zone",
+        "Adventure Activities",
+        "Day-care"
+      ],
+      unique: [
+        "Eco-friendly Design",
+        "Rainwater Harvesting",
+        "Landscaped Open Greens",
+        "Facing Green Belt",
+        "Open Road Frontage"
+      ]
+    },
+
+    // Specifications
+    specifications: {
+      flooring: "Premium quality flooring and fittings (as per luxury standards)",
+      kitchen: "Branded electrical fittings, RO and geyser points, modular kitchen provision",
+      bathrooms: "Premium finishes and smart layouts",
+      electricals: "Smart home features, split AC provisions",
+      balconies: "Large open balconies facing green area",
+      safety: "RCC frame structure with seismic resistance"
+    },
+
+    // Developer Credentials
+    developerInfo: {
+      experience: "Yatharth Group: A reputed healthcare brand expanding into real estate",
+      projectsDelivered: "Focus on quality and reliability",
+      notableProjects: [
+        "Yatharth Super Speciality Hospital",
+        "Healthcare Infrastructure Projects"
+      ],
+      awards: [
+        "Healthcare Excellence Awards",
+        "Quality Construction Standards"
+      ]
+    },
+
+    // Pricing & Payment
+    pricing: {
+      priceRange: "₹10,200 per sq ft (approx.)",
+      startingPrice: "₹1.97 Crore Onwards (for 3 BHK – 1,932 sq.ft)",
+      paymentPlan: "Construction-Linked Plan",
+      offers: "As per ongoing launch/marketing campaigns"
+    },
+
+    // Unit Types
+    unitTypes: ["3 BHK", "3 BHK + Study", "4 BHK + Study"],
+    sizes: "1,932 sq.ft - 2,625 sq.ft"
+  };
 
   const handleContact = () => {
-    setSelectedProperty({
-      title: "ESTATE 360",
-      location: "36A, Dwarka Expressway, Gurgaon",
-    });
     setIsPopupOpen(true);
   };
 
-  const trailblazingFeatures = [
-    "11.8 Acres of land",
-    "6 Luxury Towers (G+38 Floors)",
-    "2 Towers by Antara",
-    "2-to-a-core Apartment Experience",
-    "One of a kind Inter-generational project",
-    "Non-vehicular movement on the ground level",
-    "Sunken Garden drop-offs",
-    "Premium zero-maintenance contemporary facade",
-    "Prime location of 36A, Dwarka Expressway",
-    "Amenities dedicated to all generations (1L+ sqft of amenities)",
-  ];
-
-  const amenityCategories = [
-    {
-      category: "Lifestyle Amenities",
-      icon: <Heart className="w-5 h-5" />,
-      description: "Premium lifestyle facilities for modern living",
-    },
-    {
-      category: "Sports Amenities",
-      icon: <Trophy className="w-5 h-5" />,
-      description: "World-class sports and fitness facilities",
-    },
-    {
-      category: "Healthcare Amenities",
-      icon: <Shield className="w-5 h-5" />,
-      description: "Health and wellness focused amenities",
-    },
-    {
-      category: "Daily Needs Amenities",
-      icon: <Star className="w-5 h-5" />,
-      description: "Essential services and conveniences",
-    },
-    {
-      category: "Concierge Services",
-      icon: <Users className="w-5 h-5" />,
-      description: "24/7 personalized assistance",
-    },
-  ];
-
-  const projectHighlights = [
-    {
-      feature: "Land Area",
-      value: "11.8 Acres",
-      description: "Spacious development with room for all amenities",
-    },
-    {
-      feature: "Tower Configuration",
-      value: "6 Luxury Towers",
-      description: "G+38 floors of premium living spaces",
-    },
-    {
-      feature: "Antara Partnership",
-      value: "2 Towers",
-      description: "Premium towers developed in collaboration with Antara",
-    },
-    {
-      feature: "Apartment Design",
-      value: "2-to-a-core",
-      description: "Exclusive living experience with maximum privacy",
-    },
-    {
-      feature: "Ground Level",
-      value: "Non-vehicular",
-      description: "Safe pedestrian-friendly environment",
-    },
-    {
-      feature: "Amenity Space",
-      value: "1L+ sqft",
-      description: "Extensive facilities for all age groups",
-    },
-  ];
-
-  const locationAdvantages = [
-    "Prime location on 36A, Dwarka Expressway",
-    "Excellent connectivity to Delhi and Gurgaon",
-    "Proximity to major business districts",
-    "Access to premium shopping and entertainment",
-    "Well-connected transportation network",
-    "Future development potential",
-  ];
-
-  const communityFeatures = [
-    "Inter-generational living design",
-    "Sunken Garden with scenic views",
-    "Premium contemporary facade",
-    "Zero-maintenance exteriors",
-    "Landscaped open spaces",
-    "Modern architectural excellence",
-  ];
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
 
-      <main className="pt-24">
-        {/* Hero Section */}
-        <section className="relative h-[70vh] min-h-[600px] overflow-hidden">
+      {/* Cinematic Hero Banner */}
+      <section className="relative h-screen overflow-hidden">
           <Image
-            src="/ESTATE360/DroneViewTowers.png"
-            alt="Estate 360 - Inter-Generational Luxury Living"
+          src={property.images[0]}
+          alt={property.projectName}
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-
-          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <div className="max-w-6xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <Badge className="bg-[#CBB27A] text-white mb-4">
-                  Under Construction
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        
+        {/* Property Name & Location */}
+        <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
+          <div className="max-w-5xl">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-white" />
+              </div>
+              <Badge className="bg-black text-white px-4 py-2 text-sm font-semibold">
+                {property.status}
                 </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-                  ESTATE 360
+            </div>
+            <h1 className="text-7xl md:text-8xl font-black leading-tight text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              {property.projectName}
                 </h1>
-                <p className="text-xl md:text-2xl text-[#CBB27A] mb-6">
-                  Inter-Generational Luxury Living
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button
-                    size="lg"
-                    className="bg-[#2b3035] hover:bg-black text-white px-8 py-4 text-lg"
-                    onClick={handleContact}
-                  >
-                    Schedule Viewing
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-2 border-white text-white bg-transparent hover:bg-white/10 hover:text-white px-8 py-4 text-lg"
-                  >
-                    Download Brochure
-                  </Button>
+            <div className="flex items-center gap-3 mb-8">
+              <MapPin className="w-6 h-6 text-[#CBB27A]" />
+              <p className="text-2xl md:text-3xl font-bold text-[#CBB27A]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                {property.location}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Data Strip */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-12 py-4">
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-8 text-white">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
+                    <Calendar className="w-4 h-4 text-[#CBB27A]" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/70">Possession</p>
+                    <p className="text-sm font-semibold text-white">{property.possessionDate}</p>
+                  </div>
                 </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Quick Info Bar */}
-        <section className="bg-gradient-to-r from-primary to-[#2b3035] text-white py-8">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-4 gap-6 text-center">
-              <div className="flex flex-col items-center">
-                <Building2 className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">
-                  Project Type
-                </span>
-                <span className="font-semibold">Premium Apartments</span>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
+                    <Award className="w-4 h-4 text-[#CBB27A]" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/70">Developer</p>
+                    <p className="text-sm font-semibold text-white">{property.developer}</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
+                    <Building2 className="w-4 h-4 text-[#CBB27A]" />
               </div>
-              <div className="flex flex-col items-center">
-                <Trees className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">
-                  Land Area
-                </span>
-                <span className="font-semibold">11.8 Acres</span>
+                  <div>
+                    <p className="text-xs text-white/70">RERA ID</p>
+                    <p className="text-sm font-semibold text-white">{property.reraId}</p>
               </div>
-              <div className="flex flex-col items-center">
-                <Clock className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">Status</span>
-                <span className="font-semibold">Under Construction</span>
               </div>
-              <div className="flex flex-col items-center">
-                <Award className="w-8 h-8 mb-2" />
-                <span className="text-sm text-ink-foreground/80">
-                  Developer
-                </span>
-                <span className="font-semibold">MAX ESTATES GROUP</span>
+              </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Navigation Tabs */}
-        <section className="border-b">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="flex flex-wrap gap-6">
-              {[
-                { id: "overview", label: "Overview" },
-                { id: "gallery", label: "Gallery" },
-                { id: "features", label: "Features" },
-                { id: "amenities", label: "Amenities" },
-                { id: "location", label: "Location" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-4 px-2 border-b-2 font-medium transition-colors ${
-                    activeTab === tab.id
-                      ? "border-secondary text-secondary"
-                      : "border-transparent text-graphite hover:text-ink"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Content Sections */}
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          {/* Overview Tab */}
-          {activeTab === "overview" && (
-            <div className="space-y-12">
-              <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-semibold text-ink mb-6">
-                  Trailblazing Features
-                </h2>
-                <p className="text-xl text-graphite max-w-3xl mx-auto">
-                  Estate 360 is a revolutionary inter-generational project that
-                  redefines luxury living with its innovative design, premium
-                  amenities, and commitment to creating spaces for all
-                  generations.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-semibold text-ink mb-4">
-                      Project Highlights
-                    </h3>
-                    <ul className="space-y-3">
-                      {trailblazingFeatures
-                        .slice(0, 5)
-                        .map((feature, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                            <span className="text-graphite">{feature}</span>
-                          </li>
-                        ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-semibold text-ink mb-4">
-                      More Features
-                    </h3>
-                    <ul className="space-y-3">
-                      {trailblazingFeatures.slice(5).map((feature, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="text-graphite">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                {projectHighlights.map((highlight, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6 text-center">
-                      <div className="text-3xl font-semibold text-secondary mb-2">
-                        {highlight.value}
-                      </div>
-                      <h4 className="font-semibold text-ink mb-2">
-                        {highlight.feature}
-                      </h4>
-                      <p className="text-sm text-graphite">
-                        {highlight.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-semibold text-ink mb-4">
-                  Inter-Generational Living
-                </h3>
-                <p className="text-lg text-graphite mb-6">
-                  Estate 360 is designed to bring together people of all ages,
-                  creating a vibrant community where every generation can
-                  thrive. Our amenities and design philosophy cater to the
-                  diverse needs of modern families.
-                </p>
-                <Button
-                  size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 text-lg"
-                  onClick={handleContact}
-                >
-                  Schedule Viewing
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Gallery Tab */}
-          {activeTab === "gallery" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Project Gallery
-              </h2>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    src: "/ESTATE360/DroneViewTowers.png",
-                    alt: "Drone View of Towers",
-                  },
-                  { src: "/ESTATE360/TheHub.png", alt: "The Hub" },
-                  { src: "/ESTATE360/LagoonPool.png", alt: "Lagoon Pool" },
-                  {
-                    src: "/ESTATE360/LagoonPool2.png",
-                    alt: "Lagoon Pool View 2",
-                  },
-                  {
-                    src: "/ESTATE360/SerpentineLake.png",
-                    alt: "Serpentine Lake",
-                  },
-                  {
-                    src: "/ESTATE360/WraparoundBalcony.png",
-                    alt: "Wraparound Balcony",
-                  },
-                ].map((image, index) => (
-                  <div key={index} className="relative group cursor-pointer">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={400}
-                      height={300}
-                      className="w-full h-64 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                      <Star className="w-8 h-8 text-white" />
+      {/* Main Content Layout */}
+      <main>
+        <div className="max-w-7xl mx-auto px-12 py-16">
+          <div className="grid lg:grid-cols-3 gap-16">
+            {/* Main Content Column (70%) */}
+            <div className="lg:col-span-2 space-y-20">
+              
+              {/* Project Gallery */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Camera className="w-6 h-6 text-[#CBB27A]" />
                     </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Project Gallery
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                  {property.images.map((image, index) => (
+                    <div
+                      key={index}
+                      className="relative aspect-square cursor-pointer group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                      onClick={() => {
+                        setModalImageIndex(index);
+                        setIsImageModalOpen(true);
+                      }}
+                    >
+                      <Image
+                        src={image}
+                        alt={`${property.projectName} - Image ${index + 1}`}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                          <Eye className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+          </div>
+        </section>
+
+              {/* Location Advantage */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Location Advantage
+                </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                  {/* Connectivity Card */}
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Car className="w-6 h-6 text-black" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Connectivity
+                    </h3>
+                    </div>
+                    <div className="space-y-4">
+                      {property.connectivity.map((item, index) => (
+                        <div key={index} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200">
+                          <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Car className="w-4 h-4 text-[#CBB27A]" />
+                          </div>
+                          <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+              </div>
+
+                  {/* Landmarks Card */}
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                        <MapPin className="w-6 h-6 text-black" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Nearby Landmarks
+                      </h3>
+                    </div>
+                    <div className="space-y-4">
+                      {property.landmarks.map((item, index) => (
+                        <div key={index} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <MapPin className="w-4 h-4 text-blue-500" />
+                          </div>
+                          <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{item}</span>
+                        </div>
+                ))}
+              </div>
+              </div>
+            </div>
+              </section>
+
+              {/* Amenities & Lifestyle */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Star className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Amenities & Lifestyle
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {Object.entries(property.amenities).map(([category, items]) => {
+                    const iconMap: { [key: string]: any } = {
+                      sports: Dumbbell,
+                      wellness: Heart,
+                      recreation: Music,
+                      kids: Gamepad2,
+                      unique: Crown
+                    };
+                    const IconComponent = iconMap[category] || Star;
+                    
+                    return (
+                      <div key={category} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                            <IconComponent className="w-5 h-5 text-black" />
+                          </div>
+                          <h3 className="text-xl font-bold text-gray-900 capitalize" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            {category.replace(/([A-Z])/g, " $1").trim()}
+                          </h3>
+                        </div>
+                        <div className="space-y-3">
+                          {items.map((item, index) => (
+                            <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200">
+                              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                              <span className="text-sm text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
-          )}
+                    );
+                  })}
+                </div>
+              </section>
 
-          {/* Features Tab */}
-          {activeTab === "features" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Revolutionary Features
-              </h2>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4 flex items-center gap-2">
-                      <Building2 className="w-5 h-5 text-secondary" />
-                      Architectural Excellence
-                    </h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          6 Luxury Towers with G+38 floors
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          Premium zero-maintenance contemporary facade
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          2-to-a-core apartment experience
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          Non-vehicular ground level design
-                        </span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4 flex items-center gap-2">
-                      <Trees className="w-5 h-5 text-secondary" />
-                      Green Living
-                    </h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          11.8 acres of landscaped development
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          Sunken Garden drop-offs
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          Extensive open spaces and greenery
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-graphite">
-                          Sustainable design principles
-                        </span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-ink mb-4 text-center">
-                    Antara Partnership
-                  </h3>
-                  <p className="text-graphite text-center mb-4">
-                    Estate 360 features 2 exclusive towers developed in
-                    collaboration with Antara, bringing their signature luxury
-                    and quality standards to this prestigious project.
-                  </p>
-                  <div className="bg-secondary/10 p-4 rounded-lg text-center">
-                    <p className="text-secondary font-medium">
-                      Experience the Antara difference in luxury living
-                    </p>
+              {/* Specifications */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Specifications
+                    </h2>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
 
-          {/* Amenities Tab */}
-          {activeTab === "amenities" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Amenities for All Generations
-              </h2>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {amenityCategories.map((category, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-ink mb-4 flex items-center gap-2">
-                        {category.icon}
-                        {category.category}
-                      </h3>
-                      <p className="text-graphite mb-4">
-                        {category.description}
-                      </p>
-                      <div className="bg-secondary/5 p-4 rounded-lg">
-                        <p className="text-sm text-secondary">
-                          <strong>1L+ sqft</strong> of dedicated amenity space
-                          ensures every generation has access to world-class
-                          facilities and services.
+                <div className="grid md:grid-cols-2 gap-6">
+                  {Object.entries(property.specifications).map(([key, value]) => {
+                    const iconMap: { [key: string]: any } = {
+                      flooring: Square,
+                      kitchen: Coffee,
+                      bathrooms: Droplets,
+                      electricals: Zap,
+                      balconies: Wind,
+                      safety: Shield
+                    };
+                    const IconComponent = iconMap[key] || Star;
+                    
+                    return (
+                      <div key={key} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                            <IconComponent className="w-5 h-5 text-black" />
+                          </div>
+                          <h4 className="text-xl font-bold text-gray-900 capitalize" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            {key.replace(/([A-Z])/g, " $1").trim()}
+                          </h4>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          {value}
                         </p>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                    );
+                  })}
+                </div>
+              </section>
 
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-ink mb-4 text-center">
-                    Community Amenities
-                  </h3>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    {communityFeatures.map((feature, index) => (
-                      <div
-                        key={index}
-                        className="text-center p-4 bg-secondary/5 rounded-lg"
-                      >
-                        <Star className="w-8 h-8 text-secondary mx-auto mb-2" />
-                        <p className="text-graphite">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
-          {/* Location Tab */}
-          {activeTab === "location" && (
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-4xl font-semibold text-ink text-center mb-8">
-                Prime Location
+              {/* Developer Credentials */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Award className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2 className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Developer Credentials
               </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
 
               <div className="grid md:grid-cols-2 gap-8">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4 flex items-center gap-2">
-                      <MapPin className="w-5 h-5 text-secondary" />
-                      Location Advantages
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Building2 className="w-5 h-5 text-black" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Company Overview
                     </h3>
-                    <ul className="space-y-3">
-                      {locationAdvantages.map((advantage, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                          <span className="text-graphite">{advantage}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-ink mb-4 flex items-center gap-2">
-                      <Car className="w-5 h-5 text-secondary" />
-                      Connectivity
-                    </h3>
-                    <p className="text-graphite mb-4">
-                      Located on 36A, Dwarka Expressway, Estate 360 offers
-                      excellent connectivity to Delhi, Gurgaon, and surrounding
-                      areas.
-                    </p>
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <p className="text-blue-800 text-sm">
-                        <strong>Dwarka Expressway:</strong> One of the most
-                        important infrastructure projects connecting Delhi NCR,
-                        providing seamless access to major destinations.
-                      </p>
                     </div>
-                  </CardContent>
-                </Card>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          {property.developerInfo.experience}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          Projects Delivered: {property.developerInfo.projectsDelivered}
+                        </span>
+                      </div>
+                    </div>
               </div>
 
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-ink mb-4">
-                    Investment Potential
+                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Star className="w-5 h-5 text-black" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Notable Projects
                   </h3>
-                  <p className="text-graphite text-lg leading-relaxed">
-                    Estate 360's prime location on Dwarka Expressway, combined
-                    with its innovative design and extensive amenities, makes it
-                    an attractive investment opportunity. The area is witnessing
-                    rapid development and infrastructure growth, ensuring strong
-                    appreciation potential.
-                  </p>
-                </CardContent>
-              </Card>
+                    </div>
+                    <div className="space-y-3">
+                      {property.developerInfo.notableProjects.map((project, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                          <span className="text-gray-700 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>{project}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
-          )}
+
+            {/* Sticky CTA Column (30%) */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-8 space-y-6">
+                
+                {/* Pricing & Payment */}
+                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <TrendingUp className="w-4 h-4 text-[#CBB27A]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Pricing & Payment
+                      </h3>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 rounded-xl p-4">
+                      <p className="text-sm text-gray-600 mb-1">Price Range</p>
+                      <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        {property.pricing.priceRange}
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-xl p-4">
+                      <p className="text-sm text-gray-600 mb-1">Starting Price</p>
+                      <p className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        {property.pricing.startingPrice}
+                      </p>
+                    </div>
+                    
+                    {property.pricing.offers && (
+                      <div className="bg-black p-3 rounded-xl text-white">
+                        <div className="flex items-center gap-2 mb-1">
+                          <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
+                            <Star className="w-2 h-2 text-green-500" />
+                          </div>
+                          <p className="text-xs font-semibold text-green-500">Special Offers</p>
+                        </div>
+                        <p className="text-xs font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          {property.pricing.offers}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+            </div>
+
+                {/* Property Inquiry Form */}
+                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <MessageSquare className="w-4 h-4 text-[#CBB27A]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Property Inquiry
+                    </h3>
+                  </div>
+                  
+                  <form className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#CBB27A] focus:border-transparent transition-all duration-200"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#CBB27A] focus:border-transparent transition-all duration-200"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
+                    
+                    <Button 
+                      className="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                      style={{ fontFamily: 'Poppins, sans-serif' }}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <MessageSquare className="w-4 h-4" />
+                        Send Inquiry
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </Button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
 
-      {/* Contact Popup */}
-      <ContactPopup
-        isOpen={isPopupOpen}
-        onClose={() => {
-          setIsPopupOpen(false);
-          setSelectedProperty(null);
-        }}
-        propertyTitle={selectedProperty?.title}
-        propertyLocation={selectedProperty?.location}
-      />
-
       <Footer />
+
+      {/* Image Modal */}
+      {isImageModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+          <div className="relative max-w-2xl max-h-[70vh] w-full mx-4">
+            <button
+              onClick={() => setIsImageModalOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-sm rounded-full p-3 hover:bg-white/30 transition-colors"
+            >
+              <X className="w-6 h-6 text-black" />
+            </button>
+            <Image
+              src={property.images[modalImageIndex]}
+              alt={`${property.projectName} - Image ${modalImageIndex + 1}`}
+              width={1200}
+              height={800}
+              className="w-full h-full object-contain rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+
+      <ContactPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 }
