@@ -463,7 +463,7 @@ export default function VaultPage() {
                 <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
-                    backgroundImage: "url('/vaulthero.png')",
+                    backgroundImage: "url('/VAULTHERO.avif')",
                   }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
@@ -483,12 +483,15 @@ export default function VaultPage() {
                         Inside the <span className="text-[#CBB27A]">Vault</span>
                       </div>
                       <div className="block text-[#FAFAF8] mt-2">
-                        Exclusive Real Estate <span className="text-[#CBB27A]">Intelligence</span>
+                        Exclusive Real Estate{" "}
+                        <span className="text-[#CBB27A]">Intelligence</span>
                       </div>
                     </h1>
 
                     <p className="text-base md:text-lg text-[#CBB27A] mb-6 max-w-2xl">
-                      Your personal archive of refined definitions, expert answers, and insights reserved for those who seek precision in every property decision.
+                      Your personal archive of refined definitions, expert
+                      answers, and insights reserved for those who seek
+                      precision in every property decision.
                     </p>
                   </div>
                 </div>

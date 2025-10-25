@@ -7,7 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ArrowLeft, Send, CheckCircle } from "lucide-react";
@@ -27,7 +33,7 @@ export default function AdvisorySessionPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,10 +41,10 @@ export default function AdvisorySessionPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/advisory-session', {
-        method: 'POST',
+      const response = await fetch("/api/advisory-session", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -57,7 +63,7 @@ export default function AdvisorySessionPage() {
         });
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -82,10 +88,12 @@ export default function AdvisorySessionPage() {
                 Request Submitted Successfully
               </h1>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Thank you for your interest in our advisory services. Our expert team will review your requirements and contact you within 24 hours to schedule your personalized consultation.
+                Thank you for your interest in our advisory services. Our expert
+                team will review your requirements and contact you within 24
+                hours to schedule your personalized consultation.
               </p>
               <Button
-                onClick={() => window.location.href = '/'}
+                onClick={() => (window.location.href = "/")}
                 className="bg-primary hover:bg-primary/90 text-white px-8 py-3 text-base rounded-full"
               >
                 Return to Home
@@ -131,7 +139,8 @@ export default function AdvisorySessionPage() {
               Request Advisory Session
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Share your property goals and we'll create a personalized consultation tailored to your needs.
+              Share your property goals and we'll create a personalized
+              consultation tailored to your needs.
             </p>
           </motion.div>
 
@@ -147,28 +156,38 @@ export default function AdvisorySessionPage() {
                   {/* Personal Information */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-sm font-medium text-foreground">
+                      <Label
+                        htmlFor="name"
+                        className="text-sm font-medium text-foreground"
+                      >
                         Full Name *
                       </Label>
                       <Input
                         id="name"
                         type="text"
                         value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("name", e.target.value)
+                        }
                         placeholder="Enter your full name"
                         required
                         className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                      <Label
+                        htmlFor="email"
+                        className="text-sm font-medium text-foreground"
+                      >
                         Email Address *
                       </Label>
                       <Input
                         id="email"
                         type="email"
                         value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
                         placeholder="your.email@example.com"
                         required
                         className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20"
@@ -178,32 +197,53 @@ export default function AdvisorySessionPage() {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-sm font-medium text-foreground">
+                      <Label
+                        htmlFor="phone"
+                        className="text-sm font-medium text-foreground"
+                      >
                         Phone Number *
                       </Label>
                       <Input
                         id="phone"
                         type="tel"
                         value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
                         placeholder="+91 98765 43210"
                         required
                         className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="budget" className="text-sm font-medium text-foreground">
+                      <Label
+                        htmlFor="budget"
+                        className="text-sm font-medium text-foreground"
+                      >
                         Budget Range *
                       </Label>
-                      <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
+                      <Select
+                        value={formData.budget}
+                        onValueChange={(value) =>
+                          handleInputChange("budget", value)
+                        }
+                      >
                         <SelectTrigger className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="under-50">Under ₹50 Lakhs</SelectItem>
-                          <SelectItem value="50-100">₹50 Lakhs - ₹1 Crore</SelectItem>
-                          <SelectItem value="100-200">₹1 Crore - ₹2 Crore</SelectItem>
-                          <SelectItem value="200-500">₹2 Crore - ₹5 Crore</SelectItem>
+                          <SelectItem value="under-50">
+                            Under ₹50 Lakhs
+                          </SelectItem>
+                          <SelectItem value="50-100">
+                            ₹50 Lakhs - ₹1 Crore
+                          </SelectItem>
+                          <SelectItem value="100-200">
+                            ₹1 Crore - ₹2 Crore
+                          </SelectItem>
+                          <SelectItem value="200-500">
+                            ₹2 Crore - ₹5 Crore
+                          </SelectItem>
                           <SelectItem value="500-plus">₹5 Crore+</SelectItem>
                         </SelectContent>
                       </Select>
@@ -212,10 +252,18 @@ export default function AdvisorySessionPage() {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="propertyType" className="text-sm font-medium text-foreground">
+                      <Label
+                        htmlFor="propertyType"
+                        className="text-sm font-medium text-foreground"
+                      >
                         Property Type *
                       </Label>
-                      <Select value={formData.propertyType} onValueChange={(value) => handleInputChange('propertyType', value)}>
+                      <Select
+                        value={formData.propertyType}
+                        onValueChange={(value) =>
+                          handleInputChange("propertyType", value)
+                        }
+                      >
                         <SelectTrigger className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20">
                           <SelectValue placeholder="Select property type" />
                         </SelectTrigger>
@@ -223,51 +271,81 @@ export default function AdvisorySessionPage() {
                           <SelectItem value="apartment">Apartment</SelectItem>
                           <SelectItem value="villa">Villa</SelectItem>
                           <SelectItem value="plot">Residential Plot</SelectItem>
-                          <SelectItem value="commercial">Commercial Property</SelectItem>
-                          <SelectItem value="investment">Investment Property</SelectItem>
+                          <SelectItem value="commercial">
+                            Commercial Property
+                          </SelectItem>
+                          <SelectItem value="investment">
+                            Investment Property
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="timeline" className="text-sm font-medium text-foreground">
+                      <Label
+                        htmlFor="timeline"
+                        className="text-sm font-medium text-foreground"
+                      >
                         Timeline *
                       </Label>
-                      <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
+                      <Select
+                        value={formData.timeline}
+                        onValueChange={(value) =>
+                          handleInputChange("timeline", value)
+                        }
+                      >
                         <SelectTrigger className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20">
                           <SelectValue placeholder="Select timeline" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="immediate">Immediate (0-3 months)</SelectItem>
-                          <SelectItem value="short">Short term (3-6 months)</SelectItem>
-                          <SelectItem value="medium">Medium term (6-12 months)</SelectItem>
-                          <SelectItem value="long">Long term (1+ years)</SelectItem>
+                          <SelectItem value="immediate">
+                            Immediate (0-3 months)
+                          </SelectItem>
+                          <SelectItem value="short">
+                            Short term (3-6 months)
+                          </SelectItem>
+                          <SelectItem value="medium">
+                            Medium term (6-12 months)
+                          </SelectItem>
+                          <SelectItem value="long">
+                            Long term (1+ years)
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="location" className="text-sm font-medium text-foreground">
+                    <Label
+                      htmlFor="location"
+                      className="text-sm font-medium text-foreground"
+                    >
                       Preferred Location
                     </Label>
                     <Input
                       id="location"
                       type="text"
                       value={formData.location}
-                      onChange={(e) => handleInputChange('location', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("location", e.target.value)
+                      }
                       placeholder="e.g., Gurgaon, Noida, Delhi, etc."
                       className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-sm font-medium text-foreground">
+                    <Label
+                      htmlFor="message"
+                      className="text-sm font-medium text-foreground"
+                    >
                       Additional Requirements
                     </Label>
                     <Textarea
                       id="message"
                       value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("message", e.target.value)
+                      }
                       placeholder="Tell us about your specific needs, preferences, or any questions you have..."
                       rows={4}
                       className="border-muted-foreground/20 focus:border-[#CBB27A] focus:ring-[#CBB27A]/20 resize-none"

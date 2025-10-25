@@ -126,8 +126,11 @@ export default function ServicesPage() {
         <div className="py-8 flex justify-center">
           <div className="max-w-6xl text-center">
             <p className="text-base md:text-lg lg:text-xl text-muted-foreground/80 leading-relaxed font-light italic px-4 md:px-0">
-              At Celeste Abode, services are designed as modular consulting solutions that guide you from discovery to possession.<br />
-              Each engagement is evidence-driven and tailored to your budget, timeline, and dream.
+              At Celeste Abode, services are designed as modular consulting
+              solutions that guide you from discovery to possession.
+              <br />
+              Each engagement is evidence-driven and tailored to your budget,
+              timeline, and dream.
             </p>
           </div>
         </div>
@@ -255,7 +258,7 @@ export default function ServicesPage() {
             <div className="my-16">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
                 <Image
-                  src="/luxury-villa-with-garden-and-modern-design.png"
+                  src="/luxury-villa-with-garden-and-modern-design.avif"
                   alt="Every Decision Backed by Evidence. Every Outcome Designed for You."
                   fill
                   loading="lazy"
@@ -469,7 +472,7 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 lg:px-8">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
               <Image
-                src="/IvoryCounty/FlatsInsideAesthetic.png"
+                src="/IvoryCounty/FlatsInsideAesthetic.avif"
                 alt="Ready to Transform Your Property Journey - Real Estate Investment"
                 fill
                 loading="lazy"
