@@ -52,12 +52,13 @@ export default function PropertyPage() {
 
     // Images
     images: [
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
+      "/Renox/hero.avif",
+      "/Renox/1.avif",
+      "/Renox/2.avif",
+      "/Renox/3.avif",
+      "/Renox/4.avif",
+      "/Renox/5.avif",
+      "/Renox/6.avif",
     ],
 
     // Location Advantage
@@ -127,17 +128,104 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange: "Base Price: ₹9,000/sq.ft",
+      priceRange: "₹1.42 Cr - ₹2.38 Cr",
       startingPrice: "₹1.42 Cr onwards",
-      paymentPlan:
-        "Down Payment Plan: 10% on booking, 85% within 30 days, 5% on possession",
-      offers:
-        "Construction Linked Plan: Spread across 14 milestones from booking to possession",
+      pricePerSqft: "₹9,000 per sq.ft",
+      unitConfigurations: [
+        {
+          type: "3 BHK",
+          area: "1582 sq.ft",
+          basePrice: "₹1.42 Cr",
+          priceRange: "₹1.50 Cr - ₹1.65 Cr",
+        },
+        {
+          type: "4 BHK",
+          area: "2644 sq.ft",
+          basePrice: "₹2.38 Cr",
+          priceRange: "₹2.50 Cr - ₹2.75 Cr",
+        },
+      ],
+      paymentPlans: {
+        downPayment: {
+          name: "Down Payment Plan",
+          schedule: [
+            { term: "On Booking", amount: "10%" },
+            { term: "Within 30 days", amount: "85%" },
+            { term: "On Possession", amount: "5%" },
+          ],
+        },
+        constructionLinked: {
+          name: "Construction Linked Plan",
+          description: "Spread across 14 milestones from booking to possession",
+          schedule: [
+            { term: "On Booking", amount: "10%" },
+            { term: "On Start of Construction", amount: "10%" },
+            { term: "On Completion of Foundation", amount: "10%" },
+            { term: "On Completion of 1st Floor", amount: "10%" },
+            { term: "On Completion of 3rd Floor", amount: "10%" },
+            { term: "On Completion of 5th Floor", amount: "10%" },
+            { term: "On Completion of 7th Floor", amount: "10%" },
+            { term: "On Completion of 9th Floor", amount: "10%" },
+            { term: "On Completion of 11th Floor", amount: "10%" },
+            { term: "On Completion of 13th Floor", amount: "10%" },
+            { term: "On Completion of 15th Floor", amount: "10%" },
+            { term: "On Completion of 17th Floor", amount: "10%" },
+            { term: "On Completion of 19th Floor", amount: "10%" },
+            { term: "On Possession", amount: "10%" },
+          ],
+        },
+      },
+      otherCharges: [
+        { item: "EDC (External Development Charges)", amount: "₹100/sq.ft" },
+        { item: "IDC (Internal Development Charges)", amount: "₹50/sq.ft" },
+        { item: "FFC (Fire Fighting Charges)", amount: "₹25/sq.ft" },
+        { item: "Club Membership", amount: "₹1 Lakh" },
+        { item: "Power Backup", amount: "₹25,000 per KVA" },
+        { item: "Maintenance", amount: "₹3 per sq.ft per month" },
+        { item: "GST", amount: "5% (as per government norms)" },
+      ],
+      offers: "Escalation Free Pricing",
+      specialFeatures: [
+        "Transparency & Trust",
+        "Timely Delivery",
+        "Ethical Practices",
+        "Escalation Free Pricing",
+        "Premium Location in Sector 10",
+      ],
     },
 
     // Unit Types
     unitTypes: ["3 BHK", "4 BHK"],
     sizes: "1582 – 2644 sq.ft",
+    totalTowers: "Multiple Towers",
+    totalUnits: "Multiple Units",
+
+    // Project Highlights
+    projectHighlights: [
+      "Transparency & Trust",
+      "Timely Delivery",
+      "Ethical Practices",
+      "Escalation Free Pricing",
+      "Premium Location in Sector 10",
+      "Modern Architecture & Design",
+      "Premium Amenities & Facilities",
+    ],
+
+    // Investment Benefits
+    investmentBenefits: [
+      "Good Appreciation Potential",
+      "Stable Rental Yield",
+      "Strategic Location Advantage",
+      "Infrastructure Development",
+      "Sector 10 Connectivity",
+      "Commercial Hub Proximity",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "UPRERAPRJ742692/09/2024",
+    },
   };
 
   const handleContact = () => {

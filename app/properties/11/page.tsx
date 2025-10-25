@@ -52,12 +52,14 @@ export default function PropertyPage() {
 
     // Images
     images: [
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
+      "/ForestWalk/hero.avif",
+      "/ForestWalk/1.avif",
+      "/ForestWalk/2.avif",
+      "/ForestWalk/3.avif",
+      "/ForestWalk/8.avif",
+      "/ForestWalk/5.avif",
+      "/ForestWalk/6.avif",
+      "/ForestWalk/7.avif",
     ],
 
     // Location Advantage
@@ -78,10 +80,8 @@ export default function PropertyPage() {
     amenities: {
       sports: [
         "Tennis",
-        "Basketball",
         "Badminton",
         "Squash Courts",
-        "Jogging & Cycling Tracks",
         "Half-Olympic Swimming Pool",
       ],
       wellness: ["Spa", "Yoga Garden", "Meditation Zone"],
@@ -89,7 +89,6 @@ export default function PropertyPage() {
       kids: ["Children's Play Area", "Senior Citizen Deck"],
       unique: [
         "Forest Theme Project with eco landscaping and lush greens",
-        "Total Land Area: ≈ 52 Acres",
         "No. of Villas: ≈ 393 units",
         "Open Area: ~80% green landscape",
         "Fully Furnished | Luxury | Vastu Compliant",
@@ -122,15 +121,88 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange: "≈ ₹ 1,75,000 per sq. yard",
-      startingPrice: "₹ 2.85 Crore Onwards (for 4 BHK Villa)",
-      paymentPlan: "Construction-Linked Plan (CL Plan)",
+      priceRange: "₹2.85 Cr - ₹4.17 Cr",
+      startingPrice: "₹2.85 Cr onwards",
+      pricePerSqYard: "₹1,75,000 per sq. yard",
+      unitConfigurations: [
+        {
+          type: "4 BHK + 5T Villa (Phase 1)",
+          area: "163 sq. yd (3,070 sq.ft)",
+          basePrice: "₹2.85 Cr",
+          priceRange: "₹2.85 Cr - ₹3.20 Cr",
+        },
+        {
+          type: "4 BHK + 5T Villa (Phase 2)",
+          area: "238 sq. yd (4,200 sq.ft)",
+          basePrice: "₹4.17 Cr",
+          priceRange: "₹4.17 Cr - ₹4.50 Cr",
+        },
+      ],
+      paymentPlans: {
+        constructionLinked: {
+          name: "Construction-Linked Plan (CL Plan)",
+          schedule: [
+            { term: "On Booking", amount: "10%" },
+            { term: "On Start of Construction", amount: "20%" },
+            { term: "On Completion of Foundation", amount: "15%" },
+            { term: "On Completion of 1st Floor", amount: "15%" },
+            { term: "On Completion of 2nd Floor", amount: "15%" },
+            { term: "On Completion of 3rd Floor", amount: "15%" },
+            { term: "On Completion of Finishing", amount: "10%" },
+          ],
+        },
+      },
+      otherCharges: [
+        { item: "Corner Plot Premium", amount: "₹2 Lakh - ₹5 Lakh" },
+        { item: "Park Facing Premium", amount: "₹3 Lakh - ₹7 Lakh" },
+        { item: "Road Facing Premium", amount: "₹1 Lakh - ₹3 Lakh" },
+        { item: "Club Membership", amount: "₹2 Lakh" },
+        { item: "Power Backup", amount: "₹50,000 per KVA" },
+        { item: "Maintenance", amount: "₹5 per sq.ft per month" },
+        { item: "GST", amount: "5% (as per government norms)" },
+      ],
       offers: "Phase 1 & Phase 2 Villa Options Available",
+      specialFeatures: [
+        "52 Acres Forest Theme",
+        "80% Green Landscape",
+        "Fully Furnished",
+        "Vastu Compliant",
+        "Premium Location on NH-24",
+      ],
     },
 
     // Unit Types
-    unitTypes: ["4 BHK + 5 T Villas"],
+    unitTypes: ["4 BHK + 5T Villas"],
     sizes: "163 sq. yd - 238 sq. yd (3,070 sq.ft - 4,200 sq.ft)",
+    totalTowers: "Multiple Villas",
+    totalUnits: "Multiple Units",
+
+    // Project Highlights
+    projectHighlights: [
+      "52 Acres Forest Theme",
+      "80% Green Landscape",
+      "Fully Furnished",
+      "Vastu Compliant",
+      "Premium Location on NH-24",
+      "Modern Architecture & Design",
+      "Premium Amenities & Facilities",
+    ],
+
+    // Investment Benefits
+    investmentBenefits: [
+      "Premium Appreciation Potential",
+      "High Rental Yield",
+      "Strategic Location Advantage",
+      "Infrastructure Development",
+      "NH-24 Connectivity",
+      "Commercial Hub Proximity",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "UPRERAPRJ658961/08/2025",
+    },
   };
 
   const handleContact = () => {

@@ -42,22 +42,26 @@ export default function PropertyPage() {
 
   const property = {
     // Basic Project Information
-    projectName: "GAUR CENTURION PARK",
-    developer: "Gaur Group",
+    projectName: "ACE HANEI",
+    subtitle: "Premium Residential Development",
+    developer: "ACE Group",
     location: "Sector 1, TechZone 4, Greater Noida West",
     reraId: "UPRERAPRJ11256",
     status: "Under Construction",
     possessionDate: "Dec 2027",
     segment: "Luxury Residence",
+    tagline: "Redefining Modern Living",
 
     // Images
     images: [
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
+      "/ACE/hero.avif",
+      "/ACE/1.avif",
+      "/ACE/2.avif",
+      "/ACE/3.avif",
+      "/ACE/4.avif",
+      "/ACE/5.avif",
+      "/ACE/6.avif",
+      "/ACE/7.avif",
     ],
 
     // Location Advantage
@@ -130,12 +134,56 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange:
-        "~ ₹13,000 per sq ft for typical tower; ~ ₹14,000 per sq ft for Iconic Tower",
-      startingPrice: "~ ₹2.50 crore onwards for 3 BHK",
-      paymentPlan:
-        "On booking 20%; on completion of ground floor 20%; on 15th floor roof 20%; on completion superstructure 20%; on offer for possession 20%",
-      offers: "None listed publicly",
+      priceRange: "₹2.50 Cr - ₹4.50 Cr",
+      startingPrice: "₹2.50 Cr onwards",
+      pricePerSqft: "₹13,000 - ₹14,000 per sq.ft",
+      unitConfigurations: [
+        {
+          type: "3 BHK + Study",
+          area: "2746 sq.ft",
+          basePrice: "₹2.50 Cr",
+          priceRange: "₹3.50 Cr - ₹3.80 Cr",
+        },
+        {
+          type: "4 BHK + Study (Typical Tower)",
+          area: "3200 sq.ft",
+          basePrice: "₹3.20 Cr",
+          priceRange: "₹4.00 Cr - ₹4.30 Cr",
+        },
+        {
+          type: "4 BHK + Study (Iconic Tower)",
+          area: "3862 sq.ft",
+          basePrice: "₹4.50 Cr",
+          priceRange: "₹5.20 Cr - ₹5.50 Cr",
+        },
+      ],
+      paymentPlans: {
+        constructionLinked: {
+          name: "Construction Linked Payment Plan",
+          schedule: [
+            { term: "On Booking", amount: "20%" },
+            { term: "On Completion of Ground Floor", amount: "20%" },
+            { term: "On 15th Floor Roof", amount: "20%" },
+            { term: "On Completion Superstructure", amount: "20%" },
+            { term: "On Offer for Possession", amount: "20%" },
+          ],
+        },
+      },
+      otherCharges: [
+        { item: "Parking", amount: "₹4 Lakh - ₹6 Lakh" },
+        { item: "Club Membership", amount: "₹2 Lakh" },
+        { item: "Power Backup", amount: "₹30,000 per KVA" },
+        { item: "Maintenance", amount: "₹4 per sq.ft per month" },
+        { item: "GST", amount: "5% (as per government norms)" },
+      ],
+      offers: "Early Bird Discounts Available",
+      specialFeatures: [
+        "Premium Location in TechZone 4",
+        "Large Apartment Sizes",
+        "Low Density Luxury",
+        "30+ Years Developer Experience",
+        "NBCC Execution Partnership",
+      ],
     },
 
     // Unit Types
@@ -145,6 +193,35 @@ export default function PropertyPage() {
       "4 BHK + Study (Iconic Tower)",
     ],
     sizes: "2,746 sq ft - 3,862 sq ft",
+    totalTowers: "Multiple Towers",
+    totalUnits: "Multiple Units",
+
+    // Project Highlights
+    projectHighlights: [
+      "Premium Location in TechZone 4",
+      "Large Apartment Sizes (2746-3862 sq.ft)",
+      "Low Density Luxury Development",
+      "30+ Years Developer Experience",
+      "NBCC Execution Partnership",
+      "Modern Architecture & Design",
+      "Premium Amenities & Facilities",
+    ],
+
+    // Investment Benefits
+    investmentBenefits: [
+      "High Appreciation Potential",
+      "Excellent Rental Yield",
+      "Strategic Location Advantage",
+      "Infrastructure Development",
+      "TechZone 4 Connectivity",
+      "Commercial Hub Proximity",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "UPRERAPRJ11256",
+    },
   };
 
   const handleContact = () => {

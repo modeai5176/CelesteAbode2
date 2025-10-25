@@ -56,8 +56,9 @@ export default function PropertyPage() {
       "/Brook and Rivulet/2.avif",
       "/Brook and Rivulet/3.avif",
       "/Brook and Rivulet/4.avif",
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
+      "/Brook and Rivulet/5.avif",
+      "/Brook and Rivulet/6.avif",
+      "/Brook and Rivulet/7.avif",
     ],
 
     // Location Advantage
@@ -87,7 +88,6 @@ export default function PropertyPage() {
         "Luxury Clubhouses: Paper Boat (The Brook) & Pebble Castle (The Rivulet) – 30,750 sq.ft",
         "Co-working spaces, guest rooms, indoor gym, swimming pool with jacuzzi, steam & sauna",
         "Indoor games: billiards, cards, table tennis",
-        "Banquet hall, terrace seating, buffet counters",
       ],
       recreation: [
         "Terrace Garden (30,000 sq.ft): Mini golf, cricket bowling machine, outdoor gym, jogging track",
@@ -98,10 +98,7 @@ export default function PropertyPage() {
       unique: [
         "3 Side Open Corner Plot",
         "Grand Double-Height Entrance Lobby",
-        "3100 mm Floor-to-Floor Height",
-        "2400 mm Door Height",
         "Mechanical Car Parking & EV Charging Stations",
-        "Smog Guns for Air Purification",
       ],
     },
 

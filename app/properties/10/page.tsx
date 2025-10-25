@@ -52,12 +52,13 @@ export default function PropertyPage() {
 
     // Images
     images: [
-      "/modern-luxury-apartment-building-architectural-pho.avif",
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
+      "/Civitech/hero.avif",
+      "/Civitech/1.avif",
+      "/Civitech/2.avif",
+      "/Civitech/3.avif",
+      "/Civitech/4.avif",
+      "/Civitech/5.avif",
+      "/Civitech/6.avif",
     ],
 
     // Location Advantage
@@ -128,18 +129,84 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange:
-        "Base Sale Price (BSP): ₹12,000/sq.ft (Flat rate across all floors)",
+      priceRange: "₹2.37 Cr - ₹2.49 Cr",
       startingPrice: "₹2.37 Cr onwards",
-      paymentPlan:
-        "10% on booking, 30% within 30 days, 30% on casting of top floor, 30% on offer of possession",
-      offers:
-        "Corner PLC: ₹50/sq.ft, Basement Car Parking: ₹3,50,000, Power Backup (5 KVA): ₹25,000 per KVA",
+      pricePerSqft: "₹12,000 per sq.ft (Flat rate across all floors)",
+      unitConfigurations: [
+        {
+          type: "3 BHK + 3T",
+          area: "1975 sq.ft",
+          basePrice: "₹2.37 Cr",
+          priceRange: "₹2.37 Cr - ₹2.40 Cr",
+        },
+        {
+          type: "3 BHK + 3T",
+          area: "2075 sq.ft",
+          basePrice: "₹2.49 Cr",
+          priceRange: "₹2.49 Cr - ₹2.52 Cr",
+        },
+      ],
+      paymentPlans: {
+        constructionLinked: {
+          name: "Construction Linked Payment Plan",
+          schedule: [
+            { term: "On Booking", amount: "10%" },
+            { term: "Within 30 days", amount: "30%" },
+            { term: "On Casting of Top Floor", amount: "30%" },
+            { term: "On Offer of Possession", amount: "30%" },
+          ],
+        },
+      },
+      otherCharges: [
+        { item: "Corner PLC", amount: "₹50/sq.ft" },
+        { item: "Basement Car Parking", amount: "₹3,50,000" },
+        { item: "Power Backup (5 KVA)", amount: "₹25,000 per KVA" },
+        { item: "Club Membership", amount: "₹1.5 Lakh" },
+        { item: "Maintenance", amount: "₹4 per sq.ft per month" },
+        { item: "GST", amount: "5% (as per government norms)" },
+      ],
+      offers: "Premium Location Charges Available",
+      specialFeatures: [
+        "30+ Years Legacy",
+        "IGBC Gold Rated",
+        "Aluminium Formwork",
+        "Home Automation",
+        "Premium Location in Sector 12",
+      ],
     },
 
     // Unit Types
     unitTypes: ["3 BHK + 3T"],
     sizes: "1975-2075 sq.ft",
+    totalTowers: "Tower Daytona",
+    totalUnits: "Multiple Units",
+
+    // Project Highlights
+    projectHighlights: [
+      "30+ Years Legacy",
+      "IGBC Gold Rated",
+      "Aluminium Formwork",
+      "Home Automation",
+      "Premium Location in Sector 12",
+      "Modern Architecture & Design",
+      "Premium Amenities & Facilities",
+    ],
+
+    // Investment Benefits
+    investmentBenefits: [
+      "Premium Appreciation Potential",
+      "High Rental Yield",
+      "Strategic Location Advantage",
+      "Infrastructure Development",
+      "Sector 12 Connectivity",
+      "Commercial Hub Proximity",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "UPRERAPRJ646272",
+    },
   };
 
   const handleContact = () => {

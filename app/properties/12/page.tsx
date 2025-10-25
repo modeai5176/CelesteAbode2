@@ -42,22 +42,25 @@ export default function PropertyPage() {
 
   const property = {
     // Basic Project Information
-    projectName: "ASHTECH LUXURY",
-    developer: "Ashtech Group",
+    projectName: "VVIP Ltd",
+    developer: "Vibhor Vaibhav Infrahome Pvt. Ltd.",
     location: "Sector 12, Greater Noida West",
-    reraId: "Pre-Launch",
+    reraId: "UPRERAPRJ743225/10/2025",
     status: "Pre-Launch",
-    possessionDate: "Pre-Launch",
+    possessionDate: "Jun 2028",
     segment: "Luxury Residence",
 
     // Images
     images: [
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
+      "/VVIP/hero.avif",
+      "/VVIP/1.avif",
+      "/VVIP/2.avif",
+      "/VVIP/3.avif",
+      "/VVIP/4.avif",
+      "/VVIP/5.avif",
+      "/VVIP/6.avif",
+      "/VVIP/7.avif",
+      "/VVIP/8.avif",
     ],
 
     // Location Advantage
@@ -122,15 +125,87 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange: "Pre-launch Price: ₹12,000 per sq.ft. + Other Charges",
+      priceRange: "₹2.40 Cr - ₹4.32 Cr",
       startingPrice: "₹2.40 Cr onwards",
-      paymentPlan: "Construction Linked",
+      pricePerSqft: "₹12,000 per sq.ft",
+      unitConfigurations: [
+        {
+          type: "3 BHK",
+          area: "2000 sq.ft",
+          basePrice: "₹2.40 Cr",
+          priceRange: "₹2.40 Cr - ₹2.60 Cr",
+        },
+        {
+          type: "4 BHK",
+          area: "3600 sq.ft",
+          basePrice: "₹4.32 Cr",
+          priceRange: "₹4.32 Cr - ₹4.60 Cr",
+        },
+      ],
+      paymentPlans: {
+        constructionLinked: {
+          name: "Construction Linked Payment Plan",
+          schedule: [
+            { term: "Expression of Interest (EOI)", amount: "₹10,00,000" },
+            { term: "On Booking", amount: "20%" },
+            { term: "On Start of Construction", amount: "20%" },
+            { term: "On Completion of Foundation", amount: "20%" },
+            { term: "On Completion of 1st Floor", amount: "20%" },
+            { term: "On Completion of 2nd Floor", amount: "20%" },
+          ],
+        },
+      },
+      otherCharges: [
+        { item: "Corner Plot Premium", amount: "₹2 Lakh - ₹5 Lakh" },
+        { item: "Park Facing Premium", amount: "₹3 Lakh - ₹7 Lakh" },
+        { item: "Road Facing Premium", amount: "₹1 Lakh - ₹3 Lakh" },
+        { item: "Club Membership", amount: "₹2 Lakh" },
+        { item: "Power Backup", amount: "₹50,000 per KVA" },
+        { item: "Maintenance", amount: "₹5 per sq.ft per month" },
+        { item: "GST", amount: "5% (as per government norms)" },
+      ],
       offers: "Expression of Interest (EOI): ₹10,00,000",
+      specialFeatures: [
+        "30+ Years Nation Building",
+        "Studio Symbiosis Design",
+        "70,000 sq.ft. Clubhouse",
+        "Fully Furnished",
+        "Premium Location in Sector 12",
+      ],
     },
 
     // Unit Types
     unitTypes: ["3 BHK", "4 BHK"],
     sizes: "2000-3600 sq.ft",
+    totalTowers: "Multiple Towers",
+    totalUnits: "Multiple Units",
+
+    // Project Highlights
+    projectHighlights: [
+      "30+ Years Nation Building",
+      "Studio Symbiosis Design",
+      "70,000 sq.ft. Clubhouse",
+      "Fully Furnished",
+      "Premium Location in Sector 12",
+      "Modern Architecture & Design",
+      "Premium Amenities & Facilities",
+    ],
+
+    // Investment Benefits
+    investmentBenefits: [
+      "Premium Appreciation Potential",
+      "High Rental Yield",
+      "Strategic Location Advantage",
+      "Infrastructure Development",
+      "Sector 12 Connectivity",
+      "Commercial Hub Proximity",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "Pre-Launch",
+    },
   };
 
   const handleContact = () => {

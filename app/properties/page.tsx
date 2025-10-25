@@ -186,10 +186,10 @@ export default function PropertiesPage() {
         id: 5,
         title: "IRISH PLATINUM",
         subtitle: "Premium Residential Development",
-        location: "Sector 1, Greater Noida West",
+        location: "Sector 51, Greater Noida West",
         price: "Near Possession",
         priceUnit: "Status",
-        image: "/irish.avif",
+        image: "/Irish/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "1390-2550 sq.ft.",
@@ -218,7 +218,7 @@ export default function PropertiesPage() {
         location: "Sector 22D, Yamuna Expressway, Greater Noida",
         price: "₹1.30 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/luxury-villa-exterior-modern-architecture.avif",
+        image: "/Elite X/hero.avif",
         beds: "3 BHK + 2T, 3 BHK + 3T, Duplex Penthouses",
         baths: "2-3 Baths",
         area: "1550-2800 sq.ft.",
@@ -242,12 +242,12 @@ export default function PropertiesPage() {
       },
       {
         id: 7,
-        title: "GAUR CENTURION PARK",
+        title: "ACE HANEI",
         subtitle: "Luxury Residences",
         location: "Sector 1, TechZone 4, Greater Noida West",
         price: "₹2.50 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/country-group.avif",
+        image: "/ACE/hero.avif",
         beds: "3 & 4 BHK + Study",
         baths: "2-3 Baths",
         area: "2746-3862 sq.ft.",
@@ -305,7 +305,7 @@ export default function PropertiesPage() {
         location: "Sector 10, Greater Noida West",
         price: "₹1.42 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/premium-residential-plot-with-landscaping.avif",
+        image: "/Renox/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "1582-2644 sq.ft.",
@@ -334,7 +334,7 @@ export default function PropertiesPage() {
         location: "Sector 12, Greater Noida West",
         price: "₹2.37 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/modern-luxury-apartment-building-architectural-pho.avif",
+        image: "/Civitech/hero.avif",
         beds: "3 BHK + 3T",
         baths: "3 Baths",
         area: "1975-2075 sq.ft.",
@@ -393,18 +393,18 @@ export default function PropertiesPage() {
       },
       {
         id: 12,
-        title: "ASHTECH LUXURY",
+        title: "Vibhor Vaibhav Infrahome Pvt. Ltd.",
         subtitle: "Luxury Residential Development",
         location: "Sector 12, Greater Noida West",
         price: "₹2.40 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/luxury-royal-style-villa-with-grand-entrance.avif",
+        image: "/VVIP/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "2000-3600 sq.ft.",
-        status: "Pre-Launch",
-        developer: "Ashtech Group",
-        possession: "Pre-Launch",
+        status: "Jun 2028",
+        developer: "Vibhor Vaibhav Infrahome Pvt. Ltd.",
+        possession: "Jun 2028",
         highlights: [
           "30+ Years Nation Building",
           "Studio Symbiosis Design",
@@ -412,7 +412,7 @@ export default function PropertiesPage() {
           "Fully Furnished",
         ],
         segment: "Luxury Residence",
-        reraId: "Pre-Launch",
+        reraId: "UPRERAPRJ743225/10/2025",
         unitTypes: ["3 BHK", "4 BHK"],
         startingPrice: "₹2.40 Cr",
         paymentPlans: ["Construction Linked"],
@@ -572,10 +572,10 @@ export default function PropertiesPage() {
         id: 5,
         title: "IRISH PLATINUM",
         subtitle: "Premium Residential Development",
-        location: "Sector 1, Greater Noida West",
+        location: "Sector 51, Greater Noida West",
         price: "Near Possession",
         priceUnit: "Status",
-        image: "/irish.avif",
+        image: "/Irish/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "1390-2550 sq.ft.",
@@ -598,12 +598,12 @@ export default function PropertiesPage() {
       // Investment Properties
       {
         id: 6,
-        title: "ELDECO WOW",
+        title: "ELITE X",
         subtitle: "Sector 22D, Yamuna Expressway",
         location: "Sector 22D, Yamuna Expressway, Greater Noida",
         price: "₹1.30 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/luxury-villa-exterior-modern-architecture.avif",
+        image: "/Elite X/hero.avif",
         beds: "3 BHK + 2T, 3 BHK + 3T, Duplex Penthouses",
         baths: "2-3 Baths",
         area: "1550-2800 sq.ft.",
@@ -627,12 +627,12 @@ export default function PropertiesPage() {
       },
       {
         id: 7,
-        title: "GAUR CENTURION PARK",
+        title: "ACE HANEI",
         subtitle: "Luxury Residences",
         location: "Sector 1, TechZone 4, Greater Noida West",
         price: "₹2.50 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/country-group.avif",
+        image: "/ACE/hero.avif",
         beds: "3 & 4 BHK + Study",
         baths: "2-3 Baths",
         area: "2746-3862 sq.ft.",
@@ -690,7 +690,7 @@ export default function PropertiesPage() {
         location: "Sector 10, Greater Noida West",
         price: "₹1.42 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/premium-residential-plot-with-landscaping.avif",
+        image: "/Renox/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "1582-2644 sq.ft.",
@@ -719,7 +719,7 @@ export default function PropertiesPage() {
         location: "Sector 12, Greater Noida West",
         price: "₹2.37 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/modern-luxury-apartment-building-architectural-pho.avif",
+        image: "/Civitech/hero.avif",
         beds: "3 BHK + 3T",
         baths: "3 Baths",
         area: "1975-2075 sq.ft.",
@@ -777,12 +777,12 @@ export default function PropertiesPage() {
       },
       {
         id: 12,
-        title: "ASHTECH LUXURY",
+        title: "Vibhor Vaibhav Infrahome Pvt. Ltd.",
         subtitle: "Luxury Residential Development",
         location: "Sector 12, Greater Noida West",
         price: "₹2.40 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/luxury-royal-style-villa-with-grand-entrance.avif",
+        image: "/VVIP/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "2000-3600 sq.ft.",
@@ -1079,11 +1079,11 @@ export default function PropertiesPage() {
                             <div className="absolute bottom-3 left-3 right-3 transition-transform duration-300 group-hover:translate-y-[-4px]">
                               <div className="flex items-center gap-2 text-white mb-1">
                                 <MapPin className="w-3 h-3 transition-transform duration-300 group-hover:scale-110" />
-                                <span className="text-xs font-medium transition-colors duration-300 group-hover:text-primary/90">
+                                <span className="text-xs font-medium text-white">
                                   {property.location}
                                 </span>
                               </div>
-                              <h3 className="text-lg font-bold text-white leading-tight transition-colors duration-300 group-hover:text-primary/90">
+                              <h3 className="text-lg font-bold text-white leading-tight">
                                 {property.title}
                               </h3>
                             </div>
@@ -1140,11 +1140,11 @@ export default function PropertiesPage() {
                       <div className="absolute bottom-3 left-3 right-3 transition-transform duration-300 group-hover:translate-y-[-4px]">
                         <div className="flex items-center gap-2 text-white mb-1">
                           <MapPin className="w-3 h-3 transition-transform duration-300 group-hover:scale-110" />
-                          <span className="text-xs font-medium transition-colors duration-300 group-hover:text-primary/90">
+                          <span className="text-xs font-medium text-white">
                             {property.location}
                           </span>
                         </div>
-                        <h3 className="text-lg font-bold text-white leading-tight transition-colors duration-300 group-hover:text-primary/90">
+                        <h3 className="text-lg font-bold text-white leading-tight">
                           {property.title}
                         </h3>
                       </div>

@@ -43,21 +43,26 @@ export default function PropertyPage() {
   const property = {
     // Basic Project Information
     projectName: "IRISH PLATINUM",
-    developer: "Irish Infrastructure Pvt. Ltd.",
-    location: "Sector 1, Greater Noida West",
-    reraId: "UPRERAPRJ742692",
+    subtitle: "THE TREASURE CHEST OF LIVING",
+    developer: "Irish Buildcon Private Limited",
+    location: "Sector 51, Greater Noida",
+    reraId: "UPRERAPRJ503189/03/2024",
     status: "Near Possession",
     possessionDate: "Dec 2025",
     segment: "Premium Residential",
+    tagline: "BETTER THAN BIG NAME",
+    specialOffer: "Discount for First Fifty Flats",
+    effectiveDate: "W.E.F 18th June 2025",
 
     // Images
     images: [
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
+      "/Irish/hero.avif",
+      "/Irish/Irish-1.avif",
+      "/Irish/2.avif",
+      "/Irish/3.avif",
+      "/Irish/4.avif",
+      "/Irish/5.avif",
+      "/Irish/6.avif",
     ],
 
     // Location Advantage
@@ -140,17 +145,159 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange: "₹56.93 Lakhs (₹1.28 Cr lower than comparable projects)",
-      startingPrice: "First 50 units offered at special rates",
-      paymentPlan:
-        "10% on booking, 10% within 45 days, 10% within 90 days, 10% on excavation, 10% on 1st floor, 10% on 7th floor, 10% on 15th floor, 10% on 19th floor, 20% on possession",
-      offers:
-        "Power Backup: ₹25,000 per KVA, EEC/FFC: ₹100/sq.ft, Club Membership: ₹1,00,000",
+      priceRange: "₹69.5 Lakhs - ₹2.55 Cr",
+      startingPrice: "₹69.5 Lakhs",
+      pricePerSqft: "₹12,225 - ₹12,700 per sq.ft",
+      unitConfigurations: [
+        {
+          type: "3BHK+2T",
+          area: "1390 sq.ft",
+          basePrice: "₹69.5 Lakhs",
+          priceRange: "₹1.70 Cr - ₹1.77 Cr",
+        },
+        {
+          type: "3BHK+3T",
+          area: "1690 sq.ft",
+          basePrice: "₹1.69 Cr",
+          priceRange: "₹2.07 Cr - ₹2.15 Cr",
+        },
+        {
+          type: "3BHK+Servant+4T",
+          area: "1925 sq.ft",
+          basePrice: "₹1.93 Cr",
+          priceRange: "₹2.35 Cr - ₹2.44 Cr",
+        },
+        {
+          type: "4BHK+4T",
+          area: "2150 sq.ft",
+          basePrice: "₹2.15 Cr",
+          priceRange: "₹2.63 Cr - ₹2.73 Cr",
+        },
+        {
+          type: "4BHK+Servant+5T",
+          area: "2550 sq.ft",
+          basePrice: "₹2.55 Cr",
+          priceRange: "₹3.12 Cr - ₹3.24 Cr",
+        },
+      ],
+      paymentPlans: {
+        towerCD: {
+          name: "Payment Plan for Tower C/D",
+          schedule: [
+            { term: "At the time of booking", amount: "10%" },
+            { term: "Within 45 days from Booking", amount: "10%" },
+            { term: "Within 180 days from Booking", amount: "20%" },
+            { term: "On Start of 4th floor", amount: "8%" },
+            { term: "On Start of 10th floor", amount: "8%" },
+            { term: "On Start of 16th floor", amount: "8%" },
+            { term: "On Start of 22nd floor", amount: "8%" },
+            { term: "On Start of 28th floor", amount: "8%" },
+            { term: "On start of finishing work", amount: "10%" },
+            { term: "On offer of Possession", amount: "10%" },
+          ],
+        },
+        towerAB: {
+          name: "Payment Plan for Tower A/B",
+          plan1: {
+            name: "CLP Payment Plan - PAYMENT PLAN-1",
+            schedule: [
+              { term: "Booking Amount", amount: "10%" },
+              { term: "On Start of Raft", amount: "20%" },
+              { term: "On Start of Stilt Roof Casting", amount: "10%" },
+              { term: "On Start of 4th Floor Casting", amount: "8%" },
+              { term: "On Start of 10th Floor Casting", amount: "8%" },
+              { term: "On Start of 16th Floor Casting", amount: "8%" },
+              { term: "On Start of 22nd Floor Casting", amount: "8%" },
+              { term: "On Start of 28th Floor Casting", amount: "8%" },
+              { term: "On Start of Finishing work", amount: "10%" },
+              { term: "On Offer of Possession", amount: "10%" },
+            ],
+          },
+          plan2: {
+            name: "50:25:25 Payment Plan - PAYMENT PLAN-2",
+            schedule: [
+              { term: "Booking Amount", amount: "10%" },
+              { term: "Within 30 days from the booking", amount: "40%" },
+              { term: "On Start of Top Floor Casting", amount: "25%" },
+              { term: "On Offer of Possession", amount: "25%" },
+            ],
+          },
+        },
+      },
+      otherCharges: [
+        { item: "1 KVA Power Backup", amount: "Rs. 25,000 per kva" },
+        { item: "EEC and FFC", amount: "Rs. 100/sqft (Free for limited time)" },
+        {
+          item: "Lower Basement Back to Back covered car parking",
+          amount: "Rs. 2,50,000",
+        },
+        {
+          item: "Upper Basement Back to Back covered car parking",
+          amount: "Rs. 3,50,000",
+        },
+        {
+          item: "Stilt Back to Back covered car parking",
+          amount: "Rs. 5,00,000",
+        },
+        {
+          item: "Upper Basement Side by Side covered car parking",
+          amount: "Rs. 5,00,000",
+        },
+        {
+          item: "Stilt Side by Side covered car parking",
+          amount: "Rs. 6,00,000",
+        },
+        { item: "IFMS", amount: "Rs. 25/sqft (Applicable)" },
+        { item: "Club Membership", amount: "Rs. 1,50,000 (Applicable)" },
+        { item: "Lease rent", amount: "Rs. 80/sqft (Applicable)" },
+        {
+          item: "GST",
+          amount: "At the Rate 5% Now (Applicable As Per Government Norms)",
+        },
+      ],
+      bankDetails: {
+        accountName: "M/S Irish Buildcon Private Limited, Irish Platinum",
+        bankName: "ICICI Bank Limited",
+        accountNumber: "414605001685",
+        ifscCode: "ICIC0004146",
+        branch: "Cherry County, Greater Noida (West)",
+      },
     },
 
     // Unit Types
-    unitTypes: ["3 BHK", "4 BHK"],
+    unitTypes: [
+      "3BHK+2T",
+      "3BHK+3T",
+      "3BHK+Servant+4T",
+      "4BHK+4T",
+      "4BHK+Servant+5T",
+    ],
     sizes: "1390 sq.ft - 2550 sq.ft",
+    floors: "30 Floors",
+    totalUnits: "Multiple configurations available",
+
+    // Special Offers & Terms
+    specialOffers: {
+      discount: "Discount for First Fifty Flats",
+      effectiveDate: "W.E.F 18th June 2025",
+      tagline: "BETTER THAN BIG NAME",
+      subtitle: "THE TREASURE CHEST OF LIVING",
+    },
+
+    // Important Disclaimers
+    disclaimers: [
+      "Price list & Payment Plan can be changed without notice at the sole discretion of the Company",
+      "There will be no escalation for the Booked Apartment",
+      "All Payment should be made in favour of 'IRISH BUILDCON PVT LTD IRISH PLATINUM COLL.A/C' through A/c Payee Cheque / RTGS",
+      "All the Registration/Stamp Duty, Lawyers Fees and other Government charges will be extra and as per Government Rules & Regulations",
+      "In case Payment is remitted through RTGS please email the UTR No. at Customercare@irishinfra.com",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "UPRERAPRJ503189/03/2024",
+    },
   };
 
   const handleContact = () => {
@@ -167,8 +314,10 @@ export default function PropertyPage() {
           src={property.images[0]}
           alt={property.projectName}
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
+          quality={95}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
@@ -635,24 +784,28 @@ export default function PropertyPage() {
                       </p>
                     </div>
 
-                    {property.pricing.offers && (
-                      <div className="bg-black p-3 rounded-xl text-white">
-                        <div className="flex items-center gap-2 mb-1">
-                          <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <Star className="w-2 h-2 text-green-500" />
-                          </div>
-                          <p className="text-xs font-semibold text-green-500">
-                            Special Offers
-                          </p>
+                    {/* Special Offers Card */}
+                    <div className="bg-black rounded-xl p-4 text-white">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-5 h-5 border border-green-500 rounded-full flex items-center justify-center">
+                          <Star className="w-3 h-3 text-green-500" />
                         </div>
-                        <p
-                          className="text-xs font-bold text-white"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          {property.pricing.offers}
+                        <p className="text-sm font-semibold text-green-500">
+                          Special Offers
                         </p>
                       </div>
-                    )}
+                      <div className="space-y-2">
+                        <p className="text-sm text-white">
+                          Power Backup: ₹25,000 per KVA
+                        </p>
+                        <p className="text-sm text-white">
+                          EEC/FFC: ₹100/sq.ft
+                        </p>
+                        <p className="text-sm text-white">
+                          Club Membership: ₹1,00,000
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

@@ -42,22 +42,24 @@ export default function PropertyPage() {
 
   const property = {
     // Basic Project Information
-    projectName: "ELDECO WOW",
+    projectName: "ELITE X",
+    subtitle: "Premium Residential Development",
     developer: "Eldeco Group",
-    location: "Sector 22D, Yamuna Expressway",
+    location: "Sector 22D, Yamuna Expressway, Greater Noida",
     reraId: "UPRERAPRJ752382/09/2025",
     status: "New Launch",
     possessionDate: "Dec 2028",
     segment: "Luxury Residence",
+    tagline: "Redefining Luxury Living",
 
     // Images
     images: [
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
+      "/Elite X/hero.avif",
+      "/Elite X/1.avif",
+      "/Elite X/2.avif",
+      "/Elite X/3.avif",
+      "/Elite X/4.avif",
+      "/Elite X/5.avif",
     ],
 
     // Location Advantage
@@ -137,20 +139,101 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange: "₹9,000 per sq.ft (approx.)",
-      startingPrice: "₹1.30 Crore Onwards (for 3 BHK)",
-      paymentPlan:
-        "EOI system – ₹5 Lakh (3 BHK + 2 T), ₹7 Lakh (3 BHK + 3 T), ₹10 Lakh (Penthouse)",
-      offers: "No public discounts listed",
+      priceRange: "₹1.30 Cr - ₹2.50 Cr",
+      startingPrice: "₹1.30 Cr onwards",
+      pricePerSqft: "₹9,000 - ₹12,000 per sq.ft",
+      unitConfigurations: [
+        {
+          type: "3 BHK + 2T",
+          area: "1550 sq.ft",
+          basePrice: "₹1.30 Cr",
+          priceRange: "₹1.40 Cr - ₹1.55 Cr",
+        },
+        {
+          type: "3 BHK + 3T",
+          area: "1850 sq.ft",
+          basePrice: "₹1.67 Cr",
+          priceRange: "₹1.80 Cr - ₹2.00 Cr",
+        },
+        {
+          type: "Duplex Penthouses",
+          area: "2800 sq.ft",
+          basePrice: "₹2.50 Cr",
+          priceRange: "₹2.80 Cr - ₹3.20 Cr",
+        },
+      ],
+      paymentPlans: {
+        eoiSystem: {
+          name: "EOI System",
+          requirements: [
+            "3 BHK + 2T: ₹5 Lakh EOI",
+            "3 BHK + 3T: ₹7 Lakh EOI",
+            "Duplex Penthouse: ₹10 Lakh EOI",
+          ],
+        },
+        constructionLinked: {
+          name: "Construction Linked Payment Plan",
+          schedule: [
+            { term: "Booking Amount", amount: "10%" },
+            { term: "Within 30 days", amount: "15%" },
+            { term: "On Start of Construction", amount: "20%" },
+            { term: "On Completion of Foundation", amount: "15%" },
+            { term: "On Completion of 1st Floor", amount: "10%" },
+            { term: "On Completion of 3rd Floor", amount: "10%" },
+            { term: "On Completion of 5th Floor", amount: "10%" },
+            { term: "On Completion of 7th Floor", amount: "10%" },
+          ],
+        },
+      },
+      otherCharges: [
+        { item: "Parking", amount: "₹3.5 Lakh - ₹5 Lakh" },
+        { item: "Club Membership", amount: "₹1.5 Lakh" },
+        { item: "Power Backup", amount: "₹25,000 per KVA" },
+        { item: "Maintenance", amount: "₹3.5 per sq.ft per month" },
+        { item: "GST", amount: "5% (as per government norms)" },
+      ],
+      offers: "Early Bird Discounts Available",
+      specialFeatures: [
+        "Premium Location on Yamuna Expressway",
+        "Close to Jewar Airport (20 mins)",
+        "Buddh International Circuit (5 mins)",
+        "30+ Years Developer Legacy",
+        "150+ Projects Delivered",
+      ],
     },
 
     // Unit Types
-    unitTypes: [
-      "3 BHK + 2 T",
-      "3 BHK + 3 T",
-      "Duplex Penthouses (3 BHK + Study)",
-    ],
+    unitTypes: ["3 BHK + 2T", "3 BHK + 3T", "Duplex Penthouses"],
     sizes: "1,550 sq.ft – 2,800 sq.ft",
+    totalTowers: "Multiple Towers",
+    totalUnits: "Multiple Units",
+
+    // Project Highlights
+    projectHighlights: [
+      "Premium Location on Yamuna Expressway",
+      "Close to Jewar Airport (20 mins)",
+      "Buddh International Circuit (5 mins)",
+      "30+ Years Developer Legacy",
+      "150+ Projects Delivered",
+      "Modern Architecture & Design",
+      "Premium Amenities & Facilities",
+    ],
+
+    // Investment Benefits
+    investmentBenefits: [
+      "High Appreciation Potential",
+      "Excellent Rental Yield",
+      "Strategic Location Advantage",
+      "Infrastructure Development",
+      "Airport Connectivity",
+      "Commercial Hub Proximity",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "UPRERAPRJ752382/09/2025",
+    },
   };
 
   const handleContact = () => {

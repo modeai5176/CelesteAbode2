@@ -52,12 +52,12 @@ export default function PropertyPage() {
 
     // Images
     images: [
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
+      "/panchsheel/hero.avif",
+      "/panchsheel/1.avif",
+      "/panchsheel/2.avif",
+      "/panchsheel/3.avif",
+      "/panchsheel/4.avif",
+      "/panchsheel/5.avif",
     ],
 
     // Location Advantage
@@ -130,17 +130,93 @@ export default function PropertyPage() {
 
     // Pricing & Payment
     pricing: {
-      priceRange:
-        "Unit Sizes (Marketable Area): 2 BHK: 915 / 1060 / 1150 sq.ft., 3 BHK: 1525 sq.ft.",
+      priceRange: "₹91.5 Lakhs - ₹1.37 Cr",
       startingPrice: "₹91.5 Lakhs onwards",
-      paymentPlan: "Available on request",
-      offers:
-        "Possession: OC received for majority towers, Daily Convenience: On-site retail, pharmacy, and essential services",
+      pricePerSqft: "₹10,000 per sq.ft",
+      unitConfigurations: [
+        {
+          type: "2 BHK",
+          area: "915 sq.ft",
+          basePrice: "₹91.5 Lakhs",
+          priceRange: "₹91.5 Lakhs - ₹95 Lakhs",
+        },
+        {
+          type: "2 BHK",
+          area: "1060 sq.ft",
+          basePrice: "₹1.06 Cr",
+          priceRange: "₹1.06 Cr - ₹1.10 Cr",
+        },
+        {
+          type: "2 BHK",
+          area: "1150 sq.ft",
+          basePrice: "₹1.15 Cr",
+          priceRange: "₹1.15 Cr - ₹1.20 Cr",
+        },
+        {
+          type: "3 BHK",
+          area: "1525 sq.ft",
+          basePrice: "₹1.37 Cr",
+          priceRange: "₹1.37 Cr - ₹1.45 Cr",
+        },
+      ],
+      paymentPlans: {
+        readyToMove: {
+          name: "Ready to Move Payment Plan",
+          schedule: [
+            { term: "On Booking", amount: "20%" },
+            { term: "Within 30 days", amount: "80%" },
+          ],
+        },
+      },
+      otherCharges: [
+        { item: "Parking", amount: "₹3 Lakh - ₹5 Lakh" },
+        { item: "Club Membership", amount: "₹1 Lakh" },
+        { item: "Power Backup", amount: "₹25,000 per KVA" },
+        { item: "Maintenance", amount: "₹2.5 per sq.ft per month" },
+        { item: "GST", amount: "5% (as per government norms)" },
+      ],
+      offers: "OC Received for Majority Towers",
+      specialFeatures: [
+        "26 Acres Project",
+        "65% Open Area",
+        "OC Received",
+        "35+ Years Legacy",
+        "Premium Location in Sector 16",
+      ],
     },
 
     // Unit Types
     unitTypes: ["2 BHK", "3 BHK"],
     sizes: "915-1525 sq.ft",
+    totalTowers: "Multiple Towers",
+    totalUnits: "Multiple Units",
+
+    // Project Highlights
+    projectHighlights: [
+      "26 Acres Project",
+      "65% Open Area",
+      "OC Received",
+      "35+ Years Legacy",
+      "Premium Location in Sector 16",
+      "Modern Architecture & Design",
+      "Premium Amenities & Facilities",
+    ],
+
+    // Investment Benefits
+    investmentBenefits: [
+      "Good Appreciation Potential",
+      "Stable Rental Yield",
+      "Strategic Location Advantage",
+      "Infrastructure Development",
+      "Sector 16 Connectivity",
+      "Commercial Hub Proximity",
+    ],
+
+    // RERA Information
+    reraInfo: {
+      website: "www.up-rera.in",
+      registrationNumber: "UPRERAPRJ8595",
+    },
   };
 
   const handleContact = () => {
