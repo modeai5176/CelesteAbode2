@@ -259,9 +259,47 @@ export default function PropertyPage() {
         {/* Subtle vignette effect for focus */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
 
-        {/* Property Name & Location */}
-        <div className="absolute inset-0 flex items-end justify-start pb-20 pl-8 md:pl-12">
+        {/* Mobile Layout - Centered Vertical Stack */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center md:hidden px-4">
+          <div className="text-center space-y-3">
+            {/* Status Badge - Mobile Centered */}
+            <div className="flex justify-center">
+              <Badge className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-xs font-semibold border border-white/30">
+                {property.status}
+              </Badge>
+            </div>
+
+            {/* Property Name - Mobile Centered */}
+            <h1
+              className="text-xl font-black leading-tight text-white"
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                textShadow: "0 4px 20px rgba(0,0,0,0.5)",
+              }}
+            >
+              {property.projectName}
+            </h1>
+
+            {/* Location - Mobile Centered */}
+            <div className="flex items-center justify-center gap-2">
+              <MapPin className="w-4 h-4 text-[#CBB27A]" />
+              <p
+                className="text-sm font-semibold text-[#CBB27A]"
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                }}
+              >
+                {property.location}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Original Position */}
+        <div className="absolute inset-0 hidden md:flex items-end justify-start pb-8 sm:pb-12 md:pb-20 pl-4 md:pl-8 lg:pl-12">
           <div className="max-w-6xl">
+            {/* Desktop Status Badge */}
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
                 <Building2 className="w-6 h-6 text-white" />
@@ -270,8 +308,10 @@ export default function PropertyPage() {
                 {property.status}
               </Badge>
             </div>
+
+            {/* Property Name */}
             <h1
-              className="text-6xl md:text-7xl lg:text-8xl font-black leading-[0.9] text-white mb-6"
+              className="text-3xl lg:text-5xl xl:text-6xl font-black leading-[0.9] text-white mb-6"
               style={{
                 fontFamily: "Poppins, sans-serif",
                 textShadow: "0 4px 20px rgba(0,0,0,0.5)",
@@ -279,11 +319,13 @@ export default function PropertyPage() {
             >
               {property.projectName}
             </h1>
+
+            {/* Location */}
             <div className="flex items-center gap-4 mb-8">
               <div className="flex items-center gap-3">
                 <MapPin className="w-6 h-6 text-[#CBB27A]" />
                 <p
-                  className="text-xl md:text-2xl font-semibold text-[#CBB27A]"
+                  className="text-sm lg:text-lg xl:text-xl font-semibold text-[#CBB27A]"
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     textShadow: "0 2px 10px rgba(0,0,0,0.3)",
@@ -298,9 +340,9 @@ export default function PropertyPage() {
 
         {/* Enhanced Data Strip */}
         <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm border-t border-white/20">
-          <div className="max-w-7xl mx-auto px-12 py-6">
-            <div className="flex items-center justify-center">
-              <div className="flex items-center gap-8 text-white">
+          <div className="max-w-7xl mx-auto px-4 md:px-12 py-4 md:py-6">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-white">
                 <div className="flex items-center gap-3 group hover:scale-105 transition-transform duration-300">
                   <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center group-hover:bg-[#CBB27A]/30 transition-colors duration-300">
                     <Calendar className="w-4 h-4 text-[#CBB27A] group-hover:scale-110 transition-transform duration-300" />
@@ -309,7 +351,7 @@ export default function PropertyPage() {
                     <p className="text-xs text-white/70 group-hover:text-white/90 transition-colors duration-300">
                       Possession
                     </p>
-                    <p className="text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
+                    <p className="text-xs sm:text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
                       {property.possessionDate}
                     </p>
                   </div>
@@ -323,7 +365,7 @@ export default function PropertyPage() {
                     <p className="text-xs text-white/70 group-hover:text-white/90 transition-colors duration-300">
                       Developer
                     </p>
-                    <p className="text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
+                    <p className="text-xs sm:text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
                       {property.developer}
                     </p>
                   </div>
@@ -337,7 +379,7 @@ export default function PropertyPage() {
                     <p className="text-xs text-white/70 group-hover:text-white/90 transition-colors duration-300">
                       RERA ID
                     </p>
-                    <p className="text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
+                    <p className="text-xs sm:text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
                       {property.reraId}
                     </p>
                   </div>
@@ -350,10 +392,10 @@ export default function PropertyPage() {
 
       {/* Main Content Layout */}
       <main>
-        <div className="max-w-7xl mx-auto px-12 py-16">
-          <div className="grid lg:grid-cols-3 gap-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-12 py-8 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16">
             {/* Main Content Column (70%) */}
-            <div className="lg:col-span-2 space-y-20">
+            <div className="lg:col-span-2 space-y-12 md:space-y-20">
               {/* Project Gallery - Slideshow */}
               <section>
                 <div className="mb-8">
@@ -373,7 +415,7 @@ export default function PropertyPage() {
 
                 {/* Modern Slideshow */}
                 <div
-                  className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl group"
+                  className="relative w-full h-[300px] md:h-[600px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group"
                   onMouseEnter={() => setIsSlideshowPaused(true)}
                   onMouseLeave={() => setIsSlideshowPaused(false)}
                 >
@@ -604,7 +646,7 @@ export default function PropertyPage() {
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {Object.entries(property.amenities).map(
                     ([category, items]) => {
                       const categoryIcons = {

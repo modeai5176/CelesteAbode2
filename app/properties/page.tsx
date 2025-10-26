@@ -402,7 +402,7 @@ export default function PropertiesPage() {
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "2000-3600 sq.ft.",
-        status: "Jun 2028",
+        status: "Under Construction",
         developer: "Vibhor Vaibhav Infrahome Pvt. Ltd.",
         possession: "Jun 2028",
         highlights: [
@@ -869,13 +869,13 @@ export default function PropertiesPage() {
 
   const handleCarouselNext = () => {
     setCarouselPosition((prev) =>
-      Math.min(prev + 1, Math.max(0, currentProperties.length - 3))
+      Math.min(prev + 1, Math.max(0, currentProperties.length - 1))
     );
   };
 
-  const shouldShowCarousel = currentProperties.length > 3;
+  const shouldShowCarousel = currentProperties.length >= 3;
   const canGoPrev = carouselPosition > 0;
-  const canGoNext = carouselPosition < currentProperties.length - 3;
+  const canGoNext = carouselPosition < currentProperties.length - 1;
 
   return (
     <div className="min-h-screen bg-background">
@@ -1022,12 +1022,12 @@ export default function PropertiesPage() {
             {/* Properties Display */}
             {shouldShowCarousel ? (
               /* Carousel with Navigation Arrows */
-              <div className="flex items-center gap-4">
-                {/* Left Navigation Arrow */}
+              <div className="flex items-center gap-0 md:gap-4">
+                {/* Left Navigation Arrow - Desktop Only */}
                 <button
                   onClick={handleCarouselPrev}
                   disabled={!canGoPrev}
-                  className={`flex-shrink-0 p-3 rounded-full shadow-lg transition-all duration-500 ${
+                  className={`hidden md:flex flex-shrink-0 p-3 rounded-full shadow-lg transition-all duration-500 ${
                     canGoPrev
                       ? "bg-white/90 hover:bg-white text-primary hover:scale-110 hover:shadow-xl cursor-pointer transform hover:-translate-y-1"
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -1039,18 +1039,46 @@ export default function PropertiesPage() {
 
                 {/* Carousel Container */}
                 <div className="flex-1 relative overflow-hidden">
+                  {/* Mobile Navigation Arrows - Overlay on Cards */}
+                  <div className="md:hidden absolute inset-0 z-10 pointer-events-none">
+                    {/* Left Arrow */}
+                    <button
+                      onClick={handleCarouselPrev}
+                      disabled={!canGoPrev}
+                      className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 pointer-events-auto p-2 rounded-full shadow-lg transition-all duration-300 ${
+                        canGoPrev
+                          ? "bg-white/90 hover:bg-white text-primary hover:scale-110 hover:shadow-xl cursor-pointer"
+                          : "bg-gray-200 text-gray-400 cursor-not-allowed opacity-50"
+                      }`}
+                      aria-label="Previous properties"
+                    >
+                      <ArrowLeft className="w-5 h-5" />
+                    </button>
+
+                    {/* Right Arrow */}
+                    <button
+                      onClick={handleCarouselNext}
+                      disabled={!canGoNext}
+                      className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 pointer-events-auto p-2 rounded-full shadow-lg transition-all duration-300 ${
+                        canGoNext
+                          ? "bg-white/90 hover:bg-white text-primary hover:scale-110 hover:shadow-xl cursor-pointer"
+                          : "bg-gray-200 text-gray-400 cursor-not-allowed opacity-50"
+                      }`}
+                      aria-label="Next properties"
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </div>
                   <div
                     className="flex transition-transform duration-500 ease-in-out"
                     style={{
-                      transform: `translateX(-${
-                        carouselPosition * (100 / 3)
-                      }%)`,
+                      transform: `translateX(-${carouselPosition * 100}%)`,
                     }}
                   >
                     {currentProperties.map((property, index) => (
                       <div
                         key={property.id}
-                        className="flex-shrink-0 w-1/3 px-4"
+                        className="flex-shrink-0 w-full md:w-1/3 px-4"
                       >
                         <Card
                           className="border-0 bg-card overflow-hidden hover:shadow-2xl transition-all duration-500 group cursor-pointer p-0 transform hover:-translate-y-2 hover:scale-[1.02]"
@@ -1094,11 +1122,11 @@ export default function PropertiesPage() {
                   </div>
                 </div>
 
-                {/* Right Navigation Arrow */}
+                {/* Right Navigation Arrow - Desktop Only */}
                 <button
                   onClick={handleCarouselNext}
                   disabled={!canGoNext}
-                  className={`flex-shrink-0 p-3 rounded-full shadow-lg transition-all duration-500 ${
+                  className={`hidden md:flex flex-shrink-0 p-3 rounded-full shadow-lg transition-all duration-500 ${
                     canGoNext
                       ? "bg-white/90 hover:bg-white text-primary hover:scale-110 hover:shadow-xl cursor-pointer transform hover:-translate-y-1"
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -1109,8 +1137,8 @@ export default function PropertiesPage() {
                 </button>
               </div>
             ) : (
-              /* Grid Layout for 3 or fewer properties */
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              /* Grid Layout for 3 or fewer properties - Mobile Single Column, Desktop Grid */
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {currentProperties.map((property) => (
                   <Card
                     key={property.id}

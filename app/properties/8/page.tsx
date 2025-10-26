@@ -196,10 +196,42 @@ export default function PropertyPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
-        {/* Property Name & Location */}
-        <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
+        {/* Mobile Layout - Centered Vertical Stack */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center md:hidden px-4">
+          <div className="text-center space-y-3">
+            {/* Status Badge - Mobile Centered */}
+            <div className="flex justify-center">
+              <Badge className="bg-black text-white px-3 py-1 text-xs font-semibold">
+                {property.status}
+              </Badge>
+            </div>
+
+            {/* Property Name - Mobile Centered */}
+            <h1
+              className="text-xl font-black leading-tight text-white"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              {property.projectName}
+            </h1>
+
+            {/* Location - Mobile Centered */}
+            <div className="flex items-center justify-center gap-2">
+              <MapPin className="w-4 h-4 text-[#CBB27A]" />
+              <p
+                className="text-sm font-bold text-[#CBB27A]"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                {property.location}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Original Position */}
+        <div className="absolute inset-0 hidden md:flex items-end justify-start pb-8 sm:pb-12 md:pb-16 pl-4 md:pl-12">
           <div className="max-w-5xl">
-            <div className="flex items-center gap-4">
+            {/* Desktop Status Badge */}
+            <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-white" />
               </div>
@@ -207,16 +239,20 @@ export default function PropertyPage() {
                 {property.status}
               </Badge>
             </div>
+
+            {/* Property Name */}
             <h1
-              className="text-7xl md:text-8xl font-black leading-tight text-white"
+              className="text-3xl lg:text-5xl xl:text-6xl font-black leading-tight text-white mb-6"
               style={{ fontFamily: "Poppins, sans-serif" }}
             >
               {property.projectName}
             </h1>
+
+            {/* Location */}
             <div className="flex items-center gap-3 mb-8">
               <MapPin className="w-6 h-6 text-[#CBB27A]" />
               <p
-                className="text-2xl md:text-3xl font-bold text-[#CBB27A]"
+                className="text-sm lg:text-lg xl:text-xl font-bold text-[#CBB27A]"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 {property.location}
@@ -227,16 +263,16 @@ export default function PropertyPage() {
 
         {/* Data Strip */}
         <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-12 py-4">
-            <div className="flex items-center justify-center">
-              <div className="flex items-center gap-8 text-white">
+          <div className="max-w-7xl mx-auto px-4 md:px-12 py-3 md:py-4">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-white">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
                     <Calendar className="w-4 h-4 text-[#CBB27A]" />
                   </div>
                   <div>
                     <p className="text-xs text-white/70">Possession</p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-xs sm:text-sm font-semibold text-white">
                       {property.possessionDate}
                     </p>
                   </div>
@@ -248,7 +284,7 @@ export default function PropertyPage() {
                   </div>
                   <div>
                     <p className="text-xs text-white/70">Developer</p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-xs sm:text-sm font-semibold text-white">
                       {property.developer}
                     </p>
                   </div>
@@ -260,7 +296,7 @@ export default function PropertyPage() {
                   </div>
                   <div>
                     <p className="text-xs text-white/70">RERA ID</p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-xs sm:text-sm font-semibold text-white">
                       {property.reraId}
                     </p>
                   </div>
@@ -273,10 +309,10 @@ export default function PropertyPage() {
 
       {/* Main Content Layout */}
       <main>
-        <div className="max-w-7xl mx-auto px-12 py-16">
-          <div className="grid lg:grid-cols-3 gap-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-12 py-8 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16">
             {/* Main Content Column (70%) */}
-            <div className="lg:col-span-2 space-y-20">
+            <div className="lg:col-span-2 space-y-12 md:space-y-20">
               {/* Project Gallery - Slideshow */}
               <section>
                 <div className="mb-8">
