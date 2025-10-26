@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -49,6 +49,8 @@ import {
   TrendingUp,
   Crown,
   X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function PropertyPage() {
@@ -56,6 +58,9 @@ export default function PropertyPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
+  const [hoveredThumbnail, setHoveredThumbnail] = useState<number | null>(null);
 
   const property = {
     // Basic Project Information
@@ -66,22 +71,20 @@ export default function PropertyPage() {
     segment: "Buying to Live",
     status: "Ready to Move",
     possessionDate: "March 2026",
+    totalUnits: "1200+ Units",
+    towers: "8 Towers",
+    floors: "G+15 Floors",
 
     // Location Advantage
     connectivity: [
       "Noida Expressway (5 mins)",
       "NH-24 (7 mins)",
-      "Noida (5 mins)",
-      "Gaur Chowk (2 mins)",
-      "Noida International Airport (60 mins)",
+      "Delhi Metro (10 mins)",
     ],
     landmarks: [
       "Gaur City Mall (2 mins)",
       "Educational Institutions (15 mins)",
       "Healthcare Centers (10 mins)",
-      "Shopping Centers (5 mins)",
-      "Government Offices (8 mins)",
-      "Entertainment Hubs (5 mins)",
     ],
 
     // Residences / Property Details
@@ -91,8 +94,7 @@ export default function PropertyPage() {
       "Luxury Finishes",
       "11 ft Floor Height",
       "Digital Home Features",
-      "Stilt-based Layout",
-      "Running Balconies",
+      "Cross Ventilation",
     ],
     structureQuality:
       "RCC frame structure with premium quality materials and earthquake resistance",
@@ -109,16 +111,14 @@ export default function PropertyPage() {
         "Mini Theatre",
         "2.5-acre Central Green",
         "Wellness Facilities",
-        "Green Spaces",
       ],
-      recreation: ["Recreation Areas", "Social Spaces", "Entertainment Zones"],
-      kids: ["Children's Play Area", "Kids Zone", "Safe Playground"],
+      recreation: ["Party Hall", "Community Center"],
+      kids: ["Children's Play Area", "Kids Zone"],
       unique: [
         "Premium Location",
         "Modern Architecture",
         "Quality Construction",
-        "Timely Delivery",
-        "Customer Trust",
+        "24/7 Security",
       ],
     },
 
@@ -126,23 +126,24 @@ export default function PropertyPage() {
     specifications: {
       flooring:
         "Vitrified tiles in living areas, anti-skid tiles in bath & kitchen",
-      kitchen: "Granite countertop, SS sink, RO system",
-      bathrooms: "Designer tiles, branded fittings, standard chinaware",
+      kitchen:
+        "Granite countertop, SS sink, RO system, modular kitchen provision",
+      bathrooms:
+        "Designer tiles, branded fittings, standard chinaware, geyser provision",
       electricals:
-        "Concealed copper wiring, modular switches, A/C, TV & video door phone provisions",
-      balconies: "Premium railings with modern design",
-      safety: "Fire safety systems, security systems, intercom facility",
+        "Concealed copper wiring, modular switches, A/C, TV & video door phone provisions, smart home features",
+      balconies: "Premium railings with modern design, running balconies",
+      safety:
+        "Fire safety systems, security systems, intercom facility, CCTV surveillance",
+      doors: "Premium wooden doors with branded hardware",
+      windows: "Aluminum windows with safety grills",
     },
 
     // Developer Credentials
     developerInfo: {
       experience: "30+ years in real estate",
       delivered: "Delivered across Delhi-NCR region",
-      projects: [
-        "High-quality construction",
-        "Timely delivery",
-        "Customer trust",
-      ],
+      projects: ["High-quality construction", "Timely delivery"],
       families:
         "Registered Under: UP Real Estate Regulatory Authority (UPRERA)",
       awards: [
@@ -156,18 +157,71 @@ export default function PropertyPage() {
     pricing: {
       priceRange: "₹1.02 Cr - ₹1.30 Cr",
       startingPrice: "₹1.02 Cr",
-      paymentPlans: ["80:20"],
+      pricePerSqft: "₹10,000 - ₹10,200 per sq.ft",
+      unitConfigurations: [
+        {
+          type: "2 BHK",
+          area: "1020 sq.ft",
+          basePrice: "₹1.02 Cr",
+        },
+        {
+          type: "3 BHK + 2T",
+          area: "1270 sq.ft",
+          basePrice: "₹1.27 Cr",
+        },
+      ],
+      paymentPlans: {
+        readyToMove: {
+          name: "Ready to Move Payment Plan",
+          schedule: [
+            { term: "On Booking", amount: "20%" },
+            { term: "Within 30 days", amount: "80%" },
+          ],
+        },
+      },
       offers: "5% stamp duty free for 2 BHK | ₹100/sq.ft discount for 3 BHK",
     },
 
     // Gallery
     images: [
-      "/luxury-modern-apartment.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/luxury-cityscape-blurred-background-for-real-estat.avif",
+      "/arihant-abode/5.avif",
+      "/arihant-abode/6.avif",
+      "/arihant-abode/7.avif",
+      "/arihant-abode/1.avif",
+      "/arihant-abode/2.avif",
+      "/arihant-abode/3.avif",
+      "/arihant-abode/4.avif",
     ],
+  };
+
+  // Slideshow functionality
+  useEffect(() => {
+    if (!isSlideshowPaused) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prevSlide) =>
+          prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
+        );
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isSlideshowPaused, property.images.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? property.images.length - 1 : prevSlide - 1
+    );
+  };
+
+  const handleImageClick = (index: number) => {
+    setModalImageIndex(index);
+    setIsImageModalOpen(true);
   };
 
   const handleContact = () => {
@@ -176,18 +230,28 @@ export default function PropertyPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
       <Header />
 
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src="/arihant abode/hero.avif"
+          src="/arihant-abode/hero.avif"
           alt={property.projectName}
           fill
           className="object-cover object-center"
           priority
           quality={95}
           sizes="100vw"
+          unoptimized
         />
         {/* Enhanced gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10"></div>
@@ -290,7 +354,7 @@ export default function PropertyPage() {
           <div className="grid lg:grid-cols-3 gap-16">
             {/* Main Content Column (70%) */}
             <div className="lg:col-span-2 space-y-20">
-              {/* Project Gallery */}
+              {/* Project Gallery - Slideshow */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -307,30 +371,133 @@ export default function PropertyPage() {
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {property.images.map((image, index) => (
+                {/* Modern Slideshow */}
+                <div
+                  className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl group"
+                  onMouseEnter={() => setIsSlideshowPaused(true)}
+                  onMouseLeave={() => setIsSlideshowPaused(false)}
+                >
+                  {/* Main Image Display */}
+                  <div className="relative w-full h-full">
                     <div
-                      key={index}
-                      className="relative aspect-square cursor-pointer group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
-                      onClick={() => {
-                        setModalImageIndex(index);
-                        setIsImageModalOpen(true);
-                      }}
+                      className="relative w-full h-full cursor-pointer"
+                      onClick={() => handleImageClick(currentSlide)}
                     >
                       <Image
-                        src={image}
-                        alt={`${property.projectName} - Image ${index + 1}`}
+                        src={property.images[currentSlide]}
+                        alt={`${property.projectName} - Image ${
+                          currentSlide + 1
+                        }`}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        className="object-cover transition-all duration-1000 ease-in-out hover:scale-105"
+                        priority
+                        quality={95}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform group-hover:scale-110 transition-transform duration-300">
-                          <Eye className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-12" />
-                        </div>
+                    </div>
+
+                    {/* Gradient Overlay - pointer-events-none to allow clicks through */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+
+                    {/* Image Counter */}
+                    <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 pointer-events-none">
+                      <span className="text-white text-sm font-semibold">
+                        {currentSlide + 1} / {property.images.length}
+                      </span>
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        prevSlide();
+                      }}
+                      className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm rounded-full p-4 text-white hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        nextSlide();
+                      }}
+                      className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm rounded-full p-4 text-white hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+
+                    {/* Click to Zoom Indicator */}
+                    <div className="absolute bottom-6 left-6 bg-black/50 backdrop-blur-sm rounded-full px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <Eye className="w-3 h-3 text-white" />
+                        <span className="text-white text-xs font-medium">
+                          Click to zoom
+                        </span>
                       </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Bullet Point Navigation with Hover Tooltips */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <div className="flex justify-center gap-4 pb-2">
+                      {property.images.map((image, index) => (
+                        <div key={index} className="relative">
+                          <button
+                            onClick={() => setCurrentSlide(index)}
+                            onMouseEnter={() => setHoveredThumbnail(index)}
+                            onMouseLeave={() => setHoveredThumbnail(null)}
+                            className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
+                              index === currentSlide
+                                ? "bg-[#CBB27A] scale-125 shadow-lg"
+                                : "bg-white/60 hover:bg-white/80 hover:scale-110"
+                            }`}
+                            aria-label={`Go to slide ${index + 1}`}
+                          />
+
+                          {/* Hover Tooltip Preview */}
+                          {hoveredThumbnail === index && (
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 z-50">
+                              {/* Tooltip Arrow */}
+                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-white"></div>
+
+                              {/* Tooltip Content */}
+                              <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
+                                <div className="relative w-48 h-32">
+                                  <Image
+                                    src={image}
+                                    alt={`Preview ${index + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="192px"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                                  {/* Image Info */}
+                                  <div className="absolute bottom-2 left-2 right-2">
+                                    <p className="text-white text-xs font-semibold mb-1">
+                                      {property.projectName}
+                                    </p>
+                                    <p className="text-white/80 text-xs">
+                                      Image {index + 1} of{" "}
+                                      {property.images.length}
+                                    </p>
+                                  </div>
+
+                                  {/* Click Indicator */}
+                                  <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
+                                    <Eye className="w-3 h-3 text-white" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </section>
 
@@ -731,7 +898,51 @@ export default function PropertyPage() {
                         >
                           {property.pricing.priceRange}
                         </p>
+                        <p
+                          className="text-xs text-gray-500"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
+                          {property.pricing.pricePerSqft}
+                        </p>
                       </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <h4
+                        className="text-sm font-semibold text-gray-700 mb-2"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
+                        Unit Configurations
+                      </h4>
+                      {property.pricing.unitConfigurations.map(
+                        (unit, index) => (
+                          <div
+                            key={index}
+                            className="bg-gray-50 p-3 rounded-lg"
+                          >
+                            <div className="flex justify-between items-start mb-1">
+                              <p
+                                className="text-sm font-semibold text-gray-900"
+                                style={{ fontFamily: "Poppins, sans-serif" }}
+                              >
+                                {unit.type}
+                              </p>
+                              <p
+                                className="text-xs text-gray-600"
+                                style={{ fontFamily: "Poppins, sans-serif" }}
+                              >
+                                {unit.area}
+                              </p>
+                            </div>
+                            <p
+                              className="text-sm font-semibold text-[#CBB27A]"
+                              style={{ fontFamily: "Poppins, sans-serif" }}
+                            >
+                              {unit.basePrice}
+                            </p>
+                          </div>
+                        )
+                      )}
                     </div>
 
                     {property.pricing.offers && (

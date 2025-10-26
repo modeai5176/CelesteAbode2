@@ -30,7 +30,7 @@ import {
 } from "lucide-react";
 
 export default function PropertiesPage() {
-  const [activeSegment, setActiveSegment] = useState("all");
+  const [activeSegment, setActiveSegment] = useState("buying-to-live");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState<{
     title: string;
@@ -81,7 +81,7 @@ export default function PropertiesPage() {
         location: "Sector 10, Greater Noida West",
         price: "₹1.02 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/luxury-modern-apartment.avif",
+        image: "/arihant-abode/hero.avif",
         beds: "2 & 3 BHK",
         baths: "2-3 Baths",
         area: "1020-1270 sq.ft.",
@@ -108,7 +108,7 @@ export default function PropertiesPage() {
         location: "Sector 12, Greater Noida West",
         price: "₹1.52 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/modern-apartment-building-with-green-spaces.avif",
+        image: "/spring-elmas/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "1385-1895 sq.ft.",
@@ -162,7 +162,7 @@ export default function PropertiesPage() {
         location: "Sector 1, Greater Noida West",
         price: "₹8,584 per sq.ft",
         priceUnit: "Launch Price",
-        image: "/luxury-cityscape-blurred-background-for-real-estat.avif",
+        image: "/RG/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "Premium Sizes",
@@ -213,7 +213,7 @@ export default function PropertiesPage() {
     investment: [
       {
         id: 6,
-        title: "ELDECO WOW",
+        title: "ELITE X",
         subtitle: "Sector 22D, Yamuna Expressway",
         location: "Sector 22D, Yamuna Expressway, Greater Noida",
         price: "₹1.30 Cr onwards",
@@ -467,7 +467,7 @@ export default function PropertiesPage() {
         location: "Sector 10, Greater Noida West",
         price: "₹1.02 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/luxury-modern-apartment.avif",
+        image: "/arihant-abode/hero.avif",
         beds: "2 & 3 BHK",
         baths: "2-3 Baths",
         area: "1020-1270 sq.ft.",
@@ -494,7 +494,7 @@ export default function PropertiesPage() {
         location: "Sector 12, Greater Noida West",
         price: "₹1.52 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/modern-apartment-building-with-green-spaces.avif",
+        image: "/spring-elmas/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "1385-1895 sq.ft.",
@@ -548,7 +548,7 @@ export default function PropertiesPage() {
         location: "Sector 1, Greater Noida West",
         price: "₹8,584 per sq.ft",
         priceUnit: "Launch Price",
-        image: "/luxury-cityscape-blurred-background-for-real-estat.avif",
+        image: "/RG/hero.avif",
         beds: "3 & 4 BHK",
         baths: "2-3 Baths",
         area: "Premium Sizes",

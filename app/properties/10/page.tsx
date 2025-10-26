@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,8 @@ import {
   ArrowRight,
   Camera,
   TrendingUp,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function PropertyPage() {
@@ -39,6 +41,9 @@ export default function PropertyPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
+  const [hoveredThumbnail, setHoveredThumbnail] = useState<number | null>(null);
 
   const property = {
     // Basic Project Information
@@ -66,12 +71,10 @@ export default function PropertyPage() {
       "On Noida–Greater Noida Link Road",
       "5 mins from Char Murti Chowk",
       "15 mins to NH-24",
-      "20 mins to Noida City Centre",
     ],
     landmarks: [
       "Adjacent to upcoming Metro Station",
       "Close to top schools, hospitals, banks, and recreational hubs",
-      "Tower Daytona enjoys a strategic location with seamless connectivity",
     ],
 
     // Amenities & Lifestyle
@@ -97,7 +100,6 @@ export default function PropertyPage() {
         "Premium UPVC doors with SS mesh",
         "Modular switches (Philips/Schneider)",
         "Plastic paints in all rooms",
-        "Shower cubicles in master bedroom",
       ],
     },
 
@@ -122,7 +124,6 @@ export default function PropertyPage() {
         "Founded by Mr. Subodh Goel",
         "Civitech Stadia (Sec-79)",
         "Civitech Sampriti (Sec-77)",
-        "Florencia (Vaishali)",
       ],
       awards: ["Known for quality, integrity, and visionary design"],
     },
@@ -157,22 +158,7 @@ export default function PropertyPage() {
           ],
         },
       },
-      otherCharges: [
-        { item: "Corner PLC", amount: "₹50/sq.ft" },
-        { item: "Basement Car Parking", amount: "₹3,50,000" },
-        { item: "Power Backup (5 KVA)", amount: "₹25,000 per KVA" },
-        { item: "Club Membership", amount: "₹1.5 Lakh" },
-        { item: "Maintenance", amount: "₹4 per sq.ft per month" },
-        { item: "GST", amount: "5% (as per government norms)" },
-      ],
       offers: "Premium Location Charges Available",
-      specialFeatures: [
-        "30+ Years Legacy",
-        "IGBC Gold Rated",
-        "Aluminium Formwork",
-        "Home Automation",
-        "Premium Location in Sector 12",
-      ],
     },
 
     // Unit Types
@@ -188,8 +174,6 @@ export default function PropertyPage() {
       "Aluminium Formwork",
       "Home Automation",
       "Premium Location in Sector 12",
-      "Modern Architecture & Design",
-      "Premium Amenities & Facilities",
     ],
 
     // Investment Benefits
@@ -209,12 +193,51 @@ export default function PropertyPage() {
     },
   };
 
+  // Slideshow functionality
+  useEffect(() => {
+    if (!isSlideshowPaused) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prevSlide) =>
+          prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
+        );
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isSlideshowPaused, property.images.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? property.images.length - 1 : prevSlide - 1
+    );
+  };
+
+  const handleImageClick = (index: number) => {
+    setModalImageIndex(index);
+    setIsImageModalOpen(true);
+  };
+
   const handleContact = () => {
     setIsPopupOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-white">
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
       <Header />
 
       {/* Cinematic Hero Banner */}
@@ -309,7 +332,7 @@ export default function PropertyPage() {
           <div className="grid lg:grid-cols-3 gap-16">
             {/* Main Content Column (70%) */}
             <div className="lg:col-span-2 space-y-20">
-              {/* Project Gallery */}
+              {/* Project Gallery - Slideshow */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -326,30 +349,133 @@ export default function PropertyPage() {
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {property.images.map((image, index) => (
+                {/* Modern Slideshow */}
+                <div
+                  className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl group"
+                  onMouseEnter={() => setIsSlideshowPaused(true)}
+                  onMouseLeave={() => setIsSlideshowPaused(false)}
+                >
+                  {/* Main Image Display */}
+                  <div className="relative w-full h-full">
                     <div
-                      key={index}
-                      className="relative aspect-square cursor-pointer group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
-                      onClick={() => {
-                        setModalImageIndex(index);
-                        setIsImageModalOpen(true);
-                      }}
+                      className="relative w-full h-full cursor-pointer"
+                      onClick={() => handleImageClick(currentSlide)}
                     >
                       <Image
-                        src={image}
-                        alt={`${property.projectName} - Image ${index + 1}`}
+                        src={property.images[currentSlide]}
+                        alt={`${property.projectName} - Image ${
+                          currentSlide + 1
+                        }`}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        className="object-cover transition-all duration-1000 ease-in-out hover:scale-105"
+                        priority
+                        quality={95}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform group-hover:scale-110 transition-transform duration-300">
-                          <Eye className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-12" />
-                        </div>
+                    </div>
+
+                    {/* Gradient Overlay - pointer-events-none to allow clicks through */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+
+                    {/* Image Counter */}
+                    <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 pointer-events-none">
+                      <span className="text-white text-sm font-semibold">
+                        {currentSlide + 1} / {property.images.length}
+                      </span>
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        prevSlide();
+                      }}
+                      className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm rounded-full p-4 text-white hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        nextSlide();
+                      }}
+                      className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm rounded-full p-4 text-white hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+
+                    {/* Click to Zoom Indicator */}
+                    <div className="absolute bottom-6 left-6 bg-black/50 backdrop-blur-sm rounded-full px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <Eye className="w-3 h-3 text-white" />
+                        <span className="text-white text-xs font-medium">
+                          Click to zoom
+                        </span>
                       </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Bullet Point Navigation with Hover Tooltips */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <div className="flex justify-center gap-4 pb-2">
+                      {property.images.map((image, index) => (
+                        <div key={index} className="relative">
+                          <button
+                            onClick={() => setCurrentSlide(index)}
+                            onMouseEnter={() => setHoveredThumbnail(index)}
+                            onMouseLeave={() => setHoveredThumbnail(null)}
+                            className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
+                              index === currentSlide
+                                ? "bg-[#CBB27A] scale-125 shadow-lg"
+                                : "bg-white/60 hover:bg-white/80 hover:scale-110"
+                            }`}
+                            aria-label={`Go to slide ${index + 1}`}
+                          />
+
+                          {/* Hover Tooltip Preview */}
+                          {hoveredThumbnail === index && (
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 z-50">
+                              {/* Tooltip Arrow */}
+                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-white"></div>
+
+                              {/* Tooltip Content */}
+                              <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
+                                <div className="relative w-48 h-32">
+                                  <Image
+                                    src={image}
+                                    alt={`Preview ${index + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="192px"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                                  {/* Image Info */}
+                                  <div className="absolute bottom-2 left-2 right-2">
+                                    <p className="text-white text-xs font-semibold mb-1">
+                                      {property.projectName}
+                                    </p>
+                                    <p className="text-white/80 text-xs">
+                                      Image {index + 1} of{" "}
+                                      {property.images.length}
+                                    </p>
+                                  </div>
+
+                                  {/* Click Indicator */}
+                                  <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
+                                    <Eye className="w-3 h-3 text-white" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </section>
 
