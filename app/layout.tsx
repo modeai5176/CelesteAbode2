@@ -1,85 +1,56 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter, Poppins } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter, Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
-})
+});
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
   variable: "--font-poppins",
-})
+});
 
 export const metadata: Metadata = {
   title: "Celeste Abode - Luxury Real Estate Consulting",
   description:
     "Redefining luxury real estate consulting in India's premium segment. From masterpiece of time into a masterpiece of living.",
   generator: "v0.app",
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <head>
-        <link
-          rel="preload"
-          href="/hero.avif"
-          as="image"
-          type="image/avif"
-        />
-        <link
-          rel="icon"
-          href="/favicon.png"
-          type="image/png"
-          sizes="48x48"
-        />
+        <link rel="preload" href="/hero.avif" as="image" type="image/avif" />
+        <link rel="icon" href="/favicon.avif" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/favicon.avif" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon.avif" type="image/png" sizes="24x24" />
+        <link rel="icon" href="/favicon.avif" type="image/png" sizes="16x16" />
+        <link rel="apple-touch-icon" href="/favicon.avif" sizes="180x180" />
         <link
           rel="icon"
-          href="/favicon.png"
-          type="image/png"
-          sizes="32x32"
-        />
-        <link
-          rel="icon"
-          href="/favicon.png"
-          type="image/png"
-          sizes="24x24"
-        />
-        <link
-          rel="icon"
-          href="/favicon.png"
-          type="image/png"
-          sizes="16x16"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="/favicon.png"
-          sizes="180x180"
-        />
-        <link
-          rel="icon"
-          href="/favicon.png"
+          href="/favicon.avif"
           type="image/png"
           sizes="192x192"
         />
         <link
           rel="icon"
-          href="/favicon.png"
+          href="/favicon.avif"
           type="image/png"
           sizes="512x512"
         />
-        <meta name="msapplication-TileImage" content="/favicon.png" />
+        <meta name="msapplication-TileImage" content="/favicon.avif" />
         <meta name="msapplication-TileColor" content="#000000" />
       </head>
       <body className={`${inter.variable} ${poppins.variable} antialiased`}>
@@ -87,5 +58,5 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

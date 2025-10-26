@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Mail, Phone, MapPin, Instagram } from "lucide-react";
 
 export function Footer() {
-
   return (
     // EDIT: changed footer bg from primary (yellow) to a lighter black hex for a premium dark footer
     <footer className="bg-[#0f1112] text-white">
@@ -17,7 +16,7 @@ export function Footer() {
           <div className="flex justify-center lg:justify-start">
             <div className="mb-6">
               <Image
-                src="/logoceleste.png"
+                src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
                 width={120}
                 height={120}
@@ -33,9 +32,7 @@ export function Footer() {
 
           {/* Contact Column */}
           <div>
-            <h3 className="h4 mb-6 text-[#CBB27A]">
-              Contact
-            </h3>
+            <h3 className="h4 mb-6 text-[#CBB27A]">Contact</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3 group cursor-pointer">
                 <Phone className="w-5 h-5 text-white group-hover:text-[#CBB27A] transition-colors" />
@@ -60,9 +57,7 @@ export function Footer() {
 
           {/* Quick Links Column */}
           <div>
-            <h3 className="h4 mb-6 text-[#CBB27A]">
-              Quick Links
-            </h3>
+            <h3 className="h4 mb-6 text-[#CBB27A]">Quick Links</h3>
             <div className="space-y-3">
               <Link
                 href="/"
@@ -152,19 +147,20 @@ export function Footer() {
 
         {/* Legal Links */}
         {/* EDIT: adjusted top border to use border-border/40 to better suit the new footer background */}
-         {/* Copyright and Powered by */}
-         <div className="pt-4 mt-6">
-           {/* Separator line */}
-           <div className="border-t border-gray-600/40 mb-4"></div>
-           <div className="flex flex-col items-center gap-1">
-             <p className="text-sm text-gray-400">
-               © 2024 Celeste Abode Private Limited. All rights reserved.
-             </p>
-             <p className="text-sm text-gray-400">
-               Powered by <span className="text-[#CBB27A] font-medium">ModeAI</span>
-             </p>
-           </div>
-         </div>
+        {/* Copyright and Powered by */}
+        <div className="pt-4 mt-6">
+          {/* Separator line */}
+          <div className="border-t border-gray-600/40 mb-4"></div>
+          <div className="flex flex-col items-center gap-1">
+            <p className="text-sm text-gray-400">
+              © 2024 Celeste Abode Private Limited. All rights reserved.
+            </p>
+            <p className="text-sm text-gray-400">
+              Powered by{" "}
+              <span className="text-[#CBB27A] font-medium">ModeAI</span>
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   );

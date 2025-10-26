@@ -59,7 +59,7 @@ export function ValuePropositions() {
               <div
                 className="text-8xl md:text-[10rem] lg:text-[14rem] font-semibold mb-4 md:mb-6 bg-clip-text text-transparent tabular-nums"
                 style={{
-                  backgroundImage: `url('/modern-luxury-apartment-building-architectural-pho.png')`,
+                  backgroundImage: `url('/modern-luxury-apartment-building-architectural-pho.avif')`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   WebkitBackgroundClip: "text",

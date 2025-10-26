@@ -11,7 +11,8 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === "/";
-  const isPropertyPage = pathname.startsWith("/properties/") && pathname !== "/properties";
+  const isPropertyPage =
+    pathname.startsWith("/properties/") && pathname !== "/properties";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +43,7 @@ export function Header() {
             {/* Logo - Left on Mobile */}
             <Link href="/" className="group flex-shrink-0">
               <Image
-                src="/logoceleste.png"
+                src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
                 width={110}
                 height={110}
@@ -54,8 +55,8 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               className={`p-2 transition-colors ${
-                (isScrolled || isPropertyPage)
-                  ? "text-white hover:text-white/80" 
+                isScrolled || isPropertyPage
+                  ? "text-white hover:text-white/80"
                   : "text-[#000000] hover:text-[#000000]/80"
               }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -86,7 +87,7 @@ export function Header() {
             {/* Center Logo */}
             <Link href="/" className="group flex-shrink-0">
               <Image
-                src="/logoceleste.png"
+                src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
                 width={110}
                 height={110}

@@ -17,7 +17,7 @@ export function PhilosophyHeroSection() {
           {/* Full Container Image */}
           <div className="relative h-[500px] lg:h-[650px]">
             <Image
-              src="/PHILOSOPHYHERO.png"
+              src="/PHILOSOPHYHERO.avif"
               alt="Philosophy - The Morning Light, The View, The Peace You Seek"
               fill
               priority
@@ -31,7 +31,7 @@ export function PhilosophyHeroSection() {
 
             {/* Dark overlay for better text readability */}
             <div className="absolute inset-0 bg-black/50" />
-            
+
             {/* Left side vignette */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
 

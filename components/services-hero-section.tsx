@@ -17,7 +17,7 @@ export function ServicesHeroSection() {
           {/* Full Container Image */}
           <div className="relative h-[500px] lg:h-[650px]">
             <Image
-              src="/luxury-villa-with-garden-and-modern-design.png"
+              src="/luxury-villa-with-garden-and-modern-design.avif"
               alt="Intelligent Property Advisory for Every Goal - Services"
               fill
               priority
@@ -49,7 +49,6 @@ export function ServicesHeroSection() {
                     <span className="text-[#CBB27A]">Every Goal</span>
                   </div>
                 </h1>
-
               </div>
             </div>
           </div>
