@@ -17,7 +17,7 @@ export function HeroSection() {
           {/* Full Container Image */}
           <div className="relative h-[500px] lg:h-[650px]">
             <Image
-              src="/hero-.png"
+              src="/hero-.avif"
               alt="Luxury real estate background"
               fill
               priority

@@ -15,7 +15,7 @@ export function BrandEssay() {
         <div className="lg:hidden mb-8">
           <div className="relative overflow-hidden rounded-xl shadow-xl">
             <ImageFigure
-              src="/modern-luxury-apartment-building-architectural-pho.png"
+              src="/modern-luxury-apartment-building-architectural-pho.avif"
               alt="Modern luxury apartment building architectural photography"
               width={700}
               height={600}
@@ -94,7 +94,7 @@ export function BrandEssay() {
           >
             <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl">
               <ImageFigure
-                src="/modern-luxury-apartment-building-architectural-pho.png"
+                src="/modern-luxury-apartment-building-architectural-pho.avif"
                 alt="Modern luxury apartment building architectural photography"
                 width={700}
                 height={600}

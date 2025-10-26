@@ -28,7 +28,7 @@ const properties = [
     name: "IVORY COUNTY",
     builder: "County Group",
     address: "Sector 115, Noida",
-    image: "/IvoryCounty/SocietyTowersView.png",
+    image: "/IvoryCounty/SocietyTowersView.avif",
     status: "Under Construction",
   },
   {
@@ -36,7 +36,7 @@ const properties = [
     name: "ESTATE 360",
     builder: "MAX ESTATES GROUP",
     address: "36A, Dwarka Expressway, Gurgaon",
-    image: "/ESTATE360/DroneViewTowers.png",
+    image: "/ESTATE360/DroneViewTowers.avif",
     status: "Under Construction",
   },
   {
@@ -44,7 +44,7 @@ const properties = [
     name: "CRC MAESTA",
     builder: "CRC Group",
     address: "Sector 1, Greater Noida West",
-    image: "/CRCMaesta/TOWERVIEW.png",
+    image: "/CRCMaesta/TOWERVIEW.avif",
     status: "Under Construction",
   },
   {
@@ -52,7 +52,7 @@ const properties = [
     name: "ETERNIA",
     builder: "Premium Developer",
     address: "Tech Zone IV, Greater Noida (W)",
-    image: "/Eternia/1.png",
+    image: "/Eternia/1.avif",
     status: "Under Construction",
   },
   {
@@ -60,7 +60,7 @@ const properties = [
     name: "THE BROOK & THE RIVULET",
     builder: "Renowned Developer",
     address: "Greater Noida (Prime 3-Side Open Corner Plot)",
-    image: "/Brook and Rivulet/1.png",
+    image: "/Brook and Rivulet/1.avif",
     status: "Under Construction",
   },
 ];
