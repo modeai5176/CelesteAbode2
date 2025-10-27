@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,8 @@ import {
   ArrowRight,
   Camera,
   TrendingUp,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function PropertyPage() {
@@ -39,61 +41,89 @@ export default function PropertyPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
+  const [hoveredThumbnail, setHoveredThumbnail] = useState<number | null>(null);
 
   const property = {
     // Basic Project Information
     projectName: "ETERNIA RESIDENCES",
-    developer: "Yatharth Group",
+    developer: "Yatharth Group + NBCC",
     location: "Techzone 4, Greater Noida West",
     reraId: "UPRERAAGT10206",
     status: "Under Construction",
     possessionDate: "Dec 2027",
     segment: "Ultra Premium Residential",
+    totalUnits: 360,
+    towers: 6,
+    floors: "G+30",
+    projectSize: "8.5 Acres",
 
     // Images
     images: [
-      "/luxury-modern-apartment.avif",
-      "/premium-apartment-interior-living-room.avif",
-      "/modern-apartment-building-with-green-spaces.avif",
-      "/luxury-villa-exterior-modern-architecture.avif",
-      "/luxury-royal-style-villa-with-grand-entrance.avif",
-      "/luxury-villa-with-garden-and-modern-design.avif",
+      "/Eternia/5.avif",
+      "/Eternia/2.avif",
+      "/Eternia/3.avif",
+      "/Eternia/4.avif",
+      "/Eternia/6.avif",
+      "/Eternia/7.avif",
+      "/Eternia/8.avif",
+      "/Eternia/9.avif",
+      "/Eternia/10.avif",
+      "/Eternia/11.avif",
+      "/Eternia/12.avif",
     ],
 
     // Location Advantage
     connectivity: [
       "Noida–Greater Noida Expressway - Direct Access",
-      "Proposed Metro Station - Nearby",
+      "Proposed Metro Station - 2 km",
       "Delhi, NH-24, Yamuna Expressway - Smooth Connectivity",
-      "130-metre-wide Main Road Frontage",
+      "Jewar Airport - 45 minutes drive",
     ],
     landmarks: [
-      "Yatharth Super Speciality Hospital (Very Close)",
+      "Yatharth Super Speciality Hospital - 500 meters",
       "Prominent Schools within 3–5 km radius",
-      "Gaur City Mall",
-      "Galaxy Plaza",
-      "Other Retail Hubs",
+      "Gaur City Mall - 8 km",
+      "Galaxy Plaza - 6 km",
     ],
 
     // Amenities & Lifestyle
     amenities: {
-      sports: ["Swimming Pool", "Gym", "Indoor Games", "Multipurpose Court"],
+      sports: [
+        "Olympic Size Swimming Pool",
+        "Fully Equipped Gymnasium",
+        "Multipurpose Court",
+        "Badminton Court",
+        "Jogging Track",
+      ],
       wellness: [
-        "Clubhouse",
+        "Premium Clubhouse",
         "Lounge Area",
         "Party Hall",
         "Yoga & Meditation Zones",
+        "Spa & Wellness Center",
       ],
       recreation: [
         "Topiary & Landscaped Gardens",
         "EV Charging Stations",
         "Ample Car Parking",
+        "Children's Play Area",
+        "Amphitheater",
       ],
-      kids: ["Kids' Play Zone", "Adventure Activities", "Day-care"],
+      kids: [
+        "Kids' Play Zone",
+        "Adventure Activities",
+        "Indoor Play Area",
+        "Swimming Pool for Kids",
+      ],
       unique: [
         "Eco-friendly Design",
         "Rainwater Harvesting",
         "Landscaped Open Greens",
+        "Green Belt Facing",
+        "Smart Home Features",
+        "Solar Power Integration",
       ],
     },
 
@@ -114,14 +144,8 @@ export default function PropertyPage() {
       experience:
         "Yatharth Group: A reputed healthcare brand expanding into real estate",
       projectsDelivered: "Focus on quality and reliability",
-      notableProjects: [
-        "Yatharth Super Speciality Hospital",
-        "Healthcare Infrastructure Projects",
-      ],
-      awards: [
-        "Healthcare Excellence Awards",
-        "Quality Construction Standards",
-      ],
+      notableProjects: ["Yatharth Super Speciality Hospital"],
+      awards: ["Healthcare Excellence Awards"],
     },
 
     // Pricing & Payment
@@ -129,12 +153,42 @@ export default function PropertyPage() {
       priceRange: "₹10,200 per sq ft (approx.)",
       startingPrice: "₹1.97 Crore Onwards (for 3 BHK – 1,932 sq.ft)",
       paymentPlan: "Construction-Linked Plan",
-      offers: "As per ongoing launch/marketing campaigns",
+      offers: "Special Launch Offers Available",
     },
 
     // Unit Types
     unitTypes: ["3 BHK", "3 BHK + Study", "4 BHK + Study"],
     sizes: "1,932 sq.ft - 2,625 sq.ft",
+  };
+
+  // Slideshow functionality
+  useEffect(() => {
+    if (!isSlideshowPaused) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prevSlide) =>
+          prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
+        );
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isSlideshowPaused, property.images.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? property.images.length - 1 : prevSlide - 1
+    );
+  };
+
+  const handleImageClick = (index: number) => {
+    setModalImageIndex(index);
+    setIsImageModalOpen(true);
   };
 
   const handleContact = () => {
@@ -143,23 +197,67 @@ export default function PropertyPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
       <Header />
 
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src={property.images[0]}
+          src="/Eternia/1.avif"
           alt={property.projectName}
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
+          quality={95}
+          sizes="100vw"
+          unoptimized
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
-        {/* Property Name & Location */}
-        <div className="absolute inset-0 flex items-end justify-start pb-16 pl-12">
+        {/* Mobile Layout - Centered Vertical Stack */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center md:hidden px-4">
+          <div className="text-center space-y-3">
+            {/* Status Badge - Mobile Centered */}
+            <div className="flex justify-center">
+              <Badge className="bg-black text-white px-3 py-1 text-xs font-semibold">
+                {property.status}
+              </Badge>
+            </div>
+
+            {/* Property Name - Mobile Centered */}
+            <h1
+              className="text-xl font-black leading-tight text-white"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              {property.projectName}
+            </h1>
+
+            {/* Location - Mobile Centered */}
+            <div className="flex items-center justify-center gap-2">
+              <MapPin className="w-4 h-4 text-[#CBB27A]" />
+              <p
+                className="text-sm font-bold text-[#CBB27A]"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                {property.location}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Original Position */}
+        <div className="absolute inset-0 hidden md:flex items-end justify-start pb-8 sm:pb-12 md:pb-16 pl-4 md:pl-12">
           <div className="max-w-5xl">
-            <div className="flex items-center gap-4">
+            {/* Desktop Status Badge */}
+            <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-white" />
               </div>
@@ -167,16 +265,20 @@ export default function PropertyPage() {
                 {property.status}
               </Badge>
             </div>
+
+            {/* Property Name */}
             <h1
-              className="text-7xl md:text-8xl font-black leading-tight text-white"
+              className="text-3xl lg:text-5xl xl:text-6xl font-black leading-tight text-white mb-6"
               style={{ fontFamily: "Poppins, sans-serif" }}
             >
               {property.projectName}
             </h1>
+
+            {/* Location */}
             <div className="flex items-center gap-3 mb-8">
               <MapPin className="w-6 h-6 text-[#CBB27A]" />
               <p
-                className="text-2xl md:text-3xl font-bold text-[#CBB27A]"
+                className="text-sm lg:text-lg xl:text-xl font-bold text-[#CBB27A]"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 {property.location}
@@ -187,16 +289,16 @@ export default function PropertyPage() {
 
         {/* Data Strip */}
         <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-12 py-4">
-            <div className="flex items-center justify-center">
-              <div className="flex items-center gap-8 text-white">
+          <div className="max-w-7xl mx-auto px-4 md:px-12 py-3 md:py-4">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-white">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
                     <Calendar className="w-4 h-4 text-[#CBB27A]" />
                   </div>
                   <div>
                     <p className="text-xs text-white/70">Possession</p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-xs sm:text-sm font-semibold text-white">
                       {property.possessionDate}
                     </p>
                   </div>
@@ -208,7 +310,7 @@ export default function PropertyPage() {
                   </div>
                   <div>
                     <p className="text-xs text-white/70">Developer</p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-xs sm:text-sm font-semibold text-white">
                       {property.developer}
                     </p>
                   </div>
@@ -220,7 +322,7 @@ export default function PropertyPage() {
                   </div>
                   <div>
                     <p className="text-xs text-white/70">RERA ID</p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-xs sm:text-sm font-semibold text-white">
                       {property.reraId}
                     </p>
                   </div>
@@ -233,11 +335,11 @@ export default function PropertyPage() {
 
       {/* Main Content Layout */}
       <main>
-        <div className="max-w-7xl mx-auto px-12 py-16">
-          <div className="grid lg:grid-cols-3 gap-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-12 py-8 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16">
             {/* Main Content Column (70%) */}
-            <div className="lg:col-span-2 space-y-20">
-              {/* Project Gallery */}
+            <div className="lg:col-span-2 space-y-12 md:space-y-20">
+              {/* Project Gallery - Slideshow */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -254,30 +356,133 @@ export default function PropertyPage() {
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {property.images.map((image, index) => (
+                {/* Modern Slideshow */}
+                <div
+                  className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl group"
+                  onMouseEnter={() => setIsSlideshowPaused(true)}
+                  onMouseLeave={() => setIsSlideshowPaused(false)}
+                >
+                  {/* Main Image Display */}
+                  <div className="relative w-full h-full">
                     <div
-                      key={index}
-                      className="relative aspect-square cursor-pointer group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
-                      onClick={() => {
-                        setModalImageIndex(index);
-                        setIsImageModalOpen(true);
-                      }}
+                      className="relative w-full h-full cursor-pointer"
+                      onClick={() => handleImageClick(currentSlide)}
                     >
                       <Image
-                        src={image}
-                        alt={`${property.projectName} - Image ${index + 1}`}
+                        src={property.images[currentSlide]}
+                        alt={`${property.projectName} - Image ${
+                          currentSlide + 1
+                        }`}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        className="object-cover transition-all duration-1000 ease-in-out hover:scale-105"
+                        priority
+                        quality={95}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform group-hover:scale-110 transition-transform duration-300">
-                          <Eye className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-12" />
-                        </div>
+                    </div>
+
+                    {/* Gradient Overlay - pointer-events-none to allow clicks through */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+
+                    {/* Image Counter */}
+                    <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 pointer-events-none">
+                      <span className="text-white text-sm font-semibold">
+                        {currentSlide + 1} / {property.images.length}
+                      </span>
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        prevSlide();
+                      }}
+                      className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm rounded-full p-4 text-white hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        nextSlide();
+                      }}
+                      className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm rounded-full p-4 text-white hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+
+                    {/* Click to Zoom Indicator */}
+                    <div className="absolute bottom-6 left-6 bg-black/50 backdrop-blur-sm rounded-full px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <Eye className="w-3 h-3 text-white" />
+                        <span className="text-white text-xs font-medium">
+                          Click to zoom
+                        </span>
                       </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Bullet Point Navigation with Hover Tooltips */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <div className="flex justify-center gap-4 pb-2">
+                      {property.images.map((image, index) => (
+                        <div key={index} className="relative">
+                          <button
+                            onClick={() => setCurrentSlide(index)}
+                            onMouseEnter={() => setHoveredThumbnail(index)}
+                            onMouseLeave={() => setHoveredThumbnail(null)}
+                            className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
+                              index === currentSlide
+                                ? "bg-[#CBB27A] scale-125 shadow-lg"
+                                : "bg-white/60 hover:bg-white/80 hover:scale-110"
+                            }`}
+                            aria-label={`Go to slide ${index + 1}`}
+                          />
+
+                          {/* Hover Tooltip Preview */}
+                          {hoveredThumbnail === index && (
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 z-50">
+                              {/* Tooltip Arrow */}
+                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-white"></div>
+
+                              {/* Tooltip Content */}
+                              <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
+                                <div className="relative w-48 h-32">
+                                  <Image
+                                    src={image}
+                                    alt={`Preview ${index + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="192px"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                                  {/* Image Info */}
+                                  <div className="absolute bottom-2 left-2 right-2">
+                                    <p className="text-white text-xs font-semibold mb-1">
+                                      {property.projectName}
+                                    </p>
+                                    <p className="text-white/80 text-xs">
+                                      Image {index + 1} of{" "}
+                                      {property.images.length}
+                                    </p>
+                                  </div>
+
+                                  {/* Click Indicator */}
+                                  <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
+                                    <Eye className="w-3 h-3 text-white" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </section>
 
