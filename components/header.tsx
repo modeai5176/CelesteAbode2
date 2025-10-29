@@ -37,7 +37,7 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center h-24">
+        <div className="flex items-center h-32 md:h-36">
           {/* Mobile Layout */}
           <div className="flex items-center justify-between w-full md:hidden">
             {/* Logo - Left on Mobile */}
@@ -45,10 +45,12 @@ export function Header() {
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
-                width={110}
-                height={110}
-                className=""
+                width={150}
+                height={150}
+                className="object-contain"
                 priority
+                quality={100}
+                unoptimized
               />
             </Link>
 
@@ -89,10 +91,12 @@ export function Header() {
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
-                width={110}
-                height={110}
-                className=""
+                width={160}
+                height={160}
+                className="object-contain"
                 priority
+                quality={100}
+                unoptimized
               />
             </Link>
 

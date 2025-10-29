@@ -20,7 +20,7 @@ const properties = [
     name: "FOREST WALK VILLAS",
     builder: "Renowned Group",
     address: "GDA Approved Location",
-    image: "/ForestWalk/LandingpageVILLA.jpeg",
+    image: "/ForestWalk/hero.avif",
     status: "Pre-Launch Offer",
   },
   {

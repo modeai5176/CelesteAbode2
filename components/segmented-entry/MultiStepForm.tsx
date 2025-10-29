@@ -16,7 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Chip, ChipGroup } from "./Chips";
 import { FormSubmissionData, sendFormSubmission } from "@/lib/email-service";
 import { UserIntent } from "@/lib/analytics";
-import { ChevronLeft, ChevronRight, Mail, Phone, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, Mail, Phone, User, MessageCircle } from "lucide-react";
 
 interface MultiStepFormProps {
   isOpen: boolean;
@@ -34,19 +34,29 @@ const stepLabels = {
     subtitle: "Let's maximize your investment potential",
   },
   signature: {
-    title: "Luxury & Signature Residences",
+    title: "Signature Residences",
     subtitle: "Let's explore exclusive properties",
   },
 };
 
+const locationOptions = [
+  "Noida",
+  "Greater Noida West",
+  "Greater Noida",
+  "Yamuna Expressway",
+  "Gurgaon",
+  "New Delhi",
+  "Ghaziabad",
+];
+
 export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [otherLocation, setOtherLocation] = useState("");
   const [formData, setFormData] = useState<FormSubmissionData>({
     intent,
     step1: {},
-    step2: {},
-    step3: { contactInfo: { name: "", email: "", phone: "" } },
+    step3: { contactInfo: { name: "", email: "", phone: "", whatsapp: "" } },
   });
 
   // Ref for handling mobile keyboard scrolling
@@ -57,13 +67,13 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
     if (activeInputRef.current) {
       activeInputRef.current.scrollIntoView({
         behavior: 'smooth',
-        block: 'center', // Centers the input, giving space above the keyboard
+        block: 'center',
       });
     }
   };
 
   const handleNext = () => {
-    if (currentStep < 3) {
+    if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -75,19 +85,97 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
   };
 
   const handleSubmit = async () => {
+    // Validate required fields - Step 1
+    // Check location (either standard selection or "Other" field)
+    const hasLocation = (formData.step1.location && formData.step1.location.length > 0) || otherLocation.trim().length > 0;
+
+    if (intent === "live") {
+      if (!formData.step1.propertyType) {
+        alert("Please select the type of property.");
+        setCurrentStep(1);
+        return;
+      }
+      if (!hasLocation) {
+        alert("Please select at least one preferred location or enter a location in 'Others'.");
+        setCurrentStep(1);
+        return;
+      }
+      if (!formData.step1.buyingTimeline) {
+        alert("Please select when you are planning to buy.");
+        setCurrentStep(1);
+        return;
+      }
+    } else if (intent === "invest") {
+      if (!formData.step1.timeframe) {
+        alert("Please select the timeframe of returns.");
+        setCurrentStep(1);
+        return;
+      }
+      if (!formData.step1.expectedROI) {
+        alert("Please select expected ROI.");
+        setCurrentStep(1);
+        return;
+      }
+      if (!hasLocation) {
+        alert("Please select at least one preferred location or enter a location in 'Other'.");
+        setCurrentStep(1);
+        return;
+      }
+    } else if (intent === "signature") {
+      if (!formData.step1.propertyType) {
+        alert("Please select the type of property.");
+        setCurrentStep(1);
+        return;
+      }
+      if (!formData.step1.productCategory) {
+        alert("Please select the product category.");
+        setCurrentStep(1);
+        return;
+      }
+      if (!hasLocation) {
+        alert("Please select at least one preferred location or enter a location in 'Other'.");
+        setCurrentStep(1);
+        return;
+      }
+      if (!formData.step1.buyingTimeline) {
+        alert("Please select when you are planning to buy.");
+        setCurrentStep(1);
+        return;
+      }
+    }
+
+    // Validate required fields - Step 3 (Personal Information)
+    if (!formData.step3.contactInfo.name || 
+        !formData.step3.contactInfo.email || 
+        !formData.step3.contactInfo.phone ||
+        !formData.step3.contactInfo.whatsapp) {
+      alert("Please fill in all required personal information fields.");
+      setCurrentStep(2);
+      return;
+    }
+
     setIsSubmitting(true);
     try {
-      const success = await sendFormSubmission(formData);
+      // Add "Other" location if specified
+      const finalData = { ...formData };
+      if (otherLocation.trim().length > 0) {
+        const updatedLocations = finalData.step1.location ? [...finalData.step1.location] : [];
+        if (!updatedLocations.includes(otherLocation.trim())) {
+          updatedLocations.push(otherLocation.trim());
+        }
+        finalData.step1.location = updatedLocations;
+      }
+      const success = await sendFormSubmission(finalData);
       if (success) {
         alert("Thank you! We'll get back to you within 24 hours.");
         onClose();
         // Reset form
         setCurrentStep(1);
+        setOtherLocation("");
         setFormData({
           intent,
           step1: {},
-          step2: {},
-          step3: { contactInfo: { name: "", email: "", phone: "" } },
+          step3: { contactInfo: { name: "", email: "", phone: "", whatsapp: "" } },
         });
       } else {
         alert("Something went wrong. Please try again or contact us directly.");
@@ -101,99 +189,73 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
   };
 
   const renderStep1 = () => {
-    const locationOptions = {
-      live: [
-        "Noida Expressway",
-        "Yamuna Expressway",
-        "Gaur City",
-        "Greater Noida",
-        "Gurgaon",
-        "Delhi NCR",
-      ],
-      invest: [
-        "Noida Expressway",
-        "Yamuna Expressway",
-        "Gurgaon",
-        "Mumbai",
-        "Bangalore",
-        "Pune",
-      ],
-      signature: ["Gurgaon", "Mumbai", "Bangalore", "Delhi NCR", "Pune", "Goa"],
-    };
-
+    if (intent === "live") {
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
           <h3 className="text-lg font-semibold text-ink mb-2">
-            Step 1: Basic Requirements
+              Property Preferences
           </h3>
-          <p className="text-sm text-muted text-center">Help us understand your needs</p>
+            <p className="text-sm text-muted text-center">Help us understand your requirements</p>
         </div>
 
-        {/* Budget */}
+          {/* Budget Range - Pre-filled */}
         <div className="space-y-2">
           <Label htmlFor="budget" className="text-sm font-medium text-ink">
-            Budget Range
+              1. Budget Range
           </Label>
           <Input
-            ref={activeInputRef}
             id="budget"
-            placeholder="e.g., ₹1.2-1.5 Cr"
-            value={formData.step1.budget || ""}
-            onFocus={handleInputFocus}
-            onChange={(e) =>
-              setFormData((prev) => ({
-                ...prev,
-                step1: { ...prev.step1, budget: e.target.value },
-              }))
-            }
-            className="border-metal/20 focus:border-metal/40"
+              value="₹2 Crore and above"
+              disabled
+              className="border-metal/20 bg-muted/50 cursor-not-allowed"
           />
         </div>
 
-        {/* Possession Window */}
+          {/* Type of Property */}
         <div className="space-y-3">
           <Label className="text-sm font-medium text-ink">
-            When do you need possession?
+              2. Type of Property *
           </Label>
           <RadioGroup
-            value={formData.step1.possessionWindow || ""}
+              value={formData.step1.propertyType || ""}
             onValueChange={(value) =>
               setFormData((prev) => ({
                 ...prev,
-                step1: { ...prev.step1, possessionWindow: value },
+                  step1: { ...prev.step1, propertyType: value },
               }))
             }
-            className="grid grid-cols-3 gap-2"
+              className="grid grid-cols-1 gap-3"
           >
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="0-3" id="0-3" />
-              <Label htmlFor="0-3" className="text-xs">
-                0-3 months
+                <RadioGroupItem value="Ready to Move" id="ready-to-move" />
+                <Label htmlFor="ready-to-move" className="text-sm cursor-pointer">
+                  Ready to Move
               </Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="3-9" id="3-9" />
-              <Label htmlFor="3-9" className="text-xs">
-                3-9 months
+                <RadioGroupItem value="Under Construction" id="under-construction" />
+                <Label htmlFor="under-construction" className="text-sm cursor-pointer">
+                  Under Construction
               </Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="9-18" id="9-18" />
-              <Label htmlFor="9-18" className="text-xs">
-                9-18 months
+                <RadioGroupItem value="Pre-Launch" id="pre-launch" />
+                <Label htmlFor="pre-launch" className="text-sm cursor-pointer">
+                  Pre-Launch
               </Label>
             </div>
           </RadioGroup>
         </div>
 
-        {/* Preferred Locations */}
+          {/* Preferred Location */}
         <div className="space-y-3">
           <Label className="text-sm font-medium text-ink">
-            Preferred Locations
+              3. Preferred Location *
           </Label>
-          <ChipGroup label="Locations" className="gap-1">
-            {locationOptions[intent].map((location) => (
+            <div className="space-y-2">
+              <ChipGroup label="Locations" className="gap-2">
+                {locationOptions.map((location) => (
               <Chip
                 key={location}
                 variant="outline"
@@ -208,175 +270,422 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
                     step1: { ...prev.step1, location: updated },
                   }));
                 }}
-                className="text-xs px-2 py-1"
+                    className="text-xs px-3 py-1.5"
               >
                 {location}
               </Chip>
             ))}
           </ChipGroup>
+              <div className="mt-2">
+                <Input
+                  placeholder="Others: Enter location"
+                  value={otherLocation}
+                  onChange={(e) => setOtherLocation(e.target.value)}
+                  className="border-metal/20 focus:border-metal/40"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* When Are You Planning to Buy */}
+          <div className="space-y-3">
+            <Label className="text-sm font-medium text-ink">
+              4. When Are You Planning to Buy? *
+            </Label>
+            <RadioGroup
+              value={formData.step1.buyingTimeline || ""}
+              onValueChange={(value) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  step1: { ...prev.step1, buyingTimeline: value },
+                }))
+              }
+              className="grid grid-cols-1 gap-3"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Immediate" id="immediate" />
+                <Label htmlFor="immediate" className="text-sm cursor-pointer">
+                  Immediate
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Within 3 Months" id="within-3-months" />
+                <Label htmlFor="within-3-months" className="text-sm cursor-pointer">
+                  Within 3 Months
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="3 to 6 Months" id="3-to-6-months" />
+                <Label htmlFor="3-to-6-months" className="text-sm cursor-pointer">
+                  3 to 6 Months
+                </Label>
+              </div>
+            </RadioGroup>
         </div>
       </div>
     );
-  };
+    }
 
-  const renderStep2 = () => {
-    const configurationOptions = {
-      live: ["2 BHK", "3 BHK", "4 BHK", "Villa", "Penthouse"],
-      invest: ["2 BHK", "3 BHK", "4 BHK", "Villa", "Plot", "Commercial"],
-      signature: [
-        "3 BHK",
-        "4 BHK",
-        "Villa",
-        "Penthouse",
-        "Duplex",
-        "Penthouses",
-      ],
-    };
-
-    const priorityOptions = {
-      live: [
-        "Commute time",
-        "School proximity",
-        "Hospital access",
-        "Shopping centers",
-        "Parks & recreation",
-        "Public transport",
-      ],
-      invest: [
-        "ROI potential",
-        "Location growth",
-        "Developer reputation",
-        "Rental yield",
-        "Exit liquidity",
-        "Market trends",
-      ],
-      signature: [
-        "Brand value",
-        "Exclusivity",
-        "Amenities",
-        "Privacy",
-        "Security",
-        "Lifestyle",
-      ],
-    };
-
+    if (intent === "invest") {
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
           <h3 className="text-lg font-semibold text-ink mb-2">
-            Step 2: Specific Preferences
+              Investment Preferences
           </h3>
-          <p className="text-sm text-muted text-center">
-            Tell us more about your requirements
-          </p>
+            <p className="text-sm text-muted text-center">Help us understand your investment goals</p>
+          </div>
+
+          {/* Budget Range - Pre-filled */}
+          <div className="space-y-2">
+            <Label htmlFor="budget" className="text-sm font-medium text-ink">
+              1. Budget Range
+            </Label>
+            <Input
+              id="budget"
+              value="₹25 Lakhs & above"
+              disabled
+              className="border-metal/20 bg-muted/50 cursor-not-allowed"
+            />
+          </div>
+
+          {/* Timeframe of Returns */}
+          <div className="space-y-3">
+            <Label className="text-sm font-medium text-ink">
+              2. Timeframe of Returns *
+            </Label>
+            <RadioGroup
+              value={formData.step1.timeframe || ""}
+              onValueChange={(value) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  step1: { ...prev.step1, timeframe: value },
+                }))
+              }
+              className="grid grid-cols-1 gap-3"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="1 Year" id="1-year" />
+                <Label htmlFor="1-year" className="text-sm cursor-pointer">
+                  1 Year
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="2 Years" id="2-years" />
+                <Label htmlFor="2-years" className="text-sm cursor-pointer">
+                  2 Years
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="3 Years" id="3-years" />
+                <Label htmlFor="3-years" className="text-sm cursor-pointer">
+                  3 Years
+                </Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          {/* Expected ROI */}
+          <div className="space-y-3">
+            <Label className="text-sm font-medium text-ink">
+              3. Expected ROI *
+            </Label>
+            <RadioGroup
+              value={formData.step1.expectedROI || ""}
+              onValueChange={(value) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  step1: { ...prev.step1, expectedROI: value },
+                }))
+              }
+              className="grid grid-cols-1 gap-3"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="15%" id="roi-15" />
+                <Label htmlFor="roi-15" className="text-sm cursor-pointer">
+                  15%
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="20%" id="roi-20" />
+                <Label htmlFor="roi-20" className="text-sm cursor-pointer">
+                  20%
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="25%" id="roi-25" />
+                <Label htmlFor="roi-25" className="text-sm cursor-pointer">
+                  25%
+                </Label>
+              </div>
+            </RadioGroup>
         </div>
 
-        {/* Configuration */}
+          {/* Preferred Location */}
         <div className="space-y-3">
           <Label className="text-sm font-medium text-ink">
-            Property Configuration
+              4. Preferred Location *
           </Label>
-          <ChipGroup label="Configuration" className="gap-1">
-            {configurationOptions[intent].map((config) => (
+            <div className="space-y-2">
+              <ChipGroup label="Locations" className="gap-2">
+                {locationOptions.map((location) => (
               <Chip
-                key={config}
+                    key={location}
                 variant="outline"
-                selected={formData.step2.configuration?.includes(config)}
+                    selected={formData.step1.location?.includes(location)}
                 onClick={() => {
-                  const current = formData.step2.configuration || [];
-                  const updated = current.includes(config)
-                    ? current.filter((c) => c !== config)
-                    : [...current, config];
+                      const current = formData.step1.location || [];
+                      const updated = current.includes(location)
+                        ? current.filter((l) => l !== location)
+                        : [...current, location];
                   setFormData((prev) => ({
                     ...prev,
-                    step2: { ...prev.step2, configuration: updated },
+                        step1: { ...prev.step1, location: updated },
                   }));
                 }}
-                className="text-xs px-2 py-1"
+                    className="text-xs px-3 py-1.5"
               >
-                {config}
+                    {location}
               </Chip>
             ))}
           </ChipGroup>
+              <div className="mt-2">
+                <Input
+                  placeholder="Other: Enter location"
+                  value={otherLocation}
+                  onChange={(e) => setOtherLocation(e.target.value)}
+                  className="border-metal/20 focus:border-metal/40"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (intent === "signature") {
+      return (
+        <div className="space-y-6">
+          <div className="text-center mb-6">
+            <h3 className="text-lg font-semibold text-ink mb-2">
+              Property Preferences
+            </h3>
+            <p className="text-sm text-muted text-center">Help us understand your luxury requirements</p>
         </div>
 
-        {/* Timeline */}
+          {/* Budget Preference - Pre-filled */}
         <div className="space-y-2">
-          <Label htmlFor="timeline" className="text-sm font-medium text-ink">
-            Investment Timeline
+            <Label htmlFor="budget" className="text-sm font-medium text-ink">
+              1. Budget Preference
           </Label>
           <Input
-            id="timeline"
-            placeholder="e.g., 3-5 years"
-            value={formData.step2.timeline || ""}
-            onChange={(e) =>
+              id="budget"
+              value="₹5 Crore & above"
+              disabled
+              className="border-metal/20 bg-muted/50 cursor-not-allowed"
+            />
+          </div>
+
+          {/* Type of Property */}
+          <div className="space-y-3">
+            <Label className="text-sm font-medium text-ink">
+              2. Type of Property *
+            </Label>
+            <RadioGroup
+              value={formData.step1.propertyType || ""}
+              onValueChange={(value) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  step1: { ...prev.step1, propertyType: value },
+                }))
+              }
+              className="grid grid-cols-1 gap-3"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Ready to Move" id="sig-ready-to-move" />
+                <Label htmlFor="sig-ready-to-move" className="text-sm cursor-pointer">
+                  Ready to Move
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Under Construction" id="sig-under-construction" />
+                <Label htmlFor="sig-under-construction" className="text-sm cursor-pointer">
+                  Under Construction
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Pre-Launch" id="sig-pre-launch" />
+                <Label htmlFor="sig-pre-launch" className="text-sm cursor-pointer">
+                  Pre-Launch
+                </Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          {/* Product Category */}
+          <div className="space-y-3">
+            <Label className="text-sm font-medium text-ink">
+              3. Product Category *
+            </Label>
+            <RadioGroup
+              value={formData.step1.productCategory || ""}
+              onValueChange={(value) =>
               setFormData((prev) => ({
                 ...prev,
-                step2: { ...prev.step2, timeline: e.target.value },
-              }))
-            }
-            className="border-metal/20 focus:border-metal/40"
+                  step1: { ...prev.step1, productCategory: value },
+                }))
+              }
+              className="grid grid-cols-1 gap-3"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Flat" id="flat" />
+                <Label htmlFor="flat" className="text-sm cursor-pointer">
+                  Flat
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Villa" id="villa" />
+                <Label htmlFor="villa" className="text-sm cursor-pointer">
+                  Villa
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Penthouse" id="penthouse" />
+                <Label htmlFor="penthouse" className="text-sm cursor-pointer">
+                  Penthouse
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Farm House" id="farm-house" />
+                <Label htmlFor="farm-house" className="text-sm cursor-pointer">
+                  Farm House
+                </Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          {/* Area (Size) of Property - Pre-filled */}
+          <div className="space-y-2">
+            <Label htmlFor="area" className="text-sm font-medium text-ink">
+              4. Area (Size) of Property
+            </Label>
+            <Input
+              id="area"
+              value="3000 sq. ft & above"
+              disabled
+              className="border-metal/20 bg-muted/50 cursor-not-allowed"
           />
         </div>
 
-        {/* Priorities */}
+          {/* Preferred Location */}
         <div className="space-y-3">
           <Label className="text-sm font-medium text-ink">
-            What matters most to you?
+              5. Preferred Location *
           </Label>
-          <ChipGroup label="Priorities" className="gap-1">
-            {priorityOptions[intent].map((priority) => (
+            <div className="space-y-2">
+              <ChipGroup label="Locations" className="gap-2">
+                {locationOptions.map((location) => (
               <Chip
-                key={priority}
+                    key={location}
                 variant="outline"
-                selected={formData.step2.priorities?.includes(priority)}
+                    selected={formData.step1.location?.includes(location)}
                 onClick={() => {
-                  const current = formData.step2.priorities || [];
-                  const updated = current.includes(priority)
-                    ? current.filter((p) => p !== priority)
-                    : [...current, priority];
+                      const current = formData.step1.location || [];
+                      const updated = current.includes(location)
+                        ? current.filter((l) => l !== location)
+                        : [...current, location];
                   setFormData((prev) => ({
                     ...prev,
-                    step2: { ...prev.step2, priorities: updated },
+                        step1: { ...prev.step1, location: updated },
                   }));
                 }}
-                className="text-xs px-2 py-1"
+                    className="text-xs px-3 py-1.5"
               >
-                {priority}
+                    {location}
               </Chip>
             ))}
           </ChipGroup>
+              <div className="mt-2">
+                <Input
+                  placeholder="Other: Enter location"
+                  value={otherLocation}
+                  onChange={(e) => setOtherLocation(e.target.value)}
+                  className="border-metal/20 focus:border-metal/40"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* When Are You Planning to Buy */}
+          <div className="space-y-3">
+            <Label className="text-sm font-medium text-ink">
+              6. When Are You Planning to Buy? *
+            </Label>
+            <RadioGroup
+              value={formData.step1.buyingTimeline || ""}
+              onValueChange={(value) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  step1: { ...prev.step1, buyingTimeline: value },
+                }))
+              }
+              className="grid grid-cols-1 gap-3"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Immediate" id="sig-immediate" />
+                <Label htmlFor="sig-immediate" className="text-sm cursor-pointer">
+                  Immediate
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Within 3 Months" id="sig-within-3-months" />
+                <Label htmlFor="sig-within-3-months" className="text-sm cursor-pointer">
+                  Within 3 Months
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="3 to 6 Months" id="sig-3-to-6-months" />
+                <Label htmlFor="sig-3-to-6-months" className="text-sm cursor-pointer">
+                  3 to 6 Months
+                </Label>
+              </div>
+            </RadioGroup>
         </div>
       </div>
     );
+    }
   };
 
-  const renderStep3 = () => {
+  const renderStep2 = () => {
+    const personalInfoLabel = intent === "live" 
+      ? "Personal Information" 
+      : "Personal Details";
+
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
           <h3 className="text-lg font-semibold text-ink mb-2">
-            Step 3: Contact Information
+            {personalInfoLabel}
           </h3>
           <p className="text-sm text-muted text-center">
             We'll get back to you within 24 hours
           </p>
         </div>
 
-        {/* Contact Form */}
-        <div className="space-y-4">
+        {/* Full Name */}
           <div className="space-y-2">
             <Label
               htmlFor="name"
               className="text-sm font-medium text-ink flex items-center gap-2"
             >
               <User className="w-4 h-4" />
-              Full Name *
+            {intent === "live" ? "5. Full Name *" : "1. Full Name *"}
             </Label>
             <Input
               id="name"
               placeholder="Enter your full name"
               value={formData.step3.contactInfo.name}
+            onFocus={handleInputFocus}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -394,21 +703,85 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             />
           </div>
 
+        {/* Mobile Number */}
+        <div className="space-y-2">
+          <Label
+            htmlFor="mobile"
+            className="text-sm font-medium text-ink flex items-center gap-2"
+          >
+            <Phone className="w-4 h-4" />
+            {intent === "live" ? "6. Mobile Number *" : "2. Mobile No. *"}
+          </Label>
+          <Input
+            id="mobile"
+            type="tel"
+            placeholder="Enter your mobile number"
+            value={formData.step3.contactInfo.phone}
+            onFocus={handleInputFocus}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                step3: {
+                  ...prev.step3,
+                  contactInfo: {
+                    ...prev.step3.contactInfo,
+                    phone: e.target.value,
+                  },
+                },
+              }))
+            }
+            className="border-metal/20 focus:border-metal/40"
+            required
+          />
+        </div>
+
+        {/* WhatsApp Number */}
+        <div className="space-y-2">
+          <Label
+            htmlFor="whatsapp"
+            className="text-sm font-medium text-ink flex items-center gap-2"
+          >
+            <MessageCircle className="w-4 h-4" />
+            {intent === "live" ? "7. WhatsApp Number *" : "3. WhatsApp No. *"}
+          </Label>
+          <Input
+            id="whatsapp"
+            type="tel"
+            placeholder="Enter your WhatsApp number"
+            value={formData.step3.contactInfo.whatsapp || ""}
+            onFocus={handleInputFocus}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                step3: {
+                  ...prev.step3,
+                  contactInfo: {
+                    ...prev.step3.contactInfo,
+                    whatsapp: e.target.value,
+                  },
+                },
+              }))
+            }
+            className="border-metal/20 focus:border-metal/40"
+            required
+          />
+        </div>
+
+        {/* Email Address */}
           <div className="space-y-2">
             <Label
               htmlFor="email"
               className="text-sm font-medium text-ink flex items-center gap-2"
             >
               <Mail className="w-4 h-4" />
-              Email Address *
+            {intent === "live" ? "8. Email Address *" : "4. Email Address *"}
             </Label>
-            <Input
-              ref={activeInputRef}
-              id="email"
-              type="email"
-              placeholder="Enter your email address"
-              value={formData.step3.contactInfo.email}
-              onFocus={handleInputFocus}
+          <Input
+            id="email"
+            type="email"
+            placeholder="Enter your email address"
+            value={formData.step3.contactInfo.email}
+            onFocus={handleInputFocus}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -426,54 +799,30 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             />
           </div>
 
+        {/* Additional Comments/Remarks */}
           <div className="space-y-2">
-            <Label
-              htmlFor="phone"
-              className="text-sm font-medium text-ink flex items-center gap-2"
-            >
-              <Phone className="w-4 h-4" />
-              Phone Number *
+          <Label htmlFor="comments" className="text-sm font-medium text-ink">
+            {intent === "live" 
+              ? "9. Additional Comments (Requirements) (Optional)"
+              : intent === "invest"
+              ? "5. Additional Remarks (Requirements, if any) (Optional)"
+              : "5. Additional Remarks (Requirements, if any) (Optional)"}
             </Label>
-            <Input
-              ref={activeInputRef}
-              id="phone"
-              placeholder="Enter your phone number"
-              value={formData.step3.contactInfo.phone}
+          <Textarea
+            id="comments"
+            placeholder={intent === "live"
+              ? "Any specific requirements or questions..."
+              : "Any specific requirements or questions..."}
+            value={formData.step3.additionalNotes || ""}
               onFocus={handleInputFocus}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  step3: {
-                    ...prev.step3,
-                    contactInfo: {
-                      ...prev.step3.contactInfo,
-                      phone: e.target.value,
-                    },
-                  },
-                }))
-              }
-              className="border-metal/20 focus:border-metal/40"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="notes" className="text-sm font-medium text-ink">
-              Additional Notes (Optional)
-            </Label>
-            <Textarea
-              id="notes"
-              placeholder="Any specific requirements or questions..."
-              value={formData.step3.additionalNotes || ""}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
                   step3: { ...prev.step3, additionalNotes: e.target.value },
                 }))
               }
-              className="border-metal/20 focus:border-metal/40 min-h-[80px]"
-            />
-          </div>
+            className="border-metal/20 focus:border-metal/40 min-h-[100px]"
+          />
         </div>
       </div>
     );
@@ -492,15 +841,15 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
         {/* Progress Bar */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-muted">Step {currentStep} of 3</span>
+            <span className="text-xs text-muted">Step {currentStep} of 2</span>
             <span className="text-xs text-muted">
-              {Math.round((currentStep / 3) * 100)}%
+              {Math.round((currentStep / 2) * 100)}%
             </span>
           </div>
           <div className="w-full bg-muted/30 rounded-full h-2">
             <div
               className="bg-primary h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(currentStep / 3) * 100}%` }}
+              style={{ width: `${(currentStep / 2) * 100}%` }}
             />
           </div>
         </div>
@@ -517,7 +866,6 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
           >
             {currentStep === 1 && renderStep1()}
             {currentStep === 2 && renderStep2()}
-            {currentStep === 3 && renderStep3()}
           </motion.div>
         </AnimatePresence>
 
@@ -533,7 +881,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             Previous
           </Button>
 
-          {currentStep < 3 ? (
+          {currentStep < 2 ? (
             <Button
               onClick={handleNext}
               className="flex items-center gap-1 bg-primary hover:bg-primary/90 text-xs px-2 py-1.5 min-w-0 flex-shrink"
@@ -544,15 +892,10 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
           ) : (
             <Button
               onClick={handleSubmit}
-              disabled={
-                isSubmitting ||
-                !formData.step3.contactInfo.name ||
-                !formData.step3.contactInfo.email ||
-                !formData.step3.contactInfo.phone
-              }
+              disabled={isSubmitting}
               className="bg-primary hover:bg-primary/90 text-xs px-2 py-1.5 min-w-0 flex-shrink"
             >
-              {isSubmitting ? "Submitting..." : "Submit & Get Recommendations"}
+              {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
           )}
         </div>

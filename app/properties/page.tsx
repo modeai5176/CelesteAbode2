@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -365,7 +365,7 @@ export default function PropertiesPage() {
         location: "NH-24, Dasna, Ghaziabad",
         price: "₹2.85 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/ForestWalk/LandingpageVILLA.jpeg",
+        image: "/ForestWalk/hero.avif",
         beds: "4 BHK + 5T Villas",
         baths: "5 Baths",
         area: "3070-4200 sq.ft.",
@@ -749,7 +749,7 @@ export default function PropertiesPage() {
         location: "NH-24, Dasna, Ghaziabad",
         price: "₹2.85 Cr onwards",
         priceUnit: "Starting Price",
-        image: "/ForestWalk/LandingpageVILLA.jpeg",
+        image: "/ForestWalk/hero.avif",
         beds: "4 BHK + 5T Villas",
         baths: "5 Baths",
         area: "3070-4200 sq.ft.",
@@ -847,8 +847,22 @@ export default function PropertiesPage() {
   const currentProperties =
     propertiesData[activeSegment as keyof typeof propertiesData];
 
+  // Reset and clamp carousel position when properties change
+  useEffect(() => {
+    // Always ensure 3 cards are visible in viewport on desktop
+    // Max position = length - 3 (so the last position still shows 3 cards)
+    // On mobile, max = length - 1 (to show the last single card)
+    // For carousel, we prioritize desktop constraint to ensure 3 cards always visible
+    const maxPositionDesktop = Math.max(0, currentProperties.length - 3);
+    const maxPositionMobile = Math.max(0, currentProperties.length - 1);
+    // Use desktop constraint since carousel only shows when 3+ items
+    const maxPosition = currentProperties.length >= 3 ? maxPositionDesktop : maxPositionMobile;
+    setCarouselPosition((prev) => Math.min(prev, maxPosition));
+  }, [activeSegment, currentProperties.length]);
+
   const handleSegmentChange = (segmentId: string) => {
     setActiveSegment(segmentId);
+    setCarouselPosition(0); // Reset carousel position when segment changes
   };
 
   const handlePropertyClick = (property: any) => {
@@ -868,25 +882,46 @@ export default function PropertiesPage() {
   };
 
   const handleCarouselNext = () => {
-    setCarouselPosition((prev) =>
-      Math.min(prev + 1, Math.max(0, currentProperties.length - 1))
-    );
+    // Max position ensures 3 cards always visible on desktop
+    const maxPositionDesktop = Math.max(0, currentProperties.length - 3);
+    const maxPositionMobile = Math.max(0, currentProperties.length - 1);
+    // Use desktop constraint for carousel (since carousel only shows with 3+ items)
+    const maxPosition = currentProperties.length >= 3 ? maxPositionDesktop : maxPositionMobile;
+    setCarouselPosition((prev) => Math.min(prev + 1, maxPosition));
   };
 
   const shouldShowCarousel = currentProperties.length >= 3;
+  // Max position ensures 3 cards always visible in viewport on desktop
+  // Desktop: max = length - 3 (last position shows cards [length-3, length-2, length-1])
+  // Mobile: max = length - 1 (last position shows the last single card)
+  const maxPositionDesktop = Math.max(0, currentProperties.length - 3);
+  const maxPositionMobile = Math.max(0, currentProperties.length - 1);
+  // For carousel, prioritize desktop constraint to always show 3 cards
+  const maxPosition = currentProperties.length >= 3 ? maxPositionDesktop : maxPositionMobile;
   const canGoPrev = carouselPosition > 0;
-  const canGoNext = carouselPosition < currentProperties.length - 1;
+  const canGoNext = carouselPosition < maxPosition;
 
   return (
     <div className="min-h-screen bg-background">
+      <style dangerouslySetInnerHTML={{__html: `
+        .carousel-transform {
+          --translate-percent: calc(var(--carousel-position, 0) * 100%);
+          transform: translateX(calc(-1 * var(--translate-percent)));
+        }
+        @media (min-width: 768px) {
+          .carousel-transform {
+            --translate-percent: calc(var(--carousel-position, 0) * 33.333%);
+          }
+        }
+      `}} />
       <main className="pt-0">
         <Header />
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center bg-background pt-32">
+        <section className="relative min-h-screen flex items-center justify-center bg-background pt-36 md:pt-44 pb-8">
           <div className="max-w-7xl mx-auto px-6 w-full">
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden relative">
               {/* Full Container Image */}
-              <div className="relative h-[500px] lg:h-[650px]">
+              <div className="relative h-[480px] lg:h-[620px]">
                 <Image
                   src="/propertyhero.avif"
                   alt="Property Portfolio Hero"
@@ -1070,10 +1105,10 @@ export default function PropertiesPage() {
                     </button>
                   </div>
                   <div
-                    className="flex transition-transform duration-500 ease-in-out"
+                    className="flex transition-transform duration-500 ease-in-out carousel-transform"
                     style={{
-                      transform: `translateX(-${carouselPosition * 100}%)`,
-                    }}
+                      '--carousel-position': carouselPosition,
+                    } as React.CSSProperties & { '--carousel-position': number }}
                   >
                     {currentProperties.map((property, index) => (
                       <div
