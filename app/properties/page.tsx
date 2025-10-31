@@ -917,11 +917,11 @@ export default function PropertiesPage() {
       <main className="pt-0">
         <Header />
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center bg-background pt-36 md:pt-44 pb-8">
+        <section className="relative min-h-screen flex items-center justify-center bg-background pt-24">
           <div className="max-w-7xl mx-auto px-6 w-full">
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden relative">
               {/* Full Container Image */}
-              <div className="relative h-[480px] lg:h-[620px]">
+              <div className="relative h-[580px] lg:h-[620px]">
                 <Image
                   src="/propertyhero.avif"
                   alt="Property Portfolio Hero"

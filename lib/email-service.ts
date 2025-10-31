@@ -3,10 +3,16 @@ export interface FormSubmissionData {
   intent: "live" | "invest" | "signature"
   step1: {
     budget?: string
-    possessionWindow?: string
+    propertyType?: string // Ready to Move, Under Construction, Pre-Launch
+    productCategory?: string // Flat, Villa, Penthouse, Farm House (for signature)
+    area?: string // 3000 sq. ft & above (for signature)
     location?: string[]
+    buyingTimeline?: string // Immediate, Within 3 Months, 3 to 6 Months
+    timeframe?: string // 1 Year, 2 Years, 3 Years (for invest)
+    expectedROI?: string // 15%, 20%, 25% (for invest)
+    possessionWindow?: string
   }
-  step2: {
+  step2?: {
     configuration?: string[]
     timeline?: string
     priorities?: string[]
@@ -16,6 +22,7 @@ export interface FormSubmissionData {
       name: string
       email: string
       phone: string
+      whatsapp?: string
     }
     additionalNotes?: string
   }
@@ -70,21 +77,30 @@ function createEmailContent(data: FormSubmissionData): string {
         <p><strong>Name:</strong> ${data.step3.contactInfo.name}</p>
         <p><strong>Email:</strong> ${data.step3.contactInfo.email}</p>
         <p><strong>Phone:</strong> ${data.step3.contactInfo.phone}</p>
+        ${data.step3.contactInfo.whatsapp ? `<p><strong>WhatsApp:</strong> ${data.step3.contactInfo.whatsapp}</p>` : ''}
       </div>
 
       <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; margin: 20px 0;">
         <h3 style="color: #2B3035;">Step 1 - Basic Requirements</h3>
-        <p><strong>Budget:</strong> ${data.step1.budget || 'Not specified'}</p>
-        <p><strong>Possession Window:</strong> ${data.step1.possessionWindow || 'Not specified'}</p>
-        <p><strong>Preferred Locations:</strong> ${data.step1.location?.join(', ') || 'Not specified'}</p>
+        ${data.step1.budget ? `<p><strong>Budget:</strong> ${data.step1.budget}</p>` : ''}
+        ${data.step1.propertyType ? `<p><strong>Type of Property:</strong> ${data.step1.propertyType}</p>` : ''}
+        ${data.step1.productCategory ? `<p><strong>Product Category:</strong> ${data.step1.productCategory}</p>` : ''}
+        ${data.step1.area ? `<p><strong>Area (Size) of Property:</strong> ${data.step1.area}</p>` : ''}
+        ${data.step1.buyingTimeline ? `<p><strong>When Planning to Buy:</strong> ${data.step1.buyingTimeline}</p>` : ''}
+        ${data.step1.timeframe ? `<p><strong>Timeframe of Returns:</strong> ${data.step1.timeframe}</p>` : ''}
+        ${data.step1.expectedROI ? `<p><strong>Expected ROI:</strong> ${data.step1.expectedROI}</p>` : ''}
+        ${data.step1.location && data.step1.location.length > 0 ? `<p><strong>Preferred Locations:</strong> ${data.step1.location.join(', ')}</p>` : ''}
+        ${data.step1.possessionWindow ? `<p><strong>Possession Window:</strong> ${data.step1.possessionWindow}</p>` : ''}
       </div>
 
+      ${data.step2 ? `
       <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; margin: 20px 0;">
         <h3 style="color: #2B3035;">Step 2 - Specific Preferences</h3>
         <p><strong>Configuration:</strong> ${data.step2.configuration?.join(', ') || 'Not specified'}</p>
         <p><strong>Timeline:</strong> ${data.step2.timeline || 'Not specified'}</p>
         <p><strong>Priorities:</strong> ${data.step2.priorities?.join(', ') || 'Not specified'}</p>
       </div>
+      ` : ''}
 
       ${data.step3.additionalNotes ? `
         <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; margin: 20px 0;">

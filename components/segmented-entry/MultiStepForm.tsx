@@ -199,16 +199,22 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             <p className="text-sm text-muted text-center">Help us understand your requirements</p>
         </div>
 
-          {/* Budget Range - Pre-filled */}
+          {/* Budget Range */}
         <div className="space-y-2">
           <Label htmlFor="budget" className="text-sm font-medium text-ink">
               1. Budget Range
           </Label>
           <Input
             id="budget"
-              value="₹2 Crore and above"
-              disabled
-              className="border-metal/20 bg-muted/50 cursor-not-allowed"
+            placeholder="₹2 Crore and above"
+            value={formData.step1.budget || ""}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                step1: { ...prev.step1, budget: e.target.value },
+              }))
+            }
+            className="border-metal/20 focus:border-metal/40"
           />
         </div>
 
@@ -336,16 +342,22 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             <p className="text-sm text-muted text-center">Help us understand your investment goals</p>
           </div>
 
-          {/* Budget Range - Pre-filled */}
+          {/* Budget Range */}
           <div className="space-y-2">
             <Label htmlFor="budget" className="text-sm font-medium text-ink">
               1. Budget Range
             </Label>
             <Input
               id="budget"
-              value="₹25 Lakhs & above"
-              disabled
-              className="border-metal/20 bg-muted/50 cursor-not-allowed"
+              placeholder="₹25 Lakhs & above"
+              value={formData.step1.budget || ""}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  step1: { ...prev.step1, budget: e.target.value },
+                }))
+              }
+              className="border-metal/20 focus:border-metal/40"
             />
           </div>
 
@@ -473,18 +485,24 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             <p className="text-sm text-muted text-center">Help us understand your luxury requirements</p>
         </div>
 
-          {/* Budget Preference - Pre-filled */}
+          {/* Budget Preference */}
         <div className="space-y-2">
             <Label htmlFor="budget" className="text-sm font-medium text-ink">
               1. Budget Preference
           </Label>
           <Input
               id="budget"
-              value="₹5 Crore & above"
-              disabled
-              className="border-metal/20 bg-muted/50 cursor-not-allowed"
-            />
-          </div>
+              placeholder="₹5 Crore & above"
+              value={formData.step1.budget || ""}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                  step1: { ...prev.step1, budget: e.target.value },
+              }))
+            }
+            className="border-metal/20 focus:border-metal/40"
+          />
+        </div>
 
           {/* Type of Property */}
           <div className="space-y-3">
@@ -564,16 +582,22 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
             </RadioGroup>
           </div>
 
-          {/* Area (Size) of Property - Pre-filled */}
+          {/* Area (Size) of Property */}
           <div className="space-y-2">
             <Label htmlFor="area" className="text-sm font-medium text-ink">
               4. Area (Size) of Property
             </Label>
             <Input
               id="area"
-              value="3000 sq. ft & above"
-              disabled
-              className="border-metal/20 bg-muted/50 cursor-not-allowed"
+              placeholder="3000 sq. ft & above"
+              value={formData.step1.area || ""}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  step1: { ...prev.step1, area: e.target.value },
+                }))
+              }
+              className="border-metal/20 focus:border-metal/40"
           />
         </div>
 
@@ -776,12 +800,12 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
               <Mail className="w-4 h-4" />
             {intent === "live" ? "8. Email Address *" : "4. Email Address *"}
             </Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="Enter your email address"
-            value={formData.step3.contactInfo.email}
-            onFocus={handleInputFocus}
+            <Input
+              id="email"
+              type="email"
+              placeholder="Enter your email address"
+              value={formData.step3.contactInfo.email}
+              onFocus={handleInputFocus}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -822,7 +846,7 @@ export function MultiStepForm({ isOpen, onClose, intent }: MultiStepFormProps) {
                 }))
               }
             className="border-metal/20 focus:border-metal/40 min-h-[100px]"
-          />
+            />
         </div>
       </div>
     );

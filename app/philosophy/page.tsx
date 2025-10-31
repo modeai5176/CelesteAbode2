@@ -47,19 +47,19 @@ export default function PhilosophyPage() {
                   </div>
                 </div>
 
-                <div className="space-y-40">
+                <div className="space-y-16 md:space-y-32 lg:space-y-40">
                   {/* Pillar 1: Trust */}
-                  <div className="flex items-start gap-8">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 md:gap-8">
                     <div className="flex-shrink-0">
-                      <div className="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-3xl font-bold ring-2 ring-[#CBB27A] ring-offset-2">
+                      <div className="w-16 h-16 md:w-20 md:h-20 bg-primary text-white rounded-full flex items-center justify-center text-xl md:text-2xl lg:text-3xl font-bold ring-2 ring-[#CBB27A] ring-offset-2">
                         01
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-foreground mb-4">
+                      <h3 className="text-2xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4">
                         Trust
                       </h3>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                         Built on <strong>authentic guidance</strong> and
                         RERA-aligned diligence, ensuring every move is certified
                         and secure.
@@ -69,22 +69,22 @@ export default function PhilosophyPage() {
 
                   {/* Pillar 2: Transparency */}
                   <motion.div
-                    className="flex items-start gap-8"
+                    className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 md:gap-8"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ margin: "-200px 0px -200px 0px" }}
                   >
                     <div className="flex-shrink-0">
-                      <div className="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-3xl font-bold ring-2 ring-[#CBB27A] ring-offset-2">
+                      <div className="w-16 h-16 md:w-20 md:h-20 bg-primary text-white rounded-full flex items-center justify-center text-xl md:text-2xl lg:text-3xl font-bold ring-2 ring-[#CBB27A] ring-offset-2">
                         02
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-foreground mb-4">
+                      <h3 className="text-2xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4">
                         Transparency
                       </h3>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                         We replace guesswork with facts. Achieve transparency
                         through clear{" "}
                         <strong>ROI, absorption, and risk reports</strong>—the
@@ -95,22 +95,22 @@ export default function PhilosophyPage() {
 
                   {/* Pillar 3: Transformation */}
                   <motion.div
-                    className="flex items-start gap-8"
+                    className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 md:gap-8"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ margin: "-200px 0px -200px 0px" }}
                   >
                     <div className="flex-shrink-0">
-                      <div className="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-3xl font-bold ring-2 ring-[#CBB27A] ring-offset-2">
+                      <div className="w-16 h-16 md:w-20 md:h-20 bg-primary text-white rounded-full flex items-center justify-center text-xl md:text-2xl lg:text-3xl font-bold ring-2 ring-[#CBB27A] ring-offset-2">
                         03
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-foreground mb-4">
+                      <h3 className="text-2xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4">
                         Transformation
                       </h3>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                         Experience the effortless{" "}
                         <strong>transformation</strong> of your goals into
                         reality, integrating AI curation with{" "}
@@ -140,9 +140,9 @@ export default function PhilosophyPage() {
         </Section>
 
         {/* Beautiful tagline */}
-        <div className="py-8 flex justify-center">
+        <div className="py-6 md:py-8 flex justify-center px-4 sm:px-6">
           <div className="max-w-4xl text-center">
-            <p className="text-sm md:text-base text-muted-foreground/80 leading-relaxed font-light italic">
+            <p className="text-xs sm:text-sm md:text-base text-muted-foreground/80 leading-relaxed sm:leading-relaxed font-light italic px-2 sm:px-0">
               We seamlessly blend cutting-edge property technology and expert
               sales knowledge to secure your perfect, high-value home and
               investment future.

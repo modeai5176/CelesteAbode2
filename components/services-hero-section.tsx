@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export function ServicesHeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background pt-36 md:pt-44 pb-8">
+    <section className="relative min-h-screen flex items-center justify-center bg-background pt-24">
       <div className="max-w-7xl mx-auto px-6 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -15,7 +15,7 @@ export function ServicesHeroSection() {
           className="bg-white rounded-3xl shadow-2xl overflow-hidden relative"
         >
           {/* Full Container Image */}
-          <div className="relative h-[480px] lg:h-[620px]">
+          <div className="relative h-[580px] lg:h-[620px]">
             <Image
               src="/luxury-villa-with-garden-and-modern-design.avif"
               alt="Intelligent Property Advisory for Every Goal - Services"

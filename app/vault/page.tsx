@@ -450,7 +450,7 @@ export default function VaultPage() {
       <Header />
       <main className="pt-0">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center bg-background pt-36 md:pt-44 pb-8">
+        <section className="relative min-h-screen flex items-center justify-center bg-background pt-24">
           <div className="max-w-7xl mx-auto px-6 w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -459,7 +459,7 @@ export default function VaultPage() {
               className="bg-white rounded-3xl shadow-2xl overflow-hidden relative"
             >
               {/* Hero Image Background */}
-              <div className="relative h-[480px] lg:h-[620px]">
+              <div className="relative h-[580px] lg:h-[620px]">
                 <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
