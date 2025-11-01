@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Section } from "@/components/ui/section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Header } from "@/components/header";
@@ -460,14 +461,17 @@ export default function VaultPage() {
             >
               {/* Hero Image Background */}
               <div className="relative h-[580px] lg:h-[620px]">
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{
-                    backgroundImage: "url('/VAULTHERO.avif')",
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
-                </div>
+                <Image
+                  src="/vaulthero.avif"
+                  alt="Vault Hero"
+                  fill
+                  priority
+                  loading="eager"
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
                 {/* Left Aligned Text Overlay */}
                 <div className="absolute inset-0 flex items-end pb-16">
