@@ -12,12 +12,22 @@ Allow: /contact
 Allow: /vault
 Allow: /terms
 Allow: /privacy-policy
+Allow: /advisory-session
 
 # Allow property pages
 Allow: /properties/1
 Allow: /properties/2
 Allow: /properties/3
 Allow: /properties/4
+Allow: /properties/5
+Allow: /properties/6
+Allow: /properties/7
+Allow: /properties/8
+Allow: /properties/9
+Allow: /properties/10
+Allow: /properties/11
+Allow: /properties/12
+Allow: /properties/13
 
 # Allow static assets
 Allow: /_next/static/
@@ -34,9 +44,3 @@ Disallow: /private/
 
 # Crawl delay (optional - be respectful to servers)
 Crawl-delay: 1
-
-
-
-
-
-
