@@ -865,6 +865,18 @@ export default function PropertiesPage() {
     setCarouselPosition(0); // Reset carousel position when segment changes
   };
 
+  const handleExploreProperties = (segmentId: string, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card onClick from firing
+    handleSegmentChange(segmentId);
+    // Scroll to properties section after a short delay to allow segment change
+    setTimeout(() => {
+      const propertiesSection = document.getElementById('properties-section');
+      if (propertiesSection) {
+        propertiesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   const handlePropertyClick = (property: any) => {
     setSelectedProperty({
       title: property.title,
@@ -1030,9 +1042,12 @@ export default function PropertiesPage() {
                         {segment.description}
                       </p>
 
-                      <div className="flex items-center justify-center gap-2 text-primary font-medium transition-all duration-300 group-hover:gap-3 group-hover:text-primary/80">
+                      <div 
+                        onClick={(e) => handleExploreProperties(segment.id, e)}
+                        className="flex items-center justify-center gap-2 text-primary font-medium transition-all duration-300 cursor-pointer hover:gap-3 hover:scale-105 hover:text-primary/90 px-4 py-2 rounded-lg hover:bg-primary/10 group/button"
+                      >
                         <span>Explore Properties</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/button:translate-x-2" />
                       </div>
                     </CardContent>
                   </Card>
@@ -1043,7 +1058,7 @@ export default function PropertiesPage() {
         </section>
 
         {/* Active Segment Properties */}
-        <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
+        <section id="properties-section" className="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -1073,7 +1088,7 @@ export default function PropertiesPage() {
                 </button>
 
                 {/* Carousel Container */}
-                <div className="flex-1 relative overflow-hidden">
+                <div className="flex-1 relative overflow-hidden py-6">
                   {/* Mobile Navigation Arrows - Overlay on Cards */}
                   <div className="md:hidden absolute inset-0 z-10 pointer-events-none">
                     {/* Left Arrow */}

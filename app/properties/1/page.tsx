@@ -60,7 +60,6 @@ export default function PropertyPage() {
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
-  const [hoveredThumbnail, setHoveredThumbnail] = useState<number | null>(null);
 
   const property = {
     // Basic Project Information
@@ -482,154 +481,68 @@ export default function PropertyPage() {
                     </div>
                   </div>
 
-                  {/* Bullet Point Navigation with Hover Tooltips */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                    <div className="flex justify-center gap-4 pb-2">
-                      {property.images.map((image, index) => (
-                        <div key={index} className="relative">
+                  {/* Minimal Navigation - Only show current indicator */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <div className="flex justify-center gap-2 pb-2">
+                      {property.images.length <= 8 && property.images.map((image, index) => (
                           <button
+                          key={index}
                             onClick={() => setCurrentSlide(index)}
-                            onMouseEnter={() => setHoveredThumbnail(index)}
-                            onMouseLeave={() => setHoveredThumbnail(null)}
-                            className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
+                          className={`relative transition-all duration-300 ${
                               index === currentSlide
-                                ? "bg-[#CBB27A] scale-125 shadow-lg"
-                                : "bg-white/60 hover:bg-white/80 hover:scale-110"
+                              ? "w-8 h-2 bg-[#CBB27A] rounded-full shadow-lg"
+                              : "w-2 h-2 bg-white/40 rounded-full hover:bg-white/60"
                             }`}
                             aria-label={`Go to slide ${index + 1}`}
                           />
-
-                          {/* Hover Tooltip Preview */}
-                          {hoveredThumbnail === index && (
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 z-50">
-                              {/* Tooltip Arrow */}
-                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-white"></div>
-
-                              {/* Tooltip Content */}
-                              <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
-                                <div className="relative w-48 h-32">
-                                  <Image
-                                    src={image}
-                                    alt={`Preview ${index + 1}`}
-                                    fill
-                                    className="object-cover"
-                                    sizes="192px"
-                                  />
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                                  {/* Image Info */}
-                                  <div className="absolute bottom-2 left-2 right-2">
-                                    <p className="text-white text-xs font-semibold mb-1">
-                                      {property.projectName}
-                                    </p>
-                                    <p className="text-white/80 text-xs">
-                                      Image {index + 1} of{" "}
-                                      {property.images.length}
-                                    </p>
-                                  </div>
-
-                                  {/* Click Indicator */}
-                                  <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
-                                    <Eye className="w-3 h-3 text-white" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
                       ))}
                     </div>
                   </div>
                 </div>
               </section>
 
-              {/* Location Advantage */}
+              {/* Overview Section - Concise & Beautiful */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-[#CBB27A]" />
+                      <Eye className="w-6 h-6 text-[#CBB27A]" />
                     </div>
                     <h2
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      Location Advantage
+                      About Arihant Abode
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Connectivity Card */}
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Car className="w-6 h-6 text-black" />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Connectivity
-                      </h3>
-                    </div>
-                    <div className="space-y-4">
-                      {property.connectivity.map((item, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200"
-                        >
-                          <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                            <Car className="w-4 h-4 text-[#CBB27A]" />
-                          </div>
-                          <span
-                            className="text-gray-700 font-medium"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {item}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Landmarks Card */}
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-black" />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Nearby Landmarks
-                      </h3>
-                    </div>
-                    <div className="space-y-4">
-                      {property.landmarks.map((item, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200"
-                        >
-                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <MapPin className="w-4 h-4 text-blue-500" />
-                          </div>
-                          <span
-                            className="text-gray-700 font-medium"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {item}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                {/* Single Beautiful Overview Card */}
+                <div className="relative bg-gradient-to-br from-white via-[#CBB27A]/5 to-white rounded-3xl shadow-2xl p-12 md:p-20 border border-[#CBB27A]/20 overflow-hidden">
+                  {/* Decorative Background Elements */}
+                  <div className="absolute top-0 right-0 w-72 h-72 bg-[#CBB27A]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                  <div className="absolute bottom-0 left-0 w-56 h-56 bg-[#CBB27A]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                  <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#CBB27A]/3 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <p
+                      className="text-base md:text-lg leading-relaxed text-gray-800 text-center max-w-4xl mx-auto"
+                      style={{ 
+                        fontFamily: "Poppins, sans-serif",
+                        fontWeight: 400,
+                        letterSpacing: "-0.01em",
+                        lineHeight: "1.8"
+                      }}
+                    >
+                      Nestled in the prime <span className="font-semibold text-[#CBB27A]">Sector 10, Greater Noida West</span>, Arihant Abode masterfully blends <span className="font-semibold">luxurious living with unparalleled connectivity</span>—where the Noida Expressway and Metro are moments away, and Gaur City Mall is at your doorstep. Each residence celebrates <span className="font-semibold">spacious 11-foot ceilings, cross-ventilation, and premium finishes</span>, while <span className="font-semibold">Arihant Group's three-decade legacy</span> of excellence and RERA assurance ensures a home that's both an elegant sanctuary and a wise investment for generations.
+                    </p>
                   </div>
                 </div>
               </section>
 
-              {/* Amenities & Lifestyle */}
+              {/* Amenities & Lifestyle - Redesigned with Big Icons */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -640,247 +553,44 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      Amenities & Lifestyle
+                      World-Class Amenities
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                  {Object.entries(property.amenities).map(
-                    ([category, items]) => {
-                      const categoryIcons = {
-                        sports: Dumbbell,
-                        wellness: Heart,
-                        recreation: Music,
-                        kids: Gamepad2,
-                        unique: Crown,
-                      };
-                      const IconComponent =
-                        categoryIcons[category as keyof typeof categoryIcons] ||
-                        Sparkles;
-
+                {/* Selected Amenities - Big Icons */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                  {[
+                    { name: "Elevated Swimming Pool", icon: Droplets },
+                    { name: "Kids Zone", icon: Heart },
+                    { name: "Gymnasium", icon: Dumbbell },
+                    { name: "2.5-acre Central Green", icon: TreePine },
+                    { name: "Wellness Facilities", icon: Heart },
+                    { name: "24/7 Security", icon: Shield },
+                    { name: "Tennis Courts", icon: Gamepad2 },
+                    { name: "Party Hall", icon: Coffee },
+                  ].map((amenity, index) => {
+                    const IconComponent = amenity.icon;
                       return (
-                        <div
-                          key={category}
-                          className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                        >
-                          <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                              <IconComponent className="w-5 h-5 text-black" />
-                            </div>
-                            <h3
-                              className="text-xl font-bold text-gray-900 capitalize"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
-                              {category.replace(/([A-Z])/g, " $1").trim()}
-                            </h3>
-                          </div>
-                          <div className="space-y-3">
-                            {items.map((item, index) => (
                               <div
                                 key={index}
-                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200"
-                              >
-                                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                <span
-                                  className="text-sm text-gray-700 font-medium"
-                                  style={{ fontFamily: "Poppins, sans-serif" }}
-                                >
-                                  {item}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-              </section>
-
-              {/* Specifications */}
-              <section>
-                <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-[#CBB27A]" />
-                    </div>
-                    <h2
-                      className="text-4xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      Specifications
-                    </h2>
-                  </div>
-                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  {Object.entries(property.specifications).map(
-                    ([key, value]) => {
-                      const specIcons = {
-                        flooring: Square,
-                        kitchen: Coffee,
-                        bathrooms: Droplets,
-                        electricals: Zap,
-                        balconies: Wind,
-                        safety: Shield,
-                      };
-                      const IconComponent =
-                        specIcons[key as keyof typeof specIcons] || Shield;
-
-                      return (
-                        <div
-                          key={key}
-                          className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300"
-                        >
-                          <div className="flex items-center gap-4 mb-4">
-                            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                              <IconComponent className="w-5 h-5 text-black" />
-                            </div>
-                            <h4
-                              className="text-xl font-bold text-gray-900 capitalize"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
-                              {key.replace(/([A-Z])/g, " $1").trim()}
-                            </h4>
+                        className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 group"
+                      >
+                        <div className="flex flex-col items-center text-center">
+                          <div className="w-20 h-20 bg-[#CBB27A]/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#CBB27A]/20 group-hover:scale-110 transition-all duration-300">
+                            <IconComponent className="w-10 h-10 text-[#CBB27A] group-hover:scale-110 transition-transform duration-300" />
                           </div>
                           <p
-                            className="text-gray-700 leading-relaxed"
+                            className="text-sm font-semibold text-gray-900 leading-tight"
                             style={{ fontFamily: "Poppins, sans-serif" }}
                           >
-                            {value}
+                            {amenity.name}
                           </p>
+                        </div>
                         </div>
                       );
-                    }
-                  )}
-                </div>
-              </section>
-
-              {/* Developer Credentials */}
-              <section>
-                <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <Award className="w-6 h-6 text-[#CBB27A]" />
-                    </div>
-                    <h2
-                      className="text-4xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      Developer Credentials
-                    </h2>
-                  </div>
-                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Company Overview Card */}
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Building2 className="w-6 h-6 text-black" />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Company Overview
-                      </h3>
-                    </div>
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                        <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                          <Clock className="w-4 h-4 text-[#CBB27A]" />
-                        </div>
-                        <div>
-                          <p
-                            className="text-sm text-gray-600 mb-1"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            Experience
-                          </p>
-                          <p
-                            className="font-semibold text-gray-900"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {property.developerInfo.experience}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                        <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                          <Users className="w-4 h-4 text-[#CBB27A]" />
-                        </div>
-                        <div>
-                          <p
-                            className="text-sm text-gray-600 mb-1"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            Delivered
-                          </p>
-                          <p
-                            className="font-semibold text-gray-900"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {property.developerInfo.delivered}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                        <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                          <Shield className="w-4 h-4 text-[#CBB27A]" />
-                        </div>
-                        <div>
-                          <p
-                            className="text-sm text-gray-600 mb-1"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            Registration
-                          </p>
-                          <p
-                            className="font-semibold text-gray-900"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {property.developerInfo.families}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Notable Projects Card */}
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Star className="w-6 h-6 text-black" />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Notable Projects
-                      </h3>
-                    </div>
-                    <div className="space-y-4">
-                      {property.developerInfo.projects.map((project, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200"
-                        >
-                          <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                          <span
-                            className="text-gray-700 font-medium"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {project}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  })}
                 </div>
               </section>
             </div>
@@ -888,123 +598,88 @@ export default function PropertyPage() {
             {/* Persistent CTA Column (30%) */}
             <div className="lg:col-span-1">
               <div className="sticky top-8">
-                {/* Pricing Card */}
+                {/* Property Details CTA Card */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 mb-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <TrendingUp className="w-5 h-5 text-[#CBB27A]" />
+                      <Home className="w-5 h-5 text-[#CBB27A]" />
                     </div>
                     <h3
                       className="text-xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      Pricing & Payment
+                      Property Details
                     </h3>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="bg-gradient-to-r from-[#CBB27A]/10 to-[#CBB27A]/5 p-4 rounded-xl border border-[#CBB27A]/20">
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className="w-6 h-6 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
-                          <TrendingUp className="w-3 h-3 text-[#CBB27A]" />
-                        </div>
+                  <div className="space-y-5">
+                    {/* Type */}
+                    <div className="pb-5 border-b border-gray-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Square className="w-4 h-4 text-[#CBB27A]" />
                         <p
-                          className="text-xs text-gray-600 font-semibold"
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
                           style={{ fontFamily: "Poppins, sans-serif" }}
                         >
-                          Starting Price
+                          Type
                         </p>
                       </div>
                       <p
-                        className="text-2xl font-bold text-[#CBB27A]"
+                        className="text-lg font-bold text-gray-900"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        {property.pricing.startingPrice}
+                        {property.status}
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <div className="w-6 h-6 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                        <Square className="w-3 h-3 text-[#CBB27A]" />
+                    {/* Configuration */}
+                    <div className="pb-5 border-b border-gray-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Building2 className="w-4 h-4 text-[#CBB27A]" />
+                        <p
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
+                          Configuration
+                        </p>
                       </div>
-                      <div>
+                      <div className="space-y-2">
+                        {property.unitTypes.map((type, index) => (
                         <p
-                          className="text-xs text-gray-600"
+                            key={index}
+                            className="text-lg font-bold text-gray-900"
                           style={{ fontFamily: "Poppins, sans-serif" }}
                         >
-                          Price Range
+                            {type}
                         </p>
+                        ))}
                         <p
-                          className="text-sm font-semibold text-gray-900"
+                          className="text-sm text-gray-600"
                           style={{ fontFamily: "Poppins, sans-serif" }}
                         >
-                          {property.pricing.priceRange}
-                        </p>
-                        <p
-                          className="text-xs text-gray-500"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          {property.pricing.pricePerSqft}
+                          {property.sizes}
                         </p>
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <h4
-                        className="text-sm font-semibold text-gray-700 mb-2"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Unit Configurations
-                      </h4>
-                      {property.pricing.unitConfigurations.map(
-                        (unit, index) => (
-                          <div
-                            key={index}
-                            className="bg-gray-50 p-3 rounded-lg"
-                          >
-                            <div className="flex justify-between items-start mb-1">
-                              <p
-                                className="text-sm font-semibold text-gray-900"
+                    {/* Location */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <MapPin className="w-4 h-4 text-[#CBB27A]" />
+                        <p
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
                                 style={{ fontFamily: "Poppins, sans-serif" }}
                               >
-                                {unit.type}
-                              </p>
-                              <p
-                                className="text-xs text-gray-600"
-                                style={{ fontFamily: "Poppins, sans-serif" }}
-                              >
-                                {unit.area}
+                          Location
                               </p>
                             </div>
                             <p
-                              className="text-sm font-semibold text-[#CBB27A]"
+                        className="text-base font-semibold text-gray-900 leading-relaxed"
                               style={{ fontFamily: "Poppins, sans-serif" }}
                             >
-                              {unit.basePrice}
+                        {property.location}
                             </p>
                           </div>
-                        )
-                      )}
-                    </div>
-
-                    {property.pricing.offers && (
-                      <div className="bg-black p-3 rounded-xl text-white">
-                        <div className="flex items-center gap-2 mb-1">
-                          <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <Star className="w-2 h-2 text-green-500" />
-                          </div>
-                          <p className="text-xs font-semibold text-green-500">
-                            Special Offers
-                          </p>
-                        </div>
-                        <p
-                          className="text-xs font-bold text-white"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          {property.pricing.offers}
-                        </p>
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -1070,6 +745,54 @@ export default function PropertyPage() {
           </div>
         </div>
       </main>
+
+      {/* Beautiful Footer CTA */}
+      <section className="relative bg-gradient-to-br from-[#2B3035] via-[#1a1d22] to-[#2B3035] py-10 md:py-14 overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-10 left-10 w-48 h-48 bg-[#CBB27A] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-[#CBB27A] rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Ready to Find Your{" "}
+            <span className="text-[#CBB27A]">Dream Home</span>?
+          </h2>
+          <p
+            className="text-sm md:text-base text-white/80 mb-6 max-w-2xl mx-auto leading-relaxed"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Connect with our expert advisors for personalized guidance and exclusive property insights.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <Button
+              onClick={handleContact}
+              className="bg-[#CBB27A] hover:bg-[#B8A066] text-white font-semibold py-5 px-6 rounded-full text-sm md:text-base transition-all duration-300 hover:-translate-y-1 hover:scale-105 group"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              <div className="flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                Schedule Consultation
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </div>
+            </Button>
+            <Button
+              variant="outline"
+              className="border-2 border-white hover:border-white bg-white/10 hover:bg-white/20 text-white font-semibold py-5 px-6 rounded-full text-sm md:text-base transition-all duration-300 backdrop-blur-sm hover:scale-105 hover:-translate-y-1 group"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                Call Now
+              </div>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <Footer />
 
