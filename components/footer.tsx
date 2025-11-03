@@ -78,10 +78,10 @@ export function Footer() {
                 Services
               </Link>
               <Link
-                href="/properties"
+                href="/projects"
                 className="block text-sm text-white hover:text-[#CBB27A] transition-colors"
               >
-                Properties
+                Projects
               </Link>
               <Link
                 href="/contact"

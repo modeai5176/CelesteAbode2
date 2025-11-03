@@ -29,7 +29,7 @@ import {
   Shield,
 } from "lucide-react";
 
-export default function PropertiesPage() {
+export default function ProjectsPage() {
   const [activeSegment, setActiveSegment] = useState("buying-to-live");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState<{
@@ -459,7 +459,7 @@ export default function PropertiesPage() {
       },
     ],
     all: [
-      // Buying to Live Properties
+      // Buying to Live Projects
       {
         id: 1,
         title: "ARIHANT ABODE",
@@ -595,7 +595,7 @@ export default function PropertiesPage() {
         paymentPlans: ["10% on booking"],
         pricePerSqft: "Special Pricing",
       },
-      // Investment Properties
+      // Investment Projects
       {
         id: 6,
         title: "ELITE X",
@@ -741,7 +741,7 @@ export default function PropertiesPage() {
         roi: "Premium Appreciation",
         rentalYield: "High Rental Yield",
       },
-      // Luxury Properties
+      // Luxury Projects
       {
         id: 11,
         title: "FOREST WALK VILLA",
@@ -868,11 +868,11 @@ export default function PropertiesPage() {
   const handleExploreProperties = (segmentId: string, e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card onClick from firing
     handleSegmentChange(segmentId);
-    // Scroll to properties section after a short delay to allow segment change
+      // Scroll to projects section after a short delay to allow segment change
     setTimeout(() => {
-      const propertiesSection = document.getElementById('properties-section');
-      if (propertiesSection) {
-        propertiesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const projectsSection = document.getElementById('projects-section');
+        if (projectsSection) {
+          projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 100);
   };
@@ -886,7 +886,7 @@ export default function PropertiesPage() {
   };
 
   const handleViewDetails = (propertyId: number) => {
-    window.location.href = `/properties/${propertyId}`;
+    window.location.href = `/projects/${propertyId}`;
   };
 
   const handleCarouselPrev = () => {
@@ -1046,7 +1046,7 @@ export default function PropertiesPage() {
                         onClick={(e) => handleExploreProperties(segment.id, e)}
                         className="flex items-center justify-center gap-2 text-primary font-medium transition-all duration-300 cursor-pointer hover:gap-3 hover:scale-105 hover:text-primary/90 px-4 py-2 rounded-lg hover:bg-primary/10 group/button"
                       >
-                        <span>Explore Properties</span>
+                        <span>Explore Projects</span>
                         <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/button:translate-x-2" />
                       </div>
                     </CardContent>
@@ -1057,19 +1057,19 @@ export default function PropertiesPage() {
           </div>
         </section>
 
-        {/* Active Segment Properties */}
-        <section id="properties-section" className="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
+        {/* Active Segment Projects */}
+        <section id="projects-section" className="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                {segments.find((s) => s.id === activeSegment)?.title} Properties
+                {segments.find((s) => s.id === activeSegment)?.title} Projects
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 {segments.find((s) => s.id === activeSegment)?.description}
               </p>
             </div>
 
-            {/* Properties Display */}
+            {/* Projects Display */}
             {shouldShowCarousel ? (
               /* Carousel with Navigation Arrows */
               <div className="flex items-center gap-0 md:gap-4">
@@ -1249,7 +1249,7 @@ export default function PropertiesPage() {
                     onClick={() =>
                       handlePropertyClick({
                         title: "General Inquiry",
-                        location: "All Properties",
+                        location: "All Projects",
                       })
                     }
                   >

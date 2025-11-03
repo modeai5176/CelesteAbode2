@@ -471,7 +471,7 @@ export default function VaultPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                   quality={90}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
                 {/* Left Aligned Text Overlay */}
                 <div className="absolute inset-0 flex items-end pb-16">

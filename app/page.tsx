@@ -2,16 +2,15 @@
 
 import { HeroSection } from "@/components/hero-section"
 import { BrandEssay } from "@/components/brand-essay"
-import { FoundingEthos } from "@/components/founding-ethos"
-import { WhatMakesDifferent } from "@/components/what-makes-different"
-
-import { KeyPillars } from "@/components/key-pillars"
-import { AboutSection } from "@/components/about-section"
 import { FourPillars } from "@/components/four-pillars"
+import { CoreServices } from "@/components/core-services"
 import { ValuePropositions } from "@/components/value-propositions"
 import { BrandCarousel } from "@/components/brand-carousel"
 import { SegmentedEntry } from "@/components/segmented-entry/SegmentedEntry"
+import { TechnologySection } from "@/components/technology-section"
+import { WhoWeServe } from "@/components/who-we-serve"
 import { WhereWeWork } from "@/components/where-we-work"
+import { Landscape2025 } from "@/components/landscape-2025"
 import { PropertiesSection } from "@/components/properties-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { CTASection } from "@/components/cta-section"
@@ -41,22 +40,47 @@ export default function HomePage() {
           <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
         </div>
 
+        {/* Welcome to a New Era of Real Estate */}
         <BrandEssay />
+        
+        {/* Why Choose Celeste Abode */}
         <FourPillars />
+        
+        {/* Our Core Services */}
+        <CoreServices />
+        
+        {/* The Mark of Expertise: Our Impact & Results */}
         <ValuePropositions />
+        
+        {/* Trusted partners, better outcomes */}
         <BrandCarousel />
+        
+        {/* Live, Invest, or Aspire. We make it real */}
         <SegmentedEntry 
           onSubmit={handleIntentSubmit}
           onWhatsApp={handleWhatsAppClick}
           defaultMicroMarkets={["Noida Expressway", "Yamuna Expressway", "Gaur City"]}
         />
+        
+        {/* Technology That Redefines Real Estate */}
+        <TechnologySection />
+        
+        {/* Who We Serve */}
+        <WhoWeServe />
+        
+        {/* Where We Work - Regional Expertise */}
         <WhereWeWork />
-        <PropertiesSection />
-        {/* <WhatMakesDifferent /> */}
-        {/* <FoundingEthos /> */}
-        {/* <KeyPillars /> */}
-        {/* <AboutSection /> */}
+        
+        {/* India's Real Estate Landscape in 2025 */}
+        <Landscape2025 />
+        
+        {/* Projects Section */}
+        {/* <PropertiesSection /> */}
+        
+        {/* What Our Clients Say */}
         <TestimonialsSection />
+        
+        {/* Trusted by Thousands of Families */}
         <CTASection />
       </main>
       <Footer />

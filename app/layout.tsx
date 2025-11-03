@@ -18,9 +18,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Celeste Abode - Luxury Real Estate Consulting",
+  title: "AI-Powered Real Estate Consulting in India | Celeste Abode",
   description:
-    "Redefining luxury real estate consulting in India's premium segment. From masterpiece of time into a masterpiece of living.",
+    "Buy luxury apartments, flats & villas in Noida, Gurgaon, Delhi NCR, Ghaziabad, and Lucknow with Celeste Abode – India's trusted AI-driven real estate advisory.",
   generator: "v0.app",
 };
 

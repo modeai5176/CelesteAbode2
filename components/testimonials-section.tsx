@@ -38,7 +38,7 @@ export function TestimonialsSection() {
           className="elfsight-app-4185bb5e-82e5-45bf-92fc-b41420393094"
           data-elfsight-app-lazy
           style={{ paddingBottom: '2rem' }}
-        />
+              />
       </div>
     </section>
   );

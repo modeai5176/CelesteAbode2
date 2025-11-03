@@ -62,7 +62,7 @@ export function HeroSection() {
                     className="text-sm px-4 py-3 md:px-7 bg-white text-[#2B3035] hover:bg-white/90 rounded-full w-fit"
                     asChild
                   >
-                    <a href="/properties">Explore Properties</a>
+                    <a href="/projects">Explore Projects</a>
                   </PillButton>
                   <PillButton
                     variant="outline"

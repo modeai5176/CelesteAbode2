@@ -12,14 +12,13 @@ import {
   ArrowRight,
   Star,
   Zap,
-  Crown,
   ChevronDown,
 } from "lucide-react";
 import { MultiStepForm } from "./segmented-entry/MultiStepForm";
 import { UserIntent, IntentPayload, analytics } from "@/lib/analytics";
 
 export function WhereWeWork() {
-  const [activeCorridor, setActiveCorridor] = useState("noida");
+  const [activeCorridor, setActiveCorridor] = useState("yamuna");
   const [selectedIntent, setSelectedIntent] = useState<UserIntent | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [expandedMobileCorridor, setExpandedMobileCorridor] = useState<
@@ -28,9 +27,29 @@ export function WhereWeWork() {
 
   const corridors = [
     {
+      id: "yamuna",
+      title: "The Investment Corridor",
+      subtitle: "Yamuna Expressway",
+      tagline: "High-Growth Zone | Strategic Location",
+      description:
+        "Premium investment destination with excellent connectivity and promising infrastructure development. Ideal for investors seeking high returns and long-term appreciation.",
+      icon: <TrendingUp className="w-6 h-6" />,
+      features: [
+        "Expressway Connectivity",
+        "Upcoming Infrastructure",
+        "Investment Hotspot",
+        "Growth Potential",
+      ],
+      cta: "Access Investment Projections",
+      color: "from-indigo-50 to-indigo-100",
+      accent: "text-indigo-600",
+      bgAccent: "bg-indigo-50",
+      mapPosition: { x: 55, y: 45 },
+    },
+    {
       id: "noida",
       title: "The Connective Edge",
-      subtitle: "Noida & Greater Noida West",
+      subtitle: "Noida",
       tagline: "Planned Urbanism | Smart Living",
       description:
         "Prime location known for meticulous urban planning, rapid metro expansion, and a robust IT/commercial ecosystem. Ideal for modern professionals seeking streamlined city life.",
@@ -41,30 +60,10 @@ export function WhereWeWork() {
         "Educational Institutes",
         "Healthcare Facilities",
       ],
-      cta: "View Planned Properties",
+      cta: "View Planned Projects",
       color: "from-blue-50 to-blue-100",
       accent: "text-blue-600",
       bgAccent: "bg-blue-50",
-      mapPosition: { x: 55, y: 45 },
-    },
-    {
-      id: "yamuna",
-      title: "The Future Hub",
-      subtitle: "Yamuna Expressway",
-      tagline: "Investment Momentum | Aviation Proximity",
-      description:
-        "India's premier high-growth investment belt. Strategically positioned for exponential value appreciation powered by the upcoming Jewar International Airport and entertainment zones.",
-      icon: <Plane className="w-6 h-6" />,
-      features: [
-        "Jewar Airport",
-        "Industrial Corridor",
-        "Logistics Hub",
-        "Future Growth",
-      ],
-      cta: "Access Investment Projections",
-      color: "from-emerald-50 to-emerald-100",
-      accent: "text-emerald-600",
-      bgAccent: "bg-emerald-50",
       mapPosition: { x: 55, y: 45 },
     },
     {
@@ -88,24 +87,24 @@ export function WhereWeWork() {
       mapPosition: { x: 25, y: 40 },
     },
     {
-      id: "luxury",
-      title: "Exclusive Residences",
-      subtitle: "Privacy & Legacy",
-      tagline: "Curated Luxury | ₹3 Cr & Above",
+      id: "greater-noida",
+      title: "The Future Hub",
+      subtitle: "Greater Noida",
+      tagline: "Investment Momentum | Aviation Proximity",
       description:
-        "A portfolio of hand-vetted, high-ticket properties—from sprawling independent villas to secured gated plots—for the discerning client who values absolute privacy and generational wealth.",
-      icon: <Crown className="w-6 h-6" />,
+        "India's premier high-growth investment belt. Strategically positioned for exponential value appreciation powered by the upcoming Jewar International Airport and entertainment zones.",
+      icon: <Plane className="w-6 h-6" />,
       features: [
-        "Privacy & Security",
-        "Legacy Properties",
-        "Premium Amenities",
-        "Exclusive Access",
+        "Jewar Airport",
+        "Industrial Corridor",
+        "Logistics Hub",
+        "Future Growth",
       ],
-      cta: "Unlock Exclusive Listings",
-      color: "from-purple-50 to-purple-100",
-      accent: "text-purple-600",
-      bgAccent: "bg-purple-50",
-      mapPosition: { x: 50, y: 25 },
+      cta: "Access Investment Projections",
+      color: "from-emerald-50 to-emerald-100",
+      accent: "text-emerald-600",
+      bgAccent: "bg-emerald-50",
+      mapPosition: { x: 55, y: 45 },
     },
   ];
 
@@ -120,12 +119,6 @@ export function WhereWeWork() {
   const handleOpenLiveForm = () => {
     analytics.se_intent_tile_clicked("live");
     setSelectedIntent("live");
-    setIsFormOpen(true);
-  };
-
-  const handleOpenSignatureForm = () => {
-    analytics.se_intent_tile_clicked("signature");
-    setSelectedIntent("signature");
     setIsFormOpen(true);
   };
 
@@ -235,50 +228,59 @@ export function WhereWeWork() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-6 space-y-6">
-                      {/* Map for non-luxury corridors */}
-                      {corridor.id !== "luxury" && (
-                        <motion.div
-                          className="relative h-[250px] bg-gradient-to-br from-white to-porcelain/80 rounded-2xl overflow-hidden border border-metal/20"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.1 }}
-                        >
-                          {corridor.id === "ghaziabad" ? (
-                            <iframe
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179625.26986506698!2d77.38808362351043!3d28.69528372332065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6f06fd26a7798ba!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760197051602!5m2!1sen!2sin"
-                              width="100%"
-                              height="100%"
-                              style={{ border: 0 }}
-                              allowFullScreen
-                              loading="lazy"
-                              referrerPolicy="no-referrer-when-downgrade"
-                              className="rounded-2xl"
-                            />
-                          ) : corridor.id === "noida" ? (
-                            <iframe
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158512.35529116966!2d77.38112687190133!3d28.514976803822055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198016984!5m2!1sen!2sin"
-                              width="100%"
-                              height="100%"
-                              style={{ border: 0 }}
-                              allowFullScreen
-                              loading="lazy"
-                              referrerPolicy="no-referrer-when-downgrade"
-                              className="rounded-2xl"
-                            />
-                          ) : corridor.id === "yamuna" ? (
-                            <iframe
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224693.92988635143!2d77.41092315830856!3d28.36360629023615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198147624!5m2!1sen!2sin"
-                              width="100%"
-                              height="100%"
-                              style={{ border: 0 }}
-                              allowFullScreen
-                              loading="lazy"
-                              referrerPolicy="no-referrer-when-downgrade"
-                              className="rounded-2xl"
-                            />
-                          ) : null}
-                        </motion.div>
-                      )}
+                      {/* Map for all corridors */}
+                      <motion.div
+                        className="relative h-[250px] bg-gradient-to-br from-white to-porcelain/80 rounded-2xl overflow-hidden border border-metal/20"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.1 }}
+                      >
+                        {corridor.id === "ghaziabad" ? (
+                          <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179625.26986506698!2d77.38808362351043!3d28.69528372332065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6f06fd26a7798ba!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760197051602!5m2!1sen!2sin"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="rounded-2xl"
+                          />
+                        ) : corridor.id === "noida" ? (
+                          <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158512.35529116966!2d77.38112687190133!3d28.514976803822055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198016984!5m2!1sen!2sin"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="rounded-2xl"
+                          />
+                        ) : corridor.id === "yamuna" ? (
+                          <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10838.475467598384!2d77.54267151363487!3d28.316795685402074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1762181487653!5m2!1sen!2sin"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="rounded-2xl"
+                          />
+                        ) : corridor.id === "greater-noida" ? (
+                          <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224693.92988635143!2d77.41092315830856!3d28.36360629023615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198147624!5m2!1sen!2sin"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="rounded-2xl"
+                          />
+                        ) : null}
+                      </motion.div>
 
                       {/* Content Details */}
                       <motion.div
@@ -321,13 +323,11 @@ export function WhereWeWork() {
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={
-                            corridor.id === "yamuna"
+                            corridor.id === "yamuna" || corridor.id === "greater-noida"
                               ? handleOpenInvestForm
                               : corridor.id === "noida" ||
                                 corridor.id === "ghaziabad"
                               ? handleOpenLiveForm
-                              : corridor.id === "luxury"
-                              ? handleOpenSignatureForm
                               : undefined
                           }
                         >
@@ -369,83 +369,80 @@ export function WhereWeWork() {
           </motion.div>
 
           {/* Content Layout */}
-          <div
-            className={`${
-              activeCorridor === "luxury"
-                ? "flex justify-center space-y-16 lg:space-y-0"
-                : "grid lg:grid-cols-2 gap-12 items-start space-y-16 lg:space-y-0"
-            }`}
-          >
-            {/* Map Container - Hidden for Luxury */}
-            {activeCorridor !== "luxury" && (
-              <motion.div
-                className="relative h-[387px] bg-gradient-to-br from-white to-porcelain/80 rounded-3xl overflow-hidden border border-metal/20 shadow-lg"
-                key={`map-${activeCorridor}`}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {activeCorridor === "ghaziabad" ? (
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179625.26986506698!2d77.38808362351043!3d28.69528372332065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6f06fd26a7798ba!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760197051602!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="rounded-3xl"
-                  />
-                ) : activeCorridor === "noida" ? (
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158512.35529116966!2d77.38112687190133!3d28.514976803822055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198016984!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="rounded-3xl"
-                  />
-                ) : activeCorridor === "yamuna" ? (
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224693.92988635143!2d77.41092315830856!3d28.36360629023615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198147624!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="rounded-3xl"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-metal/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                        <MapPin className="w-8 h-8 text-metal" />
-                      </div>
-                      <p className="text-muted-foreground text-sm">
-                        Select a location to view the map
-                      </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-start space-y-16 lg:space-y-0">
+            {/* Map Container */}
+            <motion.div
+              className="relative h-[387px] bg-gradient-to-br from-white to-porcelain/80 rounded-3xl overflow-hidden border border-metal/20 shadow-lg"
+              key={`map-${activeCorridor}`}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {activeCorridor === "ghaziabad" ? (
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d179625.26986506698!2d77.38808362351043!3d28.69528372332065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6f06fd26a7798ba!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760197051602!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-3xl"
+                />
+              ) : activeCorridor === "noida" ? (
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158512.35529116966!2d77.38112687190133!3d28.514976803822055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198016984!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-3xl"
+                />
+              ) : activeCorridor === "yamuna" ? (
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10838.475467598384!2d77.54267151363487!3d28.316795685402074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1762181487653!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-3xl"
+                />
+              ) : activeCorridor === "greater-noida" ? (
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224693.92988635143!2d77.41092315830856!3d28.36360629023615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1760198147624!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-3xl"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-metal/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                      <MapPin className="w-8 h-8 text-metal" />
                     </div>
+                    <p className="text-muted-foreground text-sm">
+                      Select a location to view the map
+                    </p>
                   </div>
-                )}
-              </motion.div>
-            )}
+                </div>
+              )}
+            </motion.div>
 
             {/* Dynamic Content Panel */}
             <motion.div
-              className={`space-y-6 h-[387px] flex flex-col justify-end mt-16 lg:mt-0 ${
-                activeCorridor === "luxury" ? "max-w-2xl mt-0" : ""
-              }`}
+              className="space-y-6 h-[387px] flex flex-col justify-end mt-16 lg:mt-0"
               key={`content-${activeCorridor}`}
-              initial={
-                activeCorridor === "luxury"
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 0, x: 100 }
-              }
+              initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: activeCorridor === "luxury" ? 0 : 0.5 }}
+              transition={{ duration: 0.5 }}
             >
               {/* Active Corridor Details */}
               <AnimatePresence mode="wait">
@@ -501,13 +498,11 @@ export function WhereWeWork() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={
-                          activeCorridorData.id === "yamuna"
+                          activeCorridorData.id === "yamuna" || activeCorridorData.id === "greater-noida"
                             ? handleOpenInvestForm
                             : activeCorridorData.id === "noida" ||
                               activeCorridorData.id === "ghaziabad"
                             ? handleOpenLiveForm
-                            : activeCorridorData.id === "luxury"
-                            ? handleOpenSignatureForm
                             : undefined
                         }
                       >

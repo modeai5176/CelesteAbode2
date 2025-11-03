@@ -28,8 +28,7 @@ const microMarketOptions = [
   "Gurgaon",
   "Delhi NCR",
   "Mumbai",
-  "Bangalore",
-  "Pune"
+  "Bangalore"
 ]
 
 const configurationOptions = [

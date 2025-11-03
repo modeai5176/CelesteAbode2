@@ -104,7 +104,7 @@ export function PropertiesSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h1 className="heading-bold text-primary mb-4">
-            Featured <span className="text-[#CBB27A]">Luxury Properties</span>
+            Featured <span className="text-[#CBB27A]">Luxury Projects</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover our handpicked collection of premium real estate projects
@@ -112,7 +112,7 @@ export function PropertiesSection() {
           </p>
         </div>
 
-        {/* Properties Carousel */}
+        {/* Projects Carousel */}
         <div className="mb-12">
           <Carousel
             setApi={setApi}
@@ -131,7 +131,7 @@ export function PropertiesSection() {
                   <div
                     className="group cursor-pointer p-4"
                     onClick={() =>
-                      handleNavigation(`/properties/${property.id}`)
+                      handleNavigation(`/projects/${property.id}`)
                     }
                   >
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border-2 border-black">
@@ -246,7 +246,7 @@ export function PropertiesSection() {
             <Button
               size="md"
               className="bg-primary hover:bg-primary/90 text-white px-6 py-3 text-base rounded-full w-full sm:w-auto"
-              onClick={() => handleNavigation("/properties")}
+              onClick={() => handleNavigation("/projects")}
             >
               Explore All Projects
             </Button>
