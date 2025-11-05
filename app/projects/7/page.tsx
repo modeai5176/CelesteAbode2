@@ -5,59 +5,54 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ContactPopup } from "@/components/contact-popup";
 import {
   MapPin,
   Building2,
+  Home,
   Calendar,
   Award,
-  Car,
   Eye,
   X,
-  CheckCircle,
-  Square,
-  Coffee,
-  Droplets,
-  Zap,
-  Wind,
-  Shield,
-  Dumbbell,
-  Heart,
-  Music,
-  Gamepad2,
-  Crown,
-  Star,
   MessageSquare,
   ArrowRight,
+  Phone,
   Camera,
-  TrendingUp,
+  Square,
+  Sparkles,
+  Droplets,
+  Heart,
+  Dumbbell,
+  TreePine,
+  Coffee,
+  Gamepad2,
+  Shield,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 
 export default function PropertyPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
-  const [hoveredThumbnail, setHoveredThumbnail] = useState<number | null>(null);
 
   const property = {
-    // Basic Project Information
     projectName: "ACE HANEI",
-    subtitle: "Premium Residential Development",
     developer: "ACE Group",
     location: "Sector 1, TechZone 4, Greater Noida West",
     reraId: "UPRERAPRJ11256",
     status: "Under Construction",
     possessionDate: "Dec 2027",
-    segment: "Luxury Residence",
-    tagline: "Redefining Modern Living",
-
-    // Images
+    unitTypes: [
+      "3 BHK + Study",
+      "4 BHK + Study (Typical Tower)",
+      "4 BHK + Study (Iconic Tower)",
+    ],
+    sizes: "2,746 sq ft - 3,862 sq ft",
     images: [
       "/ACE/hero.avif",
       "/ACE/1.avif",
@@ -68,168 +63,8 @@ export default function PropertyPage() {
       "/ACE/6.avif",
       "/ACE/7.avif",
     ],
-
-    // Location Advantage
-    connectivity: [
-      "2 mins from Gaur Chowk",
-      "NH-24 ~ 7 mins away",
-      "Noida ~ 5 mins",
-      "Gaur City Mall ~ 2 min",
-    ],
-    landmarks: [
-      "Gaur Chowk (Main Landmark)",
-      "NH-24 Access",
-      "Noida Border",
-      "Gaur City Mall",
-    ],
-
-    // Amenities & Lifestyle
-    amenities: {
-      sports: [
-        "Badminton Court",
-        "Basketball Court",
-        "Lawn Tennis",
-        "Table Tennis",
-      ],
-      wellness: [
-        "Grand Clubhouse",
-        "Indoor Games Room",
-        "Birds & Butterfly Garden",
-        "Theme Gardens",
-        "Reflexology Garden",
-        "Pet Park",
-      ],
-      recreation: [
-        "Aqua Zone: Swimming Pool",
-        "Kids Pool Deck / Fountain",
-        "Undercroft Zone",
-        "Wellness / Green Zones",
-      ],
-      kids: ["Kids Zone", "Play Area", "Adventure Activities"],
-      unique: [
-        "12 Acres Plot",
-        "Designed by Chapman Taylor",
-        "9 Towers of 32 Stories + Iconic Tower of 45 Floors",
-        "Low-density Design",
-      ],
-    },
-
-    // Specifications
-    specifications: {
-      flooring:
-        "Premium finishes (Italian marble, quartz countertops, UPVC windows, glass railings)",
-      kitchen: "Premium finishes and smart layouts",
-      bathrooms: "Premium finishes and smart layouts",
-      electricals: "Premium finishes and smart layouts",
-      balconies: "Large, clearly positioned towards luxury/residence usage",
-      safety:
-        "RCC structures, low-density design (4 units per floor in typical towers, 3 units per floor in iconic tower)",
-    },
-
-    // Developer Credentials
-    developerInfo: {
-      experience: "Gaur Group has ~30+ years in real estate since around 1995",
-      projectsDelivered: "60-65+ projects across NCR",
-      notableProjects: [
-        "Gaur City (Greater Noida West)",
-        "Gaur Yamuna City (Yamuna Expressway)",
-      ],
-      awards: ["Quality Construction Recognition", "Customer Trust Awards"],
-    },
-
-    // Pricing & Payment
-    pricing: {
-      priceRange: "₹2.50 Cr - ₹4.50 Cr",
-      startingPrice: "₹2.50 Cr onwards",
-      pricePerSqft: "₹13,000 - ₹14,000 per sq.ft",
-      unitConfigurations: [
-        {
-          type: "3 BHK + Study",
-          area: "2746 sq.ft",
-          basePrice: "₹2.50 Cr",
-          priceRange: "₹3.50 Cr - ₹3.80 Cr",
-        },
-        {
-          type: "4 BHK + Study (Typical Tower)",
-          area: "3200 sq.ft",
-          basePrice: "₹3.20 Cr",
-          priceRange: "₹4.00 Cr - ₹4.30 Cr",
-        },
-        {
-          type: "4 BHK + Study (Iconic Tower)",
-          area: "3862 sq.ft",
-          basePrice: "₹4.50 Cr",
-          priceRange: "₹5.20 Cr - ₹5.50 Cr",
-        },
-      ],
-      paymentPlans: {
-        constructionLinked: {
-          name: "Construction Linked Payment Plan",
-          schedule: [
-            { term: "On Booking", amount: "20%" },
-            { term: "On Completion of Ground Floor", amount: "20%" },
-            { term: "On 15th Floor Roof", amount: "20%" },
-            { term: "On Completion Superstructure", amount: "20%" },
-            { term: "On Offer for Possession", amount: "20%" },
-          ],
-        },
-      },
-      otherCharges: [
-        { item: "Parking", amount: "₹4 Lakh - ₹6 Lakh" },
-        { item: "Club Membership", amount: "₹2 Lakh" },
-        { item: "Power Backup", amount: "₹30,000 per KVA" },
-        { item: "Maintenance", amount: "₹4 per sq.ft per month" },
-        { item: "GST", amount: "5% (as per government norms)" },
-      ],
-      offers: "Early Bird Discounts Available",
-      specialFeatures: [
-        "Premium Location in TechZone 4",
-        "Large Apartment Sizes",
-        "Low Density Luxury",
-        "30+ Years Developer Experience",
-        "NBCC Execution Partnership",
-      ],
-    },
-
-    // Unit Types
-    unitTypes: [
-      "3 BHK + Study",
-      "4 BHK + Study (Typical Tower)",
-      "4 BHK + Study (Iconic Tower)",
-    ],
-    sizes: "2,746 sq ft - 3,862 sq ft",
-    totalTowers: "Multiple Towers",
-    totalUnits: "Multiple Units",
-
-    // Project Highlights
-    projectHighlights: [
-      "Premium Location in TechZone 4",
-      "Large Apartment Sizes (2746-3862 sq.ft)",
-      "Low Density Luxury Development",
-      "30+ Years Developer Experience",
-      "NBCC Execution Partnership",
-      "Modern Architecture & Design",
-      "Premium Amenities & Facilities",
-    ],
-
-    // Investment Benefits
-    investmentBenefits: [
-      "High Appreciation Potential",
-      "Excellent Rental Yield",
-      "Strategic Location Advantage",
-      "Infrastructure Development",
-      "TechZone 4 Connectivity",
-      "Commercial Hub Proximity",
-    ],
-
-    // RERA Information
-    reraInfo: {
-      website: "www.up-rera.in",
-      registrationNumber: "UPRERAPRJ11256",
-    },
   };
 
-  // Slideshow functionality
   useEffect(() => {
     if (!isSlideshowPaused) {
       const interval = setInterval(() => {
@@ -237,7 +72,6 @@ export default function PropertyPage() {
           prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
         );
       }, 3000);
-
       return () => clearInterval(interval);
     }
   }, [isSlideshowPaused, property.images.length]);
@@ -282,35 +116,40 @@ export default function PropertyPage() {
           src={property.images[0]}
           alt={property.projectName}
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
+          quality={95}
+          sizes="100vw"
+          unoptimized
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
 
-        {/* Mobile Layout - Centered Vertical Stack */}
+        {/* Mobile Layout */}
         <div className="absolute inset-0 flex flex-col items-center justify-center md:hidden px-4">
           <div className="text-center space-y-3">
-            {/* Status Badge - Mobile Centered */}
             <div className="flex justify-center">
-              <Badge className="bg-black text-white px-3 py-1 text-xs font-semibold">
+              <Badge className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-xs font-semibold border border-white/30">
                 {property.status}
               </Badge>
             </div>
-
-            {/* Property Name - Mobile Centered */}
             <h1
               className="text-xl font-black leading-tight text-white"
-              style={{ fontFamily: "Poppins, sans-serif" }}
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                textShadow: "0 4px 20px rgba(0,0,0,0.5)",
+              }}
             >
               {property.projectName}
             </h1>
-
-            {/* Location - Mobile Centered */}
             <div className="flex items-center justify-center gap-2">
               <MapPin className="w-4 h-4 text-[#CBB27A]" />
               <p
-                className="text-sm font-bold text-[#CBB27A]"
-                style={{ fontFamily: "Poppins, sans-serif" }}
+                className="text-sm font-semibold text-[#CBB27A]"
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                }}
               >
                 {property.location}
               </p>
@@ -318,76 +157,85 @@ export default function PropertyPage() {
           </div>
         </div>
 
-        {/* Desktop Layout - Original Position */}
-        <div className="absolute inset-0 hidden md:flex items-end justify-start pb-8 sm:pb-12 md:pb-16 pl-4 md:pl-12">
-          <div className="max-w-5xl">
-            {/* Desktop Status Badge */}
+        {/* Desktop Layout */}
+        <div className="absolute inset-0 hidden md:flex items-end justify-start pb-8 sm:pb-12 md:pb-20 pl-4 md:pl-8 lg:pl-12">
+          <div className="max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
                 <Building2 className="w-6 h-6 text-white" />
               </div>
-              <Badge className="bg-black text-white px-4 py-2 text-sm font-semibold">
+              <Badge className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 text-sm font-semibold border border-white/30">
                 {property.status}
               </Badge>
             </div>
-
-            {/* Property Name */}
             <h1
-              className="text-3xl lg:text-5xl xl:text-6xl font-black leading-tight text-white mb-6"
-              style={{ fontFamily: "Poppins, sans-serif" }}
+              className="text-3xl lg:text-5xl xl:text-6xl font-black leading-[0.9] text-white mb-6"
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                textShadow: "0 4px 20px rgba(0,0,0,0.5)",
+              }}
             >
               {property.projectName}
             </h1>
-
-            {/* Location */}
-            <div className="flex items-center gap-3 mb-8">
-              <MapPin className="w-6 h-6 text-[#CBB27A]" />
-              <p
-                className="text-sm lg:text-lg xl:text-xl font-bold text-[#CBB27A]"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                {property.location}
-              </p>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-3">
+                <MapPin className="w-6 h-6 text-[#CBB27A]" />
+                <p
+                  className="text-sm lg:text-lg xl:text-xl font-semibold text-[#CBB27A]"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                  }}
+                >
+                  {property.location}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Data Strip */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-4 md:px-12 py-3 md:py-4">
+        <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm border-t border-white/20">
+          <div className="max-w-7xl mx-auto px-4 md:px-12 py-4 md:py-6">
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8">
               <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-white">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
-                    <Calendar className="w-4 h-4 text-[#CBB27A]" />
+                <div className="flex items-center gap-3 group hover:scale-105 transition-transform duration-300">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center group-hover:bg-[#CBB27A]/30 transition-colors duration-300">
+                    <Calendar className="w-4 h-4 text-[#CBB27A] group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/70">Possession</p>
-                    <p className="text-xs sm:text-sm font-semibold text-white">
+                    <p className="text-xs text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                      Possession
+                    </p>
+                    <p className="text-xs sm:text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
                       {property.possessionDate}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
-                    <Award className="w-4 h-4 text-[#CBB27A]" />
+                <div className="flex items-center gap-3 group hover:scale-105 transition-transform duration-300">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center group-hover:bg-[#CBB27A]/30 transition-colors duration-300">
+                    <Award className="w-4 h-4 text-[#CBB27A] group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/70">Developer</p>
-                    <p className="text-xs sm:text-sm font-semibold text-white">
+                    <p className="text-xs text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                      Developer
+                    </p>
+                    <p className="text-xs sm:text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
                       {property.developer}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center">
-                    <Building2 className="w-4 h-4 text-[#CBB27A]" />
+                <div className="flex items-center gap-3 group hover:scale-105 transition-transform duration-300">
+                  <div className="w-8 h-8 bg-[#CBB27A]/20 rounded-full flex items-center justify-center group-hover:bg-[#CBB27A]/30 transition-colors duration-300">
+                    <Building2 className="w-4 h-4 text-[#CBB27A] group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/70">RERA ID</p>
-                    <p className="text-xs sm:text-sm font-semibold text-white">
+                    <p className="text-xs text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                      RERA ID
+                    </p>
+                    <p className="text-xs sm:text-sm font-semibold text-white group-hover:text-[#CBB27A] transition-colors duration-300">
                       {property.reraId}
                     </p>
                   </div>
@@ -398,13 +246,13 @@ export default function PropertyPage() {
         </div>
       </section>
 
-      {/* Main Content Layout */}
+      {/* Main Content */}
       <main>
         <div className="max-w-7xl mx-auto px-4 md:px-12 py-8 md:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16">
-            {/* Main Content Column (70%) */}
+            {/* Main Content Column */}
             <div className="lg:col-span-2 space-y-12 md:space-y-20">
-              {/* Project Gallery - Slideshow */}
+              {/* Project Gallery */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -421,13 +269,11 @@ export default function PropertyPage() {
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                {/* Modern Slideshow */}
                 <div
-                  className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl group"
+                  className="relative w-full h-[300px] md:h-[600px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group"
                   onMouseEnter={() => setIsSlideshowPaused(true)}
                   onMouseLeave={() => setIsSlideshowPaused(false)}
                 >
-                  {/* Main Image Display */}
                   <div className="relative w-full h-full">
                     <div
                       className="relative w-full h-full cursor-pointer"
@@ -435,9 +281,7 @@ export default function PropertyPage() {
                     >
                       <Image
                         src={property.images[currentSlide]}
-                        alt={`${property.projectName} - Image ${
-                          currentSlide + 1
-                        }`}
+                        alt={`${property.projectName} - Image ${currentSlide + 1}`}
                         fill
                         className="object-cover transition-all duration-1000 ease-in-out hover:scale-105"
                         priority
@@ -446,17 +290,14 @@ export default function PropertyPage() {
                       />
                     </div>
 
-                    {/* Gradient Overlay - pointer-events-none to allow clicks through */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
 
-                    {/* Image Counter */}
                     <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 pointer-events-none">
                       <span className="text-white text-sm font-semibold">
                         {currentSlide + 1} / {property.images.length}
                       </span>
                     </div>
 
-                    {/* Navigation Arrows */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -479,7 +320,6 @@ export default function PropertyPage() {
                       <ChevronRight className="w-6 h-6" />
                     </button>
 
-                    {/* Click to Zoom Indicator */}
                     <div className="absolute bottom-6 left-6 bg-black/50 backdrop-blur-sm rounded-full px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                       <div className="flex items-center gap-2">
                         <Eye className="w-3 h-3 text-white" />
@@ -490,434 +330,207 @@ export default function PropertyPage() {
                     </div>
                   </div>
 
-                  {/* Bullet Point Navigation with Hover Tooltips */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                    <div className="flex justify-center gap-4 pb-2">
-                      {property.images.map((image, index) => (
-                        <div key={index} className="relative">
-                          <button
-                            onClick={() => setCurrentSlide(index)}
-                            onMouseEnter={() => setHoveredThumbnail(index)}
-                            onMouseLeave={() => setHoveredThumbnail(null)}
-                            className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
-                              index === currentSlide
-                                ? "bg-[#CBB27A] scale-125 shadow-lg"
-                                : "bg-white/60 hover:bg-white/80 hover:scale-110"
-                            }`}
-                            aria-label={`Go to slide ${index + 1}`}
-                          />
-
-                          {/* Hover Tooltip Preview */}
-                          {hoveredThumbnail === index && (
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 z-50">
-                              {/* Tooltip Arrow */}
-                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-white"></div>
-
-                              {/* Tooltip Content */}
-                              <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
-                                <div className="relative w-48 h-32">
-                                  <Image
-                                    src={image}
-                                    alt={`Preview ${index + 1}`}
-                                    fill
-                                    className="object-cover"
-                                    sizes="192px"
-                                  />
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                                  {/* Image Info */}
-                                  <div className="absolute bottom-2 left-2 right-2">
-                                    <p className="text-white text-xs font-semibold mb-1">
-                                      {property.projectName}
-                                    </p>
-                                    <p className="text-white/80 text-xs">
-                                      Image {index + 1} of{" "}
-                                      {property.images.length}
-                                    </p>
-                                  </div>
-
-                                  {/* Click Indicator */}
-                                  <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
-                                    <Eye className="w-3 h-3 text-white" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Location Advantage */}
-              <section>
-                <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-[#CBB27A]" />
-                    </div>
-                    <h2
-                      className="text-4xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      Location Advantage
-                    </h2>
-                  </div>
-                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Connectivity Card */}
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Car className="w-6 h-6 text-black" />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Connectivity
-                      </h3>
-                    </div>
-                    <div className="space-y-4">
-                      {property.connectivity.map((item, index) => (
-                        <div
+                  {/* Minimal Navigation */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <div className="flex justify-center gap-2 pb-2">
+                      {property.images.length <= 8 && property.images.map((image, index) => (
+                        <button
                           key={index}
-                          className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200"
-                        >
-                          <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                            <Car className="w-4 h-4 text-[#CBB27A]" />
-                          </div>
-                          <span
-                            className="text-gray-700 font-medium"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {item}
-                          </span>
-                        </div>
+                          onClick={() => setCurrentSlide(index)}
+                          className={`relative transition-all duration-300 ${
+                            index === currentSlide
+                              ? "w-8 h-2 bg-[#CBB27A] rounded-full shadow-lg"
+                              : "w-2 h-2 bg-white/40 rounded-full hover:bg-white/60"
+                          }`}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
                       ))}
                     </div>
                   </div>
+                </div>
+              </section>
 
-                  {/* Landmarks Card */}
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-black" />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
+              {/* Overview Section */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Eye className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2
+                      className="text-4xl font-bold text-gray-900"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
+                      About ACE Hanei
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+
+                <div className="relative bg-gradient-to-br from-white via-[#CBB27A]/5 to-white rounded-3xl shadow-2xl p-12 md:p-20 border border-[#CBB27A]/20 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-72 h-72 bg-[#CBB27A]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                  <div className="absolute bottom-0 left-0 w-56 h-56 bg-[#CBB27A]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                  <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#CBB27A]/3 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+                  
+                  <div className="relative z-10">
+                    <p
+                      className="text-base md:text-lg leading-relaxed text-gray-800 text-center max-w-4xl mx-auto"
+                      style={{ 
+                        fontFamily: "Poppins, sans-serif",
+                        fontWeight: 400,
+                        letterSpacing: "-0.01em",
+                        lineHeight: "1.8"
+                      }}
+                    >
+                      Nestled in the prestigious <span className="font-semibold text-[#CBB27A]">Sector 1, TechZone 4, Greater Noida West</span>, ACE Hanei by ACE Group stands as a masterpiece of low-density luxury living, featuring <span className="font-semibold">spacious 3 BHK and 4 BHK residences spanning 2,746 to 3,862 sq.ft across 12 acres</span> with just 4 units per floor in typical towers and 3 units in the iconic 45-floor tower. Designed by <span className="font-semibold">Chapman Taylor</span> and executed in partnership with NBCC, each home showcases <span className="font-semibold">premium Italian marble, quartz countertops, and UPVC windows</span>, while the <span className="font-semibold">grand clubhouse, aqua zone, and theme gardens</span> ensure a lifestyle that redefines modern living with unparalleled space and sophistication.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Amenities */}
+              <section>
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Sparkles className="w-6 h-6 text-[#CBB27A]" />
+                    </div>
+                    <h2
+                      className="text-4xl font-bold text-gray-900"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
+                      World-Class Amenities
+                    </h2>
+                  </div>
+                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                  {[
+                    { name: "Aqua Zone Swimming Pool", icon: Droplets },
+                    { name: "Kids Zone", icon: Heart },
+                    { name: "Lawn Tennis Courts", icon: Dumbbell },
+                    { name: "Theme Gardens", icon: TreePine },
+                    { name: "Grand Clubhouse", icon: Coffee },
+                    { name: "24/7 Security", icon: Shield },
+                    { name: "Basketball Court", icon: Gamepad2 },
+                    { name: "Reflexology Garden", icon: Heart },
+                  ].map((amenity, index) => {
+                    const IconComponent = amenity.icon;
+                    return (
+                      <div
+                        key={index}
+                        className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 group"
                       >
-                        Nearby Landmarks
-                      </h3>
-                    </div>
-                    <div className="space-y-4">
-                      {property.landmarks.map((item, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200"
-                        >
-                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <MapPin className="w-4 h-4 text-blue-500" />
-                          </div>
-                          <span
-                            className="text-gray-700 font-medium"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {item}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Amenities & Lifestyle */}
-              <section>
-                <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <Star className="w-6 h-6 text-[#CBB27A]" />
-                    </div>
-                    <h2
-                      className="text-4xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      Amenities & Lifestyle
-                    </h2>
-                  </div>
-                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-                </div>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Object.entries(property.amenities).map(
-                    ([category, items]) => {
-                      const iconMap: { [key: string]: any } = {
-                        sports: Dumbbell,
-                        wellness: Heart,
-                        recreation: Music,
-                        kids: Gamepad2,
-                        unique: Crown,
-                      };
-                      const IconComponent = iconMap[category] || Star;
-
-                      return (
-                        <div
-                          key={category}
-                          className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                        >
-                          <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                              <IconComponent className="w-5 h-5 text-black" />
-                            </div>
-                            <h3
-                              className="text-xl font-bold text-gray-900 capitalize"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
-                              {category.replace(/([A-Z])/g, " $1").trim()}
-                            </h3>
-                          </div>
-                          <div className="space-y-3">
-                            {items.map((item, index) => (
-                              <div
-                                key={index}
-                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#CBB27A]/5 transition-colors duration-200"
-                              >
-                                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                <span
-                                  className="text-sm text-gray-700 font-medium"
-                                  style={{ fontFamily: "Poppins, sans-serif" }}
-                                >
-                                  {item}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-              </section>
-
-              {/* Specifications */}
-              <section>
-                <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-[#CBB27A]" />
-                    </div>
-                    <h2
-                      className="text-4xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      Specifications
-                    </h2>
-                  </div>
-                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  {Object.entries(property.specifications).map(
-                    ([key, value]) => {
-                      const iconMap: { [key: string]: any } = {
-                        flooring: Square,
-                        kitchen: Coffee,
-                        bathrooms: Droplets,
-                        electricals: Zap,
-                        balconies: Wind,
-                        safety: Shield,
-                      };
-                      const IconComponent = iconMap[key] || Star;
-
-                      return (
-                        <div
-                          key={key}
-                          className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300"
-                        >
-                          <div className="flex items-center gap-4 mb-4">
-                            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                              <IconComponent className="w-5 h-5 text-black" />
-                            </div>
-                            <h4
-                              className="text-xl font-bold text-gray-900 capitalize"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
-                              {key.replace(/([A-Z])/g, " $1").trim()}
-                            </h4>
+                        <div className="flex flex-col items-center text-center">
+                          <div className="w-20 h-20 bg-[#CBB27A]/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#CBB27A]/20 group-hover:scale-110 transition-all duration-300">
+                            <IconComponent className="w-10 h-10 text-[#CBB27A] group-hover:scale-110 transition-transform duration-300" />
                           </div>
                           <p
-                            className="text-gray-700 leading-relaxed"
+                            className="text-sm font-semibold text-gray-900 leading-tight"
                             style={{ fontFamily: "Poppins, sans-serif" }}
                           >
-                            {value}
+                            {amenity.name}
                           </p>
                         </div>
-                      );
-                    }
-                  )}
-                </div>
-              </section>
-
-              {/* Developer Credentials */}
-              <section>
-                <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <Award className="w-6 h-6 text-[#CBB27A]" />
-                    </div>
-                    <h2
-                      className="text-4xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      Developer Credentials
-                    </h2>
-                  </div>
-                  <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Building2 className="w-5 h-5 text-black" />
                       </div>
-                      <h3
-                        className="text-xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Company Overview
-                      </h3>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        <span
-                          className="text-gray-700 font-medium"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          {property.developerInfo.experience}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        <span
-                          className="text-gray-700 font-medium"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          Projects Delivered:{" "}
-                          {property.developerInfo.projectsDelivered}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Star className="w-5 h-5 text-black" />
-                      </div>
-                      <h3
-                        className="text-xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Notable Projects
-                      </h3>
-                    </div>
-                    <div className="space-y-3">
-                      {property.developerInfo.notableProjects.map(
-                        (project, index) => (
-                          <div key={index} className="flex items-center gap-3">
-                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                            <span
-                              className="text-gray-700 font-medium"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
-                              {project}
-                            </span>
-                          </div>
-                        )
-                      )}
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </section>
             </div>
 
-            {/* Sticky CTA Column (30%) */}
+            {/* Sidebar CTA */}
             <div className="lg:col-span-1">
-              <div className="sticky top-8 space-y-6">
-                {/* Pricing & Payment */}
-                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <TrendingUp className="w-4 h-4 text-[#CBB27A]" />
+              <div className="sticky top-8">
+                <div className="bg-white rounded-2xl shadow-xl p-6 mb-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <Home className="w-5 h-5 text-[#CBB27A]" />
                     </div>
                     <h3
-                      className="text-lg font-bold text-gray-900"
+                      className="text-xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      Pricing & Payment
+                      Property Details
                     </h3>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="bg-gray-50 rounded-xl p-4">
-                      <p className="text-sm text-gray-600 mb-1">Price Range</p>
-                      <p
-                        className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        {property.pricing.priceRange}
-                      </p>
-                    </div>
-
-                    <div className="bg-gray-50 rounded-xl p-4">
-                      <p className="text-sm text-gray-600 mb-1">
-                        Starting Price
-                      </p>
-                      <p
-                        className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        {property.pricing.startingPrice}
-                      </p>
-                    </div>
-
-                    {property.pricing.offers && (
-                      <div className="bg-black p-3 rounded-xl text-white">
-                        <div className="flex items-center gap-2 mb-1">
-                          <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <Star className="w-2 h-2 text-green-500" />
-                          </div>
-                          <p className="text-xs font-semibold text-green-500">
-                            Special Offers
-                          </p>
-                        </div>
+                  <div className="space-y-5">
+                    <div className="pb-5 border-b border-gray-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Square className="w-4 h-4 text-[#CBB27A]" />
                         <p
-                          className="text-xs font-bold text-white"
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
                           style={{ fontFamily: "Poppins, sans-serif" }}
                         >
-                          {property.pricing.offers}
+                          Type
                         </p>
                       </div>
-                    )}
+                      <p
+                        className="text-lg font-bold text-gray-900"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
+                        {property.status}
+                      </p>
+                    </div>
+
+                    <div className="pb-5 border-b border-gray-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Building2 className="w-4 h-4 text-[#CBB27A]" />
+                        <p
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
+                          Configuration
+                        </p>
+                      </div>
+                      <div className="space-y-2">
+                        {property.unitTypes.map((type, index) => (
+                          <p
+                            key={index}
+                            className="text-lg font-bold text-gray-900"
+                            style={{ fontFamily: "Poppins, sans-serif" }}
+                          >
+                            {type}
+                          </p>
+                        ))}
+                        <p
+                          className="text-sm text-gray-600"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
+                          {property.sizes}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <MapPin className="w-4 h-4 text-[#CBB27A]" />
+                        <p
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
+                          Location
+                        </p>
+                      </div>
+                      <p
+                        className="text-base font-semibold text-gray-900 leading-relaxed"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
+                        {property.location}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Property Inquiry Form */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
-                      <MessageSquare className="w-4 h-4 text-[#CBB27A]" />
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
+                      <MessageSquare className="w-5 h-5 text-[#CBB27A]" />
                     </div>
                     <h3
-                      className="text-lg font-bold text-gray-900"
+                      className="text-xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
                       Property Inquiry
@@ -927,29 +540,31 @@ export default function PropertyPage() {
                   <form className="space-y-4">
                     <div>
                       <label
-                        className="block text-sm font-semibold text-gray-700 mb-2"
+                        className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
+                        <Phone className="w-4 h-4 text-[#CBB27A]" />
                         Full Name
                       </label>
-                      <input
+                      <Input
                         type="text"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#CBB27A] focus:border-transparent transition-all duration-200"
                         placeholder="Enter your full name"
+                        className="border-gray-300 focus:border-[#CBB27A] focus:ring-[#CBB27A] rounded-lg h-10"
                       />
                     </div>
 
                     <div>
                       <label
-                        className="block text-sm font-semibold text-gray-700 mb-2"
+                        className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
+                        <Phone className="w-4 h-4 text-[#CBB27A]" />
                         Phone Number
                       </label>
-                      <input
+                      <Input
                         type="tel"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#CBB27A] focus:border-transparent transition-all duration-200"
                         placeholder="Enter your phone number"
+                        className="border-gray-300 focus:border-[#CBB27A] focus:ring-[#CBB27A] rounded-lg h-10"
                       />
                     </div>
 
@@ -970,6 +585,53 @@ export default function PropertyPage() {
           </div>
         </div>
       </main>
+
+      {/* Footer CTA */}
+      <section className="relative bg-gradient-to-br from-[#2B3035] via-[#1a1d22] to-[#2B3035] py-10 md:py-14 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-10 left-10 w-48 h-48 bg-[#CBB27A] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-[#CBB27A] rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Ready to Find Your{" "}
+            <span className="text-[#CBB27A]">Dream Home</span>?
+          </h2>
+          <p
+            className="text-sm md:text-base text-white/80 mb-6 max-w-2xl mx-auto leading-relaxed"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Connect with our expert advisors for personalized guidance and exclusive property insights.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <Button
+              onClick={handleContact}
+              className="bg-[#CBB27A] hover:bg-[#B8A066] text-white font-semibold py-5 px-6 rounded-full text-sm md:text-base transition-all duration-300 hover:-translate-y-1 hover:scale-105 group"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              <div className="flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                Schedule Consultation
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </div>
+            </Button>
+            <Button
+              variant="outline"
+              className="border-2 border-white hover:border-white bg-white/10 hover:bg-white/20 text-white font-semibold py-5 px-6 rounded-full text-sm md:text-base transition-all duration-300 backdrop-blur-sm hover:scale-105 hover:-translate-y-1 group"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                Call Now
+              </div>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <Footer />
 

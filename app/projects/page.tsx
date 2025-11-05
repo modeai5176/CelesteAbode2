@@ -37,6 +37,7 @@ export default function ProjectsPage() {
     location: string;
   } | null>(null);
   const [carouselPosition, setCarouselPosition] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const segments = [
     {
@@ -847,18 +848,25 @@ export default function ProjectsPage() {
   const currentProperties =
     propertiesData[activeSegment as keyof typeof propertiesData];
 
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Reset and clamp carousel position when properties change
   useEffect(() => {
-    // Always ensure 3 cards are visible in viewport on desktop
-    // Max position = length - 3 (so the last position still shows 3 cards)
-    // On mobile, max = length - 1 (to show the last single card)
-    // For carousel, we prioritize desktop constraint to ensure 3 cards always visible
+    // Desktop: max = length - 3 (so the last position still shows 3 cards)
+    // Mobile: max = length - 1 (to show the last single card)
     const maxPositionDesktop = Math.max(0, currentProperties.length - 3);
     const maxPositionMobile = Math.max(0, currentProperties.length - 1);
-    // Use desktop constraint since carousel only shows when 3+ items
-    const maxPosition = currentProperties.length >= 3 ? maxPositionDesktop : maxPositionMobile;
+    const maxPosition = isMobile ? maxPositionMobile : maxPositionDesktop;
     setCarouselPosition((prev) => Math.min(prev, maxPosition));
-  }, [activeSegment, currentProperties.length]);
+  }, [activeSegment, currentProperties.length, isMobile]);
 
   const handleSegmentChange = (segmentId: string) => {
     setActiveSegment(segmentId);
@@ -894,22 +902,21 @@ export default function ProjectsPage() {
   };
 
   const handleCarouselNext = () => {
-    // Max position ensures 3 cards always visible on desktop
+    // Desktop: max = length - 3 (so the last position still shows 3 cards)
+    // Mobile: max = length - 1 (to show the last single card)
     const maxPositionDesktop = Math.max(0, currentProperties.length - 3);
     const maxPositionMobile = Math.max(0, currentProperties.length - 1);
-    // Use desktop constraint for carousel (since carousel only shows with 3+ items)
-    const maxPosition = currentProperties.length >= 3 ? maxPositionDesktop : maxPositionMobile;
+    const maxPosition = isMobile ? maxPositionMobile : maxPositionDesktop;
     setCarouselPosition((prev) => Math.min(prev + 1, maxPosition));
   };
 
   const shouldShowCarousel = currentProperties.length >= 3;
-  // Max position ensures 3 cards always visible in viewport on desktop
+  // Max position calculation based on screen size
   // Desktop: max = length - 3 (last position shows cards [length-3, length-2, length-1])
   // Mobile: max = length - 1 (last position shows the last single card)
   const maxPositionDesktop = Math.max(0, currentProperties.length - 3);
   const maxPositionMobile = Math.max(0, currentProperties.length - 1);
-  // For carousel, prioritize desktop constraint to always show 3 cards
-  const maxPosition = currentProperties.length >= 3 ? maxPositionDesktop : maxPositionMobile;
+  const maxPosition = isMobile ? maxPositionMobile : maxPositionDesktop;
   const canGoPrev = carouselPosition > 0;
   const canGoNext = carouselPosition < maxPosition;
 
