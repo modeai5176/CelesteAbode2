@@ -103,24 +103,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="preload" href="/hero.avif" as="image" type="image/avif" />
-        <link rel="icon" href="/favicon.avif" type="image/png" sizes="48x48" />
-        <link rel="icon" href="/favicon.avif" type="image/png" sizes="32x32" />
-        <link rel="icon" href="/favicon.avif" type="image/png" sizes="24x24" />
-        <link rel="icon" href="/favicon.avif" type="image/png" sizes="16x16" />
-        <link rel="apple-touch-icon" href="/favicon.avif" sizes="180x180" />
-        <link
-          rel="icon"
-          href="/favicon.avif"
-          type="image/png"
-          sizes="192x192"
-        />
-        <link
-          rel="icon"
-          href="/favicon.avif"
-          type="image/png"
-          sizes="512x512"
-        />
-        <meta name="msapplication-TileImage" content="/favicon.avif" />
+        <link rel="icon" href="/logoceleste.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/logoceleste.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/logoceleste.ico" sizes="180x180" />
+        <meta name="msapplication-TileImage" content="/logoceleste.ico" />
         <meta name="msapplication-TileColor" content="#000000" />
       </head>
       <body className={`${inter.variable} ${poppins.variable} antialiased`}>
