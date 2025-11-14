@@ -15,6 +15,53 @@ import {
   Phone,
   MessageCircle,
 } from "lucide-react";
+import type { Metadata } from "next";
+import { BreadcrumbSchema } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "Real Estate Services - Luxury Property Consulting & Investment Advisory | Celeste Abode",
+  description:
+    "Comprehensive real estate services: Luxury residences, investment advisory, NRI services, end-to-end consulting, virtual tours, and location intelligence across Delhi NCR. Expert property consultation.",
+  keywords: [
+    "real estate services",
+    "property consulting services",
+    "luxury property advisory",
+    "NRI property services",
+    "investment advisory",
+    "virtual property tours",
+    "property due diligence",
+    "real estate market analysis",
+    "location intelligence",
+    "property portfolio management",
+  ],
+  openGraph: {
+    title: "Real Estate Services - Luxury Property Consulting & Investment Advisory | Celeste Abode",
+    description:
+      "Comprehensive real estate services across Delhi NCR including luxury residences, investment advisory, and NRI services.",
+    url: "https://www.celesteabode.com/services",
+    siteName: "Celeste Abode",
+    images: [
+      {
+        url: "/premium-apartment-interior-living-room.avif",
+        width: 1200,
+        height: 630,
+        alt: "Celeste Abode Real Estate Services",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Real Estate Services - Luxury Property Consulting & Investment Advisory",
+    description:
+      "Comprehensive real estate services across Delhi NCR including luxury residences, investment advisory, and NRI services.",
+    images: ["/premium-apartment-interior-living-room.avif"],
+  },
+  alternates: {
+    canonical: "https://www.celesteabode.com/services",
+  },
+};
 
 export default function ServicesPage() {
   const services = [
@@ -112,7 +159,14 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Services", url: "https://www.celesteabode.com/services" },
+        ]}
+      />
+      <div className="min-h-screen bg-background">
       <main className="pt-0">
         <Header />
         <ServicesHeroSection />
@@ -258,7 +312,7 @@ export default function ServicesPage() {
             <div className="my-16">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] bg-muted">
                 <Image
-                  src="/luxury-villa-with-garden-and-modern-design.avif"
+                  src="/premium-apartment-interior-living-room.avif"
                   alt="Every Decision Backed by Evidence. Every Outcome Designed for You."
                   fill
                   loading="lazy"
@@ -516,5 +570,6 @@ export default function ServicesPage() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }

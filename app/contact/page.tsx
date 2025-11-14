@@ -17,6 +17,7 @@ import {
   MessageCircle,
   Loader2,
 } from "lucide-react";
+import { BreadcrumbSchema, LocalBusinessSchema } from "@/lib/structured-data";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,7 +70,15 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Contact", url: "https://www.celesteabode.com/contact" },
+        ]}
+      />
+      <LocalBusinessSchema />
+      <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-0">
         {/* Hero Section */}
@@ -483,5 +492,6 @@ export default function ContactPage() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }

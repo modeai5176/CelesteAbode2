@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { FAQPageSchema, BreadcrumbSchema } from "@/lib/structured-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -446,8 +447,21 @@ export default function VaultPage() {
     ([key, section]) => selectedFilter === "all" || key === selectedFilter
   );
 
+  // Collect all FAQs for schema
+  const allFAQs = Object.values(faqData).flatMap((section) =>
+    section.questions.map((q) => ({ question: q.question, answer: q.answer }))
+  );
+
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Vault", url: "https://www.celesteabode.com/vault" },
+        ]}
+      />
+      <FAQPageSchema faqs={allFAQs} />
+      <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-0">
         {/* Hero Section */}
@@ -765,5 +779,6 @@ export default function VaultPage() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }

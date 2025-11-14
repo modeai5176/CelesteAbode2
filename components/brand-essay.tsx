@@ -40,7 +40,7 @@ export function BrandEssay() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Kicker>Welcome to a New Era</Kicker>
+            <Kicker>Celeste Abode</Kicker>
             <h1 className="heading-bold text-primary mb-6">
               Welcome to a New Era of{" "}
               <span className="text-[#CBB27A]">Real Estate in India</span>
@@ -68,22 +68,11 @@ export function BrandEssay() {
               personalized consultation.
             </p>
 
-            {/* Mission Statement */}
-            <div className="bg-muted/30 rounded-xl p-6 border-l-4 border-[#CBB27A] mb-6">
-              <p className="body-text text-foreground font-semibold mb-2">
-                Our mission is simple:
-              </p>
-              <p className="body-text text-muted-foreground italic">
-                To make property discovery smarter, investing more strategic,
-                and ownership more rewarding.
-              </p>
-            </div>
-
             <p className="body-text text-muted-foreground mb-6">
               Whether you're searching for your dream home in <span className="font-bold text-foreground">Noida</span>, a luxury
               apartment in <span className="font-bold text-foreground">Gurgaon</span>, or planning an investment portfolio <span className="font-bold text-foreground">anywhere in Delhi NCR</span>.
             </p>
-            <p className="body-text text-muted-foreground">
+              <p className="body-text text-muted-foreground">
               Celeste Abode ensures every decision is guided by verified data,
               expert insight, and genuine market understanding.
             </p>

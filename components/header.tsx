@@ -50,13 +50,12 @@ export function Header() {
           {/* Mobile Layout */}
           <div className="flex items-center justify-between w-full md:hidden">
             {/* Logo - Left on Mobile */}
-            <Link href="/" className="group flex-shrink-0">
+            <Link href="/">
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
                 width={110}
                 height={110}
-                className=""
                 priority
               />
             </Link>
@@ -90,13 +89,12 @@ export function Header() {
             </nav>
 
             {/* Center Logo */}
-            <Link href="/" className="group flex-shrink-0">
+            <Link href="/">
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
                 width={110}
                 height={110}
-                className=""
                 priority
               />
             </Link>

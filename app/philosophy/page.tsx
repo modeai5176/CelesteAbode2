@@ -10,10 +10,18 @@ import { ImageFigure } from "@/components/ui/image-figure";
 import { PhilosophyHeroSection } from "@/components/philosophy-hero-section";
 import { motion } from "framer-motion";
 import { Scale, Heart, Star, Rocket, Building2, Eye } from "lucide-react";
+import { BreadcrumbSchema } from "@/lib/structured-data";
 
 export default function PhilosophyPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Philosophy", url: "https://www.celesteabode.com/philosophy" },
+        ]}
+      />
+      <div className="min-h-screen bg-background">
       <main className="pt-0">
         <Header />
         <PhilosophyHeroSection />
@@ -428,5 +436,6 @@ export default function PhilosophyPage() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }

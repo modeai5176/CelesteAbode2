@@ -14,23 +14,33 @@ export function HeroSection() {
           transition={{ duration: 0.8 }}
           className="bg-white rounded-3xl shadow-2xl overflow-hidden relative"
         >
-          {/* Full Container Image */}
+          {/* Full Container Video/Image */}
           <div className="relative h-[580px] lg:h-[620px]">
+            {/* Image for Mobile */}
             <Image
-              src="/hero-.avif"
+              src="/propertyhero.avif"
               alt="Luxury real estate background"
               fill
               priority
               loading="eager"
-              className="object-cover object-center md:object-cover md:object-bottom"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+              className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
+              sizes="(max-width: 768px) 100vw, 0vw"
               quality={90}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
+            
+            {/* Video for Desktop */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="hidden md:block absolute inset-0 w-full h-full object-cover object-center md:object-cover md:object-bottom"
+            >
+              <source src="/HOMEHERO.mp4" type="video/mp4" />
+            </video>
 
             {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute inset-0 bg-black/60" />
 
             {/* Left Aligned Text Overlay */}
             <div className="absolute inset-0 flex items-center">

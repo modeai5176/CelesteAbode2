@@ -1,6 +1,20 @@
 import { Section } from "@/components/ui/section"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Terms of Service - Celeste Abode",
+  description:
+    "Terms and conditions governing your use of Celeste Abode's real estate services. Read our terms of service, user obligations, and service agreements.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://www.celesteabode.com/terms",
+  },
+};
 
 export default function TermsPage() {
   return (

@@ -72,34 +72,34 @@ export function FourPillars() {
           {/* First Row - 3 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 lg:mb-8">
             {pillars.slice(0, 3).map((pillar, index) => (
-              <motion.div
-                key={pillar.id}
-                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                {/* Icon */}
+            <motion.div
+              key={pillar.id}
+              className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              {/* Icon */}
                 <div className="text-[#CBB27A] mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {pillar.icon}
-                </div>
+                {pillar.icon}
+              </div>
 
-                {/* Content */}
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold text-ink leading-tight">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-muted leading-relaxed text-sm">
-                    {pillar.description}
-                  </p>
-                </div>
+              {/* Content */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-ink leading-tight">
+                  {pillar.title}
+                </h3>
+                <p className="text-muted leading-relaxed text-sm">
+                  {pillar.description}
+                </p>
+              </div>
 
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#CBB27A]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-              </motion.div>
-            ))}
-          </div>
+              {/* Hover Effect Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#CBB27A]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+            </motion.div>
+          ))}
+        </div>
 
           {/* Second Row - 2 Cards Centered */}
           <div className="flex flex-wrap justify-center gap-8">

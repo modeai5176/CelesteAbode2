@@ -18,7 +18,7 @@ import { MultiStepForm } from "./segmented-entry/MultiStepForm";
 import { UserIntent, IntentPayload, analytics } from "@/lib/analytics";
 
 export function WhereWeWork() {
-  const [activeCorridor, setActiveCorridor] = useState("yamuna");
+  const [activeCorridor, setActiveCorridor] = useState("noida");
   const [selectedIntent, setSelectedIntent] = useState<UserIntent | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [expandedMobileCorridor, setExpandedMobileCorridor] = useState<
@@ -26,26 +26,6 @@ export function WhereWeWork() {
   >(null);
 
   const corridors = [
-    {
-      id: "yamuna",
-      title: "The Investment Corridor",
-      subtitle: "Yamuna Expressway",
-      tagline: "High-Growth Zone | Strategic Location",
-      description:
-        "Premium investment destination with excellent connectivity and promising infrastructure development. Ideal for investors seeking high returns and long-term appreciation.",
-      icon: <TrendingUp className="w-6 h-6" />,
-      features: [
-        "Expressway Connectivity",
-        "Upcoming Infrastructure",
-        "Investment Hotspot",
-        "Growth Potential",
-      ],
-      cta: "Access Investment Projections",
-      color: "from-indigo-50 to-indigo-100",
-      accent: "text-indigo-600",
-      bgAccent: "bg-indigo-50",
-      mapPosition: { x: 55, y: 45 },
-    },
     {
       id: "noida",
       title: "The Connective Edge",
@@ -67,26 +47,6 @@ export function WhereWeWork() {
       mapPosition: { x: 55, y: 45 },
     },
     {
-      id: "ghaziabad",
-      title: "The Foundation",
-      subtitle: "Ghaziabad / NH-24 Corridor",
-      tagline: "Value & Vitals | Established Infrastructure",
-      description:
-        "Established residential market offering exceptional value, excellent connectivity to Delhi, and mature, family-friendly social infrastructure across essential amenities.",
-      icon: <Home className="w-6 h-6" />,
-      features: [
-        "Family Communities",
-        "Schools & Colleges",
-        "Hospitals",
-        "Shopping Centers",
-      ],
-      cta: "Find Value Homes",
-      color: "from-amber-50 to-amber-100",
-      accent: "text-amber-600",
-      bgAccent: "bg-amber-50",
-      mapPosition: { x: 25, y: 40 },
-    },
-    {
       id: "greater-noida",
       title: "The Future Hub",
       subtitle: "Greater Noida",
@@ -105,6 +65,46 @@ export function WhereWeWork() {
       accent: "text-emerald-600",
       bgAccent: "bg-emerald-50",
       mapPosition: { x: 55, y: 45 },
+    },
+    {
+      id: "yamuna",
+      title: "The Investment Corridor",
+      subtitle: "Yamuna Expressway",
+      tagline: "High-Growth Zone | Strategic Location",
+      description:
+        "Premium investment destination with excellent connectivity and promising infrastructure development. Ideal for investors seeking high returns and long-term appreciation.",
+      icon: <TrendingUp className="w-6 h-6" />,
+      features: [
+        "Expressway Connectivity",
+        "Upcoming Infrastructure",
+        "Investment Hotspot",
+        "Growth Potential",
+      ],
+      cta: "Access Investment Projections",
+      color: "from-indigo-50 to-indigo-100",
+      accent: "text-indigo-600",
+      bgAccent: "bg-indigo-50",
+      mapPosition: { x: 55, y: 45 },
+    },
+    {
+      id: "ghaziabad",
+      title: "The Foundation",
+      subtitle: "Ghaziabad / NH-24 Corridor",
+      tagline: "Value & Vitals | Established Infrastructure",
+      description:
+        "Established residential market offering exceptional value, excellent connectivity to Delhi, and mature, family-friendly social infrastructure across essential amenities.",
+      icon: <Home className="w-6 h-6" />,
+      features: [
+        "Family Communities",
+        "Schools & Colleges",
+        "Hospitals",
+        "Shopping Centers",
+      ],
+      cta: "Find Value Homes",
+      color: "from-amber-50 to-amber-100",
+      accent: "text-amber-600",
+      bgAccent: "bg-amber-50",
+      mapPosition: { x: 25, y: 40 },
     },
   ];
 

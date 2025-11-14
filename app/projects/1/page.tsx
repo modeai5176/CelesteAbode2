@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
+import { projectMetadata } from "@/lib/project-metadata";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -227,8 +229,32 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
+  const projectMeta = projectMetadata[1];
+  const projectUrl = "https://www.celesteabode.com/projects/1";
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Projects", url: "https://www.celesteabode.com/projects" },
+          { name: projectMeta.title.split(" - ")[0], url: projectUrl },
+        ]}
+      />
+      <PropertySchema
+        name={property.projectName}
+        description={projectMeta.description}
+        image={property.images[0]}
+        price={property.pricing.startingPrice}
+        address={property.location}
+        developer={property.developer}
+        reraId={property.reraId}
+        unitTypes={property.unitTypes}
+        area={property.sizes}
+        status={property.status}
+        url={projectUrl}
+      />
+      <div className="min-h-screen bg-white">
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
@@ -817,5 +843,6 @@ export default function PropertyPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

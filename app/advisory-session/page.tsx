@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { BreadcrumbSchema } from "@/lib/structured-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -71,7 +72,14 @@ export default function AdvisorySessionPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-background">
+      <>
+        <BreadcrumbSchema
+          items={[
+            { name: "Home", url: "https://www.celesteabode.com" },
+            { name: "Advisory Session", url: "https://www.celesteabode.com/advisory-session" },
+          ]}
+        />
+        <div className="min-h-screen bg-background">
         <Header />
         <main className="pt-24 pb-16">
           <div className="max-w-2xl mx-auto px-6">
@@ -103,11 +111,19 @@ export default function AdvisorySessionPage() {
         </main>
         <Footer />
       </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Advisory Session", url: "https://www.celesteabode.com/advisory-session" },
+        ]}
+      />
+      <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-24 pb-16">
         <div className="max-w-2xl mx-auto px-6">
@@ -380,5 +396,6 @@ export default function AdvisorySessionPage() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }

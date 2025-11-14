@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
+import { projectMetadata } from "@/lib/project-metadata";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -99,8 +101,32 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
+  const projectMeta = projectMetadata[2];
+  const projectUrl = "https://www.celesteabode.com/projects/2";
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Projects", url: "https://www.celesteabode.com/projects" },
+          { name: projectMeta.title.split(" - ")[0], url: projectUrl },
+        ]}
+      />
+      <PropertySchema
+        name={property.projectName}
+        description={projectMeta.description}
+        image={property.images[0]}
+        price={property.pricing?.startingPrice || projectMeta.price}
+        address={property.location}
+        developer={property.developer}
+        reraId={property.reraId}
+        unitTypes={property.unitTypes}
+        area={property.sizes}
+        status={property.status}
+        url={projectUrl}
+      />
+      <div className="min-h-screen bg-white">
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
@@ -181,16 +207,16 @@ export default function PropertyPage() {
             </h1>
             <div className="flex items-center gap-4 mb-8">
               <div className="flex items-center gap-3">
-                <MapPin className="w-6 h-6 text-[#CBB27A]" />
-                <p
+              <MapPin className="w-6 h-6 text-[#CBB27A]" />
+              <p
                   className="text-sm lg:text-lg xl:text-xl font-semibold text-[#CBB27A]"
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     textShadow: "0 2px 10px rgba(0,0,0,0.3)",
                   }}
-                >
-                  {property.location}
-                </p>
+              >
+                {property.location}
+              </p>
               </div>
             </div>
           </div>
@@ -336,16 +362,16 @@ export default function PropertyPage() {
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
                       {property.images.length <= 12 && property.images.map((image, index) => (
-                        <button
+                          <button
                           key={index}
-                          onClick={() => setCurrentSlide(index)}
+                            onClick={() => setCurrentSlide(index)}
                           className={`relative transition-all duration-300 ${
-                            index === currentSlide
+                              index === currentSlide
                               ? "w-8 h-2 bg-[#CBB27A] rounded-full shadow-lg"
                               : "w-2 h-2 bg-white/40 rounded-full hover:bg-white/60"
-                          }`}
-                          aria-label={`Go to slide ${index + 1}`}
-                        />
+                            }`}
+                            aria-label={`Go to slide ${index + 1}`}
+                          />
                       ))}
                     </div>
                   </div>
@@ -419,9 +445,9 @@ export default function PropertyPage() {
                     { name: "Premium Clubhouse", icon: Coffee },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
-                    return (
-                      <div
-                        key={index}
+                      return (
+                              <div
+                                key={index}
                         className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 group"
                       >
                         <div className="flex flex-col items-center text-center">
@@ -462,13 +488,13 @@ export default function PropertyPage() {
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Square className="w-4 h-4 text-[#CBB27A]" />
-                        <p
+                      <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           Type
-                        </p>
-                      </div>
+                      </p>
+                    </div>
                       <p
                         className="text-lg font-bold text-gray-900"
                         style={{ fontFamily: "Poppins, sans-serif" }}
@@ -480,30 +506,30 @@ export default function PropertyPage() {
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Building2 className="w-4 h-4 text-[#CBB27A]" />
-                        <p
+                      <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           Configuration
-                        </p>
-                      </div>
+                      </p>
+                    </div>
                       <div className="space-y-2">
                         {property.unitTypes.map((type, index) => (
                           <p
                             key={index}
                             className="text-lg font-bold text-gray-900"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
+                                style={{ fontFamily: "Poppins, sans-serif" }}
+                              >
                             {type}
-                          </p>
+                              </p>
                         ))}
-                        <p
+                              <p
                           className="text-sm text-gray-600"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                                style={{ fontFamily: "Poppins, sans-serif" }}
+                              >
                           {property.sizes}
-                        </p>
-                      </div>
+                            </p>
+                          </div>
                     </div>
 
                     <div>
@@ -663,5 +689,6 @@ export default function PropertyPage() {
         onClose={() => setIsPopupOpen(false)}
       />
     </div>
+    </>
   );
 }

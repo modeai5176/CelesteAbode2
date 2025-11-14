@@ -28,6 +28,7 @@ import {
   Users,
   Shield,
 } from "lucide-react";
+import { BreadcrumbSchema } from "@/lib/structured-data";
 
 export default function ProjectsPage() {
   const [activeSegment, setActiveSegment] = useState("buying-to-live");
@@ -921,7 +922,14 @@ export default function ProjectsPage() {
   const canGoNext = carouselPosition < maxPosition;
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.celesteabode.com" },
+          { name: "Projects", url: "https://www.celesteabode.com/projects" },
+        ]}
+      />
+      <div className="min-h-screen bg-background">
       <style dangerouslySetInnerHTML={{__html: `
         .carousel-transform {
           --translate-percent: calc(var(--carousel-position, 0) * 100%);
@@ -942,12 +950,12 @@ export default function ProjectsPage() {
               {/* Full Container Image */}
               <div className="relative h-[580px] lg:h-[620px]">
                 <Image
-                  src="/propertyhero.avif"
+                  src="/hero-.avif"
                   alt="Property Portfolio Hero"
                   fill
                   priority
                   loading="eager"
-                  className="object-cover object-center md:object-cover md:object-[center_40%]"
+                  className="object-cover object-bottom md:object-cover md:object-[center_70%]"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                   quality={90}
                   placeholder="blur"
@@ -1292,5 +1300,6 @@ export default function ProjectsPage() {
 
       <Footer />
     </div>
+    </>
   );
 }

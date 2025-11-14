@@ -1,6 +1,20 @@
 import { Section } from "@/components/ui/section"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy - Celeste Abode",
+  description:
+    "Celeste Abode's privacy policy outlining how we collect, use, and protect your personal information. Learn about our data protection practices and your privacy rights.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://www.celesteabode.com/privacy-policy",
+  },
+};
 
 export default function PrivacyPolicyPage() {
   return (
