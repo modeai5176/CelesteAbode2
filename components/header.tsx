@@ -54,8 +54,8 @@ export function Header() {
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
-                width={110}
-                height={110}
+                width={90}
+                height={90}
                 priority
               />
             </Link>
@@ -93,8 +93,8 @@ export function Header() {
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
-                width={110}
-                height={110}
+                width={90}
+                height={90}
                 priority
               />
             </Link>
