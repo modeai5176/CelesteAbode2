@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { PillButton } from "@/components/ui/pill-button";
-import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export function HeroSection() {
@@ -13,7 +12,7 @@ export function HeroSection() {
     // Load video after initial page load to improve LCP
     const timer = setTimeout(() => {
       setShouldLoadVideo(true);
-    }, 2000); // Wait 2 seconds after page load
+    }, 600); // Wait 0.6 seconds after page load for faster video appearance
 
     return () => clearTimeout(timer);
   }, []);
@@ -30,11 +29,8 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-background pt-24">
       <div className="max-w-7xl mx-auto px-6 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white rounded-3xl shadow-2xl overflow-hidden relative"
+        <div
+          className="bg-white rounded-3xl shadow-2xl overflow-hidden relative animate-fade-in-up"
         >
           {/* Full Container Video/Image */}
           <div className="relative h-[580px] lg:h-[620px]">
@@ -58,7 +54,7 @@ export function HeroSection() {
               fill
               priority
               loading="eager"
-              className={`hidden md:block absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+              className={`hidden md:block absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${
                 shouldLoadVideo ? 'opacity-0' : 'opacity-100'
               }`}
               sizes="(min-width: 768px) 100vw, 0vw"
@@ -74,8 +70,8 @@ export function HeroSection() {
                 loop
                 muted
                 playsInline
-                preload="none"
-                className="hidden md:block absolute inset-0 w-full h-full object-cover object-center md:object-cover md:object-bottom opacity-0 transition-opacity duration-1000"
+                preload="auto"
+                className="hidden md:block absolute inset-0 w-full h-full object-cover object-center md:object-cover md:object-bottom opacity-0 transition-opacity duration-500"
                 onLoadedData={(e) => {
                   const target = e.target as HTMLVideoElement;
                   target.classList.remove('opacity-0');
@@ -86,8 +82,11 @@ export function HeroSection() {
               </video>
             )}
 
-            {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/60" />
+            {/* Dark overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/50" />
+
+            {/* Left side vignette */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
 
             {/* Left Aligned Text Overlay */}
             <div className="absolute inset-0 flex items-center">
@@ -133,8 +132,9 @@ export function HeroSection() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
+

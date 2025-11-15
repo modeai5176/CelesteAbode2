@@ -990,7 +990,7 @@ export default function ProjectsPage() {
           { name: "Projects", url: "https://www.celesteabode.com/projects" },
         ]}
       />
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <style dangerouslySetInnerHTML={{__html: `
         .carousel-transform {
           --translate-percent: calc(var(--carousel-position, 0) * 100%);

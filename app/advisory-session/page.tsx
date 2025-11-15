@@ -79,7 +79,7 @@ export default function AdvisorySessionPage() {
             { name: "Advisory Session", url: "https://www.celesteabode.com/advisory-session" },
           ]}
         />
-        <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background">
         <Header />
         <main className="pt-24 pb-16">
           <div className="max-w-2xl mx-auto px-6">
@@ -123,7 +123,7 @@ export default function AdvisorySessionPage() {
           { name: "Advisory Session", url: "https://www.celesteabode.com/advisory-session" },
         ]}
       />
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-24 pb-16">
         <div className="max-w-2xl mx-auto px-6">

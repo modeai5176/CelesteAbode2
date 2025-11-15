@@ -166,7 +166,7 @@ export default function ServicesPage() {
           { name: "Services", url: "https://www.celesteabode.com/services" },
         ]}
       />
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <main className="pt-0">
         <Header />
         <ServicesHeroSection />

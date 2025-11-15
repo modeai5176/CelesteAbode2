@@ -5,10 +5,10 @@
 Create a file named `.env.local` in the root directory with the following content:
 
 ```env
-# Email Configuration
-EMAIL_USER=support@celesteabode.com
-EMAIL_PASS=uzez qtjp gwbo yodb
-ADMIN_EMAIL=support@celesteabode.com
+# Email Configuration (Gmail)
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-16-character-app-password
+ADMIN_EMAIL=your-email@gmail.com
 
 # Phone Number
 PHONE_NUMBER=+919818735258
@@ -26,17 +26,19 @@ NEXT_PUBLIC_SITE_NAME=Celeste Abode
 
 ## Setup Instructions
 
-### 1. Email Configuration
+### 1. Email Configuration (Gmail)
 - **EMAIL_USER**: Your Gmail address (e.g., yourname@gmail.com)
-- **EMAIL_PASS**: Your Gmail App Password (not your regular password)
-- **ADMIN_EMAIL**: Email where advisory session requests will be sent
+- **EMAIL_PASS**: Your Gmail App Password (16-character password, NOT your regular Gmail password)
+- **ADMIN_EMAIL**: Email where form submissions will be sent (usually same as EMAIL_USER)
 
 ### 2. Gmail App Password Setup
-1. Go to your Google Account settings
-2. Enable 2-Factor Authentication
-3. Go to Security → App passwords
-4. Generate a new app password for "Mail"
-5. Use this 16-character password as EMAIL_PASS
+1. Go to your Google Account settings: https://myaccount.google.com/
+2. Enable 2-Factor Authentication (required for App Passwords)
+3. Go to Security → 2-Step Verification → App passwords
+4. Select "Mail" as the app and "Other" as the device
+5. Generate a new 16-character app password
+6. Copy the 16-character password (no spaces) and use it as EMAIL_PASS
+7. **Important**: Use the App Password, NOT your regular Gmail password
 
 ### 3. Phone Number
 - Update PHONE_NUMBER with your business phone number
@@ -66,9 +68,12 @@ After setting up the environment variables:
 
 ### Email not sending?
 - Verify EMAIL_USER and EMAIL_PASS are correct
-- Make sure you're using App Password, not regular password
-- Check Gmail security settings
-- Ensure 2FA is enabled on your Google account
+- **CRITICAL**: Make sure you're using Gmail App Password, NOT your regular Gmail password
+- Ensure 2-Factor Authentication is enabled on your Google account
+- Verify the App Password was generated correctly (16 characters, no spaces)
+- Check that EMAIL_USER is your full Gmail address (e.g., yourname@gmail.com)
+- Make sure the App Password hasn't been revoked or regenerated
+- Check Gmail security settings to ensure "Less secure app access" is not blocking (though App Passwords should bypass this)
 
 ### Form not submitting?
 - Check browser console for errors

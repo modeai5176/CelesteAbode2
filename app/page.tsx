@@ -1,23 +1,52 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/hero-section"
 import { BrandEssay } from "@/components/brand-essay"
 import { FourPillars } from "@/components/four-pillars"
 import { CoreServices } from "@/components/core-services"
 import { ValuePropositions } from "@/components/value-propositions"
 import { BrandCarousel } from "@/components/brand-carousel"
-import { SegmentedEntry } from "@/components/segmented-entry/SegmentedEntry"
-import { TechnologySection } from "@/components/technology-section"
-import { WhoWeServe } from "@/components/who-we-serve"
-import { WhereWeWork } from "@/components/where-we-work"
-import { Landscape2025 } from "@/components/landscape-2025"
-import { PropertiesSection } from "@/components/properties-section"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { CTASection } from "@/components/cta-section"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { IntentPayload } from "@/lib/analytics"
 import { OrganizationSchema, WebSiteSchema, LocalBusinessSchema } from "@/lib/structured-data"
+
+// Lazy load below-the-fold components to reduce initial JS bundle
+const SegmentedEntry = dynamic(
+  () => import("@/components/segmented-entry/SegmentedEntry").then(mod => ({ default: mod.SegmentedEntry })),
+  { ssr: false, loading: () => <div className="min-h-[400px]" /> }
+)
+
+const TechnologySection = dynamic(
+  () => import("@/components/technology-section").then(mod => ({ default: mod.TechnologySection })),
+  { ssr: true }
+)
+
+const WhoWeServe = dynamic(
+  () => import("@/components/who-we-serve").then(mod => ({ default: mod.WhoWeServe })),
+  { ssr: true }
+)
+
+const WhereWeWork = dynamic(
+  () => import("@/components/where-we-work").then(mod => ({ default: mod.WhereWeWork })),
+  { ssr: false, loading: () => <div className="min-h-[600px]" /> }
+)
+
+const Landscape2025 = dynamic(
+  () => import("@/components/landscape-2025").then(mod => ({ default: mod.Landscape2025 })),
+  { ssr: true }
+)
+
+const TestimonialsSection = dynamic(
+  () => import("@/components/testimonials-section").then(mod => ({ default: mod.TestimonialsSection })),
+  { ssr: false, loading: () => <div className="min-h-[400px]" /> }
+)
+
+const CTASection = dynamic(
+  () => import("@/components/cta-section").then(mod => ({ default: mod.CTASection })),
+  { ssr: true }
+)
 
 export default function HomePage() {
   const handleIntentSubmit = (payload: IntentPayload) => {

@@ -78,7 +78,7 @@ export default function ContactPage() {
         ]}
       />
       <LocalBusinessSchema />
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-0">
         {/* Hero Section */}

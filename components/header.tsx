@@ -14,6 +14,7 @@ export function Header() {
   const isHomepage = pathname === "/";
   const isPropertyPage =
     pathname.startsWith("/projects/") && pathname !== "/projects";
+  const isContactPage = pathname === "/contact";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,8 +35,8 @@ export function Header() {
     };
   }, []);
 
-  // Mobile: always show black strip, Desktop: property pages always, other pages only on scroll
-  const shouldShowGlassmorphism = isMobile || isPropertyPage || isScrolled;
+  // Mobile: always show black strip, Desktop: contact page & property pages always, other pages only on scroll
+  const shouldShowGlassmorphism = isMobile || isPropertyPage || isContactPage || isScrolled;
 
   return (
     <header
@@ -54,8 +55,8 @@ export function Header() {
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
-                width={100}
-                height={100}
+                width={95}
+                height={95}
                 priority
               />
             </Link>
@@ -93,8 +94,8 @@ export function Header() {
               <Image
                 src="/logoceleste.avif"
                 alt="Celeste Abode Logo"
-                width={100}
-                height={100}
+                width={95}
+                height={95}
                 priority
               />
             </Link>

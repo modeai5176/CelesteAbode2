@@ -1,117 +1,723 @@
-// Email service for sending form data
-export interface FormSubmissionData {
-  intent: "live" | "invest" | "signature"
-  step1: {
-    budget?: string
-    propertyType?: string // Ready to Move, Under Construction, Pre-Launch
-    productCategory?: string // Flat, Villa, Penthouse, Farm House (for signature)
-    area?: string // 3000 sq. ft & above (for signature)
-    location?: string[]
-    buyingTimeline?: string // Immediate, Within 3 Months, 3 to 6 Months
-    timeframe?: string // 1 Year, 2 Years, 3 Years (for invest)
-    expectedROI?: string // 15%, 20%, 25% (for invest)
-    possessionWindow?: string
-  }
-  step2?: {
-    configuration?: string[]
-    timeline?: string
-    priorities?: string[]
-  }
-  step3: {
-    contactInfo: {
-      name: string
-      email: string
-      phone: string
-      whatsapp?: string
+import nodemailer, { Transporter } from 'nodemailer';
+import type { FormSubmissionData } from './email-client';
+
+// Server-side email service (DO NOT import in client components)
+// Use email-client.ts for client-side functions
+
+export interface EmailSubmissionParams {
+  formType: 'contact' | 'segmented-entry' | 'viewing' | 'advisory-session' | 'consultation';
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message?: string;
+  // Segmented entry specific
+  intent?: "live" | "invest" | "signature";
+  formData?: FormSubmissionData;
+  emailContent?: string;
+  // Viewing specific
+  preferredDate?: string;
+  preferredTime?: string;
+  propertyTitle?: string;
+  propertyLocation?: string;
+  // Advisory/Consultation specific
+  budget?: string;
+  propertyType?: string;
+  timeline?: string;
+  location?: string;
+}
+
+export interface EmailResult {
+  success: boolean;
+  messageId?: string;
+  error?: string;
+}
+
+// Singleton transporter instance with connection pooling
+let transporter: Transporter | null = null;
+
+/**
+ * Get or create the email transporter with connection pooling
+ */
+function getTransporter(): Transporter {
+  if (!transporter) {
+    const emailUser = process.env.EMAIL_USER;
+    const emailPass = process.env.EMAIL_PASS;
+
+    if (!emailUser || !emailPass) {
+      throw new Error('Email configuration missing: EMAIL_USER and EMAIL_PASS must be set');
     }
-    additionalNotes?: string
-  }
-}
 
-export async function sendFormSubmission(data: FormSubmissionData): Promise<boolean> {
-  try {
-    // Create email content
-    const emailContent = createEmailContent(data)
-    
-    // Use the existing contact API route
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    // Clean the app password (remove any spaces)
+    const cleanPassword = emailPass.trim().replace(/\s/g, '');
+
+    // Gmail SMTP configuration with App Password
+    // Using explicit host/port for better reliability
+    transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: emailUser.trim(),
+        pass: cleanPassword, // Gmail App Password (cleaned, no spaces)
       },
-      body: JSON.stringify({
-        formType: 'segmented-entry',
-        intent: data.intent,
-        firstName: data.step3.contactInfo.name.split(' ')[0] || '',
-        lastName: data.step3.contactInfo.name.split(' ').slice(1).join(' ') || '',
-        email: data.step3.contactInfo.email,
-        phone: data.step3.contactInfo.phone,
-        message: `Segmented Entry Form - ${data.intent}`,
-        formData: data,
-        emailContent: emailContent
-      })
-    })
+      pool: true, // Use connection pooling
+      maxConnections: 5,
+      maxMessages: 100,
+      rateDelta: 1000, // Time window for rate limiting (1 second)
+      rateLimit: 5, // Max 5 emails per second
+      // TLS options
+      tls: {
+        // Do not fail on invalid certificates
+        rejectUnauthorized: false,
+      },
+    });
 
-    return response.ok
+    // Verify connection on creation (async, don't wait)
+    transporter.verify((error) => {
+      if (error) {
+        console.error('Email transporter verification failed:', error);
+        console.error('Error details:', {
+          code: (error as any).code,
+          command: (error as any).command,
+          response: (error as any).response,
+        });
+      } else {
+        console.log('Email transporter ready (Gmail)');
+      }
+    });
+  }
+
+  return transporter;
+}
+
+/**
+ * Verify email configuration
+ */
+export async function verifyEmailConfig(): Promise<{ success: boolean; error?: string }> {
+  try {
+    const emailUser = process.env.EMAIL_USER;
+    const emailPass = process.env.EMAIL_PASS;
+    const adminEmail = process.env.ADMIN_EMAIL;
+
+    if (!emailUser || !emailPass) {
+      return {
+        success: false,
+        error: 'Missing EMAIL_USER or EMAIL_PASS environment variables',
+      };
+    }
+
+    if (!adminEmail) {
+      return {
+        success: false,
+        error: 'Missing ADMIN_EMAIL environment variable',
+      };
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailUser) || !emailRegex.test(adminEmail)) {
+      return {
+        success: false,
+        error: 'Invalid email format in environment variables',
+      };
+    }
+
+    // Test connection
+    const testTransporter = getTransporter();
+    await testTransporter.verify();
+
+    return { success: true };
   } catch (error) {
-    console.error('Error sending email:', error)
-    return false
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error during email verification',
+    };
   }
 }
 
-function createEmailContent(data: FormSubmissionData): string {
+/**
+ * Validate email address format
+ */
+function validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+/**
+ * Sanitize input to prevent email injection
+ */
+function sanitizeInput(input: string): string {
+  return input
+    .replace(/[\r\n]/g, ' ') // Remove line breaks
+    .replace(/[<>]/g, '') // Remove HTML brackets
+    .trim()
+    .substring(0, 10000); // Limit length
+}
+
+/**
+ * Send email with retry logic
+ */
+async function sendEmailWithRetry(
+  mailOptions: nodemailer.SendMailOptions,
+  retries = 3
+): Promise<EmailResult> {
+  const transporter = getTransporter();
+
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      return {
+        success: true,
+        messageId: info.messageId,
+      };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorDetails = error instanceof Error ? {
+        code: (error as any).code,
+        command: (error as any).command,
+        response: (error as any).response,
+        responseCode: (error as any).responseCode,
+      } : {};
+      console.error(`Email send attempt ${attempt} failed:`, errorMessage);
+      console.error('Error details:', errorDetails);
+
+      if (attempt === retries) {
+        return {
+          success: false,
+          error: `Failed to send email after ${retries} attempts: ${errorMessage}`,
+        };
+      }
+
+      // Exponential backoff: wait 1s, 2s, 4s
+      await new Promise((resolve) => setTimeout(resolve, Math.pow(2, attempt - 1) * 1000));
+    }
+  }
+
+  return {
+    success: false,
+    error: 'Failed to send email',
+  };
+}
+
+/**
+ * Create email template for contact form
+ */
+function createContactEmailTemplate(params: EmailSubmissionParams): string {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+      <div style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #CBB27A; padding-bottom: 20px;">
+          <h1 style="color: #2B3035; margin: 0; font-size: 24px;">New Contact Form Submission</h1>
+          <p style="color: #666; margin: 10px 0 0 0;">Celeste Abode</p>
+        </div>
+        
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Contact Information</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333; width: 30%;">Name:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.firstName)} ${sanitizeInput(params.lastName)}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Email:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="mailto:${params.email}">${params.email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Phone:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="tel:${params.phone}">${params.phone}</a></td>
+            </tr>
+          </table>
+        </div>
+
+        ${params.message ? `
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Message</h2>
+          <p style="color: #666; margin: 0; line-height: 1.6; white-space: pre-wrap;">${sanitizeInput(params.message)}</p>
+        </div>
+        ` : ''}
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+          <p style="color: #666; margin: 0; font-size: 14px;">
+            This form was submitted through the Celeste Abode website.<br>
+            Please respond to the client within 24 hours.
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+/**
+ * Create email template for segmented entry form
+ */
+function createSegmentedEntryEmailTemplate(params: EmailSubmissionParams): string {
   const intentLabels = {
     live: "Buying to Live",
-    invest: "Investing for Returns", 
+    invest: "Investing for Returns",
     signature: "Luxury & Signature Residences"
-  }
+  };
+
+  const intent = params.intent || 'live';
 
   return `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #2B3035; border-bottom: 2px solid #CBB27A; padding-bottom: 10px;">
-        New ${intentLabels[data.intent]} Inquiry
-      </h2>
-      
-      <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <h3 style="color: #2B3035; margin-top: 0;">Contact Information</h3>
-        <p><strong>Name:</strong> ${data.step3.contactInfo.name}</p>
-        <p><strong>Email:</strong> ${data.step3.contactInfo.email}</p>
-        <p><strong>Phone:</strong> ${data.step3.contactInfo.phone}</p>
-        ${data.step3.contactInfo.whatsapp ? `<p><strong>WhatsApp:</strong> ${data.step3.contactInfo.whatsapp}</p>` : ''}
-      </div>
-
-      <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; margin: 20px 0;">
-        <h3 style="color: #2B3035;">Step 1 - Basic Requirements</h3>
-        ${data.step1.budget ? `<p><strong>Budget:</strong> ${data.step1.budget}</p>` : ''}
-        ${data.step1.propertyType ? `<p><strong>Type of Property:</strong> ${data.step1.propertyType}</p>` : ''}
-        ${data.step1.productCategory ? `<p><strong>Product Category:</strong> ${data.step1.productCategory}</p>` : ''}
-        ${data.step1.area ? `<p><strong>Area (Size) of Property:</strong> ${data.step1.area}</p>` : ''}
-        ${data.step1.buyingTimeline ? `<p><strong>When Planning to Buy:</strong> ${data.step1.buyingTimeline}</p>` : ''}
-        ${data.step1.timeframe ? `<p><strong>Timeframe of Returns:</strong> ${data.step1.timeframe}</p>` : ''}
-        ${data.step1.expectedROI ? `<p><strong>Expected ROI:</strong> ${data.step1.expectedROI}</p>` : ''}
-        ${data.step1.location && data.step1.location.length > 0 ? `<p><strong>Preferred Locations:</strong> ${data.step1.location.join(', ')}</p>` : ''}
-        ${data.step1.possessionWindow ? `<p><strong>Possession Window:</strong> ${data.step1.possessionWindow}</p>` : ''}
-      </div>
-
-      ${data.step2 ? `
-      <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; margin: 20px 0;">
-        <h3 style="color: #2B3035;">Step 2 - Specific Preferences</h3>
-        <p><strong>Configuration:</strong> ${data.step2.configuration?.join(', ') || 'Not specified'}</p>
-        <p><strong>Timeline:</strong> ${data.step2.timeline || 'Not specified'}</p>
-        <p><strong>Priorities:</strong> ${data.step2.priorities?.join(', ') || 'Not specified'}</p>
-      </div>
-      ` : ''}
-
-      ${data.step3.additionalNotes ? `
-        <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; margin: 20px 0;">
-          <h3 style="color: #2B3035;">Additional Notes</h3>
-          <p>${data.step3.additionalNotes}</p>
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+      <div style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #CBB27A; padding-bottom: 20px;">
+          <h1 style="color: #2B3035; margin: 0; font-size: 24px;">New ${intentLabels[intent]} Inquiry</h1>
+          <p style="color: #666; margin: 10px 0 0 0;">Celeste Abode</p>
         </div>
-      ` : ''}
+        
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Contact Information</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333; width: 30%;">Name:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.firstName)} ${sanitizeInput(params.lastName)}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Email:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="mailto:${params.email}">${params.email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Phone:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="tel:${params.phone}">${params.phone}</a></td>
+            </tr>
+          </table>
+        </div>
 
-      <div style="background: #CBB27A; color: white; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
-        <p style="margin: 0; font-weight: bold;">Ready to provide personalized recommendations!</p>
+        ${params.emailContent || params.formData ? `
+        <div style="background-color: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px; margin: 20px 0;">
+          ${params.emailContent || 'Form data submitted'}
+        </div>
+        ` : ''}
+
+        <div style="background-color: #CBB27A; color: white; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
+          <p style="margin: 0; font-weight: bold;">Ready to provide personalized recommendations!</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+          <p style="color: #666; margin: 0; font-size: 14px;">
+            This inquiry was submitted through the Celeste Abode website.<br>
+            Please contact the client within 24 hours.
+          </p>
+        </div>
       </div>
-    </div>
-  `
+    </body>
+    </html>
+  `;
 }
+
+/**
+ * Create email template for viewing request
+ */
+function createViewingEmailTemplate(params: EmailSubmissionParams): string {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+      <div style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #CBB27A; padding-bottom: 20px;">
+          <h1 style="color: #2B3035; margin: 0; font-size: 24px;">New Property Viewing Request</h1>
+          <p style="color: #666; margin: 10px 0 0 0;">Celeste Abode</p>
+        </div>
+        
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Client Information</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333; width: 30%;">Name:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.firstName)} ${sanitizeInput(params.lastName)}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Email:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="mailto:${params.email}">${params.email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Phone:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="tel:${params.phone}">${params.phone}</a></td>
+            </tr>
+          </table>
+        </div>
+
+        ${params.propertyTitle || params.propertyLocation ? `
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Property Details</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            ${params.propertyTitle ? `
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333; width: 30%;">Property:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.propertyTitle)}</td>
+            </tr>
+            ` : ''}
+            ${params.propertyLocation ? `
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Location:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.propertyLocation)}</td>
+            </tr>
+            ` : ''}
+          </table>
+        </div>
+        ` : ''}
+
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Preferred Viewing Time</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333; width: 30%;">Date:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${params.preferredDate ? new Date(params.preferredDate).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Not specified'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Time:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${params.preferredTime || 'Not specified'}</td>
+            </tr>
+          </table>
+        </div>
+
+        ${params.message ? `
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Additional Notes</h2>
+          <p style="color: #666; margin: 0; line-height: 1.6; white-space: pre-wrap;">${sanitizeInput(params.message)}</p>
+        </div>
+        ` : ''}
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+          <p style="color: #666; margin: 0; font-size: 14px;">
+            This viewing request was submitted through the Celeste Abode website.<br>
+            Please contact the client to confirm the viewing appointment.
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+/**
+ * Create email template for advisory session/consultation
+ */
+function createAdvisoryEmailTemplate(params: EmailSubmissionParams, type: 'advisory-session' | 'consultation'): string {
+  const title = type === 'advisory-session' ? 'Advisory Session Request' : 'Consultation Request';
+  
+  const budgetLabels: { [key: string]: string } = {
+    'under-50': 'Under ₹50 Lakhs',
+    '50-100': '₹50 Lakhs - ₹1 Crore',
+    '100-200': '₹1 Crore - ₹2 Crore',
+    '200-500': '₹2 Crore - ₹5 Crore',
+    '500-plus': '₹5 Crore+',
+  };
+
+  const timelineLabels: { [key: string]: string } = {
+    'immediate': 'Immediate (0-3 months)',
+    'short': 'Short term (3-6 months)',
+    'medium': 'Medium term (6-12 months)',
+    'long': 'Long term (1+ years)',
+  };
+
+  const propertyTypeLabels: { [key: string]: string } = {
+    'apartment': 'Apartment',
+    'villa': 'Villa',
+    'plot': 'Residential Plot',
+    'commercial': 'Commercial Property',
+    'investment': 'Investment Property',
+  };
+
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+      <div style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #CBB27A; padding-bottom: 20px;">
+          <h1 style="color: #2B3035; margin: 0; font-size: 24px;">New ${title}</h1>
+          <p style="color: #666; margin: 10px 0 0 0;">Celeste Abode</p>
+        </div>
+        
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Client Information</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333; width: 30%;">Name:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.firstName)} ${sanitizeInput(params.lastName)}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Email:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="mailto:${params.email}">${params.email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Phone:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;"><a href="tel:${params.phone}">${params.phone}</a></td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Property Requirements</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            ${params.budget ? `
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333; width: 30%;">Budget:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${budgetLabels[params.budget] || params.budget}</td>
+            </tr>
+            ` : ''}
+            ${params.propertyType ? `
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Property Type:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${propertyTypeLabels[params.propertyType] || params.propertyType}</td>
+            </tr>
+            ` : ''}
+            ${params.timeline ? `
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Timeline:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${timelineLabels[params.timeline] || params.timeline}</td>
+            </tr>
+            ` : ''}
+            ${params.location ? `
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Location:</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.location)}</td>
+            </tr>
+            ` : ''}
+          </table>
+        </div>
+
+        ${params.message ? `
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Additional Requirements</h2>
+          <p style="color: #666; margin: 0; line-height: 1.6; white-space: pre-wrap;">${sanitizeInput(params.message)}</p>
+        </div>
+        ` : ''}
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+          <p style="color: #666; margin: 0; font-size: 14px;">
+            This request was submitted through the Celeste Abode website.<br>
+            Please contact the client within 24 hours to schedule their ${type === 'advisory-session' ? 'advisory session' : 'consultation'}.
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+/**
+ * Create confirmation email template for clients
+ */
+function createConfirmationEmailTemplate(
+  name: string,
+  type: 'advisory-session' | 'consultation' | 'viewing' | 'contact'
+): string {
+  const titles: Record<string, { main: string; sub: string }> = {
+    'advisory-session': {
+      main: 'Thank You for Your Interest',
+      sub: 'Celeste Abode Advisory Services'
+    },
+    'consultation': {
+      main: 'Consultation Request Confirmed',
+      sub: 'Celeste Abode Consultation Services'
+    },
+    'viewing': {
+      main: 'Viewing Request Received',
+      sub: 'Celeste Abode'
+    },
+    'contact': {
+      main: 'Thank You for Contacting Us',
+      sub: 'Celeste Abode'
+    }
+  };
+
+  const title = titles[type] || titles.contact;
+  const phoneNumber = process.env.PHONE_NUMBER || '+91 9818735258';
+
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+      <div style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #CBB27A; padding-bottom: 20px;">
+          <h1 style="color: #2B3035; margin: 0; font-size: 24px;">${title.main}</h1>
+          <p style="color: #666; margin: 10px 0 0 0;">${title.sub}</p>
+        </div>
+        
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <p style="color: #333; margin: 0 0 15px 0; font-size: 16px; line-height: 1.6;">
+            Dear ${sanitizeInput(name)},
+          </p>
+          <p style="color: #666; margin: 0; line-height: 1.6;">
+            Thank you for reaching out to Celeste Abode. We have received your request and our expert team will review your needs.
+          </p>
+        </div>
+
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+          <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">What Happens Next?</h2>
+          <ul style="color: #666; margin: 0; padding-left: 20px; line-height: 1.6;">
+            <li>Our team will review your requirements within 24 hours</li>
+            <li>We'll contact you to schedule a personalized consultation</li>
+            <li>You'll receive tailored recommendations based on your needs</li>
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+          <p style="color: #666; margin: 0; font-size: 14px;">
+            For immediate assistance, please call us at <strong>${phoneNumber}</strong><br>
+            or visit our website at <strong>www.celesteabode.com</strong>
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+/**
+ * Main function to send form submission emails
+ */
+export async function sendFormSubmissionEmail(params: EmailSubmissionParams): Promise<EmailResult> {
+  try {
+    // Validate required fields
+    if (!params.firstName || !params.lastName || !params.email || !params.phone) {
+      return {
+        success: false,
+        error: 'Missing required fields: firstName, lastName, email, phone',
+      };
+    }
+
+    // Validate email format
+    if (!validateEmail(params.email)) {
+      return {
+        success: false,
+        error: 'Invalid email format',
+      };
+    }
+
+    // Validate environment variables
+    const emailUser = process.env.EMAIL_USER;
+    const adminEmail = process.env.ADMIN_EMAIL || emailUser;
+
+    if (!emailUser) {
+      return {
+        success: false,
+        error: 'EMAIL_USER environment variable is not set',
+      };
+    }
+
+    if (!adminEmail) {
+      return {
+        success: false,
+        error: 'ADMIN_EMAIL environment variable is not set',
+      };
+    }
+
+    // Get email content based on form type
+    let emailContent: string;
+    let subject: string;
+    const fullName = `${params.firstName} ${params.lastName}`;
+
+    switch (params.formType) {
+      case 'contact':
+        emailContent = createContactEmailTemplate(params);
+        subject = `New Contact Form Submission - ${fullName}`;
+        break;
+      case 'segmented-entry':
+        emailContent = createSegmentedEntryEmailTemplate(params);
+        const intentLabels = {
+          live: "Buying to Live",
+          invest: "Investing for Returns",
+          signature: "Luxury & Signature Residences"
+        };
+        subject = `New ${intentLabels[params.intent || 'live']} Inquiry - ${fullName}`;
+        break;
+      case 'viewing':
+        emailContent = createViewingEmailTemplate(params);
+        subject = `New Property Viewing Request - ${fullName}`;
+        break;
+      case 'advisory-session':
+        emailContent = createAdvisoryEmailTemplate(params, 'advisory-session');
+        subject = `New Advisory Session Request - ${fullName}`;
+        break;
+      case 'consultation':
+        emailContent = createAdvisoryEmailTemplate(params, 'consultation');
+        subject = `New Consultation Request - ${fullName}`;
+        break;
+      default:
+        return {
+          success: false,
+          error: `Unknown form type: ${params.formType}`,
+        };
+    }
+
+    // Send email to admin
+    const adminResult = await sendEmailWithRetry({
+      from: `"Celeste Abode" <${emailUser}>`,
+      to: adminEmail,
+      replyTo: params.email,
+      subject: subject,
+      html: emailContent,
+    });
+
+    if (!adminResult.success) {
+      return adminResult;
+    }
+
+    // Send confirmation email to client (for advisory-session, consultation, viewing)
+    if (['advisory-session', 'consultation', 'viewing'].includes(params.formType)) {
+      const confirmationContent = createConfirmationEmailTemplate(
+        fullName,
+        params.formType as 'advisory-session' | 'consultation' | 'viewing'
+      );
+
+      const confirmationSubject = params.formType === 'advisory-session'
+        ? 'Advisory Session Request Confirmation - Celeste Abode'
+        : params.formType === 'consultation'
+        ? 'Consultation Request Confirmation - Celeste Abode'
+        : 'Viewing Request Confirmation - Celeste Abode';
+
+      // Don't fail if confirmation email fails, just log it
+      try {
+        await sendEmailWithRetry({
+          from: `"Celeste Abode" <${emailUser}>`,
+          to: params.email,
+          subject: confirmationSubject,
+          html: confirmationContent,
+        });
+      } catch (error) {
+        console.error('Failed to send confirmation email:', error);
+        // Continue - admin email was successful
+      }
+    }
+
+    return adminResult;
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Error in sendFormSubmissionEmail:', errorMessage);
+    return {
+      success: false,
+      error: errorMessage,
+    };
+  }
+}
+

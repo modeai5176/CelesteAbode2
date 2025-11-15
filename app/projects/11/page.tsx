@@ -120,7 +120,7 @@ export default function PropertyPage() {
         status={property.status}
         url={projectUrl}
       />
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;

@@ -21,7 +21,7 @@ export default function PhilosophyPage() {
           { name: "Philosophy", url: "https://www.celesteabode.com/philosophy" },
         ]}
       />
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <main className="pt-0">
         <Header />
         <PhilosophyHeroSection />

@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Chip, ChipGroup } from "./Chips";
-import { FormSubmissionData, sendFormSubmission } from "@/lib/email-service";
+import { FormSubmissionData, sendFormSubmission } from "@/lib/email-client";
 import { UserIntent } from "@/lib/analytics";
 import { ChevronLeft, ChevronRight, Mail, Phone, User, MessageCircle } from "lucide-react";
 

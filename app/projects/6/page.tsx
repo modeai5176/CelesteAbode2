@@ -118,7 +118,7 @@ export default function PropertyPage() {
         status={property.status}
         url={projectUrl}
       />
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
@@ -453,12 +453,12 @@ export default function PropertyPage() {
                             {amenity.name}
                           </p>
                         </div>
-                      </div>
-                    );
+                        </div>
+                      );
                   })}
                 </div>
               </section>
-            </div>
+                </div>
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
@@ -467,14 +467,14 @@ export default function PropertyPage() {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <Home className="w-5 h-5 text-[#CBB27A]" />
-                    </div>
-                    <h3
-                      className="text-xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
+                      </div>
+                      <h3
+                        className="text-xl font-bold text-gray-900"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                       Property Details
-                    </h3>
-                  </div>
+                      </h3>
+                    </div>
 
                   <div className="space-y-5">
                     <div className="pb-5 border-b border-gray-200">
@@ -489,36 +489,36 @@ export default function PropertyPage() {
                       </div>
                       <p
                         className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                         {property.status}
                       </p>
-                    </div>
+                  </div>
 
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Building2 className="w-4 h-4 text-[#CBB27A]" />
                         <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           Configuration
                         </p>
-                      </div>
+                    </div>
                       <div className="space-y-2">
                         {property.unitTypes.map((type, index) => (
                           <p
                             key={index}
-                        className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                      className="text-lg font-bold text-gray-900"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
                             {type}
                           </p>
                         ))}
                         <p
                           className="text-sm text-gray-600"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           {property.sizes}
                       </p>
                       </div>
@@ -527,20 +527,20 @@ export default function PropertyPage() {
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="w-4 h-4 text-[#CBB27A]" />
-                        <p
-                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          Location
-                        </p>
-                      </div>
                       <p
-                        className="text-base font-semibold text-gray-900 leading-relaxed"
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
+                          Location
+                          </p>
+                        </div>
+                        <p
+                        className="text-base font-semibold text-gray-900 leading-relaxed"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                         {property.location}
-                      </p>
-                    </div>
+                        </p>
+                      </div>
                   </div>
                 </div>
 

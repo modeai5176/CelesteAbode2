@@ -1,21 +1,41 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function TestimonialsSection() {
+  const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // Ensure the Elfsight platform script is loaded
-    if (typeof window !== "undefined" && !document.querySelector('script[src="https://elfsightcdn.com/platform.js"]')) {
-      const script = document.createElement("script");
-      script.src = "https://elfsightcdn.com/platform.js";
-      script.async = true;
-      document.body.appendChild(script);
-    }
+    // Use Intersection Observer to load widget only when section is about to be visible
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoadWidget(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: "200px", // Start loading 200px before section is visible
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="pt-6 pb-12 bg-gradient-to-br from-background to-secondary/5">
+    <section 
+      ref={sectionRef}
+      className="pt-6 pb-12 bg-gradient-to-br from-background to-secondary/5"
+    >
       <div className="max-w-7xl mx-auto px-6 pb-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -29,16 +49,20 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Elfsight Google Reviews | CELESTE ABODE */}
-        <Script
-          src="https://elfsightcdn.com/platform.js"
-          strategy="lazyOnload"
-        />
-        <div
-          className="elfsight-app-4185bb5e-82e5-45bf-92fc-b41420393094"
-          data-elfsight-app-lazy
-          style={{ paddingBottom: '2rem' }}
-              />
+        {/* Elfsight Google Reviews | CELESTE ABODE - Load only when section is visible */}
+        {shouldLoadWidget && (
+          <>
+            <Script
+              src="https://elfsightcdn.com/platform.js"
+              strategy="lazyOnload"
+            />
+            <div
+              className="elfsight-app-4185bb5e-82e5-45bf-92fc-b41420393094"
+              data-elfsight-app-lazy
+              style={{ paddingBottom: '2rem' }}
+            />
+          </>
+        )}
       </div>
     </section>
   );
