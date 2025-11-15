@@ -3,8 +3,30 @@
 import Image from "next/image";
 import { PillButton } from "@/components/ui/pill-button";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export function HeroSection() {
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Load video after initial page load to improve LCP
+    const timer = setTimeout(() => {
+      setShouldLoadVideo(true);
+    }, 2000); // Wait 2 seconds after page load
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (shouldLoadVideo && videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(() => {
+        // Auto-play may fail, that's okay
+      });
+    }
+  }, [shouldLoadVideo]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-background pt-24">
       <div className="max-w-7xl mx-auto px-6 w-full">
@@ -25,19 +47,44 @@ export function HeroSection() {
               loading="eager"
               className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
               sizes="(max-width: 768px) 100vw, 0vw"
-              quality={90}
+              quality={85}
+              fetchPriority="high"
             />
             
-            {/* Video for Desktop */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="hidden md:block absolute inset-0 w-full h-full object-cover object-center md:object-cover md:object-bottom"
-            >
-              <source src="/HOMEHERO.mp4" type="video/mp4" />
-            </video>
+            {/* Fallback image for Desktop (LCP optimization) - shown until video loads */}
+            <Image
+              src="/propertyhero.avif"
+              alt="Luxury real estate background"
+              fill
+              priority
+              loading="eager"
+              className={`hidden md:block absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+                shouldLoadVideo ? 'opacity-0' : 'opacity-100'
+              }`}
+              sizes="(min-width: 768px) 100vw, 0vw"
+              quality={85}
+              fetchPriority="high"
+            />
+            
+            {/* Video for Desktop - Lazy loaded after initial render */}
+            {shouldLoadVideo && (
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="none"
+                className="hidden md:block absolute inset-0 w-full h-full object-cover object-center md:object-cover md:object-bottom opacity-0 transition-opacity duration-1000"
+                onLoadedData={(e) => {
+                  const target = e.target as HTMLVideoElement;
+                  target.classList.remove('opacity-0');
+                  target.classList.add('opacity-100');
+                }}
+              >
+                <source src="/HOMEHERO.mp4" type="video/mp4" />
+              </video>
+            )}
 
             {/* Overlay for better text readability */}
             <div className="absolute inset-0 bg-black/60" />

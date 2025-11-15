@@ -6,6 +6,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  compress: true,
+  poweredByHeader: false,
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -22,6 +24,12 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+  },
+  // Optimize production builds
+  swcMinify: true,
+  // Experimental features for better performance
+  experimental: {
+    optimizeCss: true,
   },
 }
 
