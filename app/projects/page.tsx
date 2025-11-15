@@ -32,6 +32,7 @@ import { BreadcrumbSchema } from "@/lib/structured-data";
 
 export default function ProjectsPage() {
   const [activeSegment, setActiveSegment] = useState("buying-to-live");
+  const [activeLocation, setActiveLocation] = useState("all");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState<{
     title: string;
@@ -70,6 +71,34 @@ export default function ProjectsPage() {
       icon: Crown,
       color: "from-purple-500 to-purple-600",
       bgColor: "bg-purple-50",
+    },
+  ];
+
+  const locations = [
+    {
+      id: "all",
+      title: "All Locations",
+      description: "View all properties",
+    },
+    {
+      id: "noida",
+      title: "Noida",
+      description: "Planned Urbanism | Smart Living",
+    },
+    {
+      id: "greater-noida",
+      title: "Greater Noida",
+      description: "Investment Momentum | Aviation Proximity",
+    },
+    {
+      id: "yamuna-expressway",
+      title: "Yamuna Expressway",
+      description: "High-Growth Zone | Strategic Location",
+    },
+    {
+      id: "ghaziabad",
+      title: "Ghaziabad / NH-24",
+      description: "The Foundation | Established Corridor",
     },
   ];
 
@@ -210,6 +239,7 @@ export default function ProjectsPage() {
         startingPrice: "Special Rates",
         paymentPlans: ["10% on booking"],
         pricePerSqft: "Special Pricing",
+        locationCategory: "greater-noida",
       },
     ],
     investment: [
@@ -357,6 +387,7 @@ export default function ProjectsPage() {
         pricePerSqft: "₹12,000",
         roi: "Premium Appreciation",
         rentalYield: "High Rental Yield",
+        locationCategory: "greater-noida",
       },
     ],
     luxury: [
@@ -458,6 +489,7 @@ export default function ProjectsPage() {
           "Swimming Pools",
           "Panchsheel Greenmart",
         ],
+        locationCategory: "greater-noida",
       },
     ],
     all: [
@@ -846,8 +878,32 @@ export default function ProjectsPage() {
     ],
   };
 
-  const currentProperties =
-    propertiesData[activeSegment as keyof typeof propertiesData];
+  // Helper function to get location category from location string
+  const getLocationCategory = (location: string): string => {
+    const loc = location.toLowerCase();
+    if (loc.includes("yamuna expressway") || loc.includes("yamuna")) {
+      return "yamuna-expressway";
+    }
+    if (loc.includes("ghaziabad") || loc.includes("nh-24") || loc.includes("dasna")) {
+      return "ghaziabad";
+    }
+    if (loc.includes("noida") && !loc.includes("greater")) {
+      return "noida";
+    }
+    if (loc.includes("greater noida")) {
+      return "greater-noida";
+    }
+    return "greater-noida"; // default
+  };
+
+  // Filter properties by segment and location
+  const segmentProperties = propertiesData[activeSegment as keyof typeof propertiesData];
+  const currentProperties = activeLocation === "all"
+    ? segmentProperties
+    : segmentProperties.filter((property: any) => {
+        const propertyLocationCategory = property.locationCategory || getLocationCategory(property.location);
+        return propertyLocationCategory === activeLocation;
+      });
 
   // Detect mobile screen size
   useEffect(() => {
@@ -867,11 +923,16 @@ export default function ProjectsPage() {
     const maxPositionMobile = Math.max(0, currentProperties.length - 1);
     const maxPosition = isMobile ? maxPositionMobile : maxPositionDesktop;
     setCarouselPosition((prev) => Math.min(prev, maxPosition));
-  }, [activeSegment, currentProperties.length, isMobile]);
+  }, [activeSegment, activeLocation, currentProperties.length, isMobile]);
 
   const handleSegmentChange = (segmentId: string) => {
     setActiveSegment(segmentId);
     setCarouselPosition(0); // Reset carousel position when segment changes
+  };
+
+  const handleLocationChange = (locationId: string) => {
+    setActiveLocation(locationId);
+    setCarouselPosition(0); // Reset carousel position when location changes
   };
 
   const handleExploreProperties = (segmentId: string, e: React.MouseEvent) => {
@@ -1072,6 +1133,43 @@ export default function ProjectsPage() {
           </div>
         </section>
 
+        {/* Location Filter Section */}
+        <section className="py-12 px-4 bg-gradient-to-b from-white to-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                Filter by <span className="text-primary">Location</span>
+              </h2>
+              <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+                Explore properties in your preferred location across Delhi NCR
+              </p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+              {locations.map((location) => {
+                const isActive = activeLocation === location.id;
+
+                return (
+                  <button
+                    key={location.id}
+                    onClick={() => handleLocationChange(location.id)}
+                    className={`px-6 py-3 rounded-full font-medium text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                      isActive
+                        ? "bg-gradient-to-r from-primary to-primary/90 text-white shadow-lg shadow-primary/30 scale-105"
+                        : "bg-white text-foreground border-2 border-gray-200 hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <MapPin className={`w-4 h-4 ${isActive ? "text-white" : "text-primary"}`} />
+                      <span>{location.title}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         {/* Active Segment Projects */}
         <section id="projects-section" className="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
           <div className="max-w-7xl mx-auto">
@@ -1160,11 +1258,6 @@ export default function ProjectsPage() {
                               loading="lazy"
                             />
 
-                            {/* Status Badge */}
-                            <Badge className="absolute top-3 left-3 bg-primary text-white text-sm px-3 py-1 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-                              {property.status}
-                            </Badge>
-
                             {/* Overlay for text */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500 group-hover:from-black/95 group-hover:via-black/30"></div>
 
@@ -1220,11 +1313,6 @@ export default function ProjectsPage() {
                         quality={90}
                         loading="lazy"
                       />
-
-                      {/* Status Badge */}
-                      <Badge className="absolute top-3 left-3 bg-primary text-white text-sm px-3 py-1 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-                        {property.status}
-                      </Badge>
 
                       {/* Overlay for text */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500 group-hover:from-black/95 group-hover:via-black/30"></div>
