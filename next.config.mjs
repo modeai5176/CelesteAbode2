@@ -25,12 +25,11 @@ const nextConfig = {
       },
     ],
   },
-  // Optimize production builds
-  swcMinify: true,
   // Experimental features for better performance
-  experimental: {
-    optimizeCss: true,
-  },
+  // Note: optimizeCss requires 'critters' package - disabled to avoid build errors
+  // experimental: {
+  //   optimizeCss: true,
+  // },
 }
 
 export default nextConfig
