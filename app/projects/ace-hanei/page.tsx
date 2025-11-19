@@ -2,200 +2,71 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { ContactPopup } from "@/components/contact-popup";
 import {
   MapPin,
-  Car,
   Building2,
   Home,
   Calendar,
   Award,
-  CheckCircle,
-  Phone,
-  Mail,
-  User,
+  Eye,
+  X,
   MessageSquare,
   ArrowRight,
-  Star,
-  Clock,
-  Users,
-  Shield,
-  Zap,
-  Droplets,
-  Wind,
-  TreePine,
-  Dumbbell,
-  Coffee,
-  Music,
+  Phone,
   Camera,
-  Gamepad2,
-  Heart,
-  Sparkles,
-  Eye,
-  Play,
   Square,
-  TrendingUp,
-  Crown,
-  X,
+  Sparkles,
+  Droplets,
+  Heart,
+  Dumbbell,
+  TreePine,
+  Coffee,
+  Gamepad2,
+  Shield,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 
 export default function PropertyPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    // Basic Project Information
-    projectName: "ARIHANT ABODE",
-    developer: "Arihant Group",
-    location: "Sector 10, Greater Noida West",
-    reraId: "UPRERAPRJ15792",
-    segment: "Buying to Live",
-    status: "Ready to Move",
-    possessionDate: "March 2026",
-    totalUnits: "1200+ Units",
-    towers: "8 Towers",
-    floors: "G+15 Floors",
-
-    // Location Advantage
-    connectivity: [
-      "Noida Expressway (5 mins)",
-      "NH-24 (7 mins)",
-      "Delhi Metro (10 mins)",
+    projectName: "ACE HANEI",
+    developer: "ACE Group",
+    location: "Sector 1, TechZone 4, Greater Noida West",
+    reraId: "UPRERAPRJ11256",
+    status: "Under Construction",
+    possessionDate: "Dec 2027",
+    unitTypes: [
+      "3 BHK + Study",
+      "4 BHK + Study (Typical Tower)",
+      "4 BHK + Study (Iconic Tower)",
     ],
-    landmarks: [
-      "Gaur City Mall (2 mins)",
-      "Educational Institutions (15 mins)",
-      "Healthcare Centers (10 mins)",
-    ],
-
-    // Residences / Property Details
-    unitTypes: ["2 BHK", "3 BHK + 2T"],
-    sizes: "1020-1270 sq.ft.",
-    architecturalHighlights: [
-      "Luxury Finishes",
-      "11 ft Floor Height",
-      "Digital Home Features",
-      "Cross Ventilation",
-    ],
-    structureQuality:
-      "RCC frame structure with premium quality materials and earthquake resistance",
-
-    // Amenities & Lifestyle
-    amenities: {
-      sports: [
-        "Swimming Pool (+ elevated pool on 5th floor)",
-        "Gymnasium",
-        "Tennis Courts",
-        "Jogging Track",
-      ],
-      wellness: [
-        "Mini Theatre",
-        "2.5-acre Central Green",
-        "Wellness Facilities",
-      ],
-      recreation: ["Party Hall", "Community Center"],
-      kids: ["Children's Play Area", "Kids Zone"],
-      unique: [
-        "Premium Location",
-        "Modern Architecture",
-        "Quality Construction",
-        "24/7 Security",
-      ],
-    },
-
-    // Specifications
-    specifications: {
-      flooring:
-        "Vitrified tiles in living areas, anti-skid tiles in bath & kitchen",
-      kitchen:
-        "Granite countertop, SS sink, RO system, modular kitchen provision",
-      bathrooms:
-        "Designer tiles, branded fittings, standard chinaware, geyser provision",
-      electricals:
-        "Concealed copper wiring, modular switches, A/C, TV & video door phone provisions, smart home features",
-      balconies: "Premium railings with modern design, running balconies",
-      safety:
-        "Fire safety systems, security systems, intercom facility, CCTV surveillance",
-      doors: "Premium wooden doors with branded hardware",
-      windows: "Aluminum windows with safety grills",
-    },
-
-    // Developer Credentials
-    developerInfo: {
-      experience: "30+ years in real estate",
-      delivered: "Delivered across Delhi-NCR region",
-      projects: ["High-quality construction", "Timely delivery"],
-      families:
-        "Registered Under: UP Real Estate Regulatory Authority (UPRERA)",
-      awards: [
-        "Quality Construction",
-        "Timely Delivery",
-        "Customer Satisfaction",
-      ],
-    },
-
-    // Pricing & Payment
-    pricing: {
-      priceRange: "₹1.02 Cr - ₹1.30 Cr",
-      startingPrice: "₹1.02 Cr",
-      pricePerSqft: "₹10,000 - ₹10,200 per sq.ft",
-      unitConfigurations: [
-        {
-          type: "2 BHK",
-          area: "1020 sq.ft",
-          basePrice: "₹1.02 Cr",
-        },
-        {
-          type: "3 BHK + 2T",
-          area: "1270 sq.ft",
-          basePrice: "₹1.27 Cr",
-        },
-      ],
-      paymentPlans: {
-        readyToMove: {
-          name: "Ready to Move Payment Plan",
-          schedule: [
-            { term: "On Booking", amount: "20%" },
-            { term: "Within 30 days", amount: "80%" },
-          ],
-        },
-      },
-      offers: "5% stamp duty free for 2 BHK | ₹100/sq.ft discount for 3 BHK",
-    },
-
-    // Gallery
+    sizes: "2,746 sq ft - 3,862 sq ft",
     images: [
-      "/arihant-abode/5.avif",
-      "/arihant-abode/6.avif",
-      "/arihant-abode/7.avif",
-      "/arihant-abode/1.avif",
-      "/arihant-abode/2.avif",
-      "/arihant-abode/3.avif",
-      "/arihant-abode/4.avif",
+      "/ACE/hero.avif",
+      "/ACE/1.avif",
+      "/ACE/2.avif",
+      "/ACE/3.avif",
+      "/ACE/4.avif",
+      "/ACE/5.avif",
+      "/ACE/6.avif",
+      "/ACE/7.avif",
     ],
   };
 
-  // Slideshow functionality
   useEffect(() => {
     if (!isSlideshowPaused) {
       const interval = setInterval(() => {
@@ -203,7 +74,6 @@ export default function PropertyPage() {
           prevSlide === property.images.length - 1 ? 0 : prevSlide + 1
         );
       }, 3000);
-
       return () => clearInterval(interval);
     }
   }, [isSlideshowPaused, property.images.length]);
@@ -229,8 +99,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[1];
-  const projectUrl = "https://www.celesteabode.com/projects/1";
+  const projectId = projectSlugToId["ace-hanei"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/ace-hanei`;
 
   return (
     <>
@@ -245,7 +116,7 @@ export default function PropertyPage() {
         name={property.projectName}
         description={projectMeta.description}
         image={property.images[0]}
-        price={property.pricing.startingPrice}
+        price={property.pricing?.startingPrice || projectMeta.price}
         address={property.location}
         developer={property.developer}
         reraId={property.reraId}
@@ -269,7 +140,7 @@ export default function PropertyPage() {
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src="/arihant-abode/hero.avif"
+          src={property.images[0]}
           alt={property.projectName}
           fill
           className="object-cover object-center"
@@ -278,23 +149,17 @@ export default function PropertyPage() {
           sizes="100vw"
           unoptimized
         />
-        {/* Enhanced gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10"></div>
-
-        {/* Subtle vignette effect for focus */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
 
-        {/* Mobile Layout - Centered Vertical Stack */}
+        {/* Mobile Layout */}
         <div className="absolute inset-0 flex flex-col items-center justify-center md:hidden px-4">
           <div className="text-center space-y-3">
-            {/* Status Badge - Mobile Centered */}
             <div className="flex justify-center">
               <Badge className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-xs font-semibold border border-white/30">
                 {property.status}
               </Badge>
             </div>
-
-            {/* Property Name - Mobile Centered */}
             <h1
               className="text-xl font-black leading-tight text-white"
               style={{
@@ -304,8 +169,6 @@ export default function PropertyPage() {
             >
               {property.projectName}
             </h1>
-
-            {/* Location - Mobile Centered */}
             <div className="flex items-center justify-center gap-2">
               <MapPin className="w-4 h-4 text-[#CBB27A]" />
               <p
@@ -321,10 +184,9 @@ export default function PropertyPage() {
           </div>
         </div>
 
-        {/* Desktop Layout - Original Position */}
+        {/* Desktop Layout */}
         <div className="absolute inset-0 hidden md:flex items-end justify-start pb-8 sm:pb-12 md:pb-20 pl-4 md:pl-8 lg:pl-12">
           <div className="max-w-6xl">
-            {/* Desktop Status Badge */}
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
                 <Building2 className="w-6 h-6 text-white" />
@@ -333,8 +195,6 @@ export default function PropertyPage() {
                 {property.status}
               </Badge>
             </div>
-
-            {/* Property Name */}
             <h1
               className="text-3xl lg:text-5xl xl:text-6xl font-black leading-[0.9] text-white mb-6"
               style={{
@@ -344,26 +204,24 @@ export default function PropertyPage() {
             >
               {property.projectName}
             </h1>
-
-            {/* Location */}
             <div className="flex items-center gap-4 mb-8">
               <div className="flex items-center gap-3">
-                <MapPin className="w-6 h-6 text-[#CBB27A]" />
-                <p
+              <MapPin className="w-6 h-6 text-[#CBB27A]" />
+              <p
                   className="text-sm lg:text-lg xl:text-xl font-semibold text-[#CBB27A]"
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     textShadow: "0 2px 10px rgba(0,0,0,0.3)",
                   }}
-                >
-                  {property.location}
-                </p>
+              >
+                {property.location}
+              </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Data Strip */}
+        {/* Data Strip */}
         <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm border-t border-white/20">
           <div className="max-w-7xl mx-auto px-4 md:px-12 py-4 md:py-6">
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8">
@@ -415,13 +273,13 @@ export default function PropertyPage() {
         </div>
       </section>
 
-      {/* Main Content Layout */}
+      {/* Main Content */}
       <main>
         <div className="max-w-7xl mx-auto px-4 md:px-12 py-8 md:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16">
-            {/* Main Content Column (70%) */}
+            {/* Main Content Column */}
             <div className="lg:col-span-2 space-y-12 md:space-y-20">
-              {/* Project Gallery - Slideshow */}
+              {/* Project Gallery */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -438,13 +296,11 @@ export default function PropertyPage() {
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                {/* Modern Slideshow */}
                 <div
                   className="relative w-full h-[300px] md:h-[600px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group"
                   onMouseEnter={() => setIsSlideshowPaused(true)}
                   onMouseLeave={() => setIsSlideshowPaused(false)}
                 >
-                  {/* Main Image Display */}
                   <div className="relative w-full h-full">
                     <div
                       className="relative w-full h-full cursor-pointer"
@@ -452,9 +308,7 @@ export default function PropertyPage() {
                     >
                       <Image
                         src={property.images[currentSlide]}
-                        alt={`${property.projectName} - Image ${
-                          currentSlide + 1
-                        }`}
+                        alt={`${property.projectName} - Image ${currentSlide + 1}`}
                         fill
                         className="object-cover transition-all duration-1000 ease-in-out hover:scale-105"
                         priority
@@ -463,17 +317,14 @@ export default function PropertyPage() {
                       />
                     </div>
 
-                    {/* Gradient Overlay - pointer-events-none to allow clicks through */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
 
-                    {/* Image Counter */}
                     <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 pointer-events-none">
                       <span className="text-white text-sm font-semibold">
                         {currentSlide + 1} / {property.images.length}
                       </span>
                     </div>
 
-                    {/* Navigation Arrows */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -496,7 +347,6 @@ export default function PropertyPage() {
                       <ChevronRight className="w-6 h-6" />
                     </button>
 
-                    {/* Click to Zoom Indicator */}
                     <div className="absolute bottom-6 left-6 bg-black/50 backdrop-blur-sm rounded-full px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                       <div className="flex items-center gap-2">
                         <Eye className="w-3 h-3 text-white" />
@@ -507,7 +357,7 @@ export default function PropertyPage() {
                     </div>
                   </div>
 
-                  {/* Minimal Navigation - Only show current indicator */}
+                  {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
                       {property.images.length <= 8 && property.images.map((image, index) => (
@@ -527,7 +377,7 @@ export default function PropertyPage() {
                 </div>
               </section>
 
-              {/* Overview Section - Concise & Beautiful */}
+              {/* Overview Section */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -538,20 +388,17 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About Arihant Abode
+                      About ACE Hanei
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                {/* Single Beautiful Overview Card */}
                 <div className="relative bg-gradient-to-br from-white via-[#CBB27A]/5 to-white rounded-3xl shadow-2xl p-12 md:p-20 border border-[#CBB27A]/20 overflow-hidden">
-                  {/* Decorative Background Elements */}
                   <div className="absolute top-0 right-0 w-72 h-72 bg-[#CBB27A]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                   <div className="absolute bottom-0 left-0 w-56 h-56 bg-[#CBB27A]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
                   <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#CBB27A]/3 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
                   
-                  {/* Content */}
                   <div className="relative z-10">
                     <p
                       className="text-base md:text-lg leading-relaxed text-gray-800 text-center max-w-4xl mx-auto"
@@ -562,13 +409,13 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Nestled in the prime <span className="font-semibold text-[#CBB27A]">Sector 10, Greater Noida West</span>, Arihant Abode masterfully blends <span className="font-semibold">luxurious living with unparalleled connectivity</span>—where the Noida Expressway and Metro are moments away, and Gaur City Mall is at your doorstep. Each residence celebrates <span className="font-semibold">spacious 11-foot ceilings, cross-ventilation, and premium finishes</span>, while <span className="font-semibold">Arihant Group's three-decade legacy</span> of excellence and RERA assurance ensures a home that's both an elegant sanctuary and a wise investment for generations.
+                      Nestled in the prestigious <span className="font-semibold text-[#CBB27A]">Sector 1, TechZone 4, Greater Noida West</span>, ACE Hanei by ACE Group stands as a masterpiece of low-density luxury living, featuring <span className="font-semibold">spacious 3 BHK and 4 BHK residences spanning 2,746 to 3,862 sq.ft across 12 acres</span> with just 4 units per floor in typical towers and 3 units in the iconic 45-floor tower. Designed by <span className="font-semibold">Chapman Taylor</span> and executed in partnership with NBCC, each home showcases <span className="font-semibold">premium Italian marble, quartz countertops, and UPVC windows</span>, while the <span className="font-semibold">grand clubhouse, aqua zone, and theme gardens</span> ensure a lifestyle that redefines modern living with unparalleled space and sophistication.
                     </p>
                   </div>
                 </div>
               </section>
 
-              {/* Amenities & Lifestyle - Redesigned with Big Icons */}
+              {/* Amenities */}
               <section>
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-6">
@@ -585,17 +432,16 @@ export default function PropertyPage() {
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
                 </div>
 
-                {/* Selected Amenities - Big Icons */}
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Elevated Swimming Pool", icon: Droplets },
+                    { name: "Aqua Zone Swimming Pool", icon: Droplets },
                     { name: "Kids Zone", icon: Heart },
-                    { name: "Gymnasium", icon: Dumbbell },
-                    { name: "2.5-acre Central Green", icon: TreePine },
-                    { name: "Wellness Facilities", icon: Heart },
+                    { name: "Lawn Tennis Courts", icon: Dumbbell },
+                    { name: "Theme Gardens", icon: TreePine },
+                    { name: "Grand Clubhouse", icon: Coffee },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Tennis Courts", icon: Gamepad2 },
-                    { name: "Party Hall", icon: Coffee },
+                    { name: "Basketball Court", icon: Gamepad2 },
+                    { name: "Reflexology Garden", icon: Heart },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (
@@ -614,17 +460,16 @@ export default function PropertyPage() {
                             {amenity.name}
                           </p>
                         </div>
-                        </div>
-                      );
+                      </div>
+                    );
                   })}
                 </div>
               </section>
             </div>
 
-            {/* Persistent CTA Column (30%) */}
+            {/* Sidebar CTA */}
             <div className="lg:col-span-1">
               <div className="sticky top-8">
-                {/* Property Details CTA Card */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 mb-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
@@ -639,7 +484,6 @@ export default function PropertyPage() {
                   </div>
 
                   <div className="space-y-5">
-                    {/* Type */}
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Square className="w-4 h-4 text-[#CBB27A]" />
@@ -658,7 +502,6 @@ export default function PropertyPage() {
                       </p>
                     </div>
 
-                    {/* Configuration */}
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Building2 className="w-4 h-4 text-[#CBB27A]" />
@@ -671,45 +514,43 @@ export default function PropertyPage() {
                       </div>
                       <div className="space-y-2">
                         {property.unitTypes.map((type, index) => (
-                        <p
+                          <p
                             key={index}
-                            className="text-lg font-bold text-gray-900"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        className="text-lg font-bold text-gray-900"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                             {type}
-                        </p>
+                          </p>
                         ))}
                         <p
                           className="text-sm text-gray-600"
                           style={{ fontFamily: "Poppins, sans-serif" }}
                         >
                           {property.sizes}
-                        </p>
+                      </p>
                       </div>
                     </div>
 
-                    {/* Location */}
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="w-4 h-4 text-[#CBB27A]" />
                         <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                                style={{ fontFamily: "Poppins, sans-serif" }}
-                              >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                           Location
-                              </p>
-                            </div>
-                            <p
+                        </p>
+                      </div>
+                      <p
                         className="text-base font-semibold text-gray-900 leading-relaxed"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                         {property.location}
-                            </p>
-                          </div>
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Property Inquiry Form */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
@@ -729,7 +570,7 @@ export default function PropertyPage() {
                         className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        <User className="w-4 h-4 text-[#CBB27A]" />
+                        <Phone className="w-4 h-4 text-[#CBB27A]" />
                         Full Name
                       </label>
                       <Input
@@ -772,9 +613,8 @@ export default function PropertyPage() {
         </div>
       </main>
 
-      {/* Beautiful Footer CTA */}
+      {/* Footer CTA */}
       <section className="relative bg-gradient-to-br from-[#2B3035] via-[#1a1d22] to-[#2B3035] py-10 md:py-14 overflow-hidden">
-        {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           <div className="absolute top-10 left-10 w-48 h-48 bg-[#CBB27A] rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 right-10 w-64 h-64 bg-[#CBB27A] rounded-full blur-3xl"></div>
@@ -842,6 +682,11 @@ export default function PropertyPage() {
           </div>
         </div>
       )}
+
+      <ContactPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
     </>
   );

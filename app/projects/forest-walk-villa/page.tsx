@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -16,56 +16,50 @@ import {
   Home,
   Calendar,
   Award,
-  CheckCircle,
-  Phone,
+  Eye,
+  X,
   MessageSquare,
   ArrowRight,
-  Star,
-  Shield,
-  Sparkles,
-  Eye,
+  Phone,
   Camera,
   Square,
+  Sparkles,
   Droplets,
   Heart,
   Dumbbell,
   TreePine,
   Coffee,
   Gamepad2,
-  X,
+  Shield,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 
 export default function PropertyPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "SPRING ELMAS",
-    developer: "Spring Group",
-    location: "Sector 12, Greater Noida West",
-    reraId: "UPRERAPRJ274689",
-    status: "Launched",
-    possessionDate: "15 Dec 2029",
-    unitTypes: ["3 BHK + 2 T", "3 BHK + 3 T", "4 BHK + Servant Room"],
-    sizes: "1385 sq ft - 1895 sq ft",
+    projectName: "FOREST WALK VILLA",
+    developer: "Madhusudan Group / Yatharth Group",
+    location: "NH-24, Dasna, Ghaziabad",
+    reraId: "UPRERAPRJ658961/08/2025",
+    status: "Under Construction",
+    possessionDate: "June 2027",
+    unitTypes: ["4 BHK + 5T Villas"],
+    sizes: "163 sq. yd - 238 sq. yd (3,070 sq.ft - 4,200 sq.ft)",
     images: [
-      "/spring-elmas/2.avif",
-      "/spring-elmas/3.avif",
-      "/spring-elmas/4.avif",
-      "/spring-elmas/5.avif",
-      "/spring-elmas/6.avif",
-      "/spring-elmas/7.avif",
-      "/spring-elmas/8.avif",
-      "/spring-elmas/9.avif",
-      "/spring-elmas/10.avif",
-      "/spring-elmas/11.avif",
-      "/spring-elmas/12.avif",
+      "/ForestWalk/hero.avif",
+      "/ForestWalk/1.avif",
+      "/ForestWalk/2.avif",
+      "/ForestWalk/3.avif",
+      "/ForestWalk/8.avif",
+      "/ForestWalk/5.avif",
+      "/ForestWalk/6.avif",
+      "/ForestWalk/7.avif",
     ],
   };
 
@@ -101,8 +95,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[2];
-  const projectUrl = "https://www.celesteabode.com/projects/2";
+  const projectId = projectSlugToId["forest-walk-villa"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/forest-walk-villa`;
 
   return (
     <>
@@ -141,7 +136,7 @@ export default function PropertyPage() {
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src="/spring-elmas/hero.avif"
+          src={property.images[0]}
           alt={property.projectName}
           fill
           className="object-cover object-center"
@@ -361,7 +356,7 @@ export default function PropertyPage() {
                   {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
-                      {property.images.length <= 12 && property.images.map((image, index) => (
+                      {property.images.length <= 8 && property.images.map((image, index) => (
                           <button
                           key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -389,7 +384,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About Spring Elmas
+                      About Forest Walk Villa
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -410,7 +405,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Positioned in the prestigious <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, Spring Elmas stands as Spring Group's flagship residential masterpiece, delivering <span className="font-semibold">luxury living with exceptional connectivity</span>—just minutes from Central Noida, Metro stations, and NH-24. Featuring <span className="font-semibold">3 BHK and 4 BHK configurations with smart-home technology</span>, each residence embraces modern design while the <span className="font-semibold">2.3-acre central green, premium clubhouse, and SBI approval</span> ensure a lifestyle that's both sophisticated and secure for discerning families.
+                      Nestled on the <span className="font-semibold text-[#CBB27A]">NH-24, Dasna, Ghaziabad</span>, Forest Walk Villa by Madhusudan Group and Yatharth Group represents a unique forest-themed luxury residential development, featuring <span className="font-semibold">fully furnished 4 BHK + 5T villas spanning 163 to 238 sq. yards across 52 acres with 80% green landscape</span>—just 20 minutes to Delhi and 15 minutes to Noida and Greater Noida West. Each villa features <span className="font-semibold">Italian marble in living areas, laminated wooden flooring in master bedrooms, and lift provision within villa</span>, while the <span className="font-semibold">eco landscaping, vastu-compliant design, and sustainable architecture</span> ensure a lifestyle that's both luxurious and harmonious with nature.
                     </p>
                   </div>
                 </div>
@@ -436,13 +431,13 @@ export default function PropertyPage() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
                     { name: "Half-Olympic Swimming Pool", icon: Droplets },
-                    { name: "Kids Zone", icon: Heart },
-                    { name: "Fully Equipped Gymnasium", icon: Dumbbell },
-                    { name: "2.3-acre Central Green", icon: TreePine },
-                    { name: "Spa & Wellness Center", icon: Heart },
+                    { name: "Children's Play Area", icon: Heart },
+                    { name: "Tennis & Badminton Courts", icon: Dumbbell },
+                    { name: "80% Green Landscape", icon: TreePine },
+                    { name: "Spa & Yoga Garden", icon: Heart },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Tennis Court", icon: Gamepad2 },
                     { name: "Premium Clubhouse", icon: Coffee },
+                    { name: "Amphitheatre", icon: Gamepad2 },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (
@@ -461,12 +456,12 @@ export default function PropertyPage() {
                             {amenity.name}
                           </p>
                         </div>
-                        </div>
-                      );
+                      </div>
+                    );
                   })}
                 </div>
               </section>
-                </div>
+            </div>
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
@@ -475,26 +470,26 @@ export default function PropertyPage() {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <Home className="w-5 h-5 text-[#CBB27A]" />
-                      </div>
-                      <h3
-                        className="text-xl font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                    </div>
+                    <h3
+                      className="text-xl font-bold text-gray-900"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
                       Property Details
-                      </h3>
+                    </h3>
                   </div>
 
                   <div className="space-y-5">
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Square className="w-4 h-4 text-[#CBB27A]" />
-                      <p
+                        <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                           Type
-                      </p>
-                    </div>
+                        </p>
+                      </div>
                       <p
                         className="text-lg font-bold text-gray-900"
                         style={{ fontFamily: "Poppins, sans-serif" }}
@@ -506,49 +501,49 @@ export default function PropertyPage() {
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Building2 className="w-4 h-4 text-[#CBB27A]" />
-                      <p
+                        <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                           Configuration
-                      </p>
-                    </div>
+                        </p>
+                      </div>
                       <div className="space-y-2">
                         {property.unitTypes.map((type, index) => (
                           <p
                             key={index}
-                            className="text-lg font-bold text-gray-900"
-                                style={{ fontFamily: "Poppins, sans-serif" }}
-                              >
+                        className="text-lg font-bold text-gray-900"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                             {type}
-                              </p>
+                          </p>
                         ))}
-                              <p
+                        <p
                           className="text-sm text-gray-600"
-                                style={{ fontFamily: "Poppins, sans-serif" }}
-                              >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                           {property.sizes}
-                              </p>
-                            </div>
+                      </p>
+                      </div>
                     </div>
 
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="w-4 h-4 text-[#CBB27A]" />
-                            <p
-                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
-                          Location
-                          </p>
-                        </div>
                         <p
-                        className="text-base font-semibold text-gray-900 leading-relaxed"
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
                           style={{ fontFamily: "Poppins, sans-serif" }}
                         >
-                        {property.location}
+                          Location
                         </p>
                       </div>
+                      <p
+                        className="text-base font-semibold text-gray-900 leading-relaxed"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
+                        {property.location}
+                      </p>
+                    </div>
                   </div>
                 </div>
 

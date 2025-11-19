@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -43,22 +43,26 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "THE BROOK & RIVULET",
-    developer: "Fusion Limited",
-    location: "Sector 12, Greater Noida West",
-    reraId: "UPRERAPRJ535539",
+    projectName: "ETERNIA RESIDENCES",
+    developer: "Yatharth Group + NBCC",
+    location: "Techzone 4, Greater Noida West",
+    reraId: "UPRERAAGT10206",
     status: "Under Construction",
-    possessionDate: "Under Construction",
-    unitTypes: ["3C", "3E", "4B", "4C"],
-    sizes: "1350-2050 sq.ft",
+    possessionDate: "Dec 2027",
+    unitTypes: ["3 BHK", "3 BHK + Study", "4 BHK + Study"],
+    sizes: "1,932 sq.ft - 2,625 sq.ft",
     images: [
-      "/Brook and Rivulet/1.avif",
-      "/Brook and Rivulet/2.avif",
-      "/Brook and Rivulet/3.avif",
-      "/Brook and Rivulet/4.avif",
-      "/Brook and Rivulet/5.avif",
-      "/Brook and Rivulet/6.avif",
-      "/Brook and Rivulet/7.avif",
+      "/Eternia/5.avif",
+      "/Eternia/2.avif",
+      "/Eternia/3.avif",
+      "/Eternia/4.avif",
+      "/Eternia/6.avif",
+      "/Eternia/7.avif",
+      "/Eternia/8.avif",
+      "/Eternia/9.avif",
+      "/Eternia/10.avif",
+      "/Eternia/11.avif",
+      "/Eternia/12.avif",
     ],
   };
 
@@ -94,8 +98,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[8];
-  const projectUrl = "https://www.celesteabode.com/projects/8";
+  const projectId = projectSlugToId["eternia-residences"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/eternia-residences`;
 
   return (
     <>
@@ -119,7 +124,7 @@ export default function PropertyPage() {
         status={property.status}
         url={projectUrl}
       />
-    <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
@@ -134,7 +139,7 @@ export default function PropertyPage() {
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src={property.images[0]}
+          src="/Eternia/1.avif"
           alt={property.projectName}
           fill
           className="object-cover object-center"
@@ -354,7 +359,7 @@ export default function PropertyPage() {
                   {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
-                      {property.images.length <= 7 && property.images.map((image, index) => (
+                      {property.images.length <= 12 && property.images.map((image, index) => (
                           <button
                           key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -382,7 +387,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About The Brook & Rivulet
+                      About Eternia Residences
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -403,7 +408,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Strategically located in <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, The Brook & Rivulet by Fusion Limited offers an exceptional investment opportunity with <span className="font-semibold">3C, 3E, 4B, and 4C configurations spanning 1,350 to 2,050 sq.ft</span>—just 600 meters from the proposed Sector 12 Metro Station. With <span className="font-semibold">Fusion's legacy of delivering 50+ lakh sq.ft and 3,000+ happy families</span>, each residence features <span className="font-semibold">premium vitrified tiles, wooden textured master bedrooms, and earthquake-resistant RCC construction</span>, while the <span className="font-semibold">luxury clubhouses (Paper Boat & Pebble Castle), 30,000 sq.ft terrace garden, and mechanical car parking with EV charging</span> ensure a lifestyle that's both modern and sustainable.
+                      Located in the prestigious <span className="font-semibold text-[#CBB27A]">Techzone 4, Greater Noida West</span>, Eternia Residences represents an ultra-premium collaboration between <span className="font-semibold">Yatharth Group and NBCC</span>, offering <span className="font-semibold">green belt-facing residences with low-density planning</span> across six iconic towers. With <span className="font-semibold">3 BHK and 4 BHK configurations featuring smart home technology</span>, each home is designed to embrace natural light and ventilation, while the <span className="font-semibold">eco-friendly design, rainwater harvesting, and solar power integration</span> ensure a sustainable lifestyle that's both luxurious and responsible for generations to come.
                     </p>
                   </div>
                 </div>
@@ -428,14 +433,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Half-Olympic Swimming Pool", icon: Droplets },
-                    { name: "Kids Zone", icon: Heart },
-                    { name: "Tennis Court", icon: Dumbbell },
-                    { name: "30,000 sq.ft Terrace Garden", icon: TreePine },
-                    { name: "Luxury Clubhouses", icon: Coffee },
+                    { name: "Olympic Size Swimming Pool", icon: Droplets },
+                    { name: "Kids' Play Zone", icon: Heart },
+                    { name: "Fully Equipped Gymnasium", icon: Dumbbell },
+                    { name: "Landscaped Open Greens", icon: TreePine },
+                    { name: "Spa & Wellness Center", icon: Heart },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Basketball Court", icon: Gamepad2 },
-                    { name: "Yoga & Meditation Centre", icon: Heart },
+                    { name: "Multipurpose Court", icon: Gamepad2 },
+                    { name: "Premium Clubhouse", icon: Coffee },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (

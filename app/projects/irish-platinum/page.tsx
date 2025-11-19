@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -43,24 +43,28 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "VVIP Ltd",
-    developer: "Vibhor Vaibhav Infrahome Pvt. Ltd.",
-    location: "Sector 12, Greater Noida West",
-    reraId: "UPRERAPRJ743225/10/2025",
-    status: "Pre-Launch",
-    possessionDate: "Jun 2028",
-    unitTypes: ["3 BHK", "4 BHK"],
-    sizes: "2000-3600 sq.ft",
+    projectName: "IRISH PLATINUM",
+    developer: "Irish Buildcon Private Limited",
+    location: "Sector 51, Greater Noida",
+    reraId: "UPRERAPRJ503189/03/2024",
+    status: "Near Possession",
+    possessionDate: "Dec 2025",
+    unitTypes: [
+      "3BHK+2T",
+      "3BHK+3T",
+      "3BHK+Servant+4T",
+      "4BHK+4T",
+      "4BHK+Servant+5T",
+    ],
+    sizes: "1390 sq.ft - 2550 sq.ft",
     images: [
-      "/VVIP/hero.avif",
-      "/VVIP/1.avif",
-      "/VVIP/2.avif",
-      "/VVIP/3.avif",
-      "/VVIP/4.avif",
-      "/VVIP/5.avif",
-      "/VVIP/6.avif",
-      "/VVIP/7.avif",
-      "/VVIP/8.avif",
+      "/Irish/hero.avif",
+      "/Irish/Irish-1.avif",
+      "/Irish/2.avif",
+      "/Irish/3.avif",
+      "/Irish/4.avif",
+      "/Irish/5.avif",
+      "/Irish/6.avif",
     ],
   };
 
@@ -96,8 +100,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[12];
-  const projectUrl = "https://www.celesteabode.com/projects/12";
+  const projectId = projectSlugToId["irish-platinum"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/irish-platinum`;
 
   return (
     <>
@@ -356,7 +361,7 @@ export default function PropertyPage() {
                   {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
-                      {property.images.length <= 9 && property.images.map((image, index) => (
+                      {property.images.length <= 7 && property.images.map((image, index) => (
                           <button
                           key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -384,7 +389,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About VVIP Ltd
+                      About Irish Platinum
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -405,7 +410,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Positioned in the prime <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, VVIP Ltd by Vibhor Vaibhav Infrahome (Ashtech Group) represents 30+ years of nation building, offering <span className="font-semibold">fully furnished 3 BHK and 4 BHK residences spanning 2,000 to 3,600 sq.ft</span> with exceptional connectivity to major city hubs. Designed by <span className="font-semibold">Studio Symbiosis</span>, each home features <span className="font-semibold">12-foot ceiling heights, Italian marble flooring, VRV air-conditioning, and modular kitchens with wardrobes</span>, while the <span className="font-semibold">70,000 sq.ft. clubhouse—the biggest in the region—and premium finishes</span> ensure a lifestyle that's both luxurious and timeless for discerning families.
+                      Positioned in the strategic <span className="font-semibold text-[#CBB27A]">Sector 51, Greater Noida</span>, Irish Platinum by Irish Buildcon stands as "The Treasure Chest of Living," offering <span className="font-semibold">premium 3 BHK and 4 BHK residences with 11-foot ceilings across all units</span> and Mivan construction technology. With <span className="font-semibold">near possession status and exceptional connectivity</span>—just 5 minutes from FNG Expressway and 30 minutes from Jewar Airport—each home features <span className="font-semibold">smart home technology, app-based video door locks, and earthquake-resistant RCC frame structure</span>, while world-class amenities including all-weather pools, cricket nets, and premium clubhouse ensure a lifestyle that's truly "Better Than Big Name."
                     </p>
                   </div>
                 </div>
@@ -430,14 +435,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Fully Furnished Residences", icon: Home },
-                    { name: "Kids Zone", icon: Heart },
-                    { name: "70,000 sq.ft Clubhouse", icon: Coffee },
-                    { name: "12 ft Ceiling Height", icon: Building2 },
-                    { name: "VRV Air-Conditioning", icon: Gamepad2 },
+                    { name: "All-weather Swimming Pools", icon: Droplets },
+                    { name: "Kids' Play Zones", icon: Heart },
+                    { name: "Indoor & Outdoor Gym", icon: Dumbbell },
+                    { name: "Meditation Lawns", icon: TreePine },
+                    { name: "Club Platinum", icon: Coffee },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Italian Marble Flooring", icon: Square },
-                    { name: "Modular Kitchen & Wardrobes", icon: Coffee },
+                    { name: "Cricket Net with Bowling", icon: Gamepad2 },
+                    { name: "Squash & Badminton Courts", icon: Gamepad2 },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (
@@ -456,12 +461,12 @@ export default function PropertyPage() {
                             {amenity.name}
                           </p>
                         </div>
-                      </div>
-                    );
+                        </div>
+                      );
                   })}
                 </div>
               </section>
-            </div>
+                </div>
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
@@ -470,14 +475,14 @@ export default function PropertyPage() {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <Home className="w-5 h-5 text-[#CBB27A]" />
-                    </div>
-                    <h3
-                      className="text-xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
+                      </div>
+                      <h3
+                        className="text-xl font-bold text-gray-900"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                       Property Details
-                    </h3>
-                  </div>
+                      </h3>
+                    </div>
 
                   <div className="space-y-5">
                     <div className="pb-5 border-b border-gray-200">
@@ -492,51 +497,51 @@ export default function PropertyPage() {
                       </div>
                       <p
                         className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                         {property.status}
                       </p>
-                    </div>
+                  </div>
 
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Building2 className="w-4 h-4 text-[#CBB27A]" />
                         <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           Configuration
                         </p>
-                      </div>
+                    </div>
                       <div className="space-y-2">
                         {property.unitTypes.map((type, index) => (
                           <p
                             key={index}
-                        className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                            className="text-lg font-bold text-gray-900"
+                              style={{ fontFamily: "Poppins, sans-serif" }}
+                            >
                             {type}
                           </p>
                         ))}
                         <p
                           className="text-sm text-gray-600"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
                           {property.sizes}
-                      </p>
+                        </p>
                       </div>
-                    </div>
+                  </div>
 
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="w-4 h-4 text-[#CBB27A]" />
-                        <p
+                      <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           Location
-                        </p>
-                      </div>
+                      </p>
+                    </div>
                       <p
                         className="text-base font-semibold text-gray-900 leading-relaxed"
                         style={{ fontFamily: "Poppins, sans-serif" }}

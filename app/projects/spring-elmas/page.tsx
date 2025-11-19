@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -16,55 +16,56 @@ import {
   Home,
   Calendar,
   Award,
-  Eye,
-  X,
+  CheckCircle,
+  Phone,
   MessageSquare,
   ArrowRight,
-  Phone,
+  Star,
+  Shield,
+  Sparkles,
+  Eye,
   Camera,
   Square,
-  Sparkles,
   Droplets,
   Heart,
   Dumbbell,
   TreePine,
   Coffee,
   Gamepad2,
-  Shield,
+  X,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 
 export default function PropertyPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "IRISH PLATINUM",
-    developer: "Irish Buildcon Private Limited",
-    location: "Sector 51, Greater Noida",
-    reraId: "UPRERAPRJ503189/03/2024",
-    status: "Near Possession",
-    possessionDate: "Dec 2025",
-    unitTypes: [
-      "3BHK+2T",
-      "3BHK+3T",
-      "3BHK+Servant+4T",
-      "4BHK+4T",
-      "4BHK+Servant+5T",
-    ],
-    sizes: "1390 sq.ft - 2550 sq.ft",
+    projectName: "SPRING ELMAS",
+    developer: "Spring Group",
+    location: "Sector 12, Greater Noida West",
+    reraId: "UPRERAPRJ274689",
+    status: "Launched",
+    possessionDate: "15 Dec 2029",
+    unitTypes: ["3 BHK + 2 T", "3 BHK + 3 T", "4 BHK + Servant Room"],
+    sizes: "1385 sq ft - 1895 sq ft",
     images: [
-      "/Irish/hero.avif",
-      "/Irish/Irish-1.avif",
-      "/Irish/2.avif",
-      "/Irish/3.avif",
-      "/Irish/4.avif",
-      "/Irish/5.avif",
-      "/Irish/6.avif",
+      "/spring-elmas/2.avif",
+      "/spring-elmas/3.avif",
+      "/spring-elmas/4.avif",
+      "/spring-elmas/5.avif",
+      "/spring-elmas/6.avif",
+      "/spring-elmas/7.avif",
+      "/spring-elmas/8.avif",
+      "/spring-elmas/9.avif",
+      "/spring-elmas/10.avif",
+      "/spring-elmas/11.avif",
+      "/spring-elmas/12.avif",
     ],
   };
 
@@ -100,8 +101,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[5];
-  const projectUrl = "https://www.celesteabode.com/projects/5";
+  const projectId = projectSlugToId["spring-elmas"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/spring-elmas`;
 
   return (
     <>
@@ -140,7 +142,7 @@ export default function PropertyPage() {
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src={property.images[0]}
+          src="/spring-elmas/hero.avif"
           alt={property.projectName}
           fill
           className="object-cover object-center"
@@ -360,7 +362,7 @@ export default function PropertyPage() {
                   {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
-                      {property.images.length <= 7 && property.images.map((image, index) => (
+                      {property.images.length <= 12 && property.images.map((image, index) => (
                           <button
                           key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -388,7 +390,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About Irish Platinum
+                      About Spring Elmas
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -409,7 +411,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Positioned in the strategic <span className="font-semibold text-[#CBB27A]">Sector 51, Greater Noida</span>, Irish Platinum by Irish Buildcon stands as "The Treasure Chest of Living," offering <span className="font-semibold">premium 3 BHK and 4 BHK residences with 11-foot ceilings across all units</span> and Mivan construction technology. With <span className="font-semibold">near possession status and exceptional connectivity</span>—just 5 minutes from FNG Expressway and 30 minutes from Jewar Airport—each home features <span className="font-semibold">smart home technology, app-based video door locks, and earthquake-resistant RCC frame structure</span>, while world-class amenities including all-weather pools, cricket nets, and premium clubhouse ensure a lifestyle that's truly "Better Than Big Name."
+                      Positioned in the prestigious <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, Spring Elmas stands as Spring Group's flagship residential masterpiece, delivering <span className="font-semibold">luxury living with exceptional connectivity</span>—just minutes from Central Noida, Metro stations, and NH-24. Featuring <span className="font-semibold">3 BHK and 4 BHK configurations with smart-home technology</span>, each residence embraces modern design while the <span className="font-semibold">2.3-acre central green, premium clubhouse, and SBI approval</span> ensure a lifestyle that's both sophisticated and secure for discerning families.
                     </p>
                   </div>
                 </div>
@@ -434,14 +436,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "All-weather Swimming Pools", icon: Droplets },
-                    { name: "Kids' Play Zones", icon: Heart },
-                    { name: "Indoor & Outdoor Gym", icon: Dumbbell },
-                    { name: "Meditation Lawns", icon: TreePine },
-                    { name: "Club Platinum", icon: Coffee },
+                    { name: "Half-Olympic Swimming Pool", icon: Droplets },
+                    { name: "Kids Zone", icon: Heart },
+                    { name: "Fully Equipped Gymnasium", icon: Dumbbell },
+                    { name: "2.3-acre Central Green", icon: TreePine },
+                    { name: "Spa & Wellness Center", icon: Heart },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Cricket Net with Bowling", icon: Gamepad2 },
-                    { name: "Squash & Badminton Courts", icon: Gamepad2 },
+                    { name: "Tennis Court", icon: Gamepad2 },
+                    { name: "Premium Clubhouse", icon: Coffee },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (
@@ -481,73 +483,73 @@ export default function PropertyPage() {
                       >
                       Property Details
                       </h3>
-                    </div>
+                  </div>
 
                   <div className="space-y-5">
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Square className="w-4 h-4 text-[#CBB27A]" />
-                        <p
+                      <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           Type
-                        </p>
-                      </div>
+                      </p>
+                    </div>
                       <p
                         className="text-lg font-bold text-gray-900"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                         {property.status}
                       </p>
-                  </div>
+                    </div>
 
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Building2 className="w-4 h-4 text-[#CBB27A]" />
-                        <p
+                      <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
                           Configuration
-                        </p>
+                      </p>
                     </div>
                       <div className="space-y-2">
                         {property.unitTypes.map((type, index) => (
                           <p
                             key={index}
                             className="text-lg font-bold text-gray-900"
-                              style={{ fontFamily: "Poppins, sans-serif" }}
-                            >
+                                style={{ fontFamily: "Poppins, sans-serif" }}
+                              >
                             {type}
-                          </p>
+                              </p>
                         ))}
-                        <p
+                              <p
                           className="text-sm text-gray-600"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
+                                style={{ fontFamily: "Poppins, sans-serif" }}
+                              >
                           {property.sizes}
-                        </p>
-                      </div>
-                  </div>
+                              </p>
+                            </div>
+                    </div>
 
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="w-4 h-4 text-[#CBB27A]" />
-                      <p
+                            <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                              style={{ fontFamily: "Poppins, sans-serif" }}
+                            >
                           Location
-                      </p>
-                    </div>
-                      <p
+                          </p>
+                        </div>
+                        <p
                         className="text-base font-semibold text-gray-900 leading-relaxed"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                         {property.location}
-                      </p>
-                    </div>
+                        </p>
+                      </div>
                   </div>
                 </div>
 

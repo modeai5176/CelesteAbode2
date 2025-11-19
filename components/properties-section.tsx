@@ -13,6 +13,7 @@ import {
 import { ContactPopup } from "@/components/contact-popup";
 import { useEffect, useRef, useState } from "react";
 import { MapPin, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { projectSlugs } from "@/lib/project-metadata";
 
 const properties = [
   {
@@ -130,9 +131,10 @@ export function PropertiesSection() {
                 >
                   <div
                     className="group cursor-pointer p-4"
-                    onClick={() =>
-                      handleNavigation(`/projects/${property.id}`)
-                    }
+                    onClick={() => {
+                      const slug = projectSlugs[property.id] || property.id.toString();
+                      handleNavigation(`/projects/${slug}`);
+                    }}
                   >
                     <div className="relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border-2 border-black">
                       {/* Image */}

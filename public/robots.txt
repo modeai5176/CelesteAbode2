@@ -15,19 +15,19 @@ Allow: /privacy-policy
 Allow: /advisory-session
 
 # Allow property pages
-Allow: /projects/1
-Allow: /projects/2
-Allow: /projects/3
-Allow: /projects/4
-Allow: /projects/5
-Allow: /projects/6
-Allow: /projects/7
-Allow: /projects/8
-Allow: /projects/9
-Allow: /projects/10
-Allow: /projects/11
-Allow: /projects/12
-Allow: /projects/13
+Allow: /projects/arihant-abode
+Allow: /projects/spring-elmas
+Allow: /projects/eternia-residences
+Allow: /projects/rg-pleiaddes
+Allow: /projects/irish-platinum
+Allow: /projects/elite-x
+Allow: /projects/ace-hanei
+Allow: /projects/the-brook-and-rivulet
+Allow: /projects/renox-thrive
+Allow: /projects/civitech-strings
+Allow: /projects/forest-walk-villa
+Allow: /projects/vvip
+Allow: /projects/panchsheel-greens-ii
 
 # Allow static assets
 Allow: /_next/static/

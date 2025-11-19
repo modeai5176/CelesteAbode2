@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -43,27 +43,21 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "ACE HANEI",
-    developer: "ACE Group",
-    location: "Sector 1, TechZone 4, Greater Noida West",
-    reraId: "UPRERAPRJ11256",
-    status: "Under Construction",
-    possessionDate: "Dec 2027",
-    unitTypes: [
-      "3 BHK + Study",
-      "4 BHK + Study (Typical Tower)",
-      "4 BHK + Study (Iconic Tower)",
-    ],
-    sizes: "2,746 sq ft - 3,862 sq ft",
+    projectName: "ELITE X",
+    developer: "Eldeco Group",
+    location: "Sector 22D, Yamuna Expressway, Greater Noida",
+    reraId: "UPRERAPRJ752382/09/2025",
+    status: "New Launch",
+    possessionDate: "Dec 2028",
+    unitTypes: ["3 BHK + 2T", "3 BHK + 3T", "Duplex Penthouses"],
+    sizes: "1,550 sq.ft – 2,800 sq.ft",
     images: [
-      "/ACE/hero.avif",
-      "/ACE/1.avif",
-      "/ACE/2.avif",
-      "/ACE/3.avif",
-      "/ACE/4.avif",
-      "/ACE/5.avif",
-      "/ACE/6.avif",
-      "/ACE/7.avif",
+      "/Elite X/hero.avif",
+      "/Elite X/1.avif",
+      "/Elite X/2.avif",
+      "/Elite X/3.avif",
+      "/Elite X/4.avif",
+      "/Elite X/5.avif",
     ],
   };
 
@@ -99,8 +93,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[7];
-  const projectUrl = "https://www.celesteabode.com/projects/7";
+  const projectId = projectSlugToId["elite-x"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/elite-x`;
 
   return (
     <>
@@ -359,7 +354,7 @@ export default function PropertyPage() {
                   {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
-                      {property.images.length <= 8 && property.images.map((image, index) => (
+                      {property.images.length <= 6 && property.images.map((image, index) => (
                           <button
                           key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -387,7 +382,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About ACE Hanei
+                      About Elite X
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -408,7 +403,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Nestled in the prestigious <span className="font-semibold text-[#CBB27A]">Sector 1, TechZone 4, Greater Noida West</span>, ACE Hanei by ACE Group stands as a masterpiece of low-density luxury living, featuring <span className="font-semibold">spacious 3 BHK and 4 BHK residences spanning 2,746 to 3,862 sq.ft across 12 acres</span> with just 4 units per floor in typical towers and 3 units in the iconic 45-floor tower. Designed by <span className="font-semibold">Chapman Taylor</span> and executed in partnership with NBCC, each home showcases <span className="font-semibold">premium Italian marble, quartz countertops, and UPVC windows</span>, while the <span className="font-semibold">grand clubhouse, aqua zone, and theme gardens</span> ensure a lifestyle that redefines modern living with unparalleled space and sophistication.
+                      Strategically positioned on the <span className="font-semibold text-[#CBB27A]">Yamuna Expressway, Sector 22D, Greater Noida</span>, Elite X by Eldeco Group represents a new standard in luxury living, offering <span className="font-semibold">3 BHK and duplex penthouse configurations</span> with unparalleled connectivity—just 20 minutes from Jewar Airport and 5 minutes from Buddh International Circuit. With <span className="font-semibold">Eldeco's 30+ years legacy and 150+ projects delivered</span>, each residence features <span className="font-semibold">smart home technology, 3-side open balconies, and premium finishes</span>, while the <span className="font-semibold">3-acre central green, podium-based vehicle-free zone, and world-class amenities</span> ensure a lifestyle that truly redefines luxury living in Greater Noida.
                     </p>
                   </div>
                 </div>
@@ -433,14 +428,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Aqua Zone Swimming Pool", icon: Droplets },
+                    { name: "Half-Olympic Pool", icon: Droplets },
                     { name: "Kids Zone", icon: Heart },
-                    { name: "Lawn Tennis Courts", icon: Dumbbell },
-                    { name: "Theme Gardens", icon: TreePine },
-                    { name: "Grand Clubhouse", icon: Coffee },
+                    { name: "Tennis & Basketball", icon: Dumbbell },
+                    { name: "3-acre Central Green", icon: TreePine },
+                    { name: "Spa & Yoga Garden", icon: Heart },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Basketball Court", icon: Gamepad2 },
-                    { name: "Reflexology Garden", icon: Heart },
+                    { name: "Premium Clubhouse", icon: Coffee },
+                    { name: "Amphitheatre", icon: Gamepad2 },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (
@@ -459,12 +454,12 @@ export default function PropertyPage() {
                             {amenity.name}
                           </p>
                         </div>
-                      </div>
-                    );
+                        </div>
+                      );
                   })}
                 </div>
               </section>
-            </div>
+                </div>
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
@@ -473,14 +468,14 @@ export default function PropertyPage() {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-[#CBB27A]/10 rounded-full flex items-center justify-center">
                       <Home className="w-5 h-5 text-[#CBB27A]" />
-                    </div>
-                    <h3
-                      className="text-xl font-bold text-gray-900"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
+                      </div>
+                      <h3
+                        className="text-xl font-bold text-gray-900"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                       Property Details
-                    </h3>
-                  </div>
+                      </h3>
+                    </div>
 
                   <div className="space-y-5">
                     <div className="pb-5 border-b border-gray-200">
@@ -495,36 +490,36 @@ export default function PropertyPage() {
                       </div>
                       <p
                         className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                         {property.status}
                       </p>
-                    </div>
+                  </div>
 
                     <div className="pb-5 border-b border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <Building2 className="w-4 h-4 text-[#CBB27A]" />
                         <p
                           className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           Configuration
                         </p>
-                      </div>
+                    </div>
                       <div className="space-y-2">
                         {property.unitTypes.map((type, index) => (
                           <p
                             key={index}
-                        className="text-lg font-bold text-gray-900"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
+                      className="text-lg font-bold text-gray-900"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
                             {type}
                           </p>
                         ))}
                         <p
                           className="text-sm text-gray-600"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
                           {property.sizes}
                       </p>
                       </div>
@@ -533,20 +528,20 @@ export default function PropertyPage() {
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="w-4 h-4 text-[#CBB27A]" />
-                        <p
-                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          Location
-                        </p>
-                      </div>
                       <p
-                        className="text-base font-semibold text-gray-900 leading-relaxed"
+                          className="text-xs text-gray-600 font-semibold uppercase tracking-wide"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
+                          Location
+                          </p>
+                        </div>
+                        <p
+                        className="text-base font-semibold text-gray-900 leading-relaxed"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
+                        >
                         {property.location}
-                      </p>
-                    </div>
+                        </p>
+                      </div>
                   </div>
                 </div>
 

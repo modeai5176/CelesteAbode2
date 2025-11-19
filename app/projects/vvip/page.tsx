@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -31,7 +31,6 @@ import {
   Coffee,
   Gamepad2,
   Shield,
-  ShoppingBag,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -44,21 +43,24 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "PANCHSHEEL GREENS-II",
-    developer: "Panchsheel Group",
-    location: "Sector 16, Greater Noida West",
-    reraId: "UPRERAPRJ8595",
-    status: "Ready to Move",
-    possessionDate: "Ready to Move",
-    unitTypes: ["2 BHK", "3 BHK"],
-    sizes: "915-1525 sq.ft",
+    projectName: "VVIP Ltd",
+    developer: "Vibhor Vaibhav Infrahome Pvt. Ltd.",
+    location: "Sector 12, Greater Noida West",
+    reraId: "UPRERAPRJ743225/10/2025",
+    status: "Pre-Launch",
+    possessionDate: "Jun 2028",
+    unitTypes: ["3 BHK", "4 BHK"],
+    sizes: "2000-3600 sq.ft",
     images: [
-      "/panchsheel/hero.avif",
-      "/panchsheel/1.avif",
-      "/panchsheel/2.avif",
-      "/panchsheel/3.avif",
-      "/panchsheel/4.avif",
-      "/panchsheel/5.avif",
+      "/VVIP/hero.avif",
+      "/VVIP/1.avif",
+      "/VVIP/2.avif",
+      "/VVIP/3.avif",
+      "/VVIP/4.avif",
+      "/VVIP/5.avif",
+      "/VVIP/6.avif",
+      "/VVIP/7.avif",
+      "/VVIP/8.avif",
     ],
   };
 
@@ -94,8 +96,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[13];
-  const projectUrl = "https://www.celesteabode.com/projects/13";
+  const projectId = projectSlugToId["vvip"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/vvip`;
 
   return (
     <>
@@ -382,7 +385,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About PANCHSHEEL GREENS-II
+                      About VVIP Ltd
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -403,7 +406,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Nestled in the prime <span className="font-semibold text-[#CBB27A]">Sector 16, Greater Noida West</span>, PANCHSHEEL GREENS-II by Panchsheel Group represents 35+ years of real estate excellence, offering <span className="font-semibold">ready-to-move 2 BHK and 3 BHK residences spanning 915 to 1,525 sq.ft</span> within a sprawling <span className="font-semibold">26-acre development with over 65% open area</span>. With <span className="font-semibold">OC received for majority towers</span>, this project features <span className="font-semibold">two 3-storey AC clubhouses (~23,000 sq.ft. each), six banquet halls, swimming pools, gymnasium, steam bath, and yoga facilities</span>, while the <span className="font-semibold">Panchsheel Greenmart—a 4-level shopping convenience—and central park with fountains, meditation deck, jogging track, and amphitheatre</span> ensure a lifestyle that's both convenient and enriching for modern families.
+                      Positioned in the prime <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, VVIP Ltd by Vibhor Vaibhav Infrahome (Ashtech Group) represents 30+ years of nation building, offering <span className="font-semibold">fully furnished 3 BHK and 4 BHK residences spanning 2,000 to 3,600 sq.ft</span> with exceptional connectivity to major city hubs. Designed by <span className="font-semibold">Studio Symbiosis</span>, each home features <span className="font-semibold">12-foot ceiling heights, Italian marble flooring, VRV air-conditioning, and modular kitchens with wardrobes</span>, while the <span className="font-semibold">70,000 sq.ft. clubhouse—the biggest in the region—and premium finishes</span> ensure a lifestyle that's both luxurious and timeless for discerning families.
                     </p>
                   </div>
                 </div>
@@ -428,14 +431,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Swimming Pool", icon: Droplets },
+                    { name: "Fully Furnished Residences", icon: Home },
                     { name: "Kids Zone", icon: Heart },
-                    { name: "Gymnasium", icon: Dumbbell },
-                    { name: "Central Park", icon: TreePine },
-                    { name: "AC Clubhouse", icon: Coffee },
+                    { name: "70,000 sq.ft Clubhouse", icon: Coffee },
+                    { name: "12 ft Ceiling Height", icon: Building2 },
+                    { name: "VRV Air-Conditioning", icon: Gamepad2 },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Shopping Convenience", icon: ShoppingBag },
-                    { name: "Banquet Halls", icon: Home },
+                    { name: "Italian Marble Flooring", icon: Square },
+                    { name: "Modular Kitchen & Wardrobes", icon: Coffee },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (

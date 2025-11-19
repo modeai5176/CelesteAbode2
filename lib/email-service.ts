@@ -261,7 +261,7 @@ function createContactEmailTemplate(params: EmailSubmissionParams): string {
 function createSegmentedEntryEmailTemplate(params: EmailSubmissionParams): string {
   const intentLabels = {
     live: "Buying to Live",
-    invest: "Investing for Returns",
+    invest: "Investing for Returns", 
     signature: "Luxury & Signature Residences"
   };
 
@@ -280,7 +280,7 @@ function createSegmentedEntryEmailTemplate(params: EmailSubmissionParams): strin
           <h1 style="color: #2B3035; margin: 0; font-size: 24px;">New ${intentLabels[intent]} Inquiry</h1>
           <p style="color: #666; margin: 10px 0 0 0;">Celeste Abode</p>
         </div>
-        
+      
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
           <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Contact Information</h2>
           <table style="width: 100%; border-collapse: collapse;">
@@ -307,7 +307,7 @@ function createSegmentedEntryEmailTemplate(params: EmailSubmissionParams): strin
 
         <div style="background-color: #CBB27A; color: white; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
           <p style="margin: 0; font-weight: bold;">Ready to provide personalized recommendations!</p>
-        </div>
+      </div>
 
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
           <p style="color: #666; margin: 0; font-size: 14px;">
@@ -337,8 +337,8 @@ function createViewingEmailTemplate(params: EmailSubmissionParams): string {
         <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #CBB27A; padding-bottom: 20px;">
           <h1 style="color: #2B3035; margin: 0; font-size: 24px;">New Property Viewing Request</h1>
           <p style="color: #666; margin: 10px 0 0 0;">Celeste Abode</p>
-        </div>
-        
+      </div>
+
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
           <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Client Information</h2>
           <table style="width: 100%; border-collapse: collapse;">
@@ -497,7 +497,7 @@ function createAdvisoryEmailTemplate(params: EmailSubmissionParams, type: 'advis
               <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Location:</td>
               <td style="padding: 8px 0; border-bottom: 1px solid #eee; color: #666;">${sanitizeInput(params.location)}</td>
             </tr>
-            ` : ''}
+      ` : ''}
           </table>
         </div>
 
@@ -506,7 +506,7 @@ function createAdvisoryEmailTemplate(params: EmailSubmissionParams, type: 'advis
           <h2 style="color: #2B3035; margin: 0 0 15px 0; font-size: 18px;">Additional Requirements</h2>
           <p style="color: #666; margin: 0; line-height: 1.6; white-space: pre-wrap;">${sanitizeInput(params.message)}</p>
         </div>
-        ` : ''}
+      ` : ''}
 
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
           <p style="color: #666; margin: 0; font-size: 14px;">
@@ -586,8 +586,8 @@ function createConfirmationEmailTemplate(
             For immediate assistance, please call us at <strong>${phoneNumber}</strong><br>
             or visit our website at <strong>www.celesteabode.com</strong>
           </p>
-        </div>
       </div>
+    </div>
     </body>
     </html>
   `;

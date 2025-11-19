@@ -29,6 +29,7 @@ import {
   Shield,
 } from "lucide-react";
 import { BreadcrumbSchema } from "@/lib/structured-data";
+import { projectSlugs } from "@/lib/project-metadata";
 
 export default function ProjectsPage() {
   const [activeSegment, setActiveSegment] = useState("buying-to-live");
@@ -956,7 +957,8 @@ export default function ProjectsPage() {
   };
 
   const handleViewDetails = (propertyId: number) => {
-    window.location.href = `/projects/${propertyId}`;
+    const slug = projectSlugs[propertyId] || propertyId.toString();
+    window.location.href = `/projects/${slug}`;
   };
 
   const handleCarouselPrev = () => {

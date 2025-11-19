@@ -30,6 +30,76 @@ const nextConfig = {
   // experimental: {
   //   optimizeCss: true,
   // },
+  // Redirects from numeric project URLs to slug-based URLs
+  async redirects() {
+    return [
+      {
+        source: '/projects/1',
+        destination: '/projects/arihant-abode',
+        permanent: true,
+      },
+      {
+        source: '/projects/2',
+        destination: '/projects/spring-elmas',
+        permanent: true,
+      },
+      {
+        source: '/projects/3',
+        destination: '/projects/eternia-residences',
+        permanent: true,
+      },
+      {
+        source: '/projects/4',
+        destination: '/projects/rg-pleiaddes',
+        permanent: true,
+      },
+      {
+        source: '/projects/5',
+        destination: '/projects/irish-platinum',
+        permanent: true,
+      },
+      {
+        source: '/projects/6',
+        destination: '/projects/elite-x',
+        permanent: true,
+      },
+      {
+        source: '/projects/7',
+        destination: '/projects/ace-hanei',
+        permanent: true,
+      },
+      {
+        source: '/projects/8',
+        destination: '/projects/the-brook-and-rivulet',
+        permanent: true,
+      },
+      {
+        source: '/projects/9',
+        destination: '/projects/renox-thrive',
+        permanent: true,
+      },
+      {
+        source: '/projects/10',
+        destination: '/projects/civitech-strings',
+        permanent: true,
+      },
+      {
+        source: '/projects/11',
+        destination: '/projects/forest-walk-villa',
+        permanent: true,
+      },
+      {
+        source: '/projects/12',
+        destination: '/projects/vvip',
+        permanent: true,
+      },
+      {
+        source: '/projects/13',
+        destination: '/projects/panchsheel-greens-ii',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 export default nextConfig

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -43,23 +43,22 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "RG PLEIADDES",
-    developer: "RG Group",
-    location: "Sector-1, Greater Noida West",
-    reraId: "UPRERAPRJ415309/09/2025",
-    status: "New Launch",
-    possessionDate: "TBD",
-    unitTypes: ["Premium 3 BHK", "Premium 4 BHK"],
-    sizes: "Premium sized apartments",
+    projectName: "THE BROOK & RIVULET",
+    developer: "Fusion Limited",
+    location: "Sector 12, Greater Noida West",
+    reraId: "UPRERAPRJ535539",
+    status: "Under Construction",
+    possessionDate: "Under Construction",
+    unitTypes: ["3C", "3E", "4B", "4C"],
+    sizes: "1350-2050 sq.ft",
     images: [
-      "/RG/1.avif",
-      "/RG/2.avif",
-      "/RG/3.avif",
-      "/RG/4.avif",
-      "/RG/5.avif",
-      "/RG/6.avif",
-      "/RG/7.avif",
-      "/RG/8.avif",
+      "/Brook and Rivulet/1.avif",
+      "/Brook and Rivulet/2.avif",
+      "/Brook and Rivulet/3.avif",
+      "/Brook and Rivulet/4.avif",
+      "/Brook and Rivulet/5.avif",
+      "/Brook and Rivulet/6.avif",
+      "/Brook and Rivulet/7.avif",
     ],
   };
 
@@ -95,8 +94,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[4];
-  const projectUrl = "https://www.celesteabode.com/projects/4";
+  const projectId = projectSlugToId["the-brook-and-rivulet"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/the-brook-and-rivulet`;
 
   return (
     <>
@@ -135,7 +135,7 @@ export default function PropertyPage() {
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src="/RG/hero.avif"
+          src={property.images[0]}
           alt={property.projectName}
           fill
           className="object-cover object-center"
@@ -355,7 +355,7 @@ export default function PropertyPage() {
                   {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
-                      {property.images.length <= 8 && property.images.map((image, index) => (
+                      {property.images.length <= 7 && property.images.map((image, index) => (
                           <button
                           key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -383,7 +383,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About RG Pleiaddes
+                      About The Brook & Rivulet
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -404,7 +404,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Nestled in the prime <span className="font-semibold text-[#CBB27A]">Sector-1, Greater Noida West</span>, RG Pleiaddes stands as a landmark residential development by RG Group, featuring <span className="font-semibold">six iconic towers across 8 acres with 70% open greens</span>—offering an unparalleled balance of luxury and nature. With <span className="font-semibold">premium 3 BHK and 4 BHK residences</span> designed for modern living, the project delivers <span className="font-semibold">world-class amenities including indoor and outdoor pools, bowling alley, golf simulator, and premium lifestyle spaces</span>, all while ensuring seamless connectivity to Central Noida and the greater Delhi NCR region.
+                      Strategically located in <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, The Brook & Rivulet by Fusion Limited offers an exceptional investment opportunity with <span className="font-semibold">3C, 3E, 4B, and 4C configurations spanning 1,350 to 2,050 sq.ft</span>—just 600 meters from the proposed Sector 12 Metro Station. With <span className="font-semibold">Fusion's legacy of delivering 50+ lakh sq.ft and 3,000+ happy families</span>, each residence features <span className="font-semibold">premium vitrified tiles, wooden textured master bedrooms, and earthquake-resistant RCC construction</span>, while the <span className="font-semibold">luxury clubhouses (Paper Boat & Pebble Castle), 30,000 sq.ft terrace garden, and mechanical car parking with EV charging</span> ensure a lifestyle that's both modern and sustainable.
                     </p>
                   </div>
                 </div>
@@ -429,14 +429,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Indoor & Outdoor Pools", icon: Droplets },
+                    { name: "Half-Olympic Swimming Pool", icon: Droplets },
                     { name: "Kids Zone", icon: Heart },
-                    { name: "Bowling Alley", icon: Gamepad2 },
-                    { name: "70% Open Greens", icon: TreePine },
-                    { name: "Yoga, Spa & Wellness", icon: Heart },
+                    { name: "Tennis Court", icon: Dumbbell },
+                    { name: "30,000 sq.ft Terrace Garden", icon: TreePine },
+                    { name: "Luxury Clubhouses", icon: Coffee },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Golf Simulator", icon: Gamepad2 },
-                    { name: "Premium Clubhouse", icon: Coffee },
+                    { name: "Basketball Court", icon: Gamepad2 },
+                    { name: "Yoga & Meditation Centre", icon: Heart },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (

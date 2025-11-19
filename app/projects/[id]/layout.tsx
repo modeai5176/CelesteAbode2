@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }): Promise<Metadata> {
-  const id = parseInt(params.id);
-  const project = projectMetadata[id];
+  // Handle both slug and legacy numeric IDs for backward compatibility
+  let projectId: number | undefined;
+  
+  if (/^\d+$/.test(params.slug)) {
+    // Legacy numeric ID
+    projectId = parseInt(params.slug);
+  } else {
+    // Slug format
+    projectId = projectSlugToId[params.slug];
+  }
+  
+  const project = projectId ? projectMetadata[projectId] : undefined;
 
   if (!project) {
     return {
@@ -16,6 +26,8 @@ export async function generateMetadata({
     };
   }
 
+  const projectSlug = project.slug;
+
   return {
     title: project.title,
     description: project.description,
@@ -23,7 +35,7 @@ export async function generateMetadata({
     openGraph: {
       title: project.title,
       description: project.description,
-      url: `https://www.celesteabode.com/projects/${id}`,
+      url: `https://www.celesteabode.com/projects/${projectSlug}`,
       siteName: "Celeste Abode",
       images: [
         {
@@ -43,7 +55,7 @@ export async function generateMetadata({
       images: [project.image],
     },
     alternates: {
-      canonical: `https://www.celesteabode.com/projects/${id}`,
+      canonical: `https://www.celesteabode.com/projects/${projectSlug}`,
     },
   };
 }

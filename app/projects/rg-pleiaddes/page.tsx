@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -43,23 +43,23 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "FOREST WALK VILLA",
-    developer: "Madhusudan Group / Yatharth Group",
-    location: "NH-24, Dasna, Ghaziabad",
-    reraId: "UPRERAPRJ658961/08/2025",
-    status: "Under Construction",
-    possessionDate: "June 2027",
-    unitTypes: ["4 BHK + 5T Villas"],
-    sizes: "163 sq. yd - 238 sq. yd (3,070 sq.ft - 4,200 sq.ft)",
+    projectName: "RG PLEIADDES",
+    developer: "RG Group",
+    location: "Sector-1, Greater Noida West",
+    reraId: "UPRERAPRJ415309/09/2025",
+    status: "New Launch",
+    possessionDate: "TBD",
+    unitTypes: ["Premium 3 BHK", "Premium 4 BHK"],
+    sizes: "Premium sized apartments",
     images: [
-      "/ForestWalk/hero.avif",
-      "/ForestWalk/1.avif",
-      "/ForestWalk/2.avif",
-      "/ForestWalk/3.avif",
-      "/ForestWalk/8.avif",
-      "/ForestWalk/5.avif",
-      "/ForestWalk/6.avif",
-      "/ForestWalk/7.avif",
+      "/RG/1.avif",
+      "/RG/2.avif",
+      "/RG/3.avif",
+      "/RG/4.avif",
+      "/RG/5.avif",
+      "/RG/6.avif",
+      "/RG/7.avif",
+      "/RG/8.avif",
     ],
   };
 
@@ -95,8 +95,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[11];
-  const projectUrl = "https://www.celesteabode.com/projects/11";
+  const projectId = projectSlugToId["rg-pleiaddes"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/rg-pleiaddes`;
 
   return (
     <>
@@ -135,7 +136,7 @@ export default function PropertyPage() {
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src={property.images[0]}
+          src="/RG/hero.avif"
           alt={property.projectName}
           fill
           className="object-cover object-center"
@@ -383,7 +384,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About Forest Walk Villa
+                      About RG Pleiaddes
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -404,7 +405,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Nestled on the <span className="font-semibold text-[#CBB27A]">NH-24, Dasna, Ghaziabad</span>, Forest Walk Villa by Madhusudan Group and Yatharth Group represents a unique forest-themed luxury residential development, featuring <span className="font-semibold">fully furnished 4 BHK + 5T villas spanning 163 to 238 sq. yards across 52 acres with 80% green landscape</span>—just 20 minutes to Delhi and 15 minutes to Noida and Greater Noida West. Each villa features <span className="font-semibold">Italian marble in living areas, laminated wooden flooring in master bedrooms, and lift provision within villa</span>, while the <span className="font-semibold">eco landscaping, vastu-compliant design, and sustainable architecture</span> ensure a lifestyle that's both luxurious and harmonious with nature.
+                      Nestled in the prime <span className="font-semibold text-[#CBB27A]">Sector-1, Greater Noida West</span>, RG Pleiaddes stands as a landmark residential development by RG Group, featuring <span className="font-semibold">six iconic towers across 8 acres with 70% open greens</span>—offering an unparalleled balance of luxury and nature. With <span className="font-semibold">premium 3 BHK and 4 BHK residences</span> designed for modern living, the project delivers <span className="font-semibold">world-class amenities including indoor and outdoor pools, bowling alley, golf simulator, and premium lifestyle spaces</span>, all while ensuring seamless connectivity to Central Noida and the greater Delhi NCR region.
                     </p>
                   </div>
                 </div>
@@ -429,14 +430,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Half-Olympic Swimming Pool", icon: Droplets },
-                    { name: "Children's Play Area", icon: Heart },
-                    { name: "Tennis & Badminton Courts", icon: Dumbbell },
-                    { name: "80% Green Landscape", icon: TreePine },
-                    { name: "Spa & Yoga Garden", icon: Heart },
+                    { name: "Indoor & Outdoor Pools", icon: Droplets },
+                    { name: "Kids Zone", icon: Heart },
+                    { name: "Bowling Alley", icon: Gamepad2 },
+                    { name: "70% Open Greens", icon: TreePine },
+                    { name: "Yoga, Spa & Wellness", icon: Heart },
                     { name: "24/7 Security", icon: Shield },
+                    { name: "Golf Simulator", icon: Gamepad2 },
                     { name: "Premium Clubhouse", icon: Coffee },
-                    { name: "Amphitheatre", icon: Gamepad2 },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (

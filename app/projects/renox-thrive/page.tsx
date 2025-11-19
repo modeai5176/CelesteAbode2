@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -43,22 +43,22 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "CIVITECH STRINGS",
-    developer: "S.A.G. Realtech Pvt. Ltd. (Civitech Group)",
-    location: "Sector 12, Greater Noida West",
-    reraId: "UPRERAPRJ646272",
+    projectName: "RENOX THRIVE",
+    developer: "Nivas Promoters Pvt. Ltd. (Renox Group)",
+    location: "Sector 10, Greater Noida West",
+    reraId: "UPRERAPRJ742692/09/2024",
     status: "Under Construction",
     possessionDate: "Under Construction",
-    unitTypes: ["3 BHK + 3T"],
-    sizes: "1975-2075 sq.ft",
+    unitTypes: ["3 BHK", "4 BHK"],
+    sizes: "1582 – 2644 sq.ft",
     images: [
-      "/Civitech/hero.avif",
-      "/Civitech/1.avif",
-      "/Civitech/2.avif",
-      "/Civitech/3.avif",
-      "/Civitech/4.avif",
-      "/Civitech/5.avif",
-      "/Civitech/6.avif",
+      "/Renox/hero.avif",
+      "/Renox/1.avif",
+      "/Renox/2.avif",
+      "/Renox/3.avif",
+      "/Renox/4.avif",
+      "/Renox/5.avif",
+      "/Renox/6.avif",
     ],
   };
 
@@ -94,8 +94,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[10];
-  const projectUrl = "https://www.celesteabode.com/projects/10";
+  const projectId = projectSlugToId["renox-thrive"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/renox-thrive`;
 
   return (
     <>
@@ -382,7 +383,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About Civitech Strings
+                      About Renox Thrive
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -403,7 +404,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Located in the prestigious <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, Civitech Strings by Civitech Group (founded by Mr. Subodh Goel) represents "Spaces for Happiness," offering <span className="font-semibold">spacious 3 BHK + 3T residences spanning 1,975 to 2,075 sq.ft</span> with just 5 minutes from Char Murti Chowk and adjacent to the upcoming Metro Station. With <span className="font-semibold">Civitech's 30+ years legacy and IGBC Gold rating</span>, each home features <span className="font-semibold">home automation, premium teakwood door frames with biometric locks, and aluminum formwork construction</span>, while the <span className="font-semibold">6,000 sq.m. central park, clubhouse, and indoor-outdoor sports zones</span> ensure a lifestyle that's both smart and sustainable for modern families.
+                      Positioned in the prime <span className="font-semibold text-[#CBB27A]">Sector 10, Greater Noida West</span>, Renox Thrive by Nivas Promoters (Renox Group) embodies the philosophy of "We Earn Your Trust," offering <span className="font-semibold">spacious 3 BHK and 4 BHK residences spanning 1,582 to 2,644 sq.ft</span> with excellent connectivity to Noida, Ghaziabad, and Delhi. With <span className="font-semibold">Renox Group's commitment to transparency, timely delivery, and ethical practices</span>, each home features <span className="font-semibold">high-rise modern architecture, dedicated parking, power backup, and clubhouse membership</span>, while the <span className="font-semibold">escalation-free pricing policy and inclusive charges for EDC, IDC, FFC</span> ensure a purchase experience that's both transparent and trustworthy for discerning families.
                     </p>
                   </div>
                 </div>
@@ -428,14 +429,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "6,000 sq.m Central Park", icon: TreePine },
-                    { name: "Kids' Play Area", icon: Heart },
-                    { name: "Indoor & Outdoor Sports", icon: Dumbbell },
-                    { name: "Premium Clubhouse", icon: Coffee },
-                    { name: "Home Automation", icon: Gamepad2 },
+                    { name: "Clubhouse Membership", icon: Coffee },
+                    { name: "Kids Zone", icon: Heart },
+                    { name: "Landscaped Open Spaces", icon: TreePine },
+                    { name: "Green Views", icon: TreePine },
+                    { name: "Dedicated Car Parking", icon: Shield },
                     { name: "24/7 Security", icon: Shield },
-                    { name: "Jogging Track", icon: Gamepad2 },
-                    { name: "High-Speed Premium Lifts", icon: Shield },
+                    { name: "Power Backup", icon: Gamepad2 },
+                    { name: "EV Charging Provision", icon: Gamepad2 },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (

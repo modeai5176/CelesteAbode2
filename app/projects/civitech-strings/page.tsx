@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { PropertySchema, BreadcrumbSchema } from "@/lib/structured-data";
-import { projectMetadata } from "@/lib/project-metadata";
+import { projectMetadata, projectSlugToId } from "@/lib/project-metadata";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -43,26 +43,22 @@ export default function PropertyPage() {
   const [isSlideshowPaused, setIsSlideshowPaused] = useState(false);
 
   const property = {
-    projectName: "ETERNIA RESIDENCES",
-    developer: "Yatharth Group + NBCC",
-    location: "Techzone 4, Greater Noida West",
-    reraId: "UPRERAAGT10206",
+    projectName: "CIVITECH STRINGS",
+    developer: "S.A.G. Realtech Pvt. Ltd. (Civitech Group)",
+    location: "Sector 12, Greater Noida West",
+    reraId: "UPRERAPRJ646272",
     status: "Under Construction",
-    possessionDate: "Dec 2027",
-    unitTypes: ["3 BHK", "3 BHK + Study", "4 BHK + Study"],
-    sizes: "1,932 sq.ft - 2,625 sq.ft",
+    possessionDate: "Under Construction",
+    unitTypes: ["3 BHK + 3T"],
+    sizes: "1975-2075 sq.ft",
     images: [
-      "/Eternia/5.avif",
-      "/Eternia/2.avif",
-      "/Eternia/3.avif",
-      "/Eternia/4.avif",
-      "/Eternia/6.avif",
-      "/Eternia/7.avif",
-      "/Eternia/8.avif",
-      "/Eternia/9.avif",
-      "/Eternia/10.avif",
-      "/Eternia/11.avif",
-      "/Eternia/12.avif",
+      "/Civitech/hero.avif",
+      "/Civitech/1.avif",
+      "/Civitech/2.avif",
+      "/Civitech/3.avif",
+      "/Civitech/4.avif",
+      "/Civitech/5.avif",
+      "/Civitech/6.avif",
     ],
   };
 
@@ -98,8 +94,9 @@ export default function PropertyPage() {
     setIsPopupOpen(true);
   };
 
-  const projectMeta = projectMetadata[3];
-  const projectUrl = "https://www.celesteabode.com/projects/3";
+  const projectId = projectSlugToId["civitech-strings"];
+  const projectMeta = projectMetadata[projectId];
+  const projectUrl = `https://www.celesteabode.com/projects/civitech-strings`;
 
   return (
     <>
@@ -123,7 +120,7 @@ export default function PropertyPage() {
         status={property.status}
         url={projectUrl}
       />
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
@@ -138,7 +135,7 @@ export default function PropertyPage() {
       {/* Cinematic Hero Banner */}
       <section className="relative h-screen overflow-hidden">
         <Image
-          src="/Eternia/1.avif"
+          src={property.images[0]}
           alt={property.projectName}
           fill
           className="object-cover object-center"
@@ -358,7 +355,7 @@ export default function PropertyPage() {
                   {/* Minimal Navigation */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <div className="flex justify-center gap-2 pb-2">
-                      {property.images.length <= 12 && property.images.map((image, index) => (
+                      {property.images.length <= 7 && property.images.map((image, index) => (
                           <button
                           key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -386,7 +383,7 @@ export default function PropertyPage() {
                       className="text-4xl font-bold text-gray-900"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      About Eternia Residences
+                      About Civitech Strings
                     </h2>
                   </div>
                   <div className="w-20 h-1 bg-[#CBB27A] mb-8"></div>
@@ -407,7 +404,7 @@ export default function PropertyPage() {
                         lineHeight: "1.8"
                       }}
                     >
-                      Located in the prestigious <span className="font-semibold text-[#CBB27A]">Techzone 4, Greater Noida West</span>, Eternia Residences represents an ultra-premium collaboration between <span className="font-semibold">Yatharth Group and NBCC</span>, offering <span className="font-semibold">green belt-facing residences with low-density planning</span> across six iconic towers. With <span className="font-semibold">3 BHK and 4 BHK configurations featuring smart home technology</span>, each home is designed to embrace natural light and ventilation, while the <span className="font-semibold">eco-friendly design, rainwater harvesting, and solar power integration</span> ensure a sustainable lifestyle that's both luxurious and responsible for generations to come.
+                      Located in the prestigious <span className="font-semibold text-[#CBB27A]">Sector 12, Greater Noida West</span>, Civitech Strings by Civitech Group (founded by Mr. Subodh Goel) represents "Spaces for Happiness," offering <span className="font-semibold">spacious 3 BHK + 3T residences spanning 1,975 to 2,075 sq.ft</span> with just 5 minutes from Char Murti Chowk and adjacent to the upcoming Metro Station. With <span className="font-semibold">Civitech's 30+ years legacy and IGBC Gold rating</span>, each home features <span className="font-semibold">home automation, premium teakwood door frames with biometric locks, and aluminum formwork construction</span>, while the <span className="font-semibold">6,000 sq.m. central park, clubhouse, and indoor-outdoor sports zones</span> ensure a lifestyle that's both smart and sustainable for modern families.
                     </p>
                   </div>
                 </div>
@@ -432,14 +429,14 @@ export default function PropertyPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
-                    { name: "Olympic Size Swimming Pool", icon: Droplets },
-                    { name: "Kids' Play Zone", icon: Heart },
-                    { name: "Fully Equipped Gymnasium", icon: Dumbbell },
-                    { name: "Landscaped Open Greens", icon: TreePine },
-                    { name: "Spa & Wellness Center", icon: Heart },
-                    { name: "24/7 Security", icon: Shield },
-                    { name: "Multipurpose Court", icon: Gamepad2 },
+                    { name: "6,000 sq.m Central Park", icon: TreePine },
+                    { name: "Kids' Play Area", icon: Heart },
+                    { name: "Indoor & Outdoor Sports", icon: Dumbbell },
                     { name: "Premium Clubhouse", icon: Coffee },
+                    { name: "Home Automation", icon: Gamepad2 },
+                    { name: "24/7 Security", icon: Shield },
+                    { name: "Jogging Track", icon: Gamepad2 },
+                    { name: "High-Speed Premium Lifts", icon: Shield },
                   ].map((amenity, index) => {
                     const IconComponent = amenity.icon;
                       return (

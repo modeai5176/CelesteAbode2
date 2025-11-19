@@ -1,21 +1,44 @@
 // Project metadata for SEO
-export const projectMetadata: Record<
-  number,
-  {
-    title: string;
-    description: string;
-    keywords: string[];
-    location: string;
-    developer: string;
-    reraId?: string;
-    price: string;
-    unitTypes: string[];
-    area: string;
-    status: string;
-    image: string;
-  }
-> = {
+export interface ProjectMetadata {
+  title: string;
+  description: string;
+  keywords: string[];
+  location: string;
+  developer: string;
+  reraId?: string;
+  price: string;
+  unitTypes: string[];
+  area: string;
+  status: string;
+  image: string;
+  slug: string;
+}
+
+// Slug mapping: ID -> slug
+export const projectSlugs: Record<number, string> = {
+  1: "arihant-abode",
+  2: "spring-elmas",
+  3: "eternia-residences",
+  4: "rg-pleiaddes",
+  5: "irish-platinum",
+  6: "elite-x",
+  7: "ace-hanei",
+  8: "the-brook-and-rivulet",
+  9: "renox-thrive",
+  10: "civitech-strings",
+  11: "forest-walk-villa",
+  12: "vvip",
+  13: "panchsheel-greens-ii",
+};
+
+// Reverse mapping: slug -> ID
+export const projectSlugToId: Record<string, number> = Object.fromEntries(
+  Object.entries(projectSlugs).map(([id, slug]) => [slug, parseInt(id)])
+);
+
+export const projectMetadata: Record<number, ProjectMetadata> = {
   1: {
+    slug: "arihant-abode",
     title: "ARIHANT ABODE Sector 10 Greater Noida West - 2 & 3 BHK Ready to Move | Celeste Abode",
     description:
       "ARIHANT ABODE by Arihant Group in Sector 10, Greater Noida West. Ready to move 2 & 3 BHK apartments starting ₹1.02 Cr. RERA: UPRERAPRJ15792. Prime location with premium amenities. Book site visit now.",
@@ -39,6 +62,7 @@ export const projectMetadata: Record<
     image: "/arihant-abode/hero.avif",
   },
   2: {
+    slug: "spring-elmas",
     title: "SPRING ELMAS Sector 12 Greater Noida West - 3 & 4 BHK Luxury Residences | Celeste Abode",
     description:
       "SPRING ELMAS by Spring Group in Sector 12, Greater Noida West. Luxury 3 & 4 BHK apartments starting ₹1.52 Cr. RERA: UPRERAPRJ274689. Metro connectivity, SBI approved, smart home features. Under construction.",
@@ -61,6 +85,7 @@ export const projectMetadata: Record<
     image: "/spring-elmas/hero.avif",
   },
   3: {
+    slug: "eternia-residences",
     title: "ETERNIA RESIDENCES TechZone 4 Greater Noida - Ultra Premium 3 & 4 BHK | Celeste Abode",
     description:
       "ETERNIA RESIDENCES by Yatharth Group + NBCC in TechZone 4, Greater Noida West. Ultra premium 3 & 4 BHK apartments starting ₹1.97 Cr. Green belt facing, low density planning. RERA registered.",
@@ -82,6 +107,7 @@ export const projectMetadata: Record<
     image: "/Eternia/1.avif",
   },
   4: {
+    slug: "rg-pleiaddes",
     title: "RG PLEIADDES Sector 1 Greater Noida West - Premium 3 & 4 BHK New Launch | Celeste Abode",
     description:
       "RG PLEIADDES by RG Group in Sector 1, Greater Noida West. Premium 3 & 4 BHK apartments. New launch with 6 iconic towers, 70% open green spaces, 8 acres project. RERA: UPRERAPRJ415309.",
@@ -102,6 +128,7 @@ export const projectMetadata: Record<
     image: "/RG/hero.avif",
   },
   5: {
+    slug: "irish-platinum",
     title: "IRISH PLATINUM Sector 51 Greater Noida West - Premium 3 & 4 BHK Near Possession | Celeste Abode",
     description:
       "IRISH PLATINUM by Irish Infrastructure in Sector 51, Greater Noida West. Premium 3 & 4 BHK apartments near possession. 11 feet ceiling, 4 balconies per unit, earthquake resistant. RERA: UPRERAPRJ742692.",
@@ -122,6 +149,7 @@ export const projectMetadata: Record<
     image: "/Irish/hero.avif",
   },
   6: {
+    slug: "elite-x",
     title: "ELITE X Sector 22D Yamuna Expressway - 3 BHK Investment Opportunity | Celeste Abode",
     description:
       "ELITE X by Eldeco Group in Sector 22D, Yamuna Expressway, Greater Noida. 3 BHK + 2T, 3 BHK + 3T, and Duplex Penthouses starting ₹1.30 Cr. Jewar Airport 20 mins, Buddh Circuit 5 mins. RERA: UPRERAPRJ752382.",
@@ -143,6 +171,7 @@ export const projectMetadata: Record<
     image: "/Elite X/hero.avif",
   },
   7: {
+    slug: "ace-hanei",
     title: "ACE HANEI TechZone 4 Greater Noida West - Luxury 3 & 4 BHK + Study | Celeste Abode",
     description:
       "ACE HANEI by Gaur Group + NBCC in Sector 1, TechZone 4, Greater Noida West. Luxury 3 & 4 BHK + Study apartments starting ₹2.50 Cr. 30+ years experience, NBCC execution, large apartment sizes. RERA: UPRERAPRJ11256.",
@@ -163,6 +192,7 @@ export const projectMetadata: Record<
     image: "/ACE/hero.avif",
   },
   8: {
+    slug: "the-brook-and-rivulet",
     title: "THE BROOK & RIVULET Sector 12 Greater Noida - Premium High-Rise 3 & 4 BHK | Celeste Abode",
     description:
       "THE BROOK & RIVULET by Fusion Limited in Sector 12, Greater Noida West. Premium high-rise 3 & 4 BHK apartments starting ₹1.40 Cr. 3 side open corner plot, earthquake resistant RCC, MIVAN formwork. RERA: UPRERAPRJ535539.",
@@ -183,6 +213,7 @@ export const projectMetadata: Record<
     image: "/Brook and Rivulet/1.avif",
   },
   9: {
+    slug: "renox-thrive",
     title: "RENOX THRIVE Sector 10 Greater Noida West - Premium 3 & 4 BHK Residences | Celeste Abode",
     description:
       "RENOX THRIVE by Nivas Promoters (Renox Group) in Sector 10, Greater Noida West. Premium 3 & 4 BHK residences starting ₹1.42 Cr. Transparency & trust, timely delivery, ethical practices, escalation free pricing. RERA: UPRERAPRJ742692.",
@@ -203,6 +234,7 @@ export const projectMetadata: Record<
     image: "/Renox/hero.avif",
   },
   10: {
+    slug: "civitech-strings",
     title: "CIVITECH STRINGS Sector 12 Greater Noida - Premium 3 BHK + 3T Tower Daytona | Celeste Abode",
     description:
       "CIVITECH STRINGS Tower Daytona by S.A.G. Realtech (Civitech Group) in Sector 12, Greater Noida West. Premium 3 BHK + 3T apartments starting ₹2.37 Cr. 30+ years legacy, IGBC Gold rated, aluminium formwork, home automation. RERA: UPRERAPRJ646272.",
@@ -223,6 +255,7 @@ export const projectMetadata: Record<
     image: "/Civitech/hero.avif",
   },
   11: {
+    slug: "forest-walk-villa",
     title: "FOREST WALK VILLA NH-24 Dasna Ghaziabad - Luxury 4 BHK + 5T Villas | Celeste Abode",
     description:
       "FOREST WALK VILLA by Madhusudan Group / Yatharth Group in NH-24, Dasna, Ghaziabad. Luxury 4 BHK + 5T villas starting ₹2.85 Cr. 52 acres forest theme, 80% green landscape, fully furnished, Vastu compliant. RERA: UPRERAPRJ658961.",
@@ -243,6 +276,7 @@ export const projectMetadata: Record<
     image: "/ForestWalk/hero.avif",
   },
   12: {
+    slug: "vvip",
     title: "VVIP Sector 12 Greater Noida West - Luxury 3 & 4 BHK Residential Development | Celeste Abode",
     description:
       "Vibhor Vaibhav Infrahome luxury residential development in Sector 12, Greater Noida West. Luxury 3 & 4 BHK apartments starting ₹2.40 Cr. 30+ years nation building, Studio Symbiosis design, 70,000 sq.ft. clubhouse, fully furnished. RERA: UPRERAPRJ743225/10/2025.",
@@ -263,6 +297,7 @@ export const projectMetadata: Record<
     image: "/VVIP/hero.avif",
   },
   13: {
+    slug: "panchsheel-greens-ii",
     title: "PANCHSHEEL GREENS-II Sector 16 Greater Noida - Premium 2 & 3 BHK Ready to Move | Celeste Abode",
     description:
       "PANCHSHEEL GREENS-II by Panchsheel Group in Sector 16, Greater Noida West. Premium 2 & 3 BHK apartments starting ₹91.5 Lakhs. 26 acres project, 65% open area, OC received, 35+ years legacy. Ready to move. RERA: UPRERAPRJ8595.",
