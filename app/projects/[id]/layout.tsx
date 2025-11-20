@@ -57,6 +57,17 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://www.celesteabode.com/projects/${projectSlug}`,
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
