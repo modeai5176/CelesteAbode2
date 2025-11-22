@@ -6,7 +6,7 @@ import BlurText from "@/components/blur-text";
 
 export function BrandIntro() {
   return (
-    <Section className="pt-20 md:pt-28 pb-12 md:pb-20 bg-background relative overflow-hidden">
+    <Section className="pt-[102px] pb-12 md:pb-20 bg-background relative overflow-hidden">
       {/* Subtle architectural blueprint watermark background */}
       <div 
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
