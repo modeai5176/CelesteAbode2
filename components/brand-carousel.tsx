@@ -25,10 +25,10 @@ export function BrandCarousel() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="heading-bold text-primary mb-6">
+          <h2 className="heading-bold text-primary mb-6">
             Trusted <span className="text-[#CBB27A]">partners</span>, better
             outcomes
-          </h1>
+          </h2>
         </motion.div>
 
         {/* Carousel Container */}

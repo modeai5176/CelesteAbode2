@@ -9,7 +9,7 @@ export function ValuePropositions() {
     <section className="py-16 md:py-20 bg-background">
       <div className="max-w-screen-xl mx-auto px-6">
         {/* Section Heading */}
-        <motion.h1
+        <motion.h2
           className="heading-bold text-primary mb-12 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ export function ValuePropositions() {
         >
           The Mark of Expertise : Our{" "}
           <span className="text-[#CBB27A]">Impact & Results</span>
-        </motion.h1>
+        </motion.h2>
 
         {/* Statistics Grid - 2-1-2 Layout */}
         <div className="bg-muted/30 rounded-2xl md:rounded-3xl p-8 md:p-12 lg:p-16">

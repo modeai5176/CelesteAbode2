@@ -43,16 +43,16 @@ export function VaultTeaser() {
               <Lock className="w-8 h-8 text-[#CBB27A]" />
             </div>
 
-            {/* Heading - H1 */}
-            <h1 className="heading-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
+            {/* Heading - H2 */}
+            <h2 className="heading-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
               <span className="block sm:inline">Your Next Step: </span>
               <span className="block sm:inline">Access <span className="text-[#CBB27A]">Strategic Certainty</span>.</span>
-            </h1>
-
-            {/* Subheading - H2 */}
-            <h2 className="text-xl md:text-2xl text-ink font-medium mt-4">
-              Exclusive Blueprint for Smart Property Investment.
             </h2>
+
+            {/* Subheading - H3 */}
+            <h3 className="text-xl md:text-2xl text-ink font-medium mt-4">
+              Exclusive Blueprint for Smart Property Investment.
+            </h3>
 
             {/* Description */}
             <p className="text-sm md:text-base text-ink leading-relaxed max-w-xl mt-6">

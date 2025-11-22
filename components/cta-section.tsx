@@ -109,10 +109,10 @@ export function CTASection() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <h1 className="heading-bold text-3xl md:text-4xl lg:text-5xl leading-tight">
+              <h2 className="heading-bold text-3xl md:text-4xl lg:text-5xl leading-tight">
             Ready to find your{" "}
             <span className="text-[#CBB27A]">masterpiece?</span>
-          </h1>
+          </h2>
 
               <p className="text-lg text-muted leading-relaxed">
                 Connect with our expert advisors for personalized guidance and exclusive property insights. We're here to help you make informed decisions about your next real estate investment.

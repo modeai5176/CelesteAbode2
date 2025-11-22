@@ -21,11 +21,11 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.celesteabode.com"),
   title: {
-    default: "Luxury Real Estate Consulting NCR | Strategic Property Investment Advisory | Celeste Abode",
+    default: "Luxury Real Estate NCR | Property Investment Advisory | Celeste Abode",
     template: "%s | Celeste Abode",
   },
   description:
-    "Premium luxury real estate consulting in Noida, Gurugram, and Delhi NCR. Data-driven property investment advisory with RERA compliance. Expert guidance for luxury apartments, villas, and high-value investments in Yamuna Expressway, Greater Noida, and NCR region.",
+    "Luxury real estate consulting in Noida, Gurugram, and Delhi NCR. Data-driven property investment advisory with RERA compliance. Expert guidance for luxury apartments, villas, and high-value investments.",
   keywords: [
     // Primary Keywords
     "luxury real estate consulting NCR",
@@ -228,9 +228,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.celesteabode.com",
     siteName: "Celeste Abode",
-    title: "Luxury Real Estate Consulting NCR | Strategic Property Investment Advisory | Celeste Abode",
+    title: "Luxury Real Estate NCR | Property Investment Advisory | Celeste Abode",
     description:
-      "Premium luxury real estate consulting in Noida, Gurugram, and Delhi NCR. Data-driven property investment advisory with RERA compliance and strategic intelligence.",
+      "Luxury real estate consulting in Noida, Gurugram, and Delhi NCR. Data-driven property investment advisory with RERA compliance. Expert guidance for luxury apartments, villas, and high-value investments.",
     images: [
       {
         url: "/propertyhero.avif",
@@ -242,9 +242,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Luxury Real Estate Consulting NCR | Celeste Abode",
+    title: "Luxury Real Estate NCR | Property Investment Advisory | Celeste Abode",
     description:
-      "Premium luxury real estate consulting in Noida, Gurugram, and Delhi NCR. Strategic property investment advisory with data-driven intelligence.",
+      "Luxury real estate consulting in Noida, Gurugram, and Delhi NCR. Data-driven property investment advisory with RERA compliance. Expert guidance for luxury apartments, villas, and high-value investments.",
     images: ["/propertyhero.avif"],
     creator: "@celesteabode",
   },
@@ -282,7 +282,7 @@ export default function RootLayout({
         
         {/* Additional SEO Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="language" content="English" />
+        <meta name="language" content="en" />
         <meta name="revisit-after" content="7 days" />
         <meta name="author" content="Celeste Abode" />
         <meta name="copyright" content="Celeste Abode" />

@@ -40,9 +40,9 @@ export function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-6 pb-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="heading-bold text-primary mb-6">
+          <h2 className="heading-bold text-primary mb-6">
             Client Voices: Our <span className="text-[#CBB27A]">Proven Track Record</span>
-          </h1>
+          </h2>
           <p className="lead text-muted-foreground max-w-3xl mx-auto">
             Don't just take our word for it. Here's what our satisfied clients
             have to say about their experience with our premium real estate
