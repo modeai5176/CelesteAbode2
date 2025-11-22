@@ -2,15 +2,18 @@
 
 import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/hero-section"
-import { BrandEssay } from "@/components/brand-essay"
-import { FourPillars } from "@/components/four-pillars"
-import { CoreServices } from "@/components/core-services"
+import { BrandIntro } from "@/components/brand-intro"
+import { StickyValuePillars } from "@/components/sticky-value-pillars"
+import { ConversionBridge } from "@/components/conversion-bridge"
+import { CelesteConsultingFramework } from "@/components/celeste-consulting-framework"
 import { ValuePropositions } from "@/components/value-propositions"
 import { BrandCarousel } from "@/components/brand-carousel"
+import { VaultTeaser } from "@/components/vault-teaser"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { IntentPayload } from "@/lib/analytics"
 import { OrganizationSchema, WebSiteSchema, LocalBusinessSchema } from "@/lib/structured-data"
+import { HomepageServiceSchema, HomepageServicesListSchema, AggregateRatingSchema } from "@/lib/homepage-schema"
 
 // Lazy load below-the-fold components to reduce initial JS bundle
 const SegmentedEntry = dynamic(
@@ -33,10 +36,6 @@ const WhereWeWork = dynamic(
   { ssr: false, loading: () => <div className="min-h-[600px]" /> }
 )
 
-const Landscape2025 = dynamic(
-  () => import("@/components/landscape-2025").then(mod => ({ default: mod.Landscape2025 })),
-  { ssr: true }
-)
 
 const TestimonialsSection = dynamic(
   () => import("@/components/testimonials-section").then(mod => ({ default: mod.TestimonialsSection })),
@@ -64,6 +63,9 @@ export default function HomePage() {
       <OrganizationSchema />
       <WebSiteSchema />
       <LocalBusinessSchema />
+      <HomepageServiceSchema />
+      <HomepageServicesListSchema />
+      <AggregateRatingSchema />
       <div className="min-h-screen bg-background">
         <Header />
         <main>
@@ -74,20 +76,48 @@ export default function HomePage() {
             <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
           </div>
 
-          {/* Welcome to a New Era of Real Estate */}
-          <BrandEssay />
+          {/* Section 2: Brand Introduction */}
+          <BrandIntro />
           
-          {/* Why Choose Celeste Abode */}
-          <FourPillars />
-          
-          {/* Our Core Services */}
-          <CoreServices />
+          {/* Aesthetic Line Separator */}
+          <div className="w-full flex justify-center py-8">
+            <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+          </div>
           
           {/* The Mark of Expertise: Our Impact & Results */}
           <ValuePropositions />
+
+          {/* Aesthetic Line Separator */}
+          <div className="w-full flex justify-center py-8">
+            <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+          </div>
+
+          {/* Section 3: Sticky Scroll Value Pillars */}
+          <StickyValuePillars />
+
+          {/* Aesthetic Line Separator */}
+          <div className="w-full flex justify-center py-8">
+            <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+          </div>
+
+          {/* Vault Teaser - Source of Foresight */}
+          <VaultTeaser />
+
+          {/* Aesthetic Line Separator */}
+          <div className="w-full flex justify-center py-8">
+            <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+          </div>
           
           {/* Trusted partners, better outcomes */}
           <BrandCarousel />
+
+          {/* Aesthetic Line Separator */}
+          <div className="w-full flex justify-center py-8">
+            <div className="w-100 h-0.25 bg-gradient-to-r from-transparent via-[#CBB27A] to-transparent"></div>
+          </div>
+          
+          {/* The Celeste Consulting Framework */}
+          <CelesteConsultingFramework />
           
           {/* Live, Invest, or Aspire. We make it real */}
           <SegmentedEntry 
@@ -96,17 +126,11 @@ export default function HomePage() {
             defaultMicroMarkets={["Noida Expressway", "Yamuna Expressway", "Gaur City"]}
           />
           
-          {/* Technology That Redefines Real Estate */}
-          <TechnologySection />
-          
           {/* Who We Serve */}
           <WhoWeServe />
           
           {/* Where We Work - Regional Expertise */}
           <WhereWeWork />
-          
-          {/* India's Real Estate Landscape in 2025 */}
-          <Landscape2025 />
           
           {/* Projects Section */}
           {/* <PropertiesSection /> */}

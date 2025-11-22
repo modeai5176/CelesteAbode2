@@ -319,7 +319,7 @@ export function WhereWeWork() {
 
                         {/* CTA Button */}
                         <motion.button
-                          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#2b3035] text-white rounded-full font-medium hover:bg-black transition-all duration-200 shadow-lg hover:shadow-xl"
+                          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-black text-white md:bg-[#2b3035] rounded-full font-medium active:bg-black md:hover:bg-black transition-all duration-200 shadow-lg active:shadow-xl md:hover:shadow-xl"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={
@@ -494,7 +494,7 @@ export function WhereWeWork() {
 
                       {/* CTA */}
                       <motion.button
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#2b3035] text-white rounded-full font-medium hover:bg-black transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white md:bg-[#2b3035] rounded-full font-medium active:bg-black md:hover:bg-black transition-all duration-200 shadow-lg active:shadow-xl md:hover:shadow-xl"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={

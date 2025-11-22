@@ -11,7 +11,7 @@ export function OrganizationSchema() {
     logo: "https://www.celesteabode.com/logoceleste.avif",
     image: "https://www.celesteabode.com/logoceleste.avif",
     description:
-      "AI-Powered Real Estate Consulting in India. Buy luxury apartments, flats & villas in Noida, Gurgaon, Delhi NCR, Ghaziabad, and Lucknow.",
+      "Premium luxury real estate consulting in NCR. Strategic property investment advisory with data-driven intelligence, RERA compliance, and bespoke lifestyle curation. Expert guidance for high-value investments in Noida, Gurugram, Yamuna Expressway, Greater Noida, and Delhi NCR.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "716, Tower A, Ithum",
@@ -35,15 +35,20 @@ export function OrganizationSchema() {
     ],
     areaServed: {
       "@type": "City",
-      name: ["Noida", "Greater Noida", "Gurgaon", "Delhi", "Ghaziabad"],
+      name: ["Noida", "Greater Noida", "Gurugram", "Delhi", "Ghaziabad", "Yamuna Expressway", "Noida Expressway"],
     },
     priceRange: "₹50 Lakhs - ₹5 Crores",
     serviceType: [
-      "Real Estate Consulting",
-      "Property Advisory",
-      "Investment Advisory",
+      "Luxury Real Estate Consulting",
+      "Strategic Property Investment Advisory",
+      "Data-Driven Property Intelligence",
+      "RERA Compliant Property Advisory",
+      "Bespoke Lifestyle Curation",
+      "Investment Security Services",
       "NRI Property Services",
-      "Luxury Property Consulting",
+      "End-to-End Transaction Security",
+      "Property ROI Strategy",
+      "Signature Residences Advisory",
     ],
   };
 
@@ -209,6 +214,7 @@ export function LocalBusinessSchema() {
     url: "https://www.celesteabode.com",
     telephone: "+91-9818735258",
     priceRange: "₹50 Lakhs - ₹5 Crores",
+    description: "Premium luxury real estate consulting in NCR. Strategic property investment advisory with data-driven intelligence, RERA compliance, and bespoke lifestyle curation for high-value investments in Noida, Gurugram, Yamuna Expressway, and Greater Noida.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "716, Tower A, Ithum",
@@ -239,7 +245,7 @@ export function LocalBusinessSchema() {
       },
       {
         "@type": "City",
-        name: "Gurgaon",
+        name: "Gurugram",
       },
       {
         "@type": "City",
@@ -249,6 +255,20 @@ export function LocalBusinessSchema() {
         "@type": "City",
         name: "Ghaziabad",
       },
+      {
+        "@type": "City",
+        name: "Yamuna Expressway",
+      },
+    ],
+    serviceType: [
+      "Luxury Real Estate Consulting",
+      "Strategic Property Investment Advisory",
+      "Data-Driven Property Intelligence",
+      "RERA Compliant Property Advisory",
+      "Bespoke Lifestyle Curation",
+      "Investment Security Services",
+      "NRI Property Services",
+      "End-to-End Transaction Security",
     ],
   };
 

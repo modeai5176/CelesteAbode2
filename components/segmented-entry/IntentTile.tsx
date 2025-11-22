@@ -33,14 +33,14 @@ export function IntentTile({
         "group relative w-full h-[320px] p-8 rounded-3xl overflow-hidden",
         "bg-white shadow-lg hover:shadow-2xl",
         "focus:outline-none focus:ring-2 focus:ring-metal/30 focus:ring-offset-2",
-        "transition-all duration-500",
+        "transition-all duration-200",
         "text-left flex flex-col",
         className
       )}
       onClick={onClick}
       whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
+      transition={{ duration: 0.15, ease: [0.2, 0.8, 0.2, 1] }}
       role="button"
       aria-describedby={ariaDescribedBy}
       {...props}
@@ -98,7 +98,7 @@ export function IntentTile({
       </div>
 
       {/* Hover Effect Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-metal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-metal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150 rounded-3xl" />
 
       {/* Hidden description for screen readers */}
       <div id={ariaDescribedBy} className="sr-only">

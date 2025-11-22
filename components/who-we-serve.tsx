@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   User,
   TrendingUp,
@@ -25,10 +26,10 @@ export function WhoWeServe() {
       icon: <TrendingUp className="w-7 h-7" />,
     },
     {
-      id: "developers",
-      title: "Developers & Builders",
-      description: "Boost sales through data-led positioning.",
-      icon: <Building2 className="w-7 h-7" />,
+      id: "nris",
+      title: "NRIs & Global Indians",
+      description: "Trusted end-to-end advisory from abroad.",
+      icon: <Globe className="w-7 h-7" />,
     },
     {
       id: "corporates",
@@ -37,10 +38,10 @@ export function WhoWeServe() {
       icon: <Briefcase className="w-7 h-7" />,
     },
     {
-      id: "nris",
-      title: "NRIs & Global Indians",
-      description: "Trusted end-to-end advisory from abroad.",
-      icon: <Globe className="w-7 h-7" />,
+      id: "developers",
+      title: "Developers & Builders",
+      description: "Boost sales through data-led positioning.",
+      icon: <Building2 className="w-7 h-7" />,
     },
     {
       id: "professionals",
@@ -75,15 +76,20 @@ export function WhoWeServe() {
 
         {/* Audience Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {audiences.map((audience, index) => (
+          {audiences.map((audience, index) => {
+            // First row (0-2) links to projects, second row (3-5) links to services
+            const linkUrl = index < 3 ? "/projects" : "/services";
+            
+            return (
             <motion.div
               key={audience.id}
-              className="group relative bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
             >
+                <Link href={linkUrl}>
+                  <div className="group relative bg-white rounded-xl p-6 shadow-md active:shadow-xl md:hover:shadow-xl transition-all duration-300 active:-translate-y-1 md:hover:-translate-y-1 border border-border cursor-pointer h-full">
               {/* Icon */}
               <div className="text-[#CBB27A] mb-4 group-hover:scale-110 transition-transform duration-300">
                 {audience.icon}
@@ -100,9 +106,12 @@ export function WhoWeServe() {
               </div>
 
               {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#CBB27A]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#CBB27A]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
+                  </div>
+                </Link>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

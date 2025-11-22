@@ -20,7 +20,7 @@ const tileData = {
     title: "Buying to Live",
     subtitle: "Your Journey to a Dream Home",
     description:
-      "Discover properties that perfectly align with your lifestyle, commute, and community aspirations. We curate options that truly feel like home.",
+      "Properties aligned with your lifestyle, commute, and community needs. Curated options that match your aspirations.",
     cta: "Discover Your Dream Home",
     icon: <Home className="w-8 h-8" />,
   },
@@ -28,7 +28,7 @@ const tileData = {
     title: "Investing for Returns",
     subtitle: "Strategic Growth, Secure Future",
     description:
-      "Access exclusive pre-launch opportunities, meticulously vetted under-construction projects, and expert insights for liquidity and maximized returns. Your investment, our expertise.",
+      "Exclusive pre-launch opportunities and vetted under-construction projects with expert insights for maximized returns and liquidity.",
     cta: "Explore Investment Opportunities",
     icon: <TrendingUp className="w-8 h-8" />,
   },
@@ -36,7 +36,7 @@ const tileData = {
     title: "Signature Residences",
     subtitle: "Turning Luxury Aspirations, Into Real Addresses",
     description:
-      "Indulge in properties that define prestige. Explore exclusive listings, experience unparalleled brand equity, and secure residences with guaranteed possession timelines.",
+      "Exclusive listings with unparalleled brand equity and guaranteed possession timelines. Residences that define prestige.",
     cta: "Unlock Elite Residences",
     icon: <Crown className="w-8 h-8" />,
   },

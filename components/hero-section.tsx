@@ -88,42 +88,51 @@ export function HeroSection() {
             {/* Left side vignette */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
 
-            {/* Left Aligned Text Overlay */}
-            <div className="absolute inset-0 flex items-center">
-              <div className="text-left text-[#FAFAF8] max-w-4xl px-4 ml-6 md:px-6 md:ml-8">
+            {/* Left Aligned Text Overlay - Bottom Right on Mobile */}
+            <div className="absolute inset-0 flex items-end md:items-center justify-end md:justify-start">
+              {/* Gradient overlay behind text block only - dark on left, transparent on right */}
+              <div className="absolute left-0 top-0 bottom-0 w-full md:w-2/3 lg:w-1/2 bg-gradient-to-r from-black/70 via-black/40 to-transparent pointer-events-none" />
+              
+              <div className="relative text-left md:text-left text-[#FAFAF8] max-w-4xl px-4 pb-6 pr-4 md:px-6 md:ml-8 md:pb-0 md:pr-0 z-10">
                 <h1
-                  className="text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight text-[#FAFAF8]"
+                  className="text-2xl md:text-4xl lg:text-5xl font-medium mb-4 md:mb-5 leading-tight text-[#FAFAF8]"
                   style={{
-                    textShadow: "0 1px 2px rgba(0,0,0,0.35)",
+                    fontFamily: '"Cormorant Garamond", serif',
+                    textShadow: "0 2px 4px rgba(0,0,0,0.5)",
                     letterSpacing: "-0.01em",
                   }}
                 >
                   <div className="block text-[#FAFAF8]">
                     From Masterpieces of Time To
                   </div>
-                  <div className="block text-[#FAFAF8] mt-2">
+                  <div className="block text-[#FAFAF8] mt-1 md:mt-2">
                     Masterpieces of Living
                   </div>
                 </h1>
 
-                <p className="text-base md:text-lg text-[#CBB27A] mb-6 max-w-2xl">
-                  Redefining luxury real estate consulting in India's premium
-                  segment
+                <p 
+                  className="text-sm md:text-lg text-white mb-5 md:mb-7 max-w-2xl font-medium"
+                  style={{
+                    fontFamily: '"Poppins", sans-serif',
+                    textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  Redefining luxury real estate consulting in the NCR. Strategic Advisory for your next high-value investment.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                   <PillButton
                     variant="primary"
-                    size="md"
-                    className="text-sm px-4 py-3 md:px-7 bg-white text-[#2B3035] hover:bg-white/90 rounded-full w-fit"
+                    size="sm"
+                    className="text-xs px-4 py-2 md:text-sm md:px-6 md:py-3 bg-white text-[#2B3035] hover:bg-white/90 rounded-full w-[160px] sm:w-[180px] md:w-[200px] text-center"
                     asChild
                   >
                     <a href="/projects">Explore Projects</a>
                   </PillButton>
                   <PillButton
                     variant="outline"
-                    size="md"
-                    className="text-sm px-4 py-3 md:px-7 border border-white text-white hover:bg-white/20 rounded-full w-fit"
+                    size="sm"
+                    className="text-xs px-4 py-2 md:text-sm md:px-6 md:py-3 border border-white text-white hover:bg-white/20 rounded-full w-[160px] sm:w-[180px] md:w-[200px] text-center"
                     asChild
                   >
                     <a href="/contact">Book Consultation</a>
