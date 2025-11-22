@@ -51,7 +51,7 @@ export function VaultTeaser() {
 
             {/* Subheading - H2 */}
             <h2 className="text-xl md:text-2xl text-ink font-medium mt-4">
-              Your Exclusive Blueprint for Smart Property Investment.
+              Exclusive Blueprint for Smart Property Investment.
             </h2>
 
             {/* Description */}
