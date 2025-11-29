@@ -11,6 +11,7 @@ import { PhilosophyHeroSection } from "@/components/philosophy-hero-section";
 import { motion } from "framer-motion";
 import { Scale, Heart, Star, Rocket, Building2, Eye } from "lucide-react";
 import { BreadcrumbSchema } from "@/lib/structured-data";
+import Image from "next/image";
 
 export default function PhilosophyPage() {
   return (
@@ -46,10 +47,13 @@ export default function PhilosophyPage() {
                 {/* Mobile Image - Only visible on mobile */}
                 <div className="lg:hidden mb-12">
                   <div className="relative overflow-hidden rounded-xl shadow-2xl w-full h-[300px] bg-muted">
-                    <img
+                    <Image
                       src="/TRUSTTRANIMAGE.avif"
                       alt="Our Ethos - Trust, Transparency, Transformation"
-                      className="w-full h-full object-cover scale-110"
+                      fill
+                      className="object-cover scale-110"
+                      sizes="(max-width: 1024px) 100vw, 0vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-black/20" />
                   </div>
@@ -134,10 +138,13 @@ export default function PhilosophyPage() {
               <div className="hidden lg:block lg:col-span-5">
                 <div className="lg:sticky lg:top-32">
                   <div className="relative overflow-hidden rounded-xl shadow-2xl w-full h-[400px] bg-muted">
-                    <img
+                    <Image
                       src="/TRUSTTRANIMAGE.avif"
                       alt="Our Ethos - Trust, Transparency, Transformation"
-                      className="w-full h-full object-cover scale-110"
+                      fill
+                      className="object-cover scale-110"
+                      sizes="(min-width: 1024px) 40vw, 0vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-black/20" />
                   </div>
@@ -376,10 +383,13 @@ export default function PhilosophyPage() {
 
               {/* Image */}
               <div className="relative overflow-hidden rounded-2xl shadow-2xl w-full h-[500px] md:h-[700px] bg-muted">
-                <img
+                <Image
                   src="/philosophy image2.avif"
                   alt="The Morning Light, The View, The Peace You Seek - Philosophy image representing the emotional reward of the perfect property"
-                  className="w-full h-full object-cover object-[center_75%]"
+                  fill
+                  className="object-cover object-[center_75%]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                  quality={90}
                 />
                 <div className="absolute bottom-0 right-0 p-8 text-right">
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2">

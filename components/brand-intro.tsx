@@ -82,7 +82,7 @@ export function BrandIntro() {
                 ease: [0.25, 0.1, 0.25, 1]
               }}
             >
-              Celeste Abode is the pinnacle of luxury real estate consulting in the NCR. We reject the transaction-first model to focus on data-backed investment security and lifestyle curation. Born from a fusion of global tech leadership and luxury market mastery, we replace guesswork with precision ensuring your acquisition in Noida, Gurugram, or the Yamuna Expressway is secured by proprietary analytics and ethical stewardship.
+              Celeste Abode is the pinnacle of luxury real estate consulting in the NCR. We transform masterpieces of time into masterpieces of living—rejecting the transaction-first model to focus on data-backed investment security and lifestyle curation. Born from a fusion of global tech leadership and luxury market mastery, we replace guesswork with precision ensuring your acquisition in Noida, Gurugram, or the Yamuna Expressway is secured by proprietary analytics and ethical stewardship.
             </motion.p>
           </div>
         </motion.div>
